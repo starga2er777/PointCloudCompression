@@ -238,8 +238,9 @@ __kernel void integrateAllVolumeUnits(
                         __global const uchar* isActiveFlagsPtr,
                         int isActiveFlagsStep, int isActiveFlagsOffset,
                         int isActiveFlagsRows, int isActiveFlagsCols,
-                        // cam matrix:
+                        // cam matrices:
                         const float16 vol2cam,
+                        const float16 camInv,
                         // scalars:
                         const float voxelSize,
                         const int volUnitResolution,
@@ -271,16 +272,15 @@ __kernel void integrateAllVolumeUnits(
                                                 (allVolumePtr + table_offset + row * volCubed);
 
         // volUnit2cam = world2cam * volUnit2world =
-        // camPoseInv * volUnitPose = camPoseInv * (volPose + volPoseRot*(idx * volUnitSize)) =
-        // camPoseInv * (volPose + volPoseRot*(idx * volUnitResolution * voxelSize)) =
-        // camPoseInv * (volPose + volPoseRot*mulIdx) = camPoseInv * volPose + camPoseInv * volPoseRot * mulIdx =
-        // vol2cam + camPoseInv * volPoseRot * mulIdx
+        // camPoseInv * volUnitPose = camPoseInv * (volPose + idx * volUnitSize) =
+        // camPoseInv * (volPose + idx * volUnitResolution * voxelSize) =
+        // camPoseInv * (volPose + mulIdx) = camPoseInv * volPose + camPoseInv * mulIdx =
+        // vol2cam + camPoseInv * mulIdx
         float3 mulIdx = convert_float3(idx * volUnitResolution) * voxelSize;
         float16 volUnit2cam = vol2cam;
-
-        volUnit2cam.s37b += (float3)(dot(mulIdx, vol2cam.s012),
-                                     dot(mulIdx, vol2cam.s456),
-                                     dot(mulIdx, vol2cam.s89a));
+        volUnit2cam.s37b += (float3)(dot(mulIdx, camInv.s012),
+                                     dot(mulIdx, camInv.s456),
+                                     dot(mulIdx, camInv.s89a));
 
         integrateVolumeUnit(
             i, j,

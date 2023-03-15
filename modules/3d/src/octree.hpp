@@ -13,6 +13,7 @@
 #define OPENCV_3D_SRC_OCTREE_HPP
 
 #include <vector>
+#include <queue>
 #include "opencv2/core.hpp"
 
 namespace cv {
@@ -93,6 +94,8 @@ public:
 
     //! Contains pointers to all point cloud data in this node.
     std::vector<Point3f> pointList;
+
+    int pointNum = 0;
 };
 
 }

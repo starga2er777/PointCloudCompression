@@ -152,13 +152,12 @@ public:
     int runKernel( InputArray _m1, InputArray _m2, OutputArray _model ) const CV_OVERRIDE
     {
         Mat opoints = _m1.getMat(), ipoints = _m2.getMat();
-        Mat iter_rvec = rvec.clone();
-        Mat iter_tvec = tvec.clone();
+
         bool correspondence = solvePnP( _m1, _m2, cameraMatrix, distCoeffs,
-                                            iter_rvec, iter_tvec, useExtrinsicGuess, flags );
+                                            rvec, tvec, useExtrinsicGuess, flags );
 
         Mat _local_model;
-        hconcat(iter_rvec, iter_tvec, _local_model);
+        hconcat(rvec, tvec, _local_model);
         _local_model.copyTo(_model);
 
         return correspondence;
@@ -337,13 +336,7 @@ bool solvePnPRansac(InputArray _opoints, InputArray _ipoints,
     ipoints_inliers.resize(npoints1);
     try
     {
-       if (flags == SOLVEPNP_ITERATIVE && !useExtrinsicGuess)
-       {
-          rvec = _local_model.col(0).clone();
-          tvec = _local_model.col(1).clone();
-          useExtrinsicGuess = true;
-       }
-       result = solvePnP(opoints_inliers, ipoints_inliers, cameraMatrix,
+        result = solvePnP(opoints_inliers, ipoints_inliers, cameraMatrix,
                           distCoeffs, rvec, tvec, useExtrinsicGuess,
                           (flags == SOLVEPNP_P3P || flags == SOLVEPNP_AP3P) ? SOLVEPNP_EPNP : flags) ? 1 : -1;
     }

@@ -1,0 +1,66 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="16.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <ClCompile Include="D:\mydoc\CS_Resources\opencv_5.x_new\opencv\cmake-build-debug\modules\imgcodecs\CMakeFiles\opencv_test_imgcodecs.dir\cmake_pch.cxx">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\mydoc\CS_Resources\opencv_5.x_new\opencv\modules\imgcodecs\test\test_common.cpp">
+      <Filter>Src</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\mydoc\CS_Resources\opencv_5.x_new\opencv\modules\imgcodecs\test\test_grfmt.cpp">
+      <Filter>Src</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\mydoc\CS_Resources\opencv_5.x_new\opencv\modules\imgcodecs\test\test_jpeg.cpp">
+      <Filter>Src</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\mydoc\CS_Resources\opencv_5.x_new\opencv\modules\imgcodecs\test\test_main.cpp">
+      <Filter>Src</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\mydoc\CS_Resources\opencv_5.x_new\opencv\modules\imgcodecs\test\test_png.cpp">
+      <Filter>Src</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\mydoc\CS_Resources\opencv_5.x_new\opencv\modules\imgcodecs\test\test_read_write.cpp">
+      <Filter>Src</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\mydoc\CS_Resources\opencv_5.x_new\opencv\modules\imgcodecs\test\test_tiff.cpp">
+      <Filter>Src</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\mydoc\CS_Resources\opencv_5.x_new\opencv\modules\imgcodecs\test\test_webp.cpp">
+      <Filter>Src</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="D:\mydoc\CS_Resources\opencv_5.x_new\opencv\modules\imgcodecs\test\test_common.hpp">
+      <Filter>Include</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\mydoc\CS_Resources\opencv_5.x_new\opencv\modules\imgcodecs\test\test_exr.impl.hpp">
+      <Filter>Include</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\mydoc\CS_Resources\opencv_5.x_new\opencv\modules\imgcodecs\test\test_precomp.hpp">
+      <Filter>Include</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\mydoc\CS_Resources\opencv_5.x_new\opencv\cmake-build-debug\modules\imgcodecs\CMakeFiles\opencv_test_imgcodecs.dir\Debug\cmake_pch.hxx">
+      <Filter>Precompile Header File</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\mydoc\CS_Resources\opencv_5.x_new\opencv\cmake-build-debug\modules\imgcodecs\CMakeFiles\opencv_test_imgcodecs.dir\Release\cmake_pch.hxx">
+      <Filter>Precompile Header File</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <CustomBuild Include="D:\mydoc\CS_Resources\opencv_5.x_new\opencv\modules\imgcodecs\CMakeLists.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="Include">
+      <UniqueIdentifier>{43982BEC-A204-3871-9C30-D28D7C0CAB58}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Precompile Header File">
+      <UniqueIdentifier>{465EF140-3643-38BC-9CC2-F27A14A7553A}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{64F51C3C-950F-3C0B-9DA5-9AFB2E27C4AF}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Src">
+      <UniqueIdentifier>{0A9487EC-F312-3534-90B2-A81A6F5AAA31}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+</Project>

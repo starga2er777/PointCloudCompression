@@ -1,0 +1,871 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="16.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <PreferredToolArchitecture>x64</PreferredToolArchitecture>
+  </PropertyGroup>
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|x64">
+      <Configuration>Debug</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|x64">
+      <Configuration>Release</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectGuid>{78975D50-79BC-33DE-A431-D140CC00392B}</ProjectGuid>
+    <Keyword>Win32Proj</Keyword>
+    <WindowsTargetPlatformVersion>10.0.18362.0</WindowsTargetPlatformVersion>
+    <Platform>x64</Platform>
+    <ProjectName>opencv_gapi</ProjectName>
+    <VCProjectUpgraderObjectName>NoUpgrade</VCProjectUpgraderObjectName>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <CharacterSet>MultiByte</CharacterSet>
+    <PlatformToolset>v142</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <CharacterSet>MultiByte</CharacterSet>
+    <PlatformToolset>v142</PlatformToolset>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup>
+    <_ProjectFileVersion>10.0.20506.1</_ProjectFileVersion>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">D:\mydoc\CS_Resources\opencv_5.x_new\opencv\cmake-build-debug\bin\Debug\</OutDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">opencv_gapi.dir\Debug\</IntDir>
+    <TargetName Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">opencv_gapi500d</TargetName>
+    <TargetExt Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">.dll</TargetExt>
+    <LinkIncremental Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</LinkIncremental>
+    <GenerateManifest Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</GenerateManifest>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='Release|x64'">D:\mydoc\CS_Resources\opencv_5.x_new\opencv\cmake-build-debug\bin\Release\</OutDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='Release|x64'">opencv_gapi.dir\Release\</IntDir>
+    <TargetName Condition="'$(Configuration)|$(Platform)'=='Release|x64'">opencv_gapi500</TargetName>
+    <TargetExt Condition="'$(Configuration)|$(Platform)'=='Release|x64'">.dll</TargetExt>
+    <LinkIncremental Condition="'$(Configuration)|$(Platform)'=='Release|x64'">false</LinkIncremental>
+    <GenerateManifest Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</GenerateManifest>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <ClCompile>
+      <AdditionalIncludeDirectories>D:\mydoc\CS_Resources\opencv_5.x_new\opencv\3rdparty\clapack\include;D:\mydoc\CS_Resources\opencv_5.x_new\opencv\cmake-build-debug\3rdparty\ippicv\ippicv_win\icv\include;D:\mydoc\CS_Resources\opencv_5.x_new\opencv\cmake-build-debug\3rdparty\ippicv\ippicv_win\iw\include;D:\mydoc\CS_Resources\opencv_5.x_new\opencv\cmake-build-debug;D:\mydoc\CS_Resources\opencv_5.x_new\opencv\modules\gapi\src;D:\mydoc\CS_Resources\opencv_5.x_new\opencv\modules\gapi\include;D:\mydoc\CS_Resources\opencv_5.x_new\opencv\cmake-build-debug\modules\gapi;D:\mydoc\CS_Resources\opencv_5.x_new\opencv\modules\core\include;D:\mydoc\CS_Resources\opencv_5.x_new\opencv\modules\flann\include;D:\mydoc\CS_Resources\opencv_5.x_new\opencv\modules\imgproc\include;D:\mydoc\CS_Resources\opencv_5.x_new\opencv\modules\dnn\include;D:\mydoc\CS_Resources\opencv_5.x_new\opencv\modules\features2d\include;D:\mydoc\CS_Resources\opencv_5.x_new\opencv\modules\3d\include;D:\mydoc\CS_Resources\opencv_5.x_new\opencv\modules\stereo\include;D:\mydoc\CS_Resources\opencv_5.x_new\opencv\modules\video\include;D:\mydoc\CS_Resources\opencv_5.x_new\opencv\3rdparty\ittnotify\include;D:\mydoc\CS_Resources\opencv_5.x_new\opencv\cmake-build-debug\3rdparty\ade\ade-0.1.2a\sources\ade\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalOptions>%(AdditionalOptions) /bigobj</AdditionalOptions>
+      <AssemblerListingLocation>$(IntDir)</AssemblerListingLocation>
+      <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+      <DisableSpecificWarnings>4127;4251;4324;4275;4512;4589;4819</DisableSpecificWarnings>
+      <ExceptionHandling>Async</ExceptionHandling>
+      <FloatingPointModel>Precise</FloatingPointModel>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <InlineFunctionExpansion>Disabled</InlineFunctionExpansion>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <MultiProcessorCompilation>true</MultiProcessorCompilation>
+      <Optimization>Disabled</Optimization>
+      <PrecompiledHeader>Use</PrecompiledHeader>
+      <PrecompiledHeaderFile>D:/mydoc/CS_Resources/opencv_5.x_new/opencv/cmake-build-debug/modules/gapi/CMakeFiles/opencv_gapi.dir/Debug/cmake_pch.hxx</PrecompiledHeaderFile>
+      <PrecompiledHeaderOutputFile>D:/mydoc/CS_Resources/opencv_5.x_new/opencv/cmake-build-debug/modules/gapi/opencv_gapi.dir/Debug/cmake_pch.pch</PrecompiledHeaderOutputFile>
+      <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
+      <RuntimeTypeInfo>true</RuntimeTypeInfo>
+      <UseFullPaths>false</UseFullPaths>
+      <WarningLevel>Level4</WarningLevel>
+      <PreprocessorDefinitions>%(PreprocessorDefinitions);WIN32;_WINDOWS;_CRT_SECURE_NO_DEPRECATE;_CRT_NONSTDC_NO_DEPRECATE;_SCL_SECURE_NO_WARNINGS;OPENCV_WITH_ITT=1;_VARIADIC_MAX=10;_WIN32_WINNT=0x0601;_USE_MATH_DEFINES;__STDC_CONSTANT_MACROS;__STDC_LIMIT_MACROS;__STDC_FORMAT_MACROS;__OPENCV_BUILD=1;CMAKE_INTDIR="Debug";CVAPI_EXPORTS</PreprocessorDefinitions>
+      <ObjectFileName>$(IntDir)</ObjectFileName>
+      <ProgramDataBaseFileName>D:\mydoc\CS_Resources\opencv_5.x_new\opencv\cmake-build-debug\lib\Debug\opencv_gapi500d.pdb</ProgramDataBaseFileName>
+    </ClCompile>
+    <ResourceCompile>
+      <PreprocessorDefinitions>%(PreprocessorDefinitions);WIN32;_DEBUG;_WINDOWS;_CRT_SECURE_NO_DEPRECATE;_CRT_NONSTDC_NO_DEPRECATE;_SCL_SECURE_NO_WARNINGS;OPENCV_WITH_ITT=1;_VARIADIC_MAX=10;_WIN32_WINNT=0x0601;_USE_MATH_DEFINES;__STDC_CONSTANT_MACROS;__STDC_LIMIT_MACROS;__STDC_FORMAT_MACROS;__OPENCV_BUILD=1;CMAKE_INTDIR=\"Debug\";CVAPI_EXPORTS</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>D:\mydoc\CS_Resources\opencv_5.x_new\opencv\3rdparty\clapack\include;D:\mydoc\CS_Resources\opencv_5.x_new\opencv\cmake-build-debug\3rdparty\ippicv\ippicv_win\icv\include;D:\mydoc\CS_Resources\opencv_5.x_new\opencv\cmake-build-debug\3rdparty\ippicv\ippicv_win\iw\include;D:\mydoc\CS_Resources\opencv_5.x_new\opencv\cmake-build-debug;D:\mydoc\CS_Resources\opencv_5.x_new\opencv\modules\gapi\src;D:\mydoc\CS_Resources\opencv_5.x_new\opencv\modules\gapi\include;D:\mydoc\CS_Resources\opencv_5.x_new\opencv\cmake-build-debug\modules\gapi;D:\mydoc\CS_Resources\opencv_5.x_new\opencv\modules\core\include;D:\mydoc\CS_Resources\opencv_5.x_new\opencv\modules\flann\include;D:\mydoc\CS_Resources\opencv_5.x_new\opencv\modules\imgproc\include;D:\mydoc\CS_Resources\opencv_5.x_new\opencv\modules\dnn\include;D:\mydoc\CS_Resources\opencv_5.x_new\opencv\modules\features2d\include;D:\mydoc\CS_Resources\opencv_5.x_new\opencv\modules\3d\include;D:\mydoc\CS_Resources\opencv_5.x_new\opencv\modules\stereo\include;D:\mydoc\CS_Resources\opencv_5.x_new\opencv\modules\video\include;D:\mydoc\CS_Resources\opencv_5.x_new\opencv\3rdparty\ittnotify\include;D:\mydoc\CS_Resources\opencv_5.x_new\opencv\cmake-build-debug\3rdparty\ade\ade-0.1.2a\sources\ade\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ResourceCompile>
+    <Midl>
+      <AdditionalIncludeDirectories>D:\mydoc\CS_Resources\opencv_5.x_new\opencv\3rdparty\clapack\include;D:\mydoc\CS_Resources\opencv_5.x_new\opencv\cmake-build-debug\3rdparty\ippicv\ippicv_win\icv\include;D:\mydoc\CS_Resources\opencv_5.x_new\opencv\cmake-build-debug\3rdparty\ippicv\ippicv_win\iw\include;D:\mydoc\CS_Resources\opencv_5.x_new\opencv\cmake-build-debug;D:\mydoc\CS_Resources\opencv_5.x_new\opencv\modules\gapi\src;D:\mydoc\CS_Resources\opencv_5.x_new\opencv\modules\gapi\include;D:\mydoc\CS_Resources\opencv_5.x_new\opencv\cmake-build-debug\modules\gapi;D:\mydoc\CS_Resources\opencv_5.x_new\opencv\modules\core\include;D:\mydoc\CS_Resources\opencv_5.x_new\opencv\modules\flann\include;D:\mydoc\CS_Resources\opencv_5.x_new\opencv\modules\imgproc\include;D:\mydoc\CS_Resources\opencv_5.x_new\opencv\modules\dnn\include;D:\mydoc\CS_Resources\opencv_5.x_new\opencv\modules\features2d\include;D:\mydoc\CS_Resources\opencv_5.x_new\opencv\modules\3d\include;D:\mydoc\CS_Resources\opencv_5.x_new\opencv\modules\stereo\include;D:\mydoc\CS_Resources\opencv_5.x_new\opencv\modules\video\include;D:\mydoc\CS_Resources\opencv_5.x_new\opencv\3rdparty\ittnotify\include;D:\mydoc\CS_Resources\opencv_5.x_new\opencv\cmake-build-debug\3rdparty\ade\ade-0.1.2a\sources\ade\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <OutputDirectory>$(ProjectDir)/$(IntDir)</OutputDirectory>
+      <HeaderFileName>%(Filename).h</HeaderFileName>
+      <TypeLibraryName>%(Filename).tlb</TypeLibraryName>
+      <InterfaceIdentifierFileName>%(Filename)_i.c</InterfaceIdentifierFileName>
+      <ProxyFileName>%(Filename)_p.c</ProxyFileName>
+    </Midl>
+    <Link>
+      <AdditionalDependencies>..\..\lib\Debug\opencv_stereo500d.lib;..\..\lib\Debug\opencv_video500d.lib;..\..\3rdparty\lib\Debug\ippiwd.lib;..\..\3rdparty\ippicv\ippicv_win\icv\lib\intel64\ippicvmt.lib;..\..\3rdparty\lib\Debug\aded.lib;..\..\3rdparty\lib\Debug\ittnotifyd.lib;wsock32.lib;ws2_32.lib;..\..\lib\Debug\opencv_dnn500d.lib;..\..\lib\Debug\opencv_3d500d.lib;..\..\lib\Debug\opencv_features2d500d.lib;..\..\lib\Debug\opencv_flann500d.lib;..\..\lib\Debug\opencv_imgproc500d.lib;..\..\lib\Debug\opencv_core500d.lib;kernel32.lib;user32.lib;gdi32.lib;winspool.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;comdlg32.lib;advapi32.lib</AdditionalDependencies>
+      <AdditionalLibraryDirectories>%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalOptions>%(AdditionalOptions) /machine:x64</AdditionalOptions>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <IgnoreSpecificDefaultLibraries>libc;%(IgnoreSpecificDefaultLibraries)</IgnoreSpecificDefaultLibraries>
+      <ImportLibrary>D:/mydoc/CS_Resources/opencv_5.x_new/opencv/cmake-build-debug/lib/Debug/opencv_gapi500d.lib</ImportLibrary>
+      <ProgramDataBaseFile>D:/mydoc/CS_Resources/opencv_5.x_new/opencv/cmake-build-debug/bin/Debug/opencv_gapi500d.pdb</ProgramDataBaseFile>
+      <SubSystem>Console</SubSystem>
+    </Link>
+    <ProjectReference>
+      <LinkLibraryDependencies>false</LinkLibraryDependencies>
+    </ProjectReference>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <ClCompile>
+      <AdditionalIncludeDirectories>D:\mydoc\CS_Resources\opencv_5.x_new\opencv\3rdparty\clapack\include;D:\mydoc\CS_Resources\opencv_5.x_new\opencv\cmake-build-debug\3rdparty\ippicv\ippicv_win\icv\include;D:\mydoc\CS_Resources\opencv_5.x_new\opencv\cmake-build-debug\3rdparty\ippicv\ippicv_win\iw\include;D:\mydoc\CS_Resources\opencv_5.x_new\opencv\cmake-build-debug;D:\mydoc\CS_Resources\opencv_5.x_new\opencv\modules\gapi\src;D:\mydoc\CS_Resources\opencv_5.x_new\opencv\modules\gapi\include;D:\mydoc\CS_Resources\opencv_5.x_new\opencv\cmake-build-debug\modules\gapi;D:\mydoc\CS_Resources\opencv_5.x_new\opencv\modules\core\include;D:\mydoc\CS_Resources\opencv_5.x_new\opencv\modules\flann\include;D:\mydoc\CS_Resources\opencv_5.x_new\opencv\modules\imgproc\include;D:\mydoc\CS_Resources\opencv_5.x_new\opencv\modules\dnn\include;D:\mydoc\CS_Resources\opencv_5.x_new\opencv\modules\features2d\include;D:\mydoc\CS_Resources\opencv_5.x_new\opencv\modules\3d\include;D:\mydoc\CS_Resources\opencv_5.x_new\opencv\modules\stereo\include;D:\mydoc\CS_Resources\opencv_5.x_new\opencv\modules\video\include;D:\mydoc\CS_Resources\opencv_5.x_new\opencv\3rdparty\ittnotify\include;D:\mydoc\CS_Resources\opencv_5.x_new\opencv\cmake-build-debug\3rdparty\ade\ade-0.1.2a\sources\ade\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalOptions>%(AdditionalOptions) /bigobj</AdditionalOptions>
+      <AssemblerListingLocation>$(IntDir)</AssemblerListingLocation>
+      <DisableSpecificWarnings>4127;4251;4324;4275;4512;4589;4819</DisableSpecificWarnings>
+      <ExceptionHandling>Async</ExceptionHandling>
+      <FloatingPointModel>Precise</FloatingPointModel>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <InlineFunctionExpansion>AnySuitable</InlineFunctionExpansion>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <MultiProcessorCompilation>true</MultiProcessorCompilation>
+      <Optimization>MaxSpeed</Optimization>
+      <PrecompiledHeader>Use</PrecompiledHeader>
+      <PrecompiledHeaderFile>D:/mydoc/CS_Resources/opencv_5.x_new/opencv/cmake-build-debug/modules/gapi/CMakeFiles/opencv_gapi.dir/Release/cmake_pch.hxx</PrecompiledHeaderFile>
+      <PrecompiledHeaderOutputFile>D:/mydoc/CS_Resources/opencv_5.x_new/opencv/cmake-build-debug/modules/gapi/opencv_gapi.dir/Release/cmake_pch.pch</PrecompiledHeaderOutputFile>
+      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
+      <RuntimeTypeInfo>true</RuntimeTypeInfo>
+      <UseFullPaths>false</UseFullPaths>
+      <WarningLevel>Level4</WarningLevel>
+      <PreprocessorDefinitions>%(PreprocessorDefinitions);WIN32;_WINDOWS;_CRT_SECURE_NO_DEPRECATE;_CRT_NONSTDC_NO_DEPRECATE;_SCL_SECURE_NO_WARNINGS;NDEBUG;OPENCV_WITH_ITT=1;_VARIADIC_MAX=10;_WIN32_WINNT=0x0601;_USE_MATH_DEFINES;__STDC_CONSTANT_MACROS;__STDC_LIMIT_MACROS;__STDC_FORMAT_MACROS;__OPENCV_BUILD=1;CMAKE_INTDIR="Release";CVAPI_EXPORTS</PreprocessorDefinitions>
+      <ObjectFileName>$(IntDir)</ObjectFileName>
+      <DebugInformationFormat>
+      </DebugInformationFormat>
+      <ProgramDataBaseFileName>D:\mydoc\CS_Resources\opencv_5.x_new\opencv\cmake-build-debug\lib\Release\opencv_gapi500.pdb</ProgramDataBaseFileName>
+    </ClCompile>
+    <ResourceCompile>
+      <PreprocessorDefinitions>%(PreprocessorDefinitions);WIN32;_WINDOWS;_CRT_SECURE_NO_DEPRECATE;_CRT_NONSTDC_NO_DEPRECATE;_SCL_SECURE_NO_WARNINGS;NDEBUG;OPENCV_WITH_ITT=1;_VARIADIC_MAX=10;_WIN32_WINNT=0x0601;_USE_MATH_DEFINES;__STDC_CONSTANT_MACROS;__STDC_LIMIT_MACROS;__STDC_FORMAT_MACROS;__OPENCV_BUILD=1;CMAKE_INTDIR=\"Release\";CVAPI_EXPORTS</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>D:\mydoc\CS_Resources\opencv_5.x_new\opencv\3rdparty\clapack\include;D:\mydoc\CS_Resources\opencv_5.x_new\opencv\cmake-build-debug\3rdparty\ippicv\ippicv_win\icv\include;D:\mydoc\CS_Resources\opencv_5.x_new\opencv\cmake-build-debug\3rdparty\ippicv\ippicv_win\iw\include;D:\mydoc\CS_Resources\opencv_5.x_new\opencv\cmake-build-debug;D:\mydoc\CS_Resources\opencv_5.x_new\opencv\modules\gapi\src;D:\mydoc\CS_Resources\opencv_5.x_new\opencv\modules\gapi\include;D:\mydoc\CS_Resources\opencv_5.x_new\opencv\cmake-build-debug\modules\gapi;D:\mydoc\CS_Resources\opencv_5.x_new\opencv\modules\core\include;D:\mydoc\CS_Resources\opencv_5.x_new\opencv\modules\flann\include;D:\mydoc\CS_Resources\opencv_5.x_new\opencv\modules\imgproc\include;D:\mydoc\CS_Resources\opencv_5.x_new\opencv\modules\dnn\include;D:\mydoc\CS_Resources\opencv_5.x_new\opencv\modules\features2d\include;D:\mydoc\CS_Resources\opencv_5.x_new\opencv\modules\3d\include;D:\mydoc\CS_Resources\opencv_5.x_new\opencv\modules\stereo\include;D:\mydoc\CS_Resources\opencv_5.x_new\opencv\modules\video\include;D:\mydoc\CS_Resources\opencv_5.x_new\opencv\3rdparty\ittnotify\include;D:\mydoc\CS_Resources\opencv_5.x_new\opencv\cmake-build-debug\3rdparty\ade\ade-0.1.2a\sources\ade\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ResourceCompile>
+    <Midl>
+      <AdditionalIncludeDirectories>D:\mydoc\CS_Resources\opencv_5.x_new\opencv\3rdparty\clapack\include;D:\mydoc\CS_Resources\opencv_5.x_new\opencv\cmake-build-debug\3rdparty\ippicv\ippicv_win\icv\include;D:\mydoc\CS_Resources\opencv_5.x_new\opencv\cmake-build-debug\3rdparty\ippicv\ippicv_win\iw\include;D:\mydoc\CS_Resources\opencv_5.x_new\opencv\cmake-build-debug;D:\mydoc\CS_Resources\opencv_5.x_new\opencv\modules\gapi\src;D:\mydoc\CS_Resources\opencv_5.x_new\opencv\modules\gapi\include;D:\mydoc\CS_Resources\opencv_5.x_new\opencv\cmake-build-debug\modules\gapi;D:\mydoc\CS_Resources\opencv_5.x_new\opencv\modules\core\include;D:\mydoc\CS_Resources\opencv_5.x_new\opencv\modules\flann\include;D:\mydoc\CS_Resources\opencv_5.x_new\opencv\modules\imgproc\include;D:\mydoc\CS_Resources\opencv_5.x_new\opencv\modules\dnn\include;D:\mydoc\CS_Resources\opencv_5.x_new\opencv\modules\features2d\include;D:\mydoc\CS_Resources\opencv_5.x_new\opencv\modules\3d\include;D:\mydoc\CS_Resources\opencv_5.x_new\opencv\modules\stereo\include;D:\mydoc\CS_Resources\opencv_5.x_new\opencv\modules\video\include;D:\mydoc\CS_Resources\opencv_5.x_new\opencv\3rdparty\ittnotify\include;D:\mydoc\CS_Resources\opencv_5.x_new\opencv\cmake-build-debug\3rdparty\ade\ade-0.1.2a\sources\ade\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <OutputDirectory>$(ProjectDir)/$(IntDir)</OutputDirectory>
+      <HeaderFileName>%(Filename).h</HeaderFileName>
+      <TypeLibraryName>%(Filename).tlb</TypeLibraryName>
+      <InterfaceIdentifierFileName>%(Filename)_i.c</InterfaceIdentifierFileName>
+      <ProxyFileName>%(Filename)_p.c</ProxyFileName>
+    </Midl>
+    <Link>
+      <AdditionalDependencies>..\..\lib\Release\opencv_stereo500.lib;..\..\lib\Release\opencv_video500.lib;..\..\3rdparty\lib\Release\ippiw.lib;..\..\3rdparty\ippicv\ippicv_win\icv\lib\intel64\ippicvmt.lib;..\..\3rdparty\lib\Release\ade.lib;..\..\3rdparty\lib\Release\ittnotify.lib;wsock32.lib;ws2_32.lib;..\..\lib\Release\opencv_dnn500.lib;..\..\lib\Release\opencv_3d500.lib;..\..\lib\Release\opencv_features2d500.lib;..\..\lib\Release\opencv_flann500.lib;..\..\lib\Release\opencv_imgproc500.lib;..\..\lib\Release\opencv_core500.lib;kernel32.lib;user32.lib;gdi32.lib;winspool.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;comdlg32.lib;advapi32.lib</AdditionalDependencies>
+      <AdditionalLibraryDirectories>%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalOptions>%(AdditionalOptions) /machine:x64</AdditionalOptions>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <IgnoreSpecificDefaultLibraries>libc;%(IgnoreSpecificDefaultLibraries)</IgnoreSpecificDefaultLibraries>
+      <ImportLibrary>D:/mydoc/CS_Resources/opencv_5.x_new/opencv/cmake-build-debug/lib/Release/opencv_gapi500.lib</ImportLibrary>
+      <ProgramDataBaseFile>D:/mydoc/CS_Resources/opencv_5.x_new/opencv/cmake-build-debug/bin/Release/opencv_gapi500.pdb</ProgramDataBaseFile>
+      <SubSystem>Console</SubSystem>
+    </Link>
+    <ProjectReference>
+      <LinkLibraryDependencies>false</LinkLibraryDependencies>
+    </ProjectReference>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <CustomBuild Include="D:\mydoc\CS_Resources\opencv_5.x_new\opencv\modules\gapi\CMakeLists.txt">
+      <StdOutEncoding>UTF-8</StdOutEncoding>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Building Custom Rule D:/mydoc/CS_Resources/opencv_5.x_new/opencv/modules/gapi/CMakeLists.txt</Message>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">setlocal
+"D:\CLion 2022.2.1\bin\cmake\win\bin\cmake.exe" -SD:/mydoc/CS_Resources/opencv_5.x_new/opencv -BD:/mydoc/CS_Resources/opencv_5.x_new/opencv/cmake-build-debug --check-stamp-file D:/mydoc/CS_Resources/opencv_5.x_new/opencv/cmake-build-debug/modules/gapi/CMakeFiles/generate.stamp
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd</Command>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">D:\mydoc\CS_Resources\opencv_5.x_new\opencv\cmake\templates\dllmain.cpp.in;D:\mydoc\CS_Resources\opencv_5.x_new\opencv\cmake\templates\vs_version.rc.in;%(AdditionalInputs)</AdditionalInputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">D:\mydoc\CS_Resources\opencv_5.x_new\opencv\cmake-build-debug\modules\gapi\CMakeFiles\generate.stamp</Outputs>
+      <LinkObjects Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</LinkObjects>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Building Custom Rule D:/mydoc/CS_Resources/opencv_5.x_new/opencv/modules/gapi/CMakeLists.txt</Message>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Release|x64'">setlocal
+"D:\CLion 2022.2.1\bin\cmake\win\bin\cmake.exe" -SD:/mydoc/CS_Resources/opencv_5.x_new/opencv -BD:/mydoc/CS_Resources/opencv_5.x_new/opencv/cmake-build-debug --check-stamp-file D:/mydoc/CS_Resources/opencv_5.x_new/opencv/cmake-build-debug/modules/gapi/CMakeFiles/generate.stamp
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd</Command>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Release|x64'">D:\mydoc\CS_Resources\opencv_5.x_new\opencv\cmake\templates\dllmain.cpp.in;D:\mydoc\CS_Resources\opencv_5.x_new\opencv\cmake\templates\vs_version.rc.in;%(AdditionalInputs)</AdditionalInputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|x64'">D:\mydoc\CS_Resources\opencv_5.x_new\opencv\cmake-build-debug\modules\gapi\CMakeFiles\generate.stamp</Outputs>
+      <LinkObjects Condition="'$(Configuration)|$(Platform)'=='Release|x64'">false</LinkObjects>
+    </CustomBuild>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="D:\mydoc\CS_Resources\opencv_5.x_new\opencv\cmake-build-debug\modules\gapi\CMakeFiles\opencv_gapi.dir\cmake_pch.cxx">
+      <ForcedIncludeFiles Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">D:/mydoc/CS_Resources/opencv_5.x_new/opencv/cmake-build-debug/modules/gapi/CMakeFiles/opencv_gapi.dir/Debug/cmake_pch.hxx;%(ForcedIncludeFiles)</ForcedIncludeFiles>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>
+      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">D:/mydoc/CS_Resources/opencv_5.x_new/opencv/cmake-build-debug/modules/gapi/CMakeFiles/opencv_gapi.dir/Debug/cmake_pch.hxx</PrecompiledHeaderFile>
+      <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">D:/mydoc/CS_Resources/opencv_5.x_new/opencv/cmake-build-debug/modules/gapi/opencv_gapi.dir/Debug/cmake_pch.pch</PrecompiledHeaderOutputFile>
+      <ForcedIncludeFiles Condition="'$(Configuration)|$(Platform)'=='Release|x64'">D:/mydoc/CS_Resources/opencv_5.x_new/opencv/cmake-build-debug/modules/gapi/CMakeFiles/opencv_gapi.dir/Release/cmake_pch.hxx;%(ForcedIncludeFiles)</ForcedIncludeFiles>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Create</PrecompiledHeader>
+      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='Release|x64'">D:/mydoc/CS_Resources/opencv_5.x_new/opencv/cmake-build-debug/modules/gapi/CMakeFiles/opencv_gapi.dir/Release/cmake_pch.hxx</PrecompiledHeaderFile>
+      <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='Release|x64'">D:/mydoc/CS_Resources/opencv_5.x_new/opencv/cmake-build-debug/modules/gapi/opencv_gapi.dir/Release/cmake_pch.pch</PrecompiledHeaderOutputFile>
+    </ClCompile>
+    <ClInclude Include="D:\mydoc\CS_Resources\opencv_5.x_new\opencv\modules\gapi\include\opencv2\gapi.hpp" />
+    <ClInclude Include="D:\mydoc\CS_Resources\opencv_5.x_new\opencv\modules\gapi\include\opencv2\gapi\core.hpp" />
+    <ClInclude Include="D:\mydoc\CS_Resources\opencv_5.x_new\opencv\modules\gapi\include\opencv2\gapi\cpu\core.hpp" />
+    <ClInclude Include="D:\mydoc\CS_Resources\opencv_5.x_new\opencv\modules\gapi\include\opencv2\gapi\cpu\gcpukernel.hpp" />
+    <ClInclude Include="D:\mydoc\CS_Resources\opencv_5.x_new\opencv\modules\gapi\include\opencv2\gapi\cpu\imgproc.hpp" />
+    <ClInclude Include="D:\mydoc\CS_Resources\opencv_5.x_new\opencv\modules\gapi\include\opencv2\gapi\cpu\stereo.hpp" />
+    <ClInclude Include="D:\mydoc\CS_Resources\opencv_5.x_new\opencv\modules\gapi\include\opencv2\gapi\cpu\video.hpp" />
+    <ClInclude Include="D:\mydoc\CS_Resources\opencv_5.x_new\opencv\modules\gapi\include\opencv2\gapi\fluid\core.hpp" />
+    <ClInclude Include="D:\mydoc\CS_Resources\opencv_5.x_new\opencv\modules\gapi\include\opencv2\gapi\fluid\gfluidbuffer.hpp" />
+    <ClInclude Include="D:\mydoc\CS_Resources\opencv_5.x_new\opencv\modules\gapi\include\opencv2\gapi\fluid\gfluidkernel.hpp" />
+    <ClInclude Include="D:\mydoc\CS_Resources\opencv_5.x_new\opencv\modules\gapi\include\opencv2\gapi\fluid\imgproc.hpp" />
+    <ClInclude Include="D:\mydoc\CS_Resources\opencv_5.x_new\opencv\modules\gapi\include\opencv2\gapi\garg.hpp" />
+    <ClInclude Include="D:\mydoc\CS_Resources\opencv_5.x_new\opencv\modules\gapi\include\opencv2\gapi\garray.hpp" />
+    <ClInclude Include="D:\mydoc\CS_Resources\opencv_5.x_new\opencv\modules\gapi\include\opencv2\gapi\gasync_context.hpp" />
+    <ClInclude Include="D:\mydoc\CS_Resources\opencv_5.x_new\opencv\modules\gapi\include\opencv2\gapi\gcall.hpp" />
+    <ClInclude Include="D:\mydoc\CS_Resources\opencv_5.x_new\opencv\modules\gapi\include\opencv2\gapi\gcommon.hpp" />
+    <ClInclude Include="D:\mydoc\CS_Resources\opencv_5.x_new\opencv\modules\gapi\include\opencv2\gapi\gcompiled.hpp" />
+    <ClInclude Include="D:\mydoc\CS_Resources\opencv_5.x_new\opencv\modules\gapi\include\opencv2\gapi\gcompiled_async.hpp" />
+    <ClInclude Include="D:\mydoc\CS_Resources\opencv_5.x_new\opencv\modules\gapi\include\opencv2\gapi\gcompoundkernel.hpp" />
+    <ClInclude Include="D:\mydoc\CS_Resources\opencv_5.x_new\opencv\modules\gapi\include\opencv2\gapi\gcomputation.hpp" />
+    <ClInclude Include="D:\mydoc\CS_Resources\opencv_5.x_new\opencv\modules\gapi\include\opencv2\gapi\gcomputation_async.hpp" />
+    <ClInclude Include="D:\mydoc\CS_Resources\opencv_5.x_new\opencv\modules\gapi\include\opencv2\gapi\gframe.hpp" />
+    <ClInclude Include="D:\mydoc\CS_Resources\opencv_5.x_new\opencv\modules\gapi\include\opencv2\gapi\gkernel.hpp" />
+    <ClInclude Include="D:\mydoc\CS_Resources\opencv_5.x_new\opencv\modules\gapi\include\opencv2\gapi\gmat.hpp" />
+    <ClInclude Include="D:\mydoc\CS_Resources\opencv_5.x_new\opencv\modules\gapi\include\opencv2\gapi\gmetaarg.hpp" />
+    <ClInclude Include="D:\mydoc\CS_Resources\opencv_5.x_new\opencv\modules\gapi\include\opencv2\gapi\gopaque.hpp" />
+    <ClInclude Include="D:\mydoc\CS_Resources\opencv_5.x_new\opencv\modules\gapi\include\opencv2\gapi\gproto.hpp" />
+    <ClInclude Include="D:\mydoc\CS_Resources\opencv_5.x_new\opencv\modules\gapi\include\opencv2\gapi\gpu\core.hpp" />
+    <ClInclude Include="D:\mydoc\CS_Resources\opencv_5.x_new\opencv\modules\gapi\include\opencv2\gapi\gpu\ggpukernel.hpp" />
+    <ClInclude Include="D:\mydoc\CS_Resources\opencv_5.x_new\opencv\modules\gapi\include\opencv2\gapi\gpu\imgproc.hpp" />
+    <ClInclude Include="D:\mydoc\CS_Resources\opencv_5.x_new\opencv\modules\gapi\include\opencv2\gapi\gscalar.hpp" />
+    <ClInclude Include="D:\mydoc\CS_Resources\opencv_5.x_new\opencv\modules\gapi\include\opencv2\gapi\gstreaming.hpp" />
+    <ClInclude Include="D:\mydoc\CS_Resources\opencv_5.x_new\opencv\modules\gapi\include\opencv2\gapi\gtransform.hpp" />
+    <ClInclude Include="D:\mydoc\CS_Resources\opencv_5.x_new\opencv\modules\gapi\include\opencv2\gapi\gtype_traits.hpp" />
+    <ClInclude Include="D:\mydoc\CS_Resources\opencv_5.x_new\opencv\modules\gapi\include\opencv2\gapi\gtyped.hpp" />
+    <ClInclude Include="D:\mydoc\CS_Resources\opencv_5.x_new\opencv\modules\gapi\include\opencv2\gapi\imgproc.hpp" />
+    <ClInclude Include="D:\mydoc\CS_Resources\opencv_5.x_new\opencv\modules\gapi\include\opencv2\gapi\infer.hpp" />
+    <ClInclude Include="D:\mydoc\CS_Resources\opencv_5.x_new\opencv\modules\gapi\include\opencv2\gapi\infer\bindings_ie.hpp" />
+    <ClInclude Include="D:\mydoc\CS_Resources\opencv_5.x_new\opencv\modules\gapi\include\opencv2\gapi\infer\bindings_onnx.hpp" />
+    <ClInclude Include="D:\mydoc\CS_Resources\opencv_5.x_new\opencv\modules\gapi\include\opencv2\gapi\infer\ie.hpp" />
+    <ClInclude Include="D:\mydoc\CS_Resources\opencv_5.x_new\opencv\modules\gapi\include\opencv2\gapi\infer\onnx.hpp" />
+    <ClInclude Include="D:\mydoc\CS_Resources\opencv_5.x_new\opencv\modules\gapi\include\opencv2\gapi\infer\parsers.hpp" />
+    <ClInclude Include="D:\mydoc\CS_Resources\opencv_5.x_new\opencv\modules\gapi\include\opencv2\gapi\media.hpp" />
+    <ClInclude Include="D:\mydoc\CS_Resources\opencv_5.x_new\opencv\modules\gapi\include\opencv2\gapi\oak\infer.hpp" />
+    <ClInclude Include="D:\mydoc\CS_Resources\opencv_5.x_new\opencv\modules\gapi\include\opencv2\gapi\oak\oak.hpp" />
+    <ClInclude Include="D:\mydoc\CS_Resources\opencv_5.x_new\opencv\modules\gapi\include\opencv2\gapi\ocl\core.hpp" />
+    <ClInclude Include="D:\mydoc\CS_Resources\opencv_5.x_new\opencv\modules\gapi\include\opencv2\gapi\ocl\goclkernel.hpp" />
+    <ClInclude Include="D:\mydoc\CS_Resources\opencv_5.x_new\opencv\modules\gapi\include\opencv2\gapi\ocl\imgproc.hpp" />
+    <ClInclude Include="D:\mydoc\CS_Resources\opencv_5.x_new\opencv\modules\gapi\include\opencv2\gapi\opencv_includes.hpp" />
+    <ClInclude Include="D:\mydoc\CS_Resources\opencv_5.x_new\opencv\modules\gapi\include\opencv2\gapi\operators.hpp" />
+    <ClInclude Include="D:\mydoc\CS_Resources\opencv_5.x_new\opencv\modules\gapi\include\opencv2\gapi\own\assert.hpp" />
+    <ClInclude Include="D:\mydoc\CS_Resources\opencv_5.x_new\opencv\modules\gapi\include\opencv2\gapi\own\convert.hpp" />
+    <ClInclude Include="D:\mydoc\CS_Resources\opencv_5.x_new\opencv\modules\gapi\include\opencv2\gapi\own\cvdefs.hpp" />
+    <ClInclude Include="D:\mydoc\CS_Resources\opencv_5.x_new\opencv\modules\gapi\include\opencv2\gapi\own\exports.hpp" />
+    <ClInclude Include="D:\mydoc\CS_Resources\opencv_5.x_new\opencv\modules\gapi\include\opencv2\gapi\own\mat.hpp" />
+    <ClInclude Include="D:\mydoc\CS_Resources\opencv_5.x_new\opencv\modules\gapi\include\opencv2\gapi\own\saturate.hpp" />
+    <ClInclude Include="D:\mydoc\CS_Resources\opencv_5.x_new\opencv\modules\gapi\include\opencv2\gapi\own\scalar.hpp" />
+    <ClInclude Include="D:\mydoc\CS_Resources\opencv_5.x_new\opencv\modules\gapi\include\opencv2\gapi\own\types.hpp" />
+    <ClInclude Include="D:\mydoc\CS_Resources\opencv_5.x_new\opencv\modules\gapi\include\opencv2\gapi\plaidml\core.hpp" />
+    <ClInclude Include="D:\mydoc\CS_Resources\opencv_5.x_new\opencv\modules\gapi\include\opencv2\gapi\plaidml\gplaidmlkernel.hpp" />
+    <ClInclude Include="D:\mydoc\CS_Resources\opencv_5.x_new\opencv\modules\gapi\include\opencv2\gapi\plaidml\plaidml.hpp" />
+    <ClInclude Include="D:\mydoc\CS_Resources\opencv_5.x_new\opencv\modules\gapi\include\opencv2\gapi\python\python.hpp" />
+    <ClInclude Include="D:\mydoc\CS_Resources\opencv_5.x_new\opencv\modules\gapi\include\opencv2\gapi\render.hpp" />
+    <ClInclude Include="D:\mydoc\CS_Resources\opencv_5.x_new\opencv\modules\gapi\include\opencv2\gapi\render\render.hpp" />
+    <ClInclude Include="D:\mydoc\CS_Resources\opencv_5.x_new\opencv\modules\gapi\include\opencv2\gapi\render\render_types.hpp" />
+    <ClInclude Include="D:\mydoc\CS_Resources\opencv_5.x_new\opencv\modules\gapi\include\opencv2\gapi\rmat.hpp" />
+    <ClInclude Include="D:\mydoc\CS_Resources\opencv_5.x_new\opencv\modules\gapi\include\opencv2\gapi\s11n.hpp" />
+    <ClInclude Include="D:\mydoc\CS_Resources\opencv_5.x_new\opencv\modules\gapi\include\opencv2\gapi\s11n\base.hpp" />
+    <ClInclude Include="D:\mydoc\CS_Resources\opencv_5.x_new\opencv\modules\gapi\include\opencv2\gapi\stereo.hpp" />
+    <ClInclude Include="D:\mydoc\CS_Resources\opencv_5.x_new\opencv\modules\gapi\include\opencv2\gapi\streaming\cap.hpp" />
+    <ClInclude Include="D:\mydoc\CS_Resources\opencv_5.x_new\opencv\modules\gapi\include\opencv2\gapi\streaming\desync.hpp" />
+    <ClInclude Include="D:\mydoc\CS_Resources\opencv_5.x_new\opencv\modules\gapi\include\opencv2\gapi\streaming\format.hpp" />
+    <ClInclude Include="D:\mydoc\CS_Resources\opencv_5.x_new\opencv\modules\gapi\include\opencv2\gapi\streaming\gstreamer\gstreamerpipeline.hpp" />
+    <ClInclude Include="D:\mydoc\CS_Resources\opencv_5.x_new\opencv\modules\gapi\include\opencv2\gapi\streaming\gstreamer\gstreamersource.hpp" />
+    <ClInclude Include="D:\mydoc\CS_Resources\opencv_5.x_new\opencv\modules\gapi\include\opencv2\gapi\streaming\meta.hpp" />
+    <ClInclude Include="D:\mydoc\CS_Resources\opencv_5.x_new\opencv\modules\gapi\include\opencv2\gapi\streaming\onevpl\accel_types.hpp" />
+    <ClInclude Include="D:\mydoc\CS_Resources\opencv_5.x_new\opencv\modules\gapi\include\opencv2\gapi\streaming\onevpl\cfg_params.hpp" />
+    <ClInclude Include="D:\mydoc\CS_Resources\opencv_5.x_new\opencv\modules\gapi\include\opencv2\gapi\streaming\onevpl\data_provider_interface.hpp" />
+    <ClInclude Include="D:\mydoc\CS_Resources\opencv_5.x_new\opencv\modules\gapi\include\opencv2\gapi\streaming\onevpl\default.hpp" />
+    <ClInclude Include="D:\mydoc\CS_Resources\opencv_5.x_new\opencv\modules\gapi\include\opencv2\gapi\streaming\onevpl\device_selector_interface.hpp" />
+    <ClInclude Include="D:\mydoc\CS_Resources\opencv_5.x_new\opencv\modules\gapi\include\opencv2\gapi\streaming\onevpl\source.hpp" />
+    <ClInclude Include="D:\mydoc\CS_Resources\opencv_5.x_new\opencv\modules\gapi\include\opencv2\gapi\streaming\source.hpp" />
+    <ClInclude Include="D:\mydoc\CS_Resources\opencv_5.x_new\opencv\modules\gapi\include\opencv2\gapi\streaming\sync.hpp" />
+    <ClInclude Include="D:\mydoc\CS_Resources\opencv_5.x_new\opencv\modules\gapi\include\opencv2\gapi\util\any.hpp" />
+    <ClInclude Include="D:\mydoc\CS_Resources\opencv_5.x_new\opencv\modules\gapi\include\opencv2\gapi\util\compiler_hints.hpp" />
+    <ClInclude Include="D:\mydoc\CS_Resources\opencv_5.x_new\opencv\modules\gapi\include\opencv2\gapi\util\copy_through_move.hpp" />
+    <ClInclude Include="D:\mydoc\CS_Resources\opencv_5.x_new\opencv\modules\gapi\include\opencv2\gapi\util\optional.hpp" />
+    <ClInclude Include="D:\mydoc\CS_Resources\opencv_5.x_new\opencv\modules\gapi\include\opencv2\gapi\util\throw.hpp" />
+    <ClInclude Include="D:\mydoc\CS_Resources\opencv_5.x_new\opencv\modules\gapi\include\opencv2\gapi\util\type_traits.hpp" />
+    <ClInclude Include="D:\mydoc\CS_Resources\opencv_5.x_new\opencv\modules\gapi\include\opencv2\gapi\util\util.hpp" />
+    <ClInclude Include="D:\mydoc\CS_Resources\opencv_5.x_new\opencv\modules\gapi\include\opencv2\gapi\util\variant.hpp" />
+    <ClInclude Include="D:\mydoc\CS_Resources\opencv_5.x_new\opencv\modules\gapi\include\opencv2\gapi\video.hpp" />
+    <ClCompile Include="D:\mydoc\CS_Resources\opencv_5.x_new\opencv\modules\gapi\src\api\grunarg.cpp">
+      <ForcedIncludeFiles Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">D:/mydoc/CS_Resources/opencv_5.x_new/opencv/cmake-build-debug/modules/gapi/CMakeFiles/opencv_gapi.dir/Debug/cmake_pch.hxx;%(ForcedIncludeFiles)</ForcedIncludeFiles>
+      <ForcedIncludeFiles Condition="'$(Configuration)|$(Platform)'=='Release|x64'">D:/mydoc/CS_Resources/opencv_5.x_new/opencv/cmake-build-debug/modules/gapi/CMakeFiles/opencv_gapi.dir/Release/cmake_pch.hxx;%(ForcedIncludeFiles)</ForcedIncludeFiles>
+    </ClCompile>
+    <ClCompile Include="D:\mydoc\CS_Resources\opencv_5.x_new\opencv\modules\gapi\src\api\gorigin.cpp">
+      <ForcedIncludeFiles Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">D:/mydoc/CS_Resources/opencv_5.x_new/opencv/cmake-build-debug/modules/gapi/CMakeFiles/opencv_gapi.dir/Debug/cmake_pch.hxx;%(ForcedIncludeFiles)</ForcedIncludeFiles>
+      <ForcedIncludeFiles Condition="'$(Configuration)|$(Platform)'=='Release|x64'">D:/mydoc/CS_Resources/opencv_5.x_new/opencv/cmake-build-debug/modules/gapi/CMakeFiles/opencv_gapi.dir/Release/cmake_pch.hxx;%(ForcedIncludeFiles)</ForcedIncludeFiles>
+    </ClCompile>
+    <ClCompile Include="D:\mydoc\CS_Resources\opencv_5.x_new\opencv\modules\gapi\src\api\gmat.cpp">
+      <ForcedIncludeFiles Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">D:/mydoc/CS_Resources/opencv_5.x_new/opencv/cmake-build-debug/modules/gapi/CMakeFiles/opencv_gapi.dir/Debug/cmake_pch.hxx;%(ForcedIncludeFiles)</ForcedIncludeFiles>
+      <ForcedIncludeFiles Condition="'$(Configuration)|$(Platform)'=='Release|x64'">D:/mydoc/CS_Resources/opencv_5.x_new/opencv/cmake-build-debug/modules/gapi/CMakeFiles/opencv_gapi.dir/Release/cmake_pch.hxx;%(ForcedIncludeFiles)</ForcedIncludeFiles>
+    </ClCompile>
+    <ClCompile Include="D:\mydoc\CS_Resources\opencv_5.x_new\opencv\modules\gapi\src\api\garray.cpp">
+      <ForcedIncludeFiles Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">D:/mydoc/CS_Resources/opencv_5.x_new/opencv/cmake-build-debug/modules/gapi/CMakeFiles/opencv_gapi.dir/Debug/cmake_pch.hxx;%(ForcedIncludeFiles)</ForcedIncludeFiles>
+      <ForcedIncludeFiles Condition="'$(Configuration)|$(Platform)'=='Release|x64'">D:/mydoc/CS_Resources/opencv_5.x_new/opencv/cmake-build-debug/modules/gapi/CMakeFiles/opencv_gapi.dir/Release/cmake_pch.hxx;%(ForcedIncludeFiles)</ForcedIncludeFiles>
+    </ClCompile>
+    <ClCompile Include="D:\mydoc\CS_Resources\opencv_5.x_new\opencv\modules\gapi\src\api\gopaque.cpp">
+      <ForcedIncludeFiles Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">D:/mydoc/CS_Resources/opencv_5.x_new/opencv/cmake-build-debug/modules/gapi/CMakeFiles/opencv_gapi.dir/Debug/cmake_pch.hxx;%(ForcedIncludeFiles)</ForcedIncludeFiles>
+      <ForcedIncludeFiles Condition="'$(Configuration)|$(Platform)'=='Release|x64'">D:/mydoc/CS_Resources/opencv_5.x_new/opencv/cmake-build-debug/modules/gapi/CMakeFiles/opencv_gapi.dir/Release/cmake_pch.hxx;%(ForcedIncludeFiles)</ForcedIncludeFiles>
+    </ClCompile>
+    <ClCompile Include="D:\mydoc\CS_Resources\opencv_5.x_new\opencv\modules\gapi\src\api\gscalar.cpp">
+      <ForcedIncludeFiles Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">D:/mydoc/CS_Resources/opencv_5.x_new/opencv/cmake-build-debug/modules/gapi/CMakeFiles/opencv_gapi.dir/Debug/cmake_pch.hxx;%(ForcedIncludeFiles)</ForcedIncludeFiles>
+      <ForcedIncludeFiles Condition="'$(Configuration)|$(Platform)'=='Release|x64'">D:/mydoc/CS_Resources/opencv_5.x_new/opencv/cmake-build-debug/modules/gapi/CMakeFiles/opencv_gapi.dir/Release/cmake_pch.hxx;%(ForcedIncludeFiles)</ForcedIncludeFiles>
+    </ClCompile>
+    <ClCompile Include="D:\mydoc\CS_Resources\opencv_5.x_new\opencv\modules\gapi\src\api\gframe.cpp">
+      <ForcedIncludeFiles Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">D:/mydoc/CS_Resources/opencv_5.x_new/opencv/cmake-build-debug/modules/gapi/CMakeFiles/opencv_gapi.dir/Debug/cmake_pch.hxx;%(ForcedIncludeFiles)</ForcedIncludeFiles>
+      <ForcedIncludeFiles Condition="'$(Configuration)|$(Platform)'=='Release|x64'">D:/mydoc/CS_Resources/opencv_5.x_new/opencv/cmake-build-debug/modules/gapi/CMakeFiles/opencv_gapi.dir/Release/cmake_pch.hxx;%(ForcedIncludeFiles)</ForcedIncludeFiles>
+    </ClCompile>
+    <ClCompile Include="D:\mydoc\CS_Resources\opencv_5.x_new\opencv\modules\gapi\src\api\gkernel.cpp">
+      <ForcedIncludeFiles Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">D:/mydoc/CS_Resources/opencv_5.x_new/opencv/cmake-build-debug/modules/gapi/CMakeFiles/opencv_gapi.dir/Debug/cmake_pch.hxx;%(ForcedIncludeFiles)</ForcedIncludeFiles>
+      <ForcedIncludeFiles Condition="'$(Configuration)|$(Platform)'=='Release|x64'">D:/mydoc/CS_Resources/opencv_5.x_new/opencv/cmake-build-debug/modules/gapi/CMakeFiles/opencv_gapi.dir/Release/cmake_pch.hxx;%(ForcedIncludeFiles)</ForcedIncludeFiles>
+    </ClCompile>
+    <ClCompile Include="D:\mydoc\CS_Resources\opencv_5.x_new\opencv\modules\gapi\src\api\gbackend.cpp">
+      <ForcedIncludeFiles Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">D:/mydoc/CS_Resources/opencv_5.x_new/opencv/cmake-build-debug/modules/gapi/CMakeFiles/opencv_gapi.dir/Debug/cmake_pch.hxx;%(ForcedIncludeFiles)</ForcedIncludeFiles>
+      <ForcedIncludeFiles Condition="'$(Configuration)|$(Platform)'=='Release|x64'">D:/mydoc/CS_Resources/opencv_5.x_new/opencv/cmake-build-debug/modules/gapi/CMakeFiles/opencv_gapi.dir/Release/cmake_pch.hxx;%(ForcedIncludeFiles)</ForcedIncludeFiles>
+    </ClCompile>
+    <ClCompile Include="D:\mydoc\CS_Resources\opencv_5.x_new\opencv\modules\gapi\src\api\gproto.cpp">
+      <ForcedIncludeFiles Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">D:/mydoc/CS_Resources/opencv_5.x_new/opencv/cmake-build-debug/modules/gapi/CMakeFiles/opencv_gapi.dir/Debug/cmake_pch.hxx;%(ForcedIncludeFiles)</ForcedIncludeFiles>
+      <ForcedIncludeFiles Condition="'$(Configuration)|$(Platform)'=='Release|x64'">D:/mydoc/CS_Resources/opencv_5.x_new/opencv/cmake-build-debug/modules/gapi/CMakeFiles/opencv_gapi.dir/Release/cmake_pch.hxx;%(ForcedIncludeFiles)</ForcedIncludeFiles>
+    </ClCompile>
+    <ClCompile Include="D:\mydoc\CS_Resources\opencv_5.x_new\opencv\modules\gapi\src\api\gnode.cpp">
+      <ForcedIncludeFiles Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">D:/mydoc/CS_Resources/opencv_5.x_new/opencv/cmake-build-debug/modules/gapi/CMakeFiles/opencv_gapi.dir/Debug/cmake_pch.hxx;%(ForcedIncludeFiles)</ForcedIncludeFiles>
+      <ForcedIncludeFiles Condition="'$(Configuration)|$(Platform)'=='Release|x64'">D:/mydoc/CS_Resources/opencv_5.x_new/opencv/cmake-build-debug/modules/gapi/CMakeFiles/opencv_gapi.dir/Release/cmake_pch.hxx;%(ForcedIncludeFiles)</ForcedIncludeFiles>
+    </ClCompile>
+    <ClCompile Include="D:\mydoc\CS_Resources\opencv_5.x_new\opencv\modules\gapi\src\api\gcall.cpp">
+      <ForcedIncludeFiles Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">D:/mydoc/CS_Resources/opencv_5.x_new/opencv/cmake-build-debug/modules/gapi/CMakeFiles/opencv_gapi.dir/Debug/cmake_pch.hxx;%(ForcedIncludeFiles)</ForcedIncludeFiles>
+      <ForcedIncludeFiles Condition="'$(Configuration)|$(Platform)'=='Release|x64'">D:/mydoc/CS_Resources/opencv_5.x_new/opencv/cmake-build-debug/modules/gapi/CMakeFiles/opencv_gapi.dir/Release/cmake_pch.hxx;%(ForcedIncludeFiles)</ForcedIncludeFiles>
+    </ClCompile>
+    <ClCompile Include="D:\mydoc\CS_Resources\opencv_5.x_new\opencv\modules\gapi\src\api\gcomputation.cpp">
+      <ForcedIncludeFiles Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">D:/mydoc/CS_Resources/opencv_5.x_new/opencv/cmake-build-debug/modules/gapi/CMakeFiles/opencv_gapi.dir/Debug/cmake_pch.hxx;%(ForcedIncludeFiles)</ForcedIncludeFiles>
+      <ForcedIncludeFiles Condition="'$(Configuration)|$(Platform)'=='Release|x64'">D:/mydoc/CS_Resources/opencv_5.x_new/opencv/cmake-build-debug/modules/gapi/CMakeFiles/opencv_gapi.dir/Release/cmake_pch.hxx;%(ForcedIncludeFiles)</ForcedIncludeFiles>
+    </ClCompile>
+    <ClCompile Include="D:\mydoc\CS_Resources\opencv_5.x_new\opencv\modules\gapi\src\api\operators.cpp">
+      <ForcedIncludeFiles Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">D:/mydoc/CS_Resources/opencv_5.x_new/opencv/cmake-build-debug/modules/gapi/CMakeFiles/opencv_gapi.dir/Debug/cmake_pch.hxx;%(ForcedIncludeFiles)</ForcedIncludeFiles>
+      <ForcedIncludeFiles Condition="'$(Configuration)|$(Platform)'=='Release|x64'">D:/mydoc/CS_Resources/opencv_5.x_new/opencv/cmake-build-debug/modules/gapi/CMakeFiles/opencv_gapi.dir/Release/cmake_pch.hxx;%(ForcedIncludeFiles)</ForcedIncludeFiles>
+    </ClCompile>
+    <ClCompile Include="D:\mydoc\CS_Resources\opencv_5.x_new\opencv\modules\gapi\src\api\kernels_core.cpp">
+      <ForcedIncludeFiles Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">D:/mydoc/CS_Resources/opencv_5.x_new/opencv/cmake-build-debug/modules/gapi/CMakeFiles/opencv_gapi.dir/Debug/cmake_pch.hxx;%(ForcedIncludeFiles)</ForcedIncludeFiles>
+      <ForcedIncludeFiles Condition="'$(Configuration)|$(Platform)'=='Release|x64'">D:/mydoc/CS_Resources/opencv_5.x_new/opencv/cmake-build-debug/modules/gapi/CMakeFiles/opencv_gapi.dir/Release/cmake_pch.hxx;%(ForcedIncludeFiles)</ForcedIncludeFiles>
+    </ClCompile>
+    <ClCompile Include="D:\mydoc\CS_Resources\opencv_5.x_new\opencv\modules\gapi\src\api\kernels_imgproc.cpp">
+      <ForcedIncludeFiles Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">D:/mydoc/CS_Resources/opencv_5.x_new/opencv/cmake-build-debug/modules/gapi/CMakeFiles/opencv_gapi.dir/Debug/cmake_pch.hxx;%(ForcedIncludeFiles)</ForcedIncludeFiles>
+      <ForcedIncludeFiles Condition="'$(Configuration)|$(Platform)'=='Release|x64'">D:/mydoc/CS_Resources/opencv_5.x_new/opencv/cmake-build-debug/modules/gapi/CMakeFiles/opencv_gapi.dir/Release/cmake_pch.hxx;%(ForcedIncludeFiles)</ForcedIncludeFiles>
+    </ClCompile>
+    <ClCompile Include="D:\mydoc\CS_Resources\opencv_5.x_new\opencv\modules\gapi\src\api\kernels_video.cpp">
+      <ForcedIncludeFiles Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">D:/mydoc/CS_Resources/opencv_5.x_new/opencv/cmake-build-debug/modules/gapi/CMakeFiles/opencv_gapi.dir/Debug/cmake_pch.hxx;%(ForcedIncludeFiles)</ForcedIncludeFiles>
+      <ForcedIncludeFiles Condition="'$(Configuration)|$(Platform)'=='Release|x64'">D:/mydoc/CS_Resources/opencv_5.x_new/opencv/cmake-build-debug/modules/gapi/CMakeFiles/opencv_gapi.dir/Release/cmake_pch.hxx;%(ForcedIncludeFiles)</ForcedIncludeFiles>
+    </ClCompile>
+    <ClCompile Include="D:\mydoc\CS_Resources\opencv_5.x_new\opencv\modules\gapi\src\api\kernels_nnparsers.cpp">
+      <ForcedIncludeFiles Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">D:/mydoc/CS_Resources/opencv_5.x_new/opencv/cmake-build-debug/modules/gapi/CMakeFiles/opencv_gapi.dir/Debug/cmake_pch.hxx;%(ForcedIncludeFiles)</ForcedIncludeFiles>
+      <ForcedIncludeFiles Condition="'$(Configuration)|$(Platform)'=='Release|x64'">D:/mydoc/CS_Resources/opencv_5.x_new/opencv/cmake-build-debug/modules/gapi/CMakeFiles/opencv_gapi.dir/Release/cmake_pch.hxx;%(ForcedIncludeFiles)</ForcedIncludeFiles>
+    </ClCompile>
+    <ClCompile Include="D:\mydoc\CS_Resources\opencv_5.x_new\opencv\modules\gapi\src\api\kernels_streaming.cpp">
+      <ForcedIncludeFiles Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">D:/mydoc/CS_Resources/opencv_5.x_new/opencv/cmake-build-debug/modules/gapi/CMakeFiles/opencv_gapi.dir/Debug/cmake_pch.hxx;%(ForcedIncludeFiles)</ForcedIncludeFiles>
+      <ForcedIncludeFiles Condition="'$(Configuration)|$(Platform)'=='Release|x64'">D:/mydoc/CS_Resources/opencv_5.x_new/opencv/cmake-build-debug/modules/gapi/CMakeFiles/opencv_gapi.dir/Release/cmake_pch.hxx;%(ForcedIncludeFiles)</ForcedIncludeFiles>
+    </ClCompile>
+    <ClCompile Include="D:\mydoc\CS_Resources\opencv_5.x_new\opencv\modules\gapi\src\api\kernels_stereo.cpp">
+      <ForcedIncludeFiles Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">D:/mydoc/CS_Resources/opencv_5.x_new/opencv/cmake-build-debug/modules/gapi/CMakeFiles/opencv_gapi.dir/Debug/cmake_pch.hxx;%(ForcedIncludeFiles)</ForcedIncludeFiles>
+      <ForcedIncludeFiles Condition="'$(Configuration)|$(Platform)'=='Release|x64'">D:/mydoc/CS_Resources/opencv_5.x_new/opencv/cmake-build-debug/modules/gapi/CMakeFiles/opencv_gapi.dir/Release/cmake_pch.hxx;%(ForcedIncludeFiles)</ForcedIncludeFiles>
+    </ClCompile>
+    <ClCompile Include="D:\mydoc\CS_Resources\opencv_5.x_new\opencv\modules\gapi\src\api\render.cpp">
+      <ForcedIncludeFiles Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">D:/mydoc/CS_Resources/opencv_5.x_new/opencv/cmake-build-debug/modules/gapi/CMakeFiles/opencv_gapi.dir/Debug/cmake_pch.hxx;%(ForcedIncludeFiles)</ForcedIncludeFiles>
+      <ForcedIncludeFiles Condition="'$(Configuration)|$(Platform)'=='Release|x64'">D:/mydoc/CS_Resources/opencv_5.x_new/opencv/cmake-build-debug/modules/gapi/CMakeFiles/opencv_gapi.dir/Release/cmake_pch.hxx;%(ForcedIncludeFiles)</ForcedIncludeFiles>
+    </ClCompile>
+    <ClCompile Include="D:\mydoc\CS_Resources\opencv_5.x_new\opencv\modules\gapi\src\api\render_ocv.cpp">
+      <ForcedIncludeFiles Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">D:/mydoc/CS_Resources/opencv_5.x_new/opencv/cmake-build-debug/modules/gapi/CMakeFiles/opencv_gapi.dir/Debug/cmake_pch.hxx;%(ForcedIncludeFiles)</ForcedIncludeFiles>
+      <ForcedIncludeFiles Condition="'$(Configuration)|$(Platform)'=='Release|x64'">D:/mydoc/CS_Resources/opencv_5.x_new/opencv/cmake-build-debug/modules/gapi/CMakeFiles/opencv_gapi.dir/Release/cmake_pch.hxx;%(ForcedIncludeFiles)</ForcedIncludeFiles>
+    </ClCompile>
+    <ClCompile Include="D:\mydoc\CS_Resources\opencv_5.x_new\opencv\modules\gapi\src\api\ginfer.cpp">
+      <ForcedIncludeFiles Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">D:/mydoc/CS_Resources/opencv_5.x_new/opencv/cmake-build-debug/modules/gapi/CMakeFiles/opencv_gapi.dir/Debug/cmake_pch.hxx;%(ForcedIncludeFiles)</ForcedIncludeFiles>
+      <ForcedIncludeFiles Condition="'$(Configuration)|$(Platform)'=='Release|x64'">D:/mydoc/CS_Resources/opencv_5.x_new/opencv/cmake-build-debug/modules/gapi/CMakeFiles/opencv_gapi.dir/Release/cmake_pch.hxx;%(ForcedIncludeFiles)</ForcedIncludeFiles>
+    </ClCompile>
+    <ClCompile Include="D:\mydoc\CS_Resources\opencv_5.x_new\opencv\modules\gapi\src\api\media.cpp">
+      <ForcedIncludeFiles Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">D:/mydoc/CS_Resources/opencv_5.x_new/opencv/cmake-build-debug/modules/gapi/CMakeFiles/opencv_gapi.dir/Debug/cmake_pch.hxx;%(ForcedIncludeFiles)</ForcedIncludeFiles>
+      <ForcedIncludeFiles Condition="'$(Configuration)|$(Platform)'=='Release|x64'">D:/mydoc/CS_Resources/opencv_5.x_new/opencv/cmake-build-debug/modules/gapi/CMakeFiles/opencv_gapi.dir/Release/cmake_pch.hxx;%(ForcedIncludeFiles)</ForcedIncludeFiles>
+    </ClCompile>
+    <ClCompile Include="D:\mydoc\CS_Resources\opencv_5.x_new\opencv\modules\gapi\src\api\rmat.cpp">
+      <ForcedIncludeFiles Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">D:/mydoc/CS_Resources/opencv_5.x_new/opencv/cmake-build-debug/modules/gapi/CMakeFiles/opencv_gapi.dir/Debug/cmake_pch.hxx;%(ForcedIncludeFiles)</ForcedIncludeFiles>
+      <ForcedIncludeFiles Condition="'$(Configuration)|$(Platform)'=='Release|x64'">D:/mydoc/CS_Resources/opencv_5.x_new/opencv/cmake-build-debug/modules/gapi/CMakeFiles/opencv_gapi.dir/Release/cmake_pch.hxx;%(ForcedIncludeFiles)</ForcedIncludeFiles>
+    </ClCompile>
+    <ClCompile Include="D:\mydoc\CS_Resources\opencv_5.x_new\opencv\modules\gapi\src\compiler\gmodel.cpp">
+      <ForcedIncludeFiles Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">D:/mydoc/CS_Resources/opencv_5.x_new/opencv/cmake-build-debug/modules/gapi/CMakeFiles/opencv_gapi.dir/Debug/cmake_pch.hxx;%(ForcedIncludeFiles)</ForcedIncludeFiles>
+      <ForcedIncludeFiles Condition="'$(Configuration)|$(Platform)'=='Release|x64'">D:/mydoc/CS_Resources/opencv_5.x_new/opencv/cmake-build-debug/modules/gapi/CMakeFiles/opencv_gapi.dir/Release/cmake_pch.hxx;%(ForcedIncludeFiles)</ForcedIncludeFiles>
+    </ClCompile>
+    <ClCompile Include="D:\mydoc\CS_Resources\opencv_5.x_new\opencv\modules\gapi\src\compiler\gmodelbuilder.cpp">
+      <ForcedIncludeFiles Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">D:/mydoc/CS_Resources/opencv_5.x_new/opencv/cmake-build-debug/modules/gapi/CMakeFiles/opencv_gapi.dir/Debug/cmake_pch.hxx;%(ForcedIncludeFiles)</ForcedIncludeFiles>
+      <ForcedIncludeFiles Condition="'$(Configuration)|$(Platform)'=='Release|x64'">D:/mydoc/CS_Resources/opencv_5.x_new/opencv/cmake-build-debug/modules/gapi/CMakeFiles/opencv_gapi.dir/Release/cmake_pch.hxx;%(ForcedIncludeFiles)</ForcedIncludeFiles>
+    </ClCompile>
+    <ClCompile Include="D:\mydoc\CS_Resources\opencv_5.x_new\opencv\modules\gapi\src\compiler\gislandmodel.cpp">
+      <ForcedIncludeFiles Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">D:/mydoc/CS_Resources/opencv_5.x_new/opencv/cmake-build-debug/modules/gapi/CMakeFiles/opencv_gapi.dir/Debug/cmake_pch.hxx;%(ForcedIncludeFiles)</ForcedIncludeFiles>
+      <ForcedIncludeFiles Condition="'$(Configuration)|$(Platform)'=='Release|x64'">D:/mydoc/CS_Resources/opencv_5.x_new/opencv/cmake-build-debug/modules/gapi/CMakeFiles/opencv_gapi.dir/Release/cmake_pch.hxx;%(ForcedIncludeFiles)</ForcedIncludeFiles>
+    </ClCompile>
+    <ClCompile Include="D:\mydoc\CS_Resources\opencv_5.x_new\opencv\modules\gapi\src\compiler\gcompiler.cpp">
+      <ForcedIncludeFiles Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">D:/mydoc/CS_Resources/opencv_5.x_new/opencv/cmake-build-debug/modules/gapi/CMakeFiles/opencv_gapi.dir/Debug/cmake_pch.hxx;%(ForcedIncludeFiles)</ForcedIncludeFiles>
+      <ForcedIncludeFiles Condition="'$(Configuration)|$(Platform)'=='Release|x64'">D:/mydoc/CS_Resources/opencv_5.x_new/opencv/cmake-build-debug/modules/gapi/CMakeFiles/opencv_gapi.dir/Release/cmake_pch.hxx;%(ForcedIncludeFiles)</ForcedIncludeFiles>
+    </ClCompile>
+    <ClCompile Include="D:\mydoc\CS_Resources\opencv_5.x_new\opencv\modules\gapi\src\compiler\gcompiled.cpp">
+      <ForcedIncludeFiles Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">D:/mydoc/CS_Resources/opencv_5.x_new/opencv/cmake-build-debug/modules/gapi/CMakeFiles/opencv_gapi.dir/Debug/cmake_pch.hxx;%(ForcedIncludeFiles)</ForcedIncludeFiles>
+      <ForcedIncludeFiles Condition="'$(Configuration)|$(Platform)'=='Release|x64'">D:/mydoc/CS_Resources/opencv_5.x_new/opencv/cmake-build-debug/modules/gapi/CMakeFiles/opencv_gapi.dir/Release/cmake_pch.hxx;%(ForcedIncludeFiles)</ForcedIncludeFiles>
+    </ClCompile>
+    <ClCompile Include="D:\mydoc\CS_Resources\opencv_5.x_new\opencv\modules\gapi\src\compiler\gstreaming.cpp">
+      <ForcedIncludeFiles Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">D:/mydoc/CS_Resources/opencv_5.x_new/opencv/cmake-build-debug/modules/gapi/CMakeFiles/opencv_gapi.dir/Debug/cmake_pch.hxx;%(ForcedIncludeFiles)</ForcedIncludeFiles>
+      <ForcedIncludeFiles Condition="'$(Configuration)|$(Platform)'=='Release|x64'">D:/mydoc/CS_Resources/opencv_5.x_new/opencv/cmake-build-debug/modules/gapi/CMakeFiles/opencv_gapi.dir/Release/cmake_pch.hxx;%(ForcedIncludeFiles)</ForcedIncludeFiles>
+    </ClCompile>
+    <ClCompile Include="D:\mydoc\CS_Resources\opencv_5.x_new\opencv\modules\gapi\src\compiler\passes\helpers.cpp">
+      <ForcedIncludeFiles Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">D:/mydoc/CS_Resources/opencv_5.x_new/opencv/cmake-build-debug/modules/gapi/CMakeFiles/opencv_gapi.dir/Debug/cmake_pch.hxx;%(ForcedIncludeFiles)</ForcedIncludeFiles>
+      <ForcedIncludeFiles Condition="'$(Configuration)|$(Platform)'=='Release|x64'">D:/mydoc/CS_Resources/opencv_5.x_new/opencv/cmake-build-debug/modules/gapi/CMakeFiles/opencv_gapi.dir/Release/cmake_pch.hxx;%(ForcedIncludeFiles)</ForcedIncludeFiles>
+    </ClCompile>
+    <ClCompile Include="D:\mydoc\CS_Resources\opencv_5.x_new\opencv\modules\gapi\src\compiler\passes\dump_dot.cpp">
+      <ForcedIncludeFiles Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">D:/mydoc/CS_Resources/opencv_5.x_new/opencv/cmake-build-debug/modules/gapi/CMakeFiles/opencv_gapi.dir/Debug/cmake_pch.hxx;%(ForcedIncludeFiles)</ForcedIncludeFiles>
+      <ForcedIncludeFiles Condition="'$(Configuration)|$(Platform)'=='Release|x64'">D:/mydoc/CS_Resources/opencv_5.x_new/opencv/cmake-build-debug/modules/gapi/CMakeFiles/opencv_gapi.dir/Release/cmake_pch.hxx;%(ForcedIncludeFiles)</ForcedIncludeFiles>
+    </ClCompile>
+    <ClCompile Include="D:\mydoc\CS_Resources\opencv_5.x_new\opencv\modules\gapi\src\compiler\passes\islands.cpp">
+      <ForcedIncludeFiles Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">D:/mydoc/CS_Resources/opencv_5.x_new/opencv/cmake-build-debug/modules/gapi/CMakeFiles/opencv_gapi.dir/Debug/cmake_pch.hxx;%(ForcedIncludeFiles)</ForcedIncludeFiles>
+      <ForcedIncludeFiles Condition="'$(Configuration)|$(Platform)'=='Release|x64'">D:/mydoc/CS_Resources/opencv_5.x_new/opencv/cmake-build-debug/modules/gapi/CMakeFiles/opencv_gapi.dir/Release/cmake_pch.hxx;%(ForcedIncludeFiles)</ForcedIncludeFiles>
+    </ClCompile>
+    <ClCompile Include="D:\mydoc\CS_Resources\opencv_5.x_new\opencv\modules\gapi\src\compiler\passes\meta.cpp">
+      <ForcedIncludeFiles Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">D:/mydoc/CS_Resources/opencv_5.x_new/opencv/cmake-build-debug/modules/gapi/CMakeFiles/opencv_gapi.dir/Debug/cmake_pch.hxx;%(ForcedIncludeFiles)</ForcedIncludeFiles>
+      <ForcedIncludeFiles Condition="'$(Configuration)|$(Platform)'=='Release|x64'">D:/mydoc/CS_Resources/opencv_5.x_new/opencv/cmake-build-debug/modules/gapi/CMakeFiles/opencv_gapi.dir/Release/cmake_pch.hxx;%(ForcedIncludeFiles)</ForcedIncludeFiles>
+    </ClCompile>
+    <ClCompile Include="D:\mydoc\CS_Resources\opencv_5.x_new\opencv\modules\gapi\src\compiler\passes\kernels.cpp">
+      <ForcedIncludeFiles Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">D:/mydoc/CS_Resources/opencv_5.x_new/opencv/cmake-build-debug/modules/gapi/CMakeFiles/opencv_gapi.dir/Debug/cmake_pch.hxx;%(ForcedIncludeFiles)</ForcedIncludeFiles>
+      <ForcedIncludeFiles Condition="'$(Configuration)|$(Platform)'=='Release|x64'">D:/mydoc/CS_Resources/opencv_5.x_new/opencv/cmake-build-debug/modules/gapi/CMakeFiles/opencv_gapi.dir/Release/cmake_pch.hxx;%(ForcedIncludeFiles)</ForcedIncludeFiles>
+    </ClCompile>
+    <ClCompile Include="D:\mydoc\CS_Resources\opencv_5.x_new\opencv\modules\gapi\src\compiler\passes\exec.cpp">
+      <ForcedIncludeFiles Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">D:/mydoc/CS_Resources/opencv_5.x_new/opencv/cmake-build-debug/modules/gapi/CMakeFiles/opencv_gapi.dir/Debug/cmake_pch.hxx;%(ForcedIncludeFiles)</ForcedIncludeFiles>
+      <ForcedIncludeFiles Condition="'$(Configuration)|$(Platform)'=='Release|x64'">D:/mydoc/CS_Resources/opencv_5.x_new/opencv/cmake-build-debug/modules/gapi/CMakeFiles/opencv_gapi.dir/Release/cmake_pch.hxx;%(ForcedIncludeFiles)</ForcedIncludeFiles>
+    </ClCompile>
+    <ClCompile Include="D:\mydoc\CS_Resources\opencv_5.x_new\opencv\modules\gapi\src\compiler\passes\transformations.cpp">
+      <ForcedIncludeFiles Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">D:/mydoc/CS_Resources/opencv_5.x_new/opencv/cmake-build-debug/modules/gapi/CMakeFiles/opencv_gapi.dir/Debug/cmake_pch.hxx;%(ForcedIncludeFiles)</ForcedIncludeFiles>
+      <ForcedIncludeFiles Condition="'$(Configuration)|$(Platform)'=='Release|x64'">D:/mydoc/CS_Resources/opencv_5.x_new/opencv/cmake-build-debug/modules/gapi/CMakeFiles/opencv_gapi.dir/Release/cmake_pch.hxx;%(ForcedIncludeFiles)</ForcedIncludeFiles>
+    </ClCompile>
+    <ClCompile Include="D:\mydoc\CS_Resources\opencv_5.x_new\opencv\modules\gapi\src\compiler\passes\pattern_matching.cpp">
+      <ForcedIncludeFiles Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">D:/mydoc/CS_Resources/opencv_5.x_new/opencv/cmake-build-debug/modules/gapi/CMakeFiles/opencv_gapi.dir/Debug/cmake_pch.hxx;%(ForcedIncludeFiles)</ForcedIncludeFiles>
+      <ForcedIncludeFiles Condition="'$(Configuration)|$(Platform)'=='Release|x64'">D:/mydoc/CS_Resources/opencv_5.x_new/opencv/cmake-build-debug/modules/gapi/CMakeFiles/opencv_gapi.dir/Release/cmake_pch.hxx;%(ForcedIncludeFiles)</ForcedIncludeFiles>
+    </ClCompile>
+    <ClCompile Include="D:\mydoc\CS_Resources\opencv_5.x_new\opencv\modules\gapi\src\compiler\passes\perform_substitution.cpp">
+      <ForcedIncludeFiles Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">D:/mydoc/CS_Resources/opencv_5.x_new/opencv/cmake-build-debug/modules/gapi/CMakeFiles/opencv_gapi.dir/Debug/cmake_pch.hxx;%(ForcedIncludeFiles)</ForcedIncludeFiles>
+      <ForcedIncludeFiles Condition="'$(Configuration)|$(Platform)'=='Release|x64'">D:/mydoc/CS_Resources/opencv_5.x_new/opencv/cmake-build-debug/modules/gapi/CMakeFiles/opencv_gapi.dir/Release/cmake_pch.hxx;%(ForcedIncludeFiles)</ForcedIncludeFiles>
+    </ClCompile>
+    <ClCompile Include="D:\mydoc\CS_Resources\opencv_5.x_new\opencv\modules\gapi\src\compiler\passes\streaming.cpp">
+      <ForcedIncludeFiles Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">D:/mydoc/CS_Resources/opencv_5.x_new/opencv/cmake-build-debug/modules/gapi/CMakeFiles/opencv_gapi.dir/Debug/cmake_pch.hxx;%(ForcedIncludeFiles)</ForcedIncludeFiles>
+      <ForcedIncludeFiles Condition="'$(Configuration)|$(Platform)'=='Release|x64'">D:/mydoc/CS_Resources/opencv_5.x_new/opencv/cmake-build-debug/modules/gapi/CMakeFiles/opencv_gapi.dir/Release/cmake_pch.hxx;%(ForcedIncludeFiles)</ForcedIncludeFiles>
+    </ClCompile>
+    <ClCompile Include="D:\mydoc\CS_Resources\opencv_5.x_new\opencv\modules\gapi\src\compiler\passes\intrin.cpp">
+      <ForcedIncludeFiles Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">D:/mydoc/CS_Resources/opencv_5.x_new/opencv/cmake-build-debug/modules/gapi/CMakeFiles/opencv_gapi.dir/Debug/cmake_pch.hxx;%(ForcedIncludeFiles)</ForcedIncludeFiles>
+      <ForcedIncludeFiles Condition="'$(Configuration)|$(Platform)'=='Release|x64'">D:/mydoc/CS_Resources/opencv_5.x_new/opencv/cmake-build-debug/modules/gapi/CMakeFiles/opencv_gapi.dir/Release/cmake_pch.hxx;%(ForcedIncludeFiles)</ForcedIncludeFiles>
+    </ClCompile>
+    <ClCompile Include="D:\mydoc\CS_Resources\opencv_5.x_new\opencv\modules\gapi\src\executor\gabstractexecutor.cpp">
+      <ForcedIncludeFiles Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">D:/mydoc/CS_Resources/opencv_5.x_new/opencv/cmake-build-debug/modules/gapi/CMakeFiles/opencv_gapi.dir/Debug/cmake_pch.hxx;%(ForcedIncludeFiles)</ForcedIncludeFiles>
+      <ForcedIncludeFiles Condition="'$(Configuration)|$(Platform)'=='Release|x64'">D:/mydoc/CS_Resources/opencv_5.x_new/opencv/cmake-build-debug/modules/gapi/CMakeFiles/opencv_gapi.dir/Release/cmake_pch.hxx;%(ForcedIncludeFiles)</ForcedIncludeFiles>
+    </ClCompile>
+    <ClCompile Include="D:\mydoc\CS_Resources\opencv_5.x_new\opencv\modules\gapi\src\executor\gabstractstreamingexecutor.cpp">
+      <ForcedIncludeFiles Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">D:/mydoc/CS_Resources/opencv_5.x_new/opencv/cmake-build-debug/modules/gapi/CMakeFiles/opencv_gapi.dir/Debug/cmake_pch.hxx;%(ForcedIncludeFiles)</ForcedIncludeFiles>
+      <ForcedIncludeFiles Condition="'$(Configuration)|$(Platform)'=='Release|x64'">D:/mydoc/CS_Resources/opencv_5.x_new/opencv/cmake-build-debug/modules/gapi/CMakeFiles/opencv_gapi.dir/Release/cmake_pch.hxx;%(ForcedIncludeFiles)</ForcedIncludeFiles>
+    </ClCompile>
+    <ClCompile Include="D:\mydoc\CS_Resources\opencv_5.x_new\opencv\modules\gapi\src\executor\gexecutor.cpp">
+      <ForcedIncludeFiles Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">D:/mydoc/CS_Resources/opencv_5.x_new/opencv/cmake-build-debug/modules/gapi/CMakeFiles/opencv_gapi.dir/Debug/cmake_pch.hxx;%(ForcedIncludeFiles)</ForcedIncludeFiles>
+      <ForcedIncludeFiles Condition="'$(Configuration)|$(Platform)'=='Release|x64'">D:/mydoc/CS_Resources/opencv_5.x_new/opencv/cmake-build-debug/modules/gapi/CMakeFiles/opencv_gapi.dir/Release/cmake_pch.hxx;%(ForcedIncludeFiles)</ForcedIncludeFiles>
+    </ClCompile>
+    <ClCompile Include="D:\mydoc\CS_Resources\opencv_5.x_new\opencv\modules\gapi\src\executor\gtbbexecutor.cpp">
+      <ForcedIncludeFiles Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">D:/mydoc/CS_Resources/opencv_5.x_new/opencv/cmake-build-debug/modules/gapi/CMakeFiles/opencv_gapi.dir/Debug/cmake_pch.hxx;%(ForcedIncludeFiles)</ForcedIncludeFiles>
+      <ForcedIncludeFiles Condition="'$(Configuration)|$(Platform)'=='Release|x64'">D:/mydoc/CS_Resources/opencv_5.x_new/opencv/cmake-build-debug/modules/gapi/CMakeFiles/opencv_gapi.dir/Release/cmake_pch.hxx;%(ForcedIncludeFiles)</ForcedIncludeFiles>
+    </ClCompile>
+    <ClCompile Include="D:\mydoc\CS_Resources\opencv_5.x_new\opencv\modules\gapi\src\executor\gstreamingexecutor.cpp">
+      <ForcedIncludeFiles Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">D:/mydoc/CS_Resources/opencv_5.x_new/opencv/cmake-build-debug/modules/gapi/CMakeFiles/opencv_gapi.dir/Debug/cmake_pch.hxx;%(ForcedIncludeFiles)</ForcedIncludeFiles>
+      <ForcedIncludeFiles Condition="'$(Configuration)|$(Platform)'=='Release|x64'">D:/mydoc/CS_Resources/opencv_5.x_new/opencv/cmake-build-debug/modules/gapi/CMakeFiles/opencv_gapi.dir/Release/cmake_pch.hxx;%(ForcedIncludeFiles)</ForcedIncludeFiles>
+    </ClCompile>
+    <ClCompile Include="D:\mydoc\CS_Resources\opencv_5.x_new\opencv\modules\gapi\src\executor\gasync.cpp">
+      <ForcedIncludeFiles Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">D:/mydoc/CS_Resources/opencv_5.x_new/opencv/cmake-build-debug/modules/gapi/CMakeFiles/opencv_gapi.dir/Debug/cmake_pch.hxx;%(ForcedIncludeFiles)</ForcedIncludeFiles>
+      <ForcedIncludeFiles Condition="'$(Configuration)|$(Platform)'=='Release|x64'">D:/mydoc/CS_Resources/opencv_5.x_new/opencv/cmake-build-debug/modules/gapi/CMakeFiles/opencv_gapi.dir/Release/cmake_pch.hxx;%(ForcedIncludeFiles)</ForcedIncludeFiles>
+    </ClCompile>
+    <ClCompile Include="D:\mydoc\CS_Resources\opencv_5.x_new\opencv\modules\gapi\src\backends\cpu\gcpubackend.cpp">
+      <ForcedIncludeFiles Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">D:/mydoc/CS_Resources/opencv_5.x_new/opencv/cmake-build-debug/modules/gapi/CMakeFiles/opencv_gapi.dir/Debug/cmake_pch.hxx;%(ForcedIncludeFiles)</ForcedIncludeFiles>
+      <ForcedIncludeFiles Condition="'$(Configuration)|$(Platform)'=='Release|x64'">D:/mydoc/CS_Resources/opencv_5.x_new/opencv/cmake-build-debug/modules/gapi/CMakeFiles/opencv_gapi.dir/Release/cmake_pch.hxx;%(ForcedIncludeFiles)</ForcedIncludeFiles>
+    </ClCompile>
+    <ClCompile Include="D:\mydoc\CS_Resources\opencv_5.x_new\opencv\modules\gapi\src\backends\cpu\gcpukernel.cpp">
+      <ForcedIncludeFiles Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">D:/mydoc/CS_Resources/opencv_5.x_new/opencv/cmake-build-debug/modules/gapi/CMakeFiles/opencv_gapi.dir/Debug/cmake_pch.hxx;%(ForcedIncludeFiles)</ForcedIncludeFiles>
+      <ForcedIncludeFiles Condition="'$(Configuration)|$(Platform)'=='Release|x64'">D:/mydoc/CS_Resources/opencv_5.x_new/opencv/cmake-build-debug/modules/gapi/CMakeFiles/opencv_gapi.dir/Release/cmake_pch.hxx;%(ForcedIncludeFiles)</ForcedIncludeFiles>
+    </ClCompile>
+    <ClCompile Include="D:\mydoc\CS_Resources\opencv_5.x_new\opencv\modules\gapi\src\backends\cpu\gcpuimgproc.cpp">
+      <ForcedIncludeFiles Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">D:/mydoc/CS_Resources/opencv_5.x_new/opencv/cmake-build-debug/modules/gapi/CMakeFiles/opencv_gapi.dir/Debug/cmake_pch.hxx;%(ForcedIncludeFiles)</ForcedIncludeFiles>
+      <ForcedIncludeFiles Condition="'$(Configuration)|$(Platform)'=='Release|x64'">D:/mydoc/CS_Resources/opencv_5.x_new/opencv/cmake-build-debug/modules/gapi/CMakeFiles/opencv_gapi.dir/Release/cmake_pch.hxx;%(ForcedIncludeFiles)</ForcedIncludeFiles>
+    </ClCompile>
+    <ClCompile Include="D:\mydoc\CS_Resources\opencv_5.x_new\opencv\modules\gapi\src\backends\cpu\gcpustereo.cpp">
+      <ForcedIncludeFiles Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">D:/mydoc/CS_Resources/opencv_5.x_new/opencv/cmake-build-debug/modules/gapi/CMakeFiles/opencv_gapi.dir/Debug/cmake_pch.hxx;%(ForcedIncludeFiles)</ForcedIncludeFiles>
+      <ForcedIncludeFiles Condition="'$(Configuration)|$(Platform)'=='Release|x64'">D:/mydoc/CS_Resources/opencv_5.x_new/opencv/cmake-build-debug/modules/gapi/CMakeFiles/opencv_gapi.dir/Release/cmake_pch.hxx;%(ForcedIncludeFiles)</ForcedIncludeFiles>
+    </ClCompile>
+    <ClCompile Include="D:\mydoc\CS_Resources\opencv_5.x_new\opencv\modules\gapi\src\backends\cpu\gcpuvideo.cpp">
+      <ForcedIncludeFiles Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">D:/mydoc/CS_Resources/opencv_5.x_new/opencv/cmake-build-debug/modules/gapi/CMakeFiles/opencv_gapi.dir/Debug/cmake_pch.hxx;%(ForcedIncludeFiles)</ForcedIncludeFiles>
+      <ForcedIncludeFiles Condition="'$(Configuration)|$(Platform)'=='Release|x64'">D:/mydoc/CS_Resources/opencv_5.x_new/opencv/cmake-build-debug/modules/gapi/CMakeFiles/opencv_gapi.dir/Release/cmake_pch.hxx;%(ForcedIncludeFiles)</ForcedIncludeFiles>
+    </ClCompile>
+    <ClCompile Include="D:\mydoc\CS_Resources\opencv_5.x_new\opencv\modules\gapi\src\backends\cpu\gcpucore.cpp">
+      <ForcedIncludeFiles Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">D:/mydoc/CS_Resources/opencv_5.x_new/opencv/cmake-build-debug/modules/gapi/CMakeFiles/opencv_gapi.dir/Debug/cmake_pch.hxx;%(ForcedIncludeFiles)</ForcedIncludeFiles>
+      <ForcedIncludeFiles Condition="'$(Configuration)|$(Platform)'=='Release|x64'">D:/mydoc/CS_Resources/opencv_5.x_new/opencv/cmake-build-debug/modules/gapi/CMakeFiles/opencv_gapi.dir/Release/cmake_pch.hxx;%(ForcedIncludeFiles)</ForcedIncludeFiles>
+    </ClCompile>
+    <ClCompile Include="D:\mydoc\CS_Resources\opencv_5.x_new\opencv\modules\gapi\src\backends\cpu\gnnparsers.cpp">
+      <ForcedIncludeFiles Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">D:/mydoc/CS_Resources/opencv_5.x_new/opencv/cmake-build-debug/modules/gapi/CMakeFiles/opencv_gapi.dir/Debug/cmake_pch.hxx;%(ForcedIncludeFiles)</ForcedIncludeFiles>
+      <ForcedIncludeFiles Condition="'$(Configuration)|$(Platform)'=='Release|x64'">D:/mydoc/CS_Resources/opencv_5.x_new/opencv/cmake-build-debug/modules/gapi/CMakeFiles/opencv_gapi.dir/Release/cmake_pch.hxx;%(ForcedIncludeFiles)</ForcedIncludeFiles>
+    </ClCompile>
+    <ClCompile Include="D:\mydoc\CS_Resources\opencv_5.x_new\opencv\modules\gapi\src\backends\fluid\gfluidbuffer.cpp">
+      <ForcedIncludeFiles Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">D:/mydoc/CS_Resources/opencv_5.x_new/opencv/cmake-build-debug/modules/gapi/CMakeFiles/opencv_gapi.dir/Debug/cmake_pch.hxx;%(ForcedIncludeFiles)</ForcedIncludeFiles>
+      <ForcedIncludeFiles Condition="'$(Configuration)|$(Platform)'=='Release|x64'">D:/mydoc/CS_Resources/opencv_5.x_new/opencv/cmake-build-debug/modules/gapi/CMakeFiles/opencv_gapi.dir/Release/cmake_pch.hxx;%(ForcedIncludeFiles)</ForcedIncludeFiles>
+    </ClCompile>
+    <ClCompile Include="D:\mydoc\CS_Resources\opencv_5.x_new\opencv\modules\gapi\src\backends\fluid\gfluidbackend.cpp">
+      <ForcedIncludeFiles Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">D:/mydoc/CS_Resources/opencv_5.x_new/opencv/cmake-build-debug/modules/gapi/CMakeFiles/opencv_gapi.dir/Debug/cmake_pch.hxx;%(ForcedIncludeFiles)</ForcedIncludeFiles>
+      <ForcedIncludeFiles Condition="'$(Configuration)|$(Platform)'=='Release|x64'">D:/mydoc/CS_Resources/opencv_5.x_new/opencv/cmake-build-debug/modules/gapi/CMakeFiles/opencv_gapi.dir/Release/cmake_pch.hxx;%(ForcedIncludeFiles)</ForcedIncludeFiles>
+    </ClCompile>
+    <ClCompile Include="D:\mydoc\CS_Resources\opencv_5.x_new\opencv\modules\gapi\src\backends\fluid\gfluidimgproc.cpp">
+      <ForcedIncludeFiles Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">D:/mydoc/CS_Resources/opencv_5.x_new/opencv/cmake-build-debug/modules/gapi/CMakeFiles/opencv_gapi.dir/Debug/cmake_pch.hxx;%(ForcedIncludeFiles)</ForcedIncludeFiles>
+      <ForcedIncludeFiles Condition="'$(Configuration)|$(Platform)'=='Release|x64'">D:/mydoc/CS_Resources/opencv_5.x_new/opencv/cmake-build-debug/modules/gapi/CMakeFiles/opencv_gapi.dir/Release/cmake_pch.hxx;%(ForcedIncludeFiles)</ForcedIncludeFiles>
+    </ClCompile>
+    <ClCompile Include="D:\mydoc\CS_Resources\opencv_5.x_new\opencv\modules\gapi\src\backends\fluid\gfluidimgproc_func.dispatch.cpp">
+      <ForcedIncludeFiles Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">D:/mydoc/CS_Resources/opencv_5.x_new/opencv/cmake-build-debug/modules/gapi/CMakeFiles/opencv_gapi.dir/Debug/cmake_pch.hxx;%(ForcedIncludeFiles)</ForcedIncludeFiles>
+      <ForcedIncludeFiles Condition="'$(Configuration)|$(Platform)'=='Release|x64'">D:/mydoc/CS_Resources/opencv_5.x_new/opencv/cmake-build-debug/modules/gapi/CMakeFiles/opencv_gapi.dir/Release/cmake_pch.hxx;%(ForcedIncludeFiles)</ForcedIncludeFiles>
+    </ClCompile>
+    <ClCompile Include="D:\mydoc\CS_Resources\opencv_5.x_new\opencv\modules\gapi\src\backends\fluid\gfluidcore.cpp">
+      <ForcedIncludeFiles Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">D:/mydoc/CS_Resources/opencv_5.x_new/opencv/cmake-build-debug/modules/gapi/CMakeFiles/opencv_gapi.dir/Debug/cmake_pch.hxx;%(ForcedIncludeFiles)</ForcedIncludeFiles>
+      <ForcedIncludeFiles Condition="'$(Configuration)|$(Platform)'=='Release|x64'">D:/mydoc/CS_Resources/opencv_5.x_new/opencv/cmake-build-debug/modules/gapi/CMakeFiles/opencv_gapi.dir/Release/cmake_pch.hxx;%(ForcedIncludeFiles)</ForcedIncludeFiles>
+    </ClCompile>
+    <ClCompile Include="D:\mydoc\CS_Resources\opencv_5.x_new\opencv\modules\gapi\src\backends\fluid\gfluidcore_func.dispatch.cpp">
+      <ForcedIncludeFiles Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">D:/mydoc/CS_Resources/opencv_5.x_new/opencv/cmake-build-debug/modules/gapi/CMakeFiles/opencv_gapi.dir/Debug/cmake_pch.hxx;%(ForcedIncludeFiles)</ForcedIncludeFiles>
+      <ForcedIncludeFiles Condition="'$(Configuration)|$(Platform)'=='Release|x64'">D:/mydoc/CS_Resources/opencv_5.x_new/opencv/cmake-build-debug/modules/gapi/CMakeFiles/opencv_gapi.dir/Release/cmake_pch.hxx;%(ForcedIncludeFiles)</ForcedIncludeFiles>
+    </ClCompile>
+    <ClCompile Include="D:\mydoc\CS_Resources\opencv_5.x_new\opencv\modules\gapi\src\backends\oak\goak.cpp">
+      <ForcedIncludeFiles Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">D:/mydoc/CS_Resources/opencv_5.x_new/opencv/cmake-build-debug/modules/gapi/CMakeFiles/opencv_gapi.dir/Debug/cmake_pch.hxx;%(ForcedIncludeFiles)</ForcedIncludeFiles>
+      <ForcedIncludeFiles Condition="'$(Configuration)|$(Platform)'=='Release|x64'">D:/mydoc/CS_Resources/opencv_5.x_new/opencv/cmake-build-debug/modules/gapi/CMakeFiles/opencv_gapi.dir/Release/cmake_pch.hxx;%(ForcedIncludeFiles)</ForcedIncludeFiles>
+    </ClCompile>
+    <ClCompile Include="D:\mydoc\CS_Resources\opencv_5.x_new\opencv\modules\gapi\src\backends\oak\goakbackend.cpp">
+      <ForcedIncludeFiles Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">D:/mydoc/CS_Resources/opencv_5.x_new/opencv/cmake-build-debug/modules/gapi/CMakeFiles/opencv_gapi.dir/Debug/cmake_pch.hxx;%(ForcedIncludeFiles)</ForcedIncludeFiles>
+      <ForcedIncludeFiles Condition="'$(Configuration)|$(Platform)'=='Release|x64'">D:/mydoc/CS_Resources/opencv_5.x_new/opencv/cmake-build-debug/modules/gapi/CMakeFiles/opencv_gapi.dir/Release/cmake_pch.hxx;%(ForcedIncludeFiles)</ForcedIncludeFiles>
+    </ClCompile>
+    <ClCompile Include="D:\mydoc\CS_Resources\opencv_5.x_new\opencv\modules\gapi\src\backends\oak\goak_memory_adapters.cpp">
+      <ForcedIncludeFiles Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">D:/mydoc/CS_Resources/opencv_5.x_new/opencv/cmake-build-debug/modules/gapi/CMakeFiles/opencv_gapi.dir/Debug/cmake_pch.hxx;%(ForcedIncludeFiles)</ForcedIncludeFiles>
+      <ForcedIncludeFiles Condition="'$(Configuration)|$(Platform)'=='Release|x64'">D:/mydoc/CS_Resources/opencv_5.x_new/opencv/cmake-build-debug/modules/gapi/CMakeFiles/opencv_gapi.dir/Release/cmake_pch.hxx;%(ForcedIncludeFiles)</ForcedIncludeFiles>
+    </ClCompile>
+    <ClCompile Include="D:\mydoc\CS_Resources\opencv_5.x_new\opencv\modules\gapi\src\backends\ocl\goclbackend.cpp">
+      <ForcedIncludeFiles Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">D:/mydoc/CS_Resources/opencv_5.x_new/opencv/cmake-build-debug/modules/gapi/CMakeFiles/opencv_gapi.dir/Debug/cmake_pch.hxx;%(ForcedIncludeFiles)</ForcedIncludeFiles>
+      <ForcedIncludeFiles Condition="'$(Configuration)|$(Platform)'=='Release|x64'">D:/mydoc/CS_Resources/opencv_5.x_new/opencv/cmake-build-debug/modules/gapi/CMakeFiles/opencv_gapi.dir/Release/cmake_pch.hxx;%(ForcedIncludeFiles)</ForcedIncludeFiles>
+    </ClCompile>
+    <ClCompile Include="D:\mydoc\CS_Resources\opencv_5.x_new\opencv\modules\gapi\src\backends\ocl\goclkernel.cpp">
+      <ForcedIncludeFiles Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">D:/mydoc/CS_Resources/opencv_5.x_new/opencv/cmake-build-debug/modules/gapi/CMakeFiles/opencv_gapi.dir/Debug/cmake_pch.hxx;%(ForcedIncludeFiles)</ForcedIncludeFiles>
+      <ForcedIncludeFiles Condition="'$(Configuration)|$(Platform)'=='Release|x64'">D:/mydoc/CS_Resources/opencv_5.x_new/opencv/cmake-build-debug/modules/gapi/CMakeFiles/opencv_gapi.dir/Release/cmake_pch.hxx;%(ForcedIncludeFiles)</ForcedIncludeFiles>
+    </ClCompile>
+    <ClCompile Include="D:\mydoc\CS_Resources\opencv_5.x_new\opencv\modules\gapi\src\backends\ocl\goclimgproc.cpp">
+      <ForcedIncludeFiles Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">D:/mydoc/CS_Resources/opencv_5.x_new/opencv/cmake-build-debug/modules/gapi/CMakeFiles/opencv_gapi.dir/Debug/cmake_pch.hxx;%(ForcedIncludeFiles)</ForcedIncludeFiles>
+      <ForcedIncludeFiles Condition="'$(Configuration)|$(Platform)'=='Release|x64'">D:/mydoc/CS_Resources/opencv_5.x_new/opencv/cmake-build-debug/modules/gapi/CMakeFiles/opencv_gapi.dir/Release/cmake_pch.hxx;%(ForcedIncludeFiles)</ForcedIncludeFiles>
+    </ClCompile>
+    <ClCompile Include="D:\mydoc\CS_Resources\opencv_5.x_new\opencv\modules\gapi\src\backends\ocl\goclcore.cpp">
+      <ForcedIncludeFiles Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">D:/mydoc/CS_Resources/opencv_5.x_new/opencv/cmake-build-debug/modules/gapi/CMakeFiles/opencv_gapi.dir/Debug/cmake_pch.hxx;%(ForcedIncludeFiles)</ForcedIncludeFiles>
+      <ForcedIncludeFiles Condition="'$(Configuration)|$(Platform)'=='Release|x64'">D:/mydoc/CS_Resources/opencv_5.x_new/opencv/cmake-build-debug/modules/gapi/CMakeFiles/opencv_gapi.dir/Release/cmake_pch.hxx;%(ForcedIncludeFiles)</ForcedIncludeFiles>
+    </ClCompile>
+    <ClCompile Include="D:\mydoc\CS_Resources\opencv_5.x_new\opencv\modules\gapi\src\backends\ie\giebackend.cpp">
+      <ForcedIncludeFiles Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">D:/mydoc/CS_Resources/opencv_5.x_new/opencv/cmake-build-debug/modules/gapi/CMakeFiles/opencv_gapi.dir/Debug/cmake_pch.hxx;%(ForcedIncludeFiles)</ForcedIncludeFiles>
+      <ForcedIncludeFiles Condition="'$(Configuration)|$(Platform)'=='Release|x64'">D:/mydoc/CS_Resources/opencv_5.x_new/opencv/cmake-build-debug/modules/gapi/CMakeFiles/opencv_gapi.dir/Release/cmake_pch.hxx;%(ForcedIncludeFiles)</ForcedIncludeFiles>
+    </ClCompile>
+    <ClCompile Include="D:\mydoc\CS_Resources\opencv_5.x_new\opencv\modules\gapi\src\backends\ie\giebackend\giewrapper.cpp">
+      <ForcedIncludeFiles Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">D:/mydoc/CS_Resources/opencv_5.x_new/opencv/cmake-build-debug/modules/gapi/CMakeFiles/opencv_gapi.dir/Debug/cmake_pch.hxx;%(ForcedIncludeFiles)</ForcedIncludeFiles>
+      <ForcedIncludeFiles Condition="'$(Configuration)|$(Platform)'=='Release|x64'">D:/mydoc/CS_Resources/opencv_5.x_new/opencv/cmake-build-debug/modules/gapi/CMakeFiles/opencv_gapi.dir/Release/cmake_pch.hxx;%(ForcedIncludeFiles)</ForcedIncludeFiles>
+    </ClCompile>
+    <ClCompile Include="D:\mydoc\CS_Resources\opencv_5.x_new\opencv\modules\gapi\src\backends\onnx\gonnxbackend.cpp">
+      <ForcedIncludeFiles Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">D:/mydoc/CS_Resources/opencv_5.x_new/opencv/cmake-build-debug/modules/gapi/CMakeFiles/opencv_gapi.dir/Debug/cmake_pch.hxx;%(ForcedIncludeFiles)</ForcedIncludeFiles>
+      <ForcedIncludeFiles Condition="'$(Configuration)|$(Platform)'=='Release|x64'">D:/mydoc/CS_Resources/opencv_5.x_new/opencv/cmake-build-debug/modules/gapi/CMakeFiles/opencv_gapi.dir/Release/cmake_pch.hxx;%(ForcedIncludeFiles)</ForcedIncludeFiles>
+    </ClCompile>
+    <ClCompile Include="D:\mydoc\CS_Resources\opencv_5.x_new\opencv\modules\gapi\src\backends\render\grenderocv.cpp">
+      <ForcedIncludeFiles Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">D:/mydoc/CS_Resources/opencv_5.x_new/opencv/cmake-build-debug/modules/gapi/CMakeFiles/opencv_gapi.dir/Debug/cmake_pch.hxx;%(ForcedIncludeFiles)</ForcedIncludeFiles>
+      <ForcedIncludeFiles Condition="'$(Configuration)|$(Platform)'=='Release|x64'">D:/mydoc/CS_Resources/opencv_5.x_new/opencv/cmake-build-debug/modules/gapi/CMakeFiles/opencv_gapi.dir/Release/cmake_pch.hxx;%(ForcedIncludeFiles)</ForcedIncludeFiles>
+    </ClCompile>
+    <ClCompile Include="D:\mydoc\CS_Resources\opencv_5.x_new\opencv\modules\gapi\src\backends\render\ft_render.cpp">
+      <ForcedIncludeFiles Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">D:/mydoc/CS_Resources/opencv_5.x_new/opencv/cmake-build-debug/modules/gapi/CMakeFiles/opencv_gapi.dir/Debug/cmake_pch.hxx;%(ForcedIncludeFiles)</ForcedIncludeFiles>
+      <ForcedIncludeFiles Condition="'$(Configuration)|$(Platform)'=='Release|x64'">D:/mydoc/CS_Resources/opencv_5.x_new/opencv/cmake-build-debug/modules/gapi/CMakeFiles/opencv_gapi.dir/Release/cmake_pch.hxx;%(ForcedIncludeFiles)</ForcedIncludeFiles>
+    </ClCompile>
+    <ClCompile Include="D:\mydoc\CS_Resources\opencv_5.x_new\opencv\modules\gapi\src\backends\plaidml\gplaidmlcore.cpp">
+      <ForcedIncludeFiles Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">D:/mydoc/CS_Resources/opencv_5.x_new/opencv/cmake-build-debug/modules/gapi/CMakeFiles/opencv_gapi.dir/Debug/cmake_pch.hxx;%(ForcedIncludeFiles)</ForcedIncludeFiles>
+      <ForcedIncludeFiles Condition="'$(Configuration)|$(Platform)'=='Release|x64'">D:/mydoc/CS_Resources/opencv_5.x_new/opencv/cmake-build-debug/modules/gapi/CMakeFiles/opencv_gapi.dir/Release/cmake_pch.hxx;%(ForcedIncludeFiles)</ForcedIncludeFiles>
+    </ClCompile>
+    <ClCompile Include="D:\mydoc\CS_Resources\opencv_5.x_new\opencv\modules\gapi\src\backends\plaidml\gplaidmlbackend.cpp">
+      <ForcedIncludeFiles Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">D:/mydoc/CS_Resources/opencv_5.x_new/opencv/cmake-build-debug/modules/gapi/CMakeFiles/opencv_gapi.dir/Debug/cmake_pch.hxx;%(ForcedIncludeFiles)</ForcedIncludeFiles>
+      <ForcedIncludeFiles Condition="'$(Configuration)|$(Platform)'=='Release|x64'">D:/mydoc/CS_Resources/opencv_5.x_new/opencv/cmake-build-debug/modules/gapi/CMakeFiles/opencv_gapi.dir/Release/cmake_pch.hxx;%(ForcedIncludeFiles)</ForcedIncludeFiles>
+    </ClCompile>
+    <ClCompile Include="D:\mydoc\CS_Resources\opencv_5.x_new\opencv\modules\gapi\src\backends\common\gmetabackend.cpp">
+      <ForcedIncludeFiles Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">D:/mydoc/CS_Resources/opencv_5.x_new/opencv/cmake-build-debug/modules/gapi/CMakeFiles/opencv_gapi.dir/Debug/cmake_pch.hxx;%(ForcedIncludeFiles)</ForcedIncludeFiles>
+      <ForcedIncludeFiles Condition="'$(Configuration)|$(Platform)'=='Release|x64'">D:/mydoc/CS_Resources/opencv_5.x_new/opencv/cmake-build-debug/modules/gapi/CMakeFiles/opencv_gapi.dir/Release/cmake_pch.hxx;%(ForcedIncludeFiles)</ForcedIncludeFiles>
+    </ClCompile>
+    <ClCompile Include="D:\mydoc\CS_Resources\opencv_5.x_new\opencv\modules\gapi\src\backends\common\gcompoundbackend.cpp">
+      <ForcedIncludeFiles Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">D:/mydoc/CS_Resources/opencv_5.x_new/opencv/cmake-build-debug/modules/gapi/CMakeFiles/opencv_gapi.dir/Debug/cmake_pch.hxx;%(ForcedIncludeFiles)</ForcedIncludeFiles>
+      <ForcedIncludeFiles Condition="'$(Configuration)|$(Platform)'=='Release|x64'">D:/mydoc/CS_Resources/opencv_5.x_new/opencv/cmake-build-debug/modules/gapi/CMakeFiles/opencv_gapi.dir/Release/cmake_pch.hxx;%(ForcedIncludeFiles)</ForcedIncludeFiles>
+    </ClCompile>
+    <ClCompile Include="D:\mydoc\CS_Resources\opencv_5.x_new\opencv\modules\gapi\src\backends\common\gcompoundkernel.cpp">
+      <ForcedIncludeFiles Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">D:/mydoc/CS_Resources/opencv_5.x_new/opencv/cmake-build-debug/modules/gapi/CMakeFiles/opencv_gapi.dir/Debug/cmake_pch.hxx;%(ForcedIncludeFiles)</ForcedIncludeFiles>
+      <ForcedIncludeFiles Condition="'$(Configuration)|$(Platform)'=='Release|x64'">D:/mydoc/CS_Resources/opencv_5.x_new/opencv/cmake-build-debug/modules/gapi/CMakeFiles/opencv_gapi.dir/Release/cmake_pch.hxx;%(ForcedIncludeFiles)</ForcedIncludeFiles>
+    </ClCompile>
+    <ClCompile Include="D:\mydoc\CS_Resources\opencv_5.x_new\opencv\modules\gapi\src\api\s11n.cpp">
+      <ForcedIncludeFiles Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">D:/mydoc/CS_Resources/opencv_5.x_new/opencv/cmake-build-debug/modules/gapi/CMakeFiles/opencv_gapi.dir/Debug/cmake_pch.hxx;%(ForcedIncludeFiles)</ForcedIncludeFiles>
+      <ForcedIncludeFiles Condition="'$(Configuration)|$(Platform)'=='Release|x64'">D:/mydoc/CS_Resources/opencv_5.x_new/opencv/cmake-build-debug/modules/gapi/CMakeFiles/opencv_gapi.dir/Release/cmake_pch.hxx;%(ForcedIncludeFiles)</ForcedIncludeFiles>
+    </ClCompile>
+    <ClCompile Include="D:\mydoc\CS_Resources\opencv_5.x_new\opencv\modules\gapi\src\backends\common\serialization.cpp">
+      <ForcedIncludeFiles Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">D:/mydoc/CS_Resources/opencv_5.x_new/opencv/cmake-build-debug/modules/gapi/CMakeFiles/opencv_gapi.dir/Debug/cmake_pch.hxx;%(ForcedIncludeFiles)</ForcedIncludeFiles>
+      <ForcedIncludeFiles Condition="'$(Configuration)|$(Platform)'=='Release|x64'">D:/mydoc/CS_Resources/opencv_5.x_new/opencv/cmake-build-debug/modules/gapi/CMakeFiles/opencv_gapi.dir/Release/cmake_pch.hxx;%(ForcedIncludeFiles)</ForcedIncludeFiles>
+    </ClCompile>
+    <ClCompile Include="D:\mydoc\CS_Resources\opencv_5.x_new\opencv\modules\gapi\src\backends\streaming\gstreamingbackend.cpp">
+      <ForcedIncludeFiles Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">D:/mydoc/CS_Resources/opencv_5.x_new/opencv/cmake-build-debug/modules/gapi/CMakeFiles/opencv_gapi.dir/Debug/cmake_pch.hxx;%(ForcedIncludeFiles)</ForcedIncludeFiles>
+      <ForcedIncludeFiles Condition="'$(Configuration)|$(Platform)'=='Release|x64'">D:/mydoc/CS_Resources/opencv_5.x_new/opencv/cmake-build-debug/modules/gapi/CMakeFiles/opencv_gapi.dir/Release/cmake_pch.hxx;%(ForcedIncludeFiles)</ForcedIncludeFiles>
+    </ClCompile>
+    <ClCompile Include="D:\mydoc\CS_Resources\opencv_5.x_new\opencv\modules\gapi\src\backends\ie\bindings_ie.cpp">
+      <ForcedIncludeFiles Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">D:/mydoc/CS_Resources/opencv_5.x_new/opencv/cmake-build-debug/modules/gapi/CMakeFiles/opencv_gapi.dir/Debug/cmake_pch.hxx;%(ForcedIncludeFiles)</ForcedIncludeFiles>
+      <ForcedIncludeFiles Condition="'$(Configuration)|$(Platform)'=='Release|x64'">D:/mydoc/CS_Resources/opencv_5.x_new/opencv/cmake-build-debug/modules/gapi/CMakeFiles/opencv_gapi.dir/Release/cmake_pch.hxx;%(ForcedIncludeFiles)</ForcedIncludeFiles>
+    </ClCompile>
+    <ClCompile Include="D:\mydoc\CS_Resources\opencv_5.x_new\opencv\modules\gapi\src\backends\onnx\bindings_onnx.cpp">
+      <ForcedIncludeFiles Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">D:/mydoc/CS_Resources/opencv_5.x_new/opencv/cmake-build-debug/modules/gapi/CMakeFiles/opencv_gapi.dir/Debug/cmake_pch.hxx;%(ForcedIncludeFiles)</ForcedIncludeFiles>
+      <ForcedIncludeFiles Condition="'$(Configuration)|$(Platform)'=='Release|x64'">D:/mydoc/CS_Resources/opencv_5.x_new/opencv/cmake-build-debug/modules/gapi/CMakeFiles/opencv_gapi.dir/Release/cmake_pch.hxx;%(ForcedIncludeFiles)</ForcedIncludeFiles>
+    </ClCompile>
+    <ClCompile Include="D:\mydoc\CS_Resources\opencv_5.x_new\opencv\modules\gapi\src\backends\python\gpythonbackend.cpp">
+      <ForcedIncludeFiles Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">D:/mydoc/CS_Resources/opencv_5.x_new/opencv/cmake-build-debug/modules/gapi/CMakeFiles/opencv_gapi.dir/Debug/cmake_pch.hxx;%(ForcedIncludeFiles)</ForcedIncludeFiles>
+      <ForcedIncludeFiles Condition="'$(Configuration)|$(Platform)'=='Release|x64'">D:/mydoc/CS_Resources/opencv_5.x_new/opencv/cmake-build-debug/modules/gapi/CMakeFiles/opencv_gapi.dir/Release/cmake_pch.hxx;%(ForcedIncludeFiles)</ForcedIncludeFiles>
+    </ClCompile>
+    <ClCompile Include="D:\mydoc\CS_Resources\opencv_5.x_new\opencv\modules\gapi\src\streaming\onevpl\source.cpp">
+      <ForcedIncludeFiles Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">D:/mydoc/CS_Resources/opencv_5.x_new/opencv/cmake-build-debug/modules/gapi/CMakeFiles/opencv_gapi.dir/Debug/cmake_pch.hxx;%(ForcedIncludeFiles)</ForcedIncludeFiles>
+      <ForcedIncludeFiles Condition="'$(Configuration)|$(Platform)'=='Release|x64'">D:/mydoc/CS_Resources/opencv_5.x_new/opencv/cmake-build-debug/modules/gapi/CMakeFiles/opencv_gapi.dir/Release/cmake_pch.hxx;%(ForcedIncludeFiles)</ForcedIncludeFiles>
+    </ClCompile>
+    <ClCompile Include="D:\mydoc\CS_Resources\opencv_5.x_new\opencv\modules\gapi\src\streaming\onevpl\source_priv.cpp">
+      <ForcedIncludeFiles Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">D:/mydoc/CS_Resources/opencv_5.x_new/opencv/cmake-build-debug/modules/gapi/CMakeFiles/opencv_gapi.dir/Debug/cmake_pch.hxx;%(ForcedIncludeFiles)</ForcedIncludeFiles>
+      <ForcedIncludeFiles Condition="'$(Configuration)|$(Platform)'=='Release|x64'">D:/mydoc/CS_Resources/opencv_5.x_new/opencv/cmake-build-debug/modules/gapi/CMakeFiles/opencv_gapi.dir/Release/cmake_pch.hxx;%(ForcedIncludeFiles)</ForcedIncludeFiles>
+    </ClCompile>
+    <ClCompile Include="D:\mydoc\CS_Resources\opencv_5.x_new\opencv\modules\gapi\src\streaming\onevpl\file_data_provider.cpp">
+      <ForcedIncludeFiles Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">D:/mydoc/CS_Resources/opencv_5.x_new/opencv/cmake-build-debug/modules/gapi/CMakeFiles/opencv_gapi.dir/Debug/cmake_pch.hxx;%(ForcedIncludeFiles)</ForcedIncludeFiles>
+      <ForcedIncludeFiles Condition="'$(Configuration)|$(Platform)'=='Release|x64'">D:/mydoc/CS_Resources/opencv_5.x_new/opencv/cmake-build-debug/modules/gapi/CMakeFiles/opencv_gapi.dir/Release/cmake_pch.hxx;%(ForcedIncludeFiles)</ForcedIncludeFiles>
+    </ClCompile>
+    <ClCompile Include="D:\mydoc\CS_Resources\opencv_5.x_new\opencv\modules\gapi\src\streaming\onevpl\cfg_params.cpp">
+      <ForcedIncludeFiles Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">D:/mydoc/CS_Resources/opencv_5.x_new/opencv/cmake-build-debug/modules/gapi/CMakeFiles/opencv_gapi.dir/Debug/cmake_pch.hxx;%(ForcedIncludeFiles)</ForcedIncludeFiles>
+      <ForcedIncludeFiles Condition="'$(Configuration)|$(Platform)'=='Release|x64'">D:/mydoc/CS_Resources/opencv_5.x_new/opencv/cmake-build-debug/modules/gapi/CMakeFiles/opencv_gapi.dir/Release/cmake_pch.hxx;%(ForcedIncludeFiles)</ForcedIncludeFiles>
+    </ClCompile>
+    <ClCompile Include="D:\mydoc\CS_Resources\opencv_5.x_new\opencv\modules\gapi\src\streaming\onevpl\cfg_params_parser.cpp">
+      <ForcedIncludeFiles Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">D:/mydoc/CS_Resources/opencv_5.x_new/opencv/cmake-build-debug/modules/gapi/CMakeFiles/opencv_gapi.dir/Debug/cmake_pch.hxx;%(ForcedIncludeFiles)</ForcedIncludeFiles>
+      <ForcedIncludeFiles Condition="'$(Configuration)|$(Platform)'=='Release|x64'">D:/mydoc/CS_Resources/opencv_5.x_new/opencv/cmake-build-debug/modules/gapi/CMakeFiles/opencv_gapi.dir/Release/cmake_pch.hxx;%(ForcedIncludeFiles)</ForcedIncludeFiles>
+    </ClCompile>
+    <ClCompile Include="D:\mydoc\CS_Resources\opencv_5.x_new\opencv\modules\gapi\src\streaming\onevpl\utils.cpp">
+      <ForcedIncludeFiles Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">D:/mydoc/CS_Resources/opencv_5.x_new/opencv/cmake-build-debug/modules/gapi/CMakeFiles/opencv_gapi.dir/Debug/cmake_pch.hxx;%(ForcedIncludeFiles)</ForcedIncludeFiles>
+      <ForcedIncludeFiles Condition="'$(Configuration)|$(Platform)'=='Release|x64'">D:/mydoc/CS_Resources/opencv_5.x_new/opencv/cmake-build-debug/modules/gapi/CMakeFiles/opencv_gapi.dir/Release/cmake_pch.hxx;%(ForcedIncludeFiles)</ForcedIncludeFiles>
+    </ClCompile>
+    <ClCompile Include="D:\mydoc\CS_Resources\opencv_5.x_new\opencv\modules\gapi\src\streaming\onevpl\default.cpp">
+      <ForcedIncludeFiles Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">D:/mydoc/CS_Resources/opencv_5.x_new/opencv/cmake-build-debug/modules/gapi/CMakeFiles/opencv_gapi.dir/Debug/cmake_pch.hxx;%(ForcedIncludeFiles)</ForcedIncludeFiles>
+      <ForcedIncludeFiles Condition="'$(Configuration)|$(Platform)'=='Release|x64'">D:/mydoc/CS_Resources/opencv_5.x_new/opencv/cmake-build-debug/modules/gapi/CMakeFiles/opencv_gapi.dir/Release/cmake_pch.hxx;%(ForcedIncludeFiles)</ForcedIncludeFiles>
+    </ClCompile>
+    <ClCompile Include="D:\mydoc\CS_Resources\opencv_5.x_new\opencv\modules\gapi\src\streaming\onevpl\data_provider_interface_exception.cpp">
+      <ForcedIncludeFiles Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">D:/mydoc/CS_Resources/opencv_5.x_new/opencv/cmake-build-debug/modules/gapi/CMakeFiles/opencv_gapi.dir/Debug/cmake_pch.hxx;%(ForcedIncludeFiles)</ForcedIncludeFiles>
+      <ForcedIncludeFiles Condition="'$(Configuration)|$(Platform)'=='Release|x64'">D:/mydoc/CS_Resources/opencv_5.x_new/opencv/cmake-build-debug/modules/gapi/CMakeFiles/opencv_gapi.dir/Release/cmake_pch.hxx;%(ForcedIncludeFiles)</ForcedIncludeFiles>
+    </ClCompile>
+    <ClCompile Include="D:\mydoc\CS_Resources\opencv_5.x_new\opencv\modules\gapi\src\streaming\onevpl\accelerators\surface\base_frame_adapter.cpp">
+      <ForcedIncludeFiles Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">D:/mydoc/CS_Resources/opencv_5.x_new/opencv/cmake-build-debug/modules/gapi/CMakeFiles/opencv_gapi.dir/Debug/cmake_pch.hxx;%(ForcedIncludeFiles)</ForcedIncludeFiles>
+      <ForcedIncludeFiles Condition="'$(Configuration)|$(Platform)'=='Release|x64'">D:/mydoc/CS_Resources/opencv_5.x_new/opencv/cmake-build-debug/modules/gapi/CMakeFiles/opencv_gapi.dir/Release/cmake_pch.hxx;%(ForcedIncludeFiles)</ForcedIncludeFiles>
+    </ClCompile>
+    <ClCompile Include="D:\mydoc\CS_Resources\opencv_5.x_new\opencv\modules\gapi\src\streaming\onevpl\accelerators\surface\cpu_frame_adapter.cpp">
+      <ForcedIncludeFiles Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">D:/mydoc/CS_Resources/opencv_5.x_new/opencv/cmake-build-debug/modules/gapi/CMakeFiles/opencv_gapi.dir/Debug/cmake_pch.hxx;%(ForcedIncludeFiles)</ForcedIncludeFiles>
+      <ForcedIncludeFiles Condition="'$(Configuration)|$(Platform)'=='Release|x64'">D:/mydoc/CS_Resources/opencv_5.x_new/opencv/cmake-build-debug/modules/gapi/CMakeFiles/opencv_gapi.dir/Release/cmake_pch.hxx;%(ForcedIncludeFiles)</ForcedIncludeFiles>
+    </ClCompile>
+    <ClCompile Include="D:\mydoc\CS_Resources\opencv_5.x_new\opencv\modules\gapi\src\streaming\onevpl\accelerators\surface\dx11_frame_adapter.cpp">
+      <ForcedIncludeFiles Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">D:/mydoc/CS_Resources/opencv_5.x_new/opencv/cmake-build-debug/modules/gapi/CMakeFiles/opencv_gapi.dir/Debug/cmake_pch.hxx;%(ForcedIncludeFiles)</ForcedIncludeFiles>
+      <ForcedIncludeFiles Condition="'$(Configuration)|$(Platform)'=='Release|x64'">D:/mydoc/CS_Resources/opencv_5.x_new/opencv/cmake-build-debug/modules/gapi/CMakeFiles/opencv_gapi.dir/Release/cmake_pch.hxx;%(ForcedIncludeFiles)</ForcedIncludeFiles>
+    </ClCompile>
+    <ClCompile Include="D:\mydoc\CS_Resources\opencv_5.x_new\opencv\modules\gapi\src\streaming\onevpl\accelerators\surface\surface.cpp">
+      <ForcedIncludeFiles Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">D:/mydoc/CS_Resources/opencv_5.x_new/opencv/cmake-build-debug/modules/gapi/CMakeFiles/opencv_gapi.dir/Debug/cmake_pch.hxx;%(ForcedIncludeFiles)</ForcedIncludeFiles>
+      <ForcedIncludeFiles Condition="'$(Configuration)|$(Platform)'=='Release|x64'">D:/mydoc/CS_Resources/opencv_5.x_new/opencv/cmake-build-debug/modules/gapi/CMakeFiles/opencv_gapi.dir/Release/cmake_pch.hxx;%(ForcedIncludeFiles)</ForcedIncludeFiles>
+    </ClCompile>
+    <ClCompile Include="D:\mydoc\CS_Resources\opencv_5.x_new\opencv\modules\gapi\src\streaming\onevpl\accelerators\surface\surface_pool.cpp">
+      <ForcedIncludeFiles Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">D:/mydoc/CS_Resources/opencv_5.x_new/opencv/cmake-build-debug/modules/gapi/CMakeFiles/opencv_gapi.dir/Debug/cmake_pch.hxx;%(ForcedIncludeFiles)</ForcedIncludeFiles>
+      <ForcedIncludeFiles Condition="'$(Configuration)|$(Platform)'=='Release|x64'">D:/mydoc/CS_Resources/opencv_5.x_new/opencv/cmake-build-debug/modules/gapi/CMakeFiles/opencv_gapi.dir/Release/cmake_pch.hxx;%(ForcedIncludeFiles)</ForcedIncludeFiles>
+    </ClCompile>
+    <ClCompile Include="D:\mydoc\CS_Resources\opencv_5.x_new\opencv\modules\gapi\src\streaming\onevpl\accelerators\utils\shared_lock.cpp">
+      <ForcedIncludeFiles Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">D:/mydoc/CS_Resources/opencv_5.x_new/opencv/cmake-build-debug/modules/gapi/CMakeFiles/opencv_gapi.dir/Debug/cmake_pch.hxx;%(ForcedIncludeFiles)</ForcedIncludeFiles>
+      <ForcedIncludeFiles Condition="'$(Configuration)|$(Platform)'=='Release|x64'">D:/mydoc/CS_Resources/opencv_5.x_new/opencv/cmake-build-debug/modules/gapi/CMakeFiles/opencv_gapi.dir/Release/cmake_pch.hxx;%(ForcedIncludeFiles)</ForcedIncludeFiles>
+    </ClCompile>
+    <ClCompile Include="D:\mydoc\CS_Resources\opencv_5.x_new\opencv\modules\gapi\src\streaming\onevpl\accelerators\accel_policy_cpu.cpp">
+      <ForcedIncludeFiles Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">D:/mydoc/CS_Resources/opencv_5.x_new/opencv/cmake-build-debug/modules/gapi/CMakeFiles/opencv_gapi.dir/Debug/cmake_pch.hxx;%(ForcedIncludeFiles)</ForcedIncludeFiles>
+      <ForcedIncludeFiles Condition="'$(Configuration)|$(Platform)'=='Release|x64'">D:/mydoc/CS_Resources/opencv_5.x_new/opencv/cmake-build-debug/modules/gapi/CMakeFiles/opencv_gapi.dir/Release/cmake_pch.hxx;%(ForcedIncludeFiles)</ForcedIncludeFiles>
+    </ClCompile>
+    <ClCompile Include="D:\mydoc\CS_Resources\opencv_5.x_new\opencv\modules\gapi\src\streaming\onevpl\accelerators\accel_policy_dx11.cpp">
+      <ForcedIncludeFiles Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">D:/mydoc/CS_Resources/opencv_5.x_new/opencv/cmake-build-debug/modules/gapi/CMakeFiles/opencv_gapi.dir/Debug/cmake_pch.hxx;%(ForcedIncludeFiles)</ForcedIncludeFiles>
+      <ForcedIncludeFiles Condition="'$(Configuration)|$(Platform)'=='Release|x64'">D:/mydoc/CS_Resources/opencv_5.x_new/opencv/cmake-build-debug/modules/gapi/CMakeFiles/opencv_gapi.dir/Release/cmake_pch.hxx;%(ForcedIncludeFiles)</ForcedIncludeFiles>
+    </ClCompile>
+    <ClCompile Include="D:\mydoc\CS_Resources\opencv_5.x_new\opencv\modules\gapi\src\streaming\onevpl\accelerators\accel_policy_va_api.cpp">
+      <ForcedIncludeFiles Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">D:/mydoc/CS_Resources/opencv_5.x_new/opencv/cmake-build-debug/modules/gapi/CMakeFiles/opencv_gapi.dir/Debug/cmake_pch.hxx;%(ForcedIncludeFiles)</ForcedIncludeFiles>
+      <ForcedIncludeFiles Condition="'$(Configuration)|$(Platform)'=='Release|x64'">D:/mydoc/CS_Resources/opencv_5.x_new/opencv/cmake-build-debug/modules/gapi/CMakeFiles/opencv_gapi.dir/Release/cmake_pch.hxx;%(ForcedIncludeFiles)</ForcedIncludeFiles>
+    </ClCompile>
+    <ClCompile Include="D:\mydoc\CS_Resources\opencv_5.x_new\opencv\modules\gapi\src\streaming\onevpl\accelerators\dx11_alloc_resource.cpp">
+      <ForcedIncludeFiles Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">D:/mydoc/CS_Resources/opencv_5.x_new/opencv/cmake-build-debug/modules/gapi/CMakeFiles/opencv_gapi.dir/Debug/cmake_pch.hxx;%(ForcedIncludeFiles)</ForcedIncludeFiles>
+      <ForcedIncludeFiles Condition="'$(Configuration)|$(Platform)'=='Release|x64'">D:/mydoc/CS_Resources/opencv_5.x_new/opencv/cmake-build-debug/modules/gapi/CMakeFiles/opencv_gapi.dir/Release/cmake_pch.hxx;%(ForcedIncludeFiles)</ForcedIncludeFiles>
+    </ClCompile>
+    <ClCompile Include="D:\mydoc\CS_Resources\opencv_5.x_new\opencv\modules\gapi\src\streaming\onevpl\engine\engine_session.cpp">
+      <ForcedIncludeFiles Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">D:/mydoc/CS_Resources/opencv_5.x_new/opencv/cmake-build-debug/modules/gapi/CMakeFiles/opencv_gapi.dir/Debug/cmake_pch.hxx;%(ForcedIncludeFiles)</ForcedIncludeFiles>
+      <ForcedIncludeFiles Condition="'$(Configuration)|$(Platform)'=='Release|x64'">D:/mydoc/CS_Resources/opencv_5.x_new/opencv/cmake-build-debug/modules/gapi/CMakeFiles/opencv_gapi.dir/Release/cmake_pch.hxx;%(ForcedIncludeFiles)</ForcedIncludeFiles>
+    </ClCompile>
+    <ClCompile Include="D:\mydoc\CS_Resources\opencv_5.x_new\opencv\modules\gapi\src\streaming\onevpl\engine\processing_engine_base.cpp">
+      <ForcedIncludeFiles Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">D:/mydoc/CS_Resources/opencv_5.x_new/opencv/cmake-build-debug/modules/gapi/CMakeFiles/opencv_gapi.dir/Debug/cmake_pch.hxx;%(ForcedIncludeFiles)</ForcedIncludeFiles>
+      <ForcedIncludeFiles Condition="'$(Configuration)|$(Platform)'=='Release|x64'">D:/mydoc/CS_Resources/opencv_5.x_new/opencv/cmake-build-debug/modules/gapi/CMakeFiles/opencv_gapi.dir/Release/cmake_pch.hxx;%(ForcedIncludeFiles)</ForcedIncludeFiles>
+    </ClCompile>
+    <ClCompile Include="D:\mydoc\CS_Resources\opencv_5.x_new\opencv\modules\gapi\src\streaming\onevpl\engine\decode\decode_engine_legacy.cpp">
+      <ForcedIncludeFiles Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">D:/mydoc/CS_Resources/opencv_5.x_new/opencv/cmake-build-debug/modules/gapi/CMakeFiles/opencv_gapi.dir/Debug/cmake_pch.hxx;%(ForcedIncludeFiles)</ForcedIncludeFiles>
+      <ForcedIncludeFiles Condition="'$(Configuration)|$(Platform)'=='Release|x64'">D:/mydoc/CS_Resources/opencv_5.x_new/opencv/cmake-build-debug/modules/gapi/CMakeFiles/opencv_gapi.dir/Release/cmake_pch.hxx;%(ForcedIncludeFiles)</ForcedIncludeFiles>
+    </ClCompile>
+    <ClCompile Include="D:\mydoc\CS_Resources\opencv_5.x_new\opencv\modules\gapi\src\streaming\onevpl\engine\decode\decode_session.cpp">
+      <ForcedIncludeFiles Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">D:/mydoc/CS_Resources/opencv_5.x_new/opencv/cmake-build-debug/modules/gapi/CMakeFiles/opencv_gapi.dir/Debug/cmake_pch.hxx;%(ForcedIncludeFiles)</ForcedIncludeFiles>
+      <ForcedIncludeFiles Condition="'$(Configuration)|$(Platform)'=='Release|x64'">D:/mydoc/CS_Resources/opencv_5.x_new/opencv/cmake-build-debug/modules/gapi/CMakeFiles/opencv_gapi.dir/Release/cmake_pch.hxx;%(ForcedIncludeFiles)</ForcedIncludeFiles>
+    </ClCompile>
+    <ClCompile Include="D:\mydoc\CS_Resources\opencv_5.x_new\opencv\modules\gapi\src\streaming\onevpl\engine\transcode\transcode_engine_legacy.cpp">
+      <ForcedIncludeFiles Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">D:/mydoc/CS_Resources/opencv_5.x_new/opencv/cmake-build-debug/modules/gapi/CMakeFiles/opencv_gapi.dir/Debug/cmake_pch.hxx;%(ForcedIncludeFiles)</ForcedIncludeFiles>
+      <ForcedIncludeFiles Condition="'$(Configuration)|$(Platform)'=='Release|x64'">D:/mydoc/CS_Resources/opencv_5.x_new/opencv/cmake-build-debug/modules/gapi/CMakeFiles/opencv_gapi.dir/Release/cmake_pch.hxx;%(ForcedIncludeFiles)</ForcedIncludeFiles>
+    </ClCompile>
+    <ClCompile Include="D:\mydoc\CS_Resources\opencv_5.x_new\opencv\modules\gapi\src\streaming\onevpl\engine\transcode\transcode_session.cpp">
+      <ForcedIncludeFiles Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">D:/mydoc/CS_Resources/opencv_5.x_new/opencv/cmake-build-debug/modules/gapi/CMakeFiles/opencv_gapi.dir/Debug/cmake_pch.hxx;%(ForcedIncludeFiles)</ForcedIncludeFiles>
+      <ForcedIncludeFiles Condition="'$(Configuration)|$(Platform)'=='Release|x64'">D:/mydoc/CS_Resources/opencv_5.x_new/opencv/cmake-build-debug/modules/gapi/CMakeFiles/opencv_gapi.dir/Release/cmake_pch.hxx;%(ForcedIncludeFiles)</ForcedIncludeFiles>
+    </ClCompile>
+    <ClCompile Include="D:\mydoc\CS_Resources\opencv_5.x_new\opencv\modules\gapi\src\streaming\onevpl\engine\preproc\preproc_engine.cpp">
+      <ForcedIncludeFiles Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">D:/mydoc/CS_Resources/opencv_5.x_new/opencv/cmake-build-debug/modules/gapi/CMakeFiles/opencv_gapi.dir/Debug/cmake_pch.hxx;%(ForcedIncludeFiles)</ForcedIncludeFiles>
+      <ForcedIncludeFiles Condition="'$(Configuration)|$(Platform)'=='Release|x64'">D:/mydoc/CS_Resources/opencv_5.x_new/opencv/cmake-build-debug/modules/gapi/CMakeFiles/opencv_gapi.dir/Release/cmake_pch.hxx;%(ForcedIncludeFiles)</ForcedIncludeFiles>
+    </ClCompile>
+    <ClCompile Include="D:\mydoc\CS_Resources\opencv_5.x_new\opencv\modules\gapi\src\streaming\onevpl\engine\preproc\preproc_session.cpp">
+      <ForcedIncludeFiles Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">D:/mydoc/CS_Resources/opencv_5.x_new/opencv/cmake-build-debug/modules/gapi/CMakeFiles/opencv_gapi.dir/Debug/cmake_pch.hxx;%(ForcedIncludeFiles)</ForcedIncludeFiles>
+      <ForcedIncludeFiles Condition="'$(Configuration)|$(Platform)'=='Release|x64'">D:/mydoc/CS_Resources/opencv_5.x_new/opencv/cmake-build-debug/modules/gapi/CMakeFiles/opencv_gapi.dir/Release/cmake_pch.hxx;%(ForcedIncludeFiles)</ForcedIncludeFiles>
+    </ClCompile>
+    <ClCompile Include="D:\mydoc\CS_Resources\opencv_5.x_new\opencv\modules\gapi\src\streaming\onevpl\engine\preproc\preproc_dispatcher.cpp">
+      <ForcedIncludeFiles Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">D:/mydoc/CS_Resources/opencv_5.x_new/opencv/cmake-build-debug/modules/gapi/CMakeFiles/opencv_gapi.dir/Debug/cmake_pch.hxx;%(ForcedIncludeFiles)</ForcedIncludeFiles>
+      <ForcedIncludeFiles Condition="'$(Configuration)|$(Platform)'=='Release|x64'">D:/mydoc/CS_Resources/opencv_5.x_new/opencv/cmake-build-debug/modules/gapi/CMakeFiles/opencv_gapi.dir/Release/cmake_pch.hxx;%(ForcedIncludeFiles)</ForcedIncludeFiles>
+    </ClCompile>
+    <ClCompile Include="D:\mydoc\CS_Resources\opencv_5.x_new\opencv\modules\gapi\src\streaming\onevpl\engine\preproc_engine_interface.cpp">
+      <ForcedIncludeFiles Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">D:/mydoc/CS_Resources/opencv_5.x_new/opencv/cmake-build-debug/modules/gapi/CMakeFiles/opencv_gapi.dir/Debug/cmake_pch.hxx;%(ForcedIncludeFiles)</ForcedIncludeFiles>
+      <ForcedIncludeFiles Condition="'$(Configuration)|$(Platform)'=='Release|x64'">D:/mydoc/CS_Resources/opencv_5.x_new/opencv/cmake-build-debug/modules/gapi/CMakeFiles/opencv_gapi.dir/Release/cmake_pch.hxx;%(ForcedIncludeFiles)</ForcedIncludeFiles>
+    </ClCompile>
+    <ClCompile Include="D:\mydoc\CS_Resources\opencv_5.x_new\opencv\modules\gapi\src\streaming\onevpl\demux\async_mfp_demux_data_provider.cpp">
+      <ForcedIncludeFiles Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">D:/mydoc/CS_Resources/opencv_5.x_new/opencv/cmake-build-debug/modules/gapi/CMakeFiles/opencv_gapi.dir/Debug/cmake_pch.hxx;%(ForcedIncludeFiles)</ForcedIncludeFiles>
+      <ForcedIncludeFiles Condition="'$(Configuration)|$(Platform)'=='Release|x64'">D:/mydoc/CS_Resources/opencv_5.x_new/opencv/cmake-build-debug/modules/gapi/CMakeFiles/opencv_gapi.dir/Release/cmake_pch.hxx;%(ForcedIncludeFiles)</ForcedIncludeFiles>
+    </ClCompile>
+    <ClCompile Include="D:\mydoc\CS_Resources\opencv_5.x_new\opencv\modules\gapi\src\streaming\onevpl\data_provider_dispatcher.cpp">
+      <ForcedIncludeFiles Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">D:/mydoc/CS_Resources/opencv_5.x_new/opencv/cmake-build-debug/modules/gapi/CMakeFiles/opencv_gapi.dir/Debug/cmake_pch.hxx;%(ForcedIncludeFiles)</ForcedIncludeFiles>
+      <ForcedIncludeFiles Condition="'$(Configuration)|$(Platform)'=='Release|x64'">D:/mydoc/CS_Resources/opencv_5.x_new/opencv/cmake-build-debug/modules/gapi/CMakeFiles/opencv_gapi.dir/Release/cmake_pch.hxx;%(ForcedIncludeFiles)</ForcedIncludeFiles>
+    </ClCompile>
+    <ClCompile Include="D:\mydoc\CS_Resources\opencv_5.x_new\opencv\modules\gapi\src\streaming\onevpl\cfg_param_device_selector.cpp">
+      <ForcedIncludeFiles Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">D:/mydoc/CS_Resources/opencv_5.x_new/opencv/cmake-build-debug/modules/gapi/CMakeFiles/opencv_gapi.dir/Debug/cmake_pch.hxx;%(ForcedIncludeFiles)</ForcedIncludeFiles>
+      <ForcedIncludeFiles Condition="'$(Configuration)|$(Platform)'=='Release|x64'">D:/mydoc/CS_Resources/opencv_5.x_new/opencv/cmake-build-debug/modules/gapi/CMakeFiles/opencv_gapi.dir/Release/cmake_pch.hxx;%(ForcedIncludeFiles)</ForcedIncludeFiles>
+    </ClCompile>
+    <ClCompile Include="D:\mydoc\CS_Resources\opencv_5.x_new\opencv\modules\gapi\src\streaming\onevpl\device_selector_interface.cpp">
+      <ForcedIncludeFiles Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">D:/mydoc/CS_Resources/opencv_5.x_new/opencv/cmake-build-debug/modules/gapi/CMakeFiles/opencv_gapi.dir/Debug/cmake_pch.hxx;%(ForcedIncludeFiles)</ForcedIncludeFiles>
+      <ForcedIncludeFiles Condition="'$(Configuration)|$(Platform)'=='Release|x64'">D:/mydoc/CS_Resources/opencv_5.x_new/opencv/cmake-build-debug/modules/gapi/CMakeFiles/opencv_gapi.dir/Release/cmake_pch.hxx;%(ForcedIncludeFiles)</ForcedIncludeFiles>
+    </ClCompile>
+    <ClCompile Include="D:\mydoc\CS_Resources\opencv_5.x_new\opencv\modules\gapi\src\streaming\gstreamer\gstreamer_pipeline_facade.cpp">
+      <ForcedIncludeFiles Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">D:/mydoc/CS_Resources/opencv_5.x_new/opencv/cmake-build-debug/modules/gapi/CMakeFiles/opencv_gapi.dir/Debug/cmake_pch.hxx;%(ForcedIncludeFiles)</ForcedIncludeFiles>
+      <ForcedIncludeFiles Condition="'$(Configuration)|$(Platform)'=='Release|x64'">D:/mydoc/CS_Resources/opencv_5.x_new/opencv/cmake-build-debug/modules/gapi/CMakeFiles/opencv_gapi.dir/Release/cmake_pch.hxx;%(ForcedIncludeFiles)</ForcedIncludeFiles>
+    </ClCompile>
+    <ClCompile Include="D:\mydoc\CS_Resources\opencv_5.x_new\opencv\modules\gapi\src\streaming\gstreamer\gstreamerpipeline.cpp">
+      <ForcedIncludeFiles Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">D:/mydoc/CS_Resources/opencv_5.x_new/opencv/cmake-build-debug/modules/gapi/CMakeFiles/opencv_gapi.dir/Debug/cmake_pch.hxx;%(ForcedIncludeFiles)</ForcedIncludeFiles>
+      <ForcedIncludeFiles Condition="'$(Configuration)|$(Platform)'=='Release|x64'">D:/mydoc/CS_Resources/opencv_5.x_new/opencv/cmake-build-debug/modules/gapi/CMakeFiles/opencv_gapi.dir/Release/cmake_pch.hxx;%(ForcedIncludeFiles)</ForcedIncludeFiles>
+    </ClCompile>
+    <ClCompile Include="D:\mydoc\CS_Resources\opencv_5.x_new\opencv\modules\gapi\src\streaming\gstreamer\gstreamersource.cpp">
+      <ForcedIncludeFiles Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">D:/mydoc/CS_Resources/opencv_5.x_new/opencv/cmake-build-debug/modules/gapi/CMakeFiles/opencv_gapi.dir/Debug/cmake_pch.hxx;%(ForcedIncludeFiles)</ForcedIncludeFiles>
+      <ForcedIncludeFiles Condition="'$(Configuration)|$(Platform)'=='Release|x64'">D:/mydoc/CS_Resources/opencv_5.x_new/opencv/cmake-build-debug/modules/gapi/CMakeFiles/opencv_gapi.dir/Release/cmake_pch.hxx;%(ForcedIncludeFiles)</ForcedIncludeFiles>
+    </ClCompile>
+    <ClCompile Include="D:\mydoc\CS_Resources\opencv_5.x_new\opencv\modules\gapi\src\streaming\gstreamer\gstreamer_buffer_utils.cpp">
+      <ForcedIncludeFiles Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">D:/mydoc/CS_Resources/opencv_5.x_new/opencv/cmake-build-debug/modules/gapi/CMakeFiles/opencv_gapi.dir/Debug/cmake_pch.hxx;%(ForcedIncludeFiles)</ForcedIncludeFiles>
+      <ForcedIncludeFiles Condition="'$(Configuration)|$(Platform)'=='Release|x64'">D:/mydoc/CS_Resources/opencv_5.x_new/opencv/cmake-build-debug/modules/gapi/CMakeFiles/opencv_gapi.dir/Release/cmake_pch.hxx;%(ForcedIncludeFiles)</ForcedIncludeFiles>
+    </ClCompile>
+    <ClCompile Include="D:\mydoc\CS_Resources\opencv_5.x_new\opencv\modules\gapi\src\streaming\gstreamer\gstreamer_media_adapter.cpp">
+      <ForcedIncludeFiles Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">D:/mydoc/CS_Resources/opencv_5.x_new/opencv/cmake-build-debug/modules/gapi/CMakeFiles/opencv_gapi.dir/Debug/cmake_pch.hxx;%(ForcedIncludeFiles)</ForcedIncludeFiles>
+      <ForcedIncludeFiles Condition="'$(Configuration)|$(Platform)'=='Release|x64'">D:/mydoc/CS_Resources/opencv_5.x_new/opencv/cmake-build-debug/modules/gapi/CMakeFiles/opencv_gapi.dir/Release/cmake_pch.hxx;%(ForcedIncludeFiles)</ForcedIncludeFiles>
+    </ClCompile>
+    <ClCompile Include="D:\mydoc\CS_Resources\opencv_5.x_new\opencv\modules\gapi\src\streaming\gstreamer\gstreamerenv.cpp">
+      <ForcedIncludeFiles Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">D:/mydoc/CS_Resources/opencv_5.x_new/opencv/cmake-build-debug/modules/gapi/CMakeFiles/opencv_gapi.dir/Debug/cmake_pch.hxx;%(ForcedIncludeFiles)</ForcedIncludeFiles>
+      <ForcedIncludeFiles Condition="'$(Configuration)|$(Platform)'=='Release|x64'">D:/mydoc/CS_Resources/opencv_5.x_new/opencv/cmake-build-debug/modules/gapi/CMakeFiles/opencv_gapi.dir/Release/cmake_pch.hxx;%(ForcedIncludeFiles)</ForcedIncludeFiles>
+    </ClCompile>
+    <ClCompile Include="D:\mydoc\CS_Resources\opencv_5.x_new\opencv\modules\gapi\src\utils\itt.cpp">
+      <ForcedIncludeFiles Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">D:/mydoc/CS_Resources/opencv_5.x_new/opencv/cmake-build-debug/modules/gapi/CMakeFiles/opencv_gapi.dir/Debug/cmake_pch.hxx;%(ForcedIncludeFiles)</ForcedIncludeFiles>
+      <ForcedIncludeFiles Condition="'$(Configuration)|$(Platform)'=='Release|x64'">D:/mydoc/CS_Resources/opencv_5.x_new/opencv/cmake-build-debug/modules/gapi/CMakeFiles/opencv_gapi.dir/Release/cmake_pch.hxx;%(ForcedIncludeFiles)</ForcedIncludeFiles>
+    </ClCompile>
+    <Object Include="D:\mydoc\CS_Resources\opencv_5.x_new\opencv\cmake-build-debug\modules\gapi\opencv_gapi_SSE4_1.dir\$(Configuration)\gfluidimgproc_func.sse4_1.obj" />
+    <Object Include="D:\mydoc\CS_Resources\opencv_5.x_new\opencv\cmake-build-debug\modules\gapi\opencv_gapi_SSE4_1.dir\$(Configuration)\gfluidcore_func.sse4_1.obj" />
+    <Object Include="D:\mydoc\CS_Resources\opencv_5.x_new\opencv\cmake-build-debug\modules\gapi\opencv_gapi_AVX2.dir\$(Configuration)\gfluidimgproc_func.avx2.obj" />
+    <Object Include="D:\mydoc\CS_Resources\opencv_5.x_new\opencv\cmake-build-debug\modules\gapi\opencv_gapi_AVX2.dir\$(Configuration)\gfluidcore_func.avx2.obj" />
+    <ClInclude Include="D:\mydoc\CS_Resources\opencv_5.x_new\opencv\cmake-build-debug\cvconfig.h" />
+    <ClInclude Include="D:\mydoc\CS_Resources\opencv_5.x_new\opencv\cmake-build-debug\opencv2\opencv_modules.hpp" />
+    <ResourceCompile Include="D:\mydoc\CS_Resources\opencv_5.x_new\opencv\cmake-build-debug\modules\gapi\vs_version.rc">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">NotUsing</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">NotUsing</PrecompiledHeader>
+    </ResourceCompile>
+    <ClCompile Include="D:\mydoc\CS_Resources\opencv_5.x_new\opencv\cmake-build-debug\modules\gapi\opencv_gapi_main.cpp">
+      <ForcedIncludeFiles Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">D:/mydoc/CS_Resources/opencv_5.x_new/opencv/cmake-build-debug/modules/gapi/CMakeFiles/opencv_gapi.dir/Debug/cmake_pch.hxx;%(ForcedIncludeFiles)</ForcedIncludeFiles>
+      <ForcedIncludeFiles Condition="'$(Configuration)|$(Platform)'=='Release|x64'">D:/mydoc/CS_Resources/opencv_5.x_new/opencv/cmake-build-debug/modules/gapi/CMakeFiles/opencv_gapi.dir/Release/cmake_pch.hxx;%(ForcedIncludeFiles)</ForcedIncludeFiles>
+    </ClCompile>
+    <ClInclude Include="D:\mydoc\CS_Resources\opencv_5.x_new\opencv\cmake-build-debug\modules\gapi\CMakeFiles\opencv_gapi.dir\Debug\cmake_pch.hxx" />
+    <ClInclude Include="D:\mydoc\CS_Resources\opencv_5.x_new\opencv\cmake-build-debug\modules\gapi\CMakeFiles\opencv_gapi.dir\Release\cmake_pch.hxx" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="D:\mydoc\CS_Resources\opencv_5.x_new\opencv\cmake-build-debug\ZERO_CHECK.vcxproj">
+      <Project>{981EC7F0-4740-333A-967F-CF930711AAEA}</Project>
+      <Name>ZERO_CHECK</Name>
+      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </ProjectReference>
+    <ProjectReference Include="D:\mydoc\CS_Resources\opencv_5.x_new\opencv\cmake-build-debug\ade.vcxproj">
+      <Project>{4129A9E1-8098-3C9E-8D37-7D71354D9EBF}</Project>
+      <Name>ade</Name>
+    </ProjectReference>
+    <ProjectReference Include="D:\mydoc\CS_Resources\opencv_5.x_new\opencv\cmake-build-debug\3rdparty\ippiw\ippiw.vcxproj">
+      <Project>{2030F5D6-E72D-3114-9E7B-431EB1C58128}</Project>
+      <Name>ippiw</Name>
+    </ProjectReference>
+    <ProjectReference Include="D:\mydoc\CS_Resources\opencv_5.x_new\opencv\cmake-build-debug\3rdparty\ittnotify\ittnotify.vcxproj">
+      <Project>{E4889A22-C2D1-32DE-88FA-85D5DC47DF70}</Project>
+      <Name>ittnotify</Name>
+    </ProjectReference>
+    <ProjectReference Include="D:\mydoc\CS_Resources\opencv_5.x_new\opencv\cmake-build-debug\modules\3d\opencv_3d.vcxproj">
+      <Project>{A1D8B8C5-E3A5-3A00-9666-9370B5AE8D61}</Project>
+      <Name>opencv_3d</Name>
+    </ProjectReference>
+    <ProjectReference Include="D:\mydoc\CS_Resources\opencv_5.x_new\opencv\cmake-build-debug\modules\core\opencv_core.vcxproj">
+      <Project>{F85D4F71-7434-3A8E-AAF5-3FFA60F3DEB0}</Project>
+      <Name>opencv_core</Name>
+    </ProjectReference>
+    <ProjectReference Include="D:\mydoc\CS_Resources\opencv_5.x_new\opencv\cmake-build-debug\modules\dnn\opencv_dnn.vcxproj">
+      <Project>{AABC071A-3214-3E2A-A1C6-FB2BF5C26C24}</Project>
+      <Name>opencv_dnn</Name>
+    </ProjectReference>
+    <ProjectReference Include="D:\mydoc\CS_Resources\opencv_5.x_new\opencv\cmake-build-debug\modules\features2d\opencv_features2d.vcxproj">
+      <Project>{1C5C336E-36C6-3117-A037-FB41FEC4784E}</Project>
+      <Name>opencv_features2d</Name>
+    </ProjectReference>
+    <ProjectReference Include="D:\mydoc\CS_Resources\opencv_5.x_new\opencv\cmake-build-debug\modules\flann\opencv_flann.vcxproj">
+      <Project>{49FBA251-D41B-30F2-AEE2-40E951F45732}</Project>
+      <Name>opencv_flann</Name>
+    </ProjectReference>
+    <ProjectReference Include="D:\mydoc\CS_Resources\opencv_5.x_new\opencv\cmake-build-debug\modules\gapi\opencv_gapi_AVX2.vcxproj">
+      <Project>{A9ECD6D5-0BD4-3416-BDB7-7A511BB3E27D}</Project>
+      <Name>opencv_gapi_AVX2</Name>
+      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </ProjectReference>
+    <ProjectReference Include="D:\mydoc\CS_Resources\opencv_5.x_new\opencv\cmake-build-debug\modules\gapi\opencv_gapi_SSE4_1.vcxproj">
+      <Project>{E1D3A22F-06BB-3F4B-87E0-6C9BACC19E54}</Project>
+      <Name>opencv_gapi_SSE4_1</Name>
+      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </ProjectReference>
+    <ProjectReference Include="D:\mydoc\CS_Resources\opencv_5.x_new\opencv\cmake-build-debug\modules\imgproc\opencv_imgproc.vcxproj">
+      <Project>{9F62B4B2-8AAE-3FA8-BE62-3A43E287777C}</Project>
+      <Name>opencv_imgproc</Name>
+    </ProjectReference>
+    <ProjectReference Include="D:\mydoc\CS_Resources\opencv_5.x_new\opencv\cmake-build-debug\modules\stereo\opencv_stereo.vcxproj">
+      <Project>{D37D2952-6496-3C57-AB9B-8A0EC1C84315}</Project>
+      <Name>opencv_stereo</Name>
+    </ProjectReference>
+    <ProjectReference Include="D:\mydoc\CS_Resources\opencv_5.x_new\opencv\cmake-build-debug\modules\video\opencv_video.vcxproj">
+      <Project>{FB163037-9792-3007-BC7E-C800AA1140EC}</Project>
+      <Name>opencv_video</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>

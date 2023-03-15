@@ -1,0 +1,48 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="16.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <ClCompile Include="D:\mydoc\CS_Resources\opencv_5.x_new\opencv\3rdparty\ittnotify\src\ittnotify\ittnotify_static.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\mydoc\CS_Resources\opencv_5.x_new\opencv\3rdparty\ittnotify\src\ittnotify\jitprofiling.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="D:\mydoc\CS_Resources\opencv_5.x_new\opencv\3rdparty\ittnotify\include\ittnotify.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\mydoc\CS_Resources\opencv_5.x_new\opencv\3rdparty\ittnotify\include\jitprofiling.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\mydoc\CS_Resources\opencv_5.x_new\opencv\3rdparty\ittnotify\include\libittnotify.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\mydoc\CS_Resources\opencv_5.x_new\opencv\3rdparty\ittnotify\include\llvm_jit_event_listener.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\mydoc\CS_Resources\opencv_5.x_new\opencv\3rdparty\ittnotify\src\ittnotify\disable_warnings.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\mydoc\CS_Resources\opencv_5.x_new\opencv\3rdparty\ittnotify\src\ittnotify\ittnotify_config.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\mydoc\CS_Resources\opencv_5.x_new\opencv\3rdparty\ittnotify\src\ittnotify\ittnotify_static.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\mydoc\CS_Resources\opencv_5.x_new\opencv\3rdparty\ittnotify\src\ittnotify\ittnotify_types.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <CustomBuild Include="D:\mydoc\CS_Resources\opencv_5.x_new\opencv\3rdparty\ittnotify\CMakeLists.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="Header Files">
+      <UniqueIdentifier>{20E510EA-0F34-3E0E-A630-C80741C62B9D}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{64F51C3C-950F-3C0B-9DA5-9AFB2E27C4AF}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+</Project>

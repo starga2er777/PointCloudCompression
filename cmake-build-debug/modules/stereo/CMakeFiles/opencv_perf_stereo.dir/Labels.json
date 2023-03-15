@@ -1,0 +1,51 @@
+{
+	"sources" : 
+	[
+		{
+			"file" : "/home/jeffery/Desktop/Sustech/GroupProject/code/opencv/modules/stereo/perf/opencl/perf_stereobm.cpp",
+			"labels" : 
+			[
+				"Main",
+				"opencv_stereo",
+				"PerfTest"
+			]
+		},
+		{
+			"file" : "/home/jeffery/Desktop/Sustech/GroupProject/code/opencv/modules/stereo/perf/perf_main.cpp",
+			"labels" : 
+			[
+				"Main",
+				"opencv_stereo",
+				"PerfTest"
+			]
+		},
+		{
+			"file" : "/home/jeffery/Desktop/Sustech/GroupProject/code/opencv/modules/stereo/perf/perf_stereosgbm.cpp",
+			"labels" : 
+			[
+				"Main",
+				"opencv_stereo",
+				"PerfTest"
+			]
+		},
+		{
+			"file" : "/home/jeffery/Desktop/Sustech/GroupProject/code/opencv/modules/stereo/perf/perf_precomp.hpp",
+			"labels" : 
+			[
+				"Main",
+				"opencv_stereo",
+				"PerfTest"
+			]
+		}
+	],
+	"target" : 
+	{
+		"labels" : 
+		[
+			"Main",
+			"opencv_stereo",
+			"PerfTest"
+		],
+		"name" : "opencv_perf_stereo"
+	}
+}

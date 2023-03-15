@@ -1,0 +1,51 @@
+{
+	"sources" : 
+	[
+		{
+			"file" : "/home/jeffery/Desktop/Sustech/GroupProject/code/opencv/modules/calib/perf/perf_cicrlesGrid.cpp",
+			"labels" : 
+			[
+				"Main",
+				"opencv_calib",
+				"PerfTest"
+			]
+		},
+		{
+			"file" : "/home/jeffery/Desktop/Sustech/GroupProject/code/opencv/modules/calib/perf/perf_main.cpp",
+			"labels" : 
+			[
+				"Main",
+				"opencv_calib",
+				"PerfTest"
+			]
+		},
+		{
+			"file" : "/home/jeffery/Desktop/Sustech/GroupProject/code/opencv/modules/calib/perf/perf_undistort.cpp",
+			"labels" : 
+			[
+				"Main",
+				"opencv_calib",
+				"PerfTest"
+			]
+		},
+		{
+			"file" : "/home/jeffery/Desktop/Sustech/GroupProject/code/opencv/modules/calib/perf/perf_precomp.hpp",
+			"labels" : 
+			[
+				"Main",
+				"opencv_calib",
+				"PerfTest"
+			]
+		}
+	],
+	"target" : 
+	{
+		"labels" : 
+		[
+			"Main",
+			"opencv_calib",
+			"PerfTest"
+		],
+		"name" : "opencv_perf_calib"
+	}
+}

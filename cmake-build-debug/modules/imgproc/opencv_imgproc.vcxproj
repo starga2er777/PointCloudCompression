@@ -1,0 +1,702 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="16.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <PreferredToolArchitecture>x64</PreferredToolArchitecture>
+  </PropertyGroup>
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|x64">
+      <Configuration>Debug</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|x64">
+      <Configuration>Release</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectGuid>{9F62B4B2-8AAE-3FA8-BE62-3A43E287777C}</ProjectGuid>
+    <Keyword>Win32Proj</Keyword>
+    <WindowsTargetPlatformVersion>10.0.18362.0</WindowsTargetPlatformVersion>
+    <Platform>x64</Platform>
+    <ProjectName>opencv_imgproc</ProjectName>
+    <VCProjectUpgraderObjectName>NoUpgrade</VCProjectUpgraderObjectName>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <CharacterSet>MultiByte</CharacterSet>
+    <PlatformToolset>v142</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <CharacterSet>MultiByte</CharacterSet>
+    <PlatformToolset>v142</PlatformToolset>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup>
+    <_ProjectFileVersion>10.0.20506.1</_ProjectFileVersion>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">D:\mydoc\CS_Resources\opencv_5.x_new\opencv\cmake-build-debug\bin\Debug\</OutDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">opencv_imgproc.dir\Debug\</IntDir>
+    <TargetName Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">opencv_imgproc500d</TargetName>
+    <TargetExt Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">.dll</TargetExt>
+    <LinkIncremental Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</LinkIncremental>
+    <GenerateManifest Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</GenerateManifest>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='Release|x64'">D:\mydoc\CS_Resources\opencv_5.x_new\opencv\cmake-build-debug\bin\Release\</OutDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='Release|x64'">opencv_imgproc.dir\Release\</IntDir>
+    <TargetName Condition="'$(Configuration)|$(Platform)'=='Release|x64'">opencv_imgproc500</TargetName>
+    <TargetExt Condition="'$(Configuration)|$(Platform)'=='Release|x64'">.dll</TargetExt>
+    <LinkIncremental Condition="'$(Configuration)|$(Platform)'=='Release|x64'">false</LinkIncremental>
+    <GenerateManifest Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</GenerateManifest>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <ClCompile>
+      <AdditionalIncludeDirectories>D:\mydoc\CS_Resources\opencv_5.x_new\opencv\3rdparty\clapack\include;D:\mydoc\CS_Resources\opencv_5.x_new\opencv\cmake-build-debug\3rdparty\ippicv\ippicv_win\icv\include;D:\mydoc\CS_Resources\opencv_5.x_new\opencv\cmake-build-debug\3rdparty\ippicv\ippicv_win\iw\include;D:\mydoc\CS_Resources\opencv_5.x_new\opencv\cmake-build-debug;D:\mydoc\CS_Resources\opencv_5.x_new\opencv\modules\imgproc\src;D:\mydoc\CS_Resources\opencv_5.x_new\opencv\modules\imgproc\include;D:\mydoc\CS_Resources\opencv_5.x_new\opencv\cmake-build-debug\modules\imgproc;D:\mydoc\CS_Resources\opencv_5.x_new\opencv\modules\core\include;D:\mydoc\CS_Resources\opencv_5.x_new\opencv\3rdparty\zlib;D:\mydoc\CS_Resources\opencv_5.x_new\opencv\cmake-build-debug\3rdparty\zlib;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalOptions>%(AdditionalOptions) /bigobj</AdditionalOptions>
+      <AssemblerListingLocation>$(IntDir)</AssemblerListingLocation>
+      <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+      <DisableSpecificWarnings>4127;4251;4324;4275;4512;4589;4819</DisableSpecificWarnings>
+      <ExceptionHandling>Async</ExceptionHandling>
+      <FloatingPointModel>Precise</FloatingPointModel>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <InlineFunctionExpansion>Disabled</InlineFunctionExpansion>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <MultiProcessorCompilation>true</MultiProcessorCompilation>
+      <Optimization>Disabled</Optimization>
+      <PrecompiledHeader>Use</PrecompiledHeader>
+      <PrecompiledHeaderFile>D:/mydoc/CS_Resources/opencv_5.x_new/opencv/cmake-build-debug/modules/imgproc/CMakeFiles/opencv_imgproc.dir/Debug/cmake_pch.hxx</PrecompiledHeaderFile>
+      <PrecompiledHeaderOutputFile>D:/mydoc/CS_Resources/opencv_5.x_new/opencv/cmake-build-debug/modules/imgproc/opencv_imgproc.dir/Debug/cmake_pch.pch</PrecompiledHeaderOutputFile>
+      <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
+      <RuntimeTypeInfo>true</RuntimeTypeInfo>
+      <UseFullPaths>false</UseFullPaths>
+      <WarningLevel>Level4</WarningLevel>
+      <PreprocessorDefinitions>%(PreprocessorDefinitions);WIN32;_WINDOWS;_CRT_SECURE_NO_DEPRECATE;_CRT_NONSTDC_NO_DEPRECATE;_SCL_SECURE_NO_WARNINGS;_VARIADIC_MAX=10;_WIN32_WINNT=0x0601;_USE_MATH_DEFINES;__STDC_CONSTANT_MACROS;__STDC_LIMIT_MACROS;__STDC_FORMAT_MACROS;__OPENCV_BUILD=1;CMAKE_INTDIR="Debug";CVAPI_EXPORTS</PreprocessorDefinitions>
+      <ObjectFileName>$(IntDir)</ObjectFileName>
+      <ProgramDataBaseFileName>D:\mydoc\CS_Resources\opencv_5.x_new\opencv\cmake-build-debug\lib\Debug\opencv_imgproc500d.pdb</ProgramDataBaseFileName>
+    </ClCompile>
+    <ResourceCompile>
+      <PreprocessorDefinitions>%(PreprocessorDefinitions);WIN32;_DEBUG;_WINDOWS;_CRT_SECURE_NO_DEPRECATE;_CRT_NONSTDC_NO_DEPRECATE;_SCL_SECURE_NO_WARNINGS;_VARIADIC_MAX=10;_WIN32_WINNT=0x0601;_USE_MATH_DEFINES;__STDC_CONSTANT_MACROS;__STDC_LIMIT_MACROS;__STDC_FORMAT_MACROS;__OPENCV_BUILD=1;CMAKE_INTDIR=\"Debug\";CVAPI_EXPORTS</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>D:\mydoc\CS_Resources\opencv_5.x_new\opencv\3rdparty\clapack\include;D:\mydoc\CS_Resources\opencv_5.x_new\opencv\cmake-build-debug\3rdparty\ippicv\ippicv_win\icv\include;D:\mydoc\CS_Resources\opencv_5.x_new\opencv\cmake-build-debug\3rdparty\ippicv\ippicv_win\iw\include;D:\mydoc\CS_Resources\opencv_5.x_new\opencv\cmake-build-debug;D:\mydoc\CS_Resources\opencv_5.x_new\opencv\modules\imgproc\src;D:\mydoc\CS_Resources\opencv_5.x_new\opencv\modules\imgproc\include;D:\mydoc\CS_Resources\opencv_5.x_new\opencv\cmake-build-debug\modules\imgproc;D:\mydoc\CS_Resources\opencv_5.x_new\opencv\modules\core\include;D:\mydoc\CS_Resources\opencv_5.x_new\opencv\3rdparty\zlib;D:\mydoc\CS_Resources\opencv_5.x_new\opencv\cmake-build-debug\3rdparty\zlib;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ResourceCompile>
+    <Midl>
+      <AdditionalIncludeDirectories>D:\mydoc\CS_Resources\opencv_5.x_new\opencv\3rdparty\clapack\include;D:\mydoc\CS_Resources\opencv_5.x_new\opencv\cmake-build-debug\3rdparty\ippicv\ippicv_win\icv\include;D:\mydoc\CS_Resources\opencv_5.x_new\opencv\cmake-build-debug\3rdparty\ippicv\ippicv_win\iw\include;D:\mydoc\CS_Resources\opencv_5.x_new\opencv\cmake-build-debug;D:\mydoc\CS_Resources\opencv_5.x_new\opencv\modules\imgproc\src;D:\mydoc\CS_Resources\opencv_5.x_new\opencv\modules\imgproc\include;D:\mydoc\CS_Resources\opencv_5.x_new\opencv\cmake-build-debug\modules\imgproc;D:\mydoc\CS_Resources\opencv_5.x_new\opencv\modules\core\include;D:\mydoc\CS_Resources\opencv_5.x_new\opencv\3rdparty\zlib;D:\mydoc\CS_Resources\opencv_5.x_new\opencv\cmake-build-debug\3rdparty\zlib;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <OutputDirectory>$(ProjectDir)/$(IntDir)</OutputDirectory>
+      <HeaderFileName>%(Filename).h</HeaderFileName>
+      <TypeLibraryName>%(Filename).tlb</TypeLibraryName>
+      <InterfaceIdentifierFileName>%(Filename)_i.c</InterfaceIdentifierFileName>
+      <ProxyFileName>%(Filename)_p.c</ProxyFileName>
+    </Midl>
+    <Link>
+      <AdditionalDependencies>..\..\lib\Debug\opencv_core500d.lib;..\..\3rdparty\lib\Debug\ippiwd.lib;..\..\3rdparty\ippicv\ippicv_win\icv\lib\intel64\ippicvmt.lib;..\..\3rdparty\lib\Debug\zlibd.lib;kernel32.lib;user32.lib;gdi32.lib;winspool.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;comdlg32.lib;advapi32.lib</AdditionalDependencies>
+      <AdditionalLibraryDirectories>%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalOptions>%(AdditionalOptions) /machine:x64</AdditionalOptions>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <IgnoreSpecificDefaultLibraries>libc;%(IgnoreSpecificDefaultLibraries)</IgnoreSpecificDefaultLibraries>
+      <ImportLibrary>D:/mydoc/CS_Resources/opencv_5.x_new/opencv/cmake-build-debug/lib/Debug/opencv_imgproc500d.lib</ImportLibrary>
+      <ProgramDataBaseFile>D:/mydoc/CS_Resources/opencv_5.x_new/opencv/cmake-build-debug/bin/Debug/opencv_imgproc500d.pdb</ProgramDataBaseFile>
+      <SubSystem>Console</SubSystem>
+    </Link>
+    <ProjectReference>
+      <LinkLibraryDependencies>false</LinkLibraryDependencies>
+    </ProjectReference>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <ClCompile>
+      <AdditionalIncludeDirectories>D:\mydoc\CS_Resources\opencv_5.x_new\opencv\3rdparty\clapack\include;D:\mydoc\CS_Resources\opencv_5.x_new\opencv\cmake-build-debug\3rdparty\ippicv\ippicv_win\icv\include;D:\mydoc\CS_Resources\opencv_5.x_new\opencv\cmake-build-debug\3rdparty\ippicv\ippicv_win\iw\include;D:\mydoc\CS_Resources\opencv_5.x_new\opencv\cmake-build-debug;D:\mydoc\CS_Resources\opencv_5.x_new\opencv\modules\imgproc\src;D:\mydoc\CS_Resources\opencv_5.x_new\opencv\modules\imgproc\include;D:\mydoc\CS_Resources\opencv_5.x_new\opencv\cmake-build-debug\modules\imgproc;D:\mydoc\CS_Resources\opencv_5.x_new\opencv\modules\core\include;D:\mydoc\CS_Resources\opencv_5.x_new\opencv\3rdparty\zlib;D:\mydoc\CS_Resources\opencv_5.x_new\opencv\cmake-build-debug\3rdparty\zlib;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalOptions>%(AdditionalOptions) /bigobj</AdditionalOptions>
+      <AssemblerListingLocation>$(IntDir)</AssemblerListingLocation>
+      <DisableSpecificWarnings>4127;4251;4324;4275;4512;4589;4819</DisableSpecificWarnings>
+      <ExceptionHandling>Async</ExceptionHandling>
+      <FloatingPointModel>Precise</FloatingPointModel>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <InlineFunctionExpansion>AnySuitable</InlineFunctionExpansion>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <MultiProcessorCompilation>true</MultiProcessorCompilation>
+      <Optimization>MaxSpeed</Optimization>
+      <PrecompiledHeader>Use</PrecompiledHeader>
+      <PrecompiledHeaderFile>D:/mydoc/CS_Resources/opencv_5.x_new/opencv/cmake-build-debug/modules/imgproc/CMakeFiles/opencv_imgproc.dir/Release/cmake_pch.hxx</PrecompiledHeaderFile>
+      <PrecompiledHeaderOutputFile>D:/mydoc/CS_Resources/opencv_5.x_new/opencv/cmake-build-debug/modules/imgproc/opencv_imgproc.dir/Release/cmake_pch.pch</PrecompiledHeaderOutputFile>
+      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
+      <RuntimeTypeInfo>true</RuntimeTypeInfo>
+      <UseFullPaths>false</UseFullPaths>
+      <WarningLevel>Level4</WarningLevel>
+      <PreprocessorDefinitions>%(PreprocessorDefinitions);WIN32;_WINDOWS;_CRT_SECURE_NO_DEPRECATE;_CRT_NONSTDC_NO_DEPRECATE;_SCL_SECURE_NO_WARNINGS;NDEBUG;_VARIADIC_MAX=10;_WIN32_WINNT=0x0601;_USE_MATH_DEFINES;__STDC_CONSTANT_MACROS;__STDC_LIMIT_MACROS;__STDC_FORMAT_MACROS;__OPENCV_BUILD=1;CMAKE_INTDIR="Release";CVAPI_EXPORTS</PreprocessorDefinitions>
+      <ObjectFileName>$(IntDir)</ObjectFileName>
+      <DebugInformationFormat>
+      </DebugInformationFormat>
+      <ProgramDataBaseFileName>D:\mydoc\CS_Resources\opencv_5.x_new\opencv\cmake-build-debug\lib\Release\opencv_imgproc500.pdb</ProgramDataBaseFileName>
+    </ClCompile>
+    <ResourceCompile>
+      <PreprocessorDefinitions>%(PreprocessorDefinitions);WIN32;_WINDOWS;_CRT_SECURE_NO_DEPRECATE;_CRT_NONSTDC_NO_DEPRECATE;_SCL_SECURE_NO_WARNINGS;NDEBUG;_VARIADIC_MAX=10;_WIN32_WINNT=0x0601;_USE_MATH_DEFINES;__STDC_CONSTANT_MACROS;__STDC_LIMIT_MACROS;__STDC_FORMAT_MACROS;__OPENCV_BUILD=1;CMAKE_INTDIR=\"Release\";CVAPI_EXPORTS</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>D:\mydoc\CS_Resources\opencv_5.x_new\opencv\3rdparty\clapack\include;D:\mydoc\CS_Resources\opencv_5.x_new\opencv\cmake-build-debug\3rdparty\ippicv\ippicv_win\icv\include;D:\mydoc\CS_Resources\opencv_5.x_new\opencv\cmake-build-debug\3rdparty\ippicv\ippicv_win\iw\include;D:\mydoc\CS_Resources\opencv_5.x_new\opencv\cmake-build-debug;D:\mydoc\CS_Resources\opencv_5.x_new\opencv\modules\imgproc\src;D:\mydoc\CS_Resources\opencv_5.x_new\opencv\modules\imgproc\include;D:\mydoc\CS_Resources\opencv_5.x_new\opencv\cmake-build-debug\modules\imgproc;D:\mydoc\CS_Resources\opencv_5.x_new\opencv\modules\core\include;D:\mydoc\CS_Resources\opencv_5.x_new\opencv\3rdparty\zlib;D:\mydoc\CS_Resources\opencv_5.x_new\opencv\cmake-build-debug\3rdparty\zlib;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ResourceCompile>
+    <Midl>
+      <AdditionalIncludeDirectories>D:\mydoc\CS_Resources\opencv_5.x_new\opencv\3rdparty\clapack\include;D:\mydoc\CS_Resources\opencv_5.x_new\opencv\cmake-build-debug\3rdparty\ippicv\ippicv_win\icv\include;D:\mydoc\CS_Resources\opencv_5.x_new\opencv\cmake-build-debug\3rdparty\ippicv\ippicv_win\iw\include;D:\mydoc\CS_Resources\opencv_5.x_new\opencv\cmake-build-debug;D:\mydoc\CS_Resources\opencv_5.x_new\opencv\modules\imgproc\src;D:\mydoc\CS_Resources\opencv_5.x_new\opencv\modules\imgproc\include;D:\mydoc\CS_Resources\opencv_5.x_new\opencv\cmake-build-debug\modules\imgproc;D:\mydoc\CS_Resources\opencv_5.x_new\opencv\modules\core\include;D:\mydoc\CS_Resources\opencv_5.x_new\opencv\3rdparty\zlib;D:\mydoc\CS_Resources\opencv_5.x_new\opencv\cmake-build-debug\3rdparty\zlib;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <OutputDirectory>$(ProjectDir)/$(IntDir)</OutputDirectory>
+      <HeaderFileName>%(Filename).h</HeaderFileName>
+      <TypeLibraryName>%(Filename).tlb</TypeLibraryName>
+      <InterfaceIdentifierFileName>%(Filename)_i.c</InterfaceIdentifierFileName>
+      <ProxyFileName>%(Filename)_p.c</ProxyFileName>
+    </Midl>
+    <Link>
+      <AdditionalDependencies>..\..\lib\Release\opencv_core500.lib;..\..\3rdparty\lib\Release\ippiw.lib;..\..\3rdparty\ippicv\ippicv_win\icv\lib\intel64\ippicvmt.lib;..\..\3rdparty\lib\Release\zlib.lib;kernel32.lib;user32.lib;gdi32.lib;winspool.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;comdlg32.lib;advapi32.lib</AdditionalDependencies>
+      <AdditionalLibraryDirectories>%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalOptions>%(AdditionalOptions) /machine:x64</AdditionalOptions>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <IgnoreSpecificDefaultLibraries>libc;%(IgnoreSpecificDefaultLibraries)</IgnoreSpecificDefaultLibraries>
+      <ImportLibrary>D:/mydoc/CS_Resources/opencv_5.x_new/opencv/cmake-build-debug/lib/Release/opencv_imgproc500.lib</ImportLibrary>
+      <ProgramDataBaseFile>D:/mydoc/CS_Resources/opencv_5.x_new/opencv/cmake-build-debug/bin/Release/opencv_imgproc500.pdb</ProgramDataBaseFile>
+      <SubSystem>Console</SubSystem>
+    </Link>
+    <ProjectReference>
+      <LinkLibraryDependencies>false</LinkLibraryDependencies>
+    </ProjectReference>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <CustomBuild Include="D:\mydoc\CS_Resources\opencv_5.x_new\opencv\cmake-build-debug\CMakeFiles\fc743621881f3a413bb175a277e612ed\opencl_kernels_imgproc.cpp.rule">
+      <Message Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Processing OpenCL kernels (imgproc)</Message>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">setlocal
+"D:\CLion 2022.2.1\bin\cmake\win\bin\cmake.exe" -DMODULE_NAME=imgproc -DCL_DIR=D:/mydoc/CS_Resources/opencv_5.x_new/opencv/modules/imgproc/src/opencl -DOUTPUT=D:/mydoc/CS_Resources/opencv_5.x_new/opencv/cmake-build-debug/modules/imgproc/opencl_kernels_imgproc.cpp -P D:/mydoc/CS_Resources/opencv_5.x_new/opencv/cmake/cl2cpp.cmake
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd</Command>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">D:\mydoc\CS_Resources\opencv_5.x_new\opencv\modules\imgproc\src\opencl\accumulate.cl;D:\mydoc\CS_Resources\opencv_5.x_new\opencv\modules\imgproc\src\opencl\bilateral.cl;D:\mydoc\CS_Resources\opencv_5.x_new\opencv\modules\imgproc\src\opencl\blend_linear.cl;D:\mydoc\CS_Resources\opencv_5.x_new\opencv\modules\imgproc\src\opencl\boxFilter.cl;D:\mydoc\CS_Resources\opencv_5.x_new\opencv\modules\imgproc\src\opencl\boxFilter3x3.cl;D:\mydoc\CS_Resources\opencv_5.x_new\opencv\modules\imgproc\src\opencl\calc_back_project.cl;D:\mydoc\CS_Resources\opencv_5.x_new\opencv\modules\imgproc\src\opencl\canny.cl;D:\mydoc\CS_Resources\opencv_5.x_new\opencv\modules\imgproc\src\opencl\clahe.cl;D:\mydoc\CS_Resources\opencv_5.x_new\opencv\modules\imgproc\src\opencl\color_hsv.cl;D:\mydoc\CS_Resources\opencv_5.x_new\opencv\modules\imgproc\src\opencl\color_lab.cl;D:\mydoc\CS_Resources\opencv_5.x_new\opencv\modules\imgproc\src\opencl\color_rgb.cl;D:\mydoc\CS_Resources\opencv_5.x_new\opencv\modules\imgproc\src\opencl\color_yuv.cl;D:\mydoc\CS_Resources\opencv_5.x_new\opencv\modules\imgproc\src\opencl\corner.cl;D:\mydoc\CS_Resources\opencv_5.x_new\opencv\modules\imgproc\src\opencl\covardata.cl;D:\mydoc\CS_Resources\opencv_5.x_new\opencv\modules\imgproc\src\opencl\filter2D.cl;D:\mydoc\CS_Resources\opencv_5.x_new\opencv\modules\imgproc\src\opencl\filter2DSmall.cl;D:\mydoc\CS_Resources\opencv_5.x_new\opencv\modules\imgproc\src\opencl\filterSepCol.cl;D:\mydoc\CS_Resources\opencv_5.x_new\opencv\modules\imgproc\src\opencl\filterSepRow.cl;D:\mydoc\CS_Resources\opencv_5.x_new\opencv\modules\imgproc\src\opencl\filterSep_singlePass.cl;D:\mydoc\CS_Resources\opencv_5.x_new\opencv\modules\imgproc\src\opencl\filterSmall.cl;D:\mydoc\CS_Resources\opencv_5.x_new\opencv\modules\imgproc\src\opencl\gaussianBlur3x3.cl;D:\mydoc\CS_Resources\opencv_5.x_new\opencv\modules\imgproc\src\opencl\gaussianBlur5x5.cl;D:\mydoc\CS_Resources\opencv_5.x_new\opencv\modules\imgproc\src\opencl\gftt.cl;D:\mydoc\CS_Resources\opencv_5.x_new\opencv\modules\imgproc\src\opencl\histogram.cl;D:\mydoc\CS_Resources\opencv_5.x_new\opencv\modules\imgproc\src\opencl\hough_lines.cl;D:\mydoc\CS_Resources\opencv_5.x_new\opencv\modules\imgproc\src\opencl\integral_sum.cl;D:\mydoc\CS_Resources\opencv_5.x_new\opencv\modules\imgproc\src\opencl\laplacian3.cl;D:\mydoc\CS_Resources\opencv_5.x_new\opencv\modules\imgproc\src\opencl\laplacian5.cl;D:\mydoc\CS_Resources\opencv_5.x_new\opencv\modules\imgproc\src\opencl\linearPolar.cl;D:\mydoc\CS_Resources\opencv_5.x_new\opencv\modules\imgproc\src\opencl\logPolar.cl;D:\mydoc\CS_Resources\opencv_5.x_new\opencv\modules\imgproc\src\opencl\match_template.cl;D:\mydoc\CS_Resources\opencv_5.x_new\opencv\modules\imgproc\src\opencl\medianFilter.cl;D:\mydoc\CS_Resources\opencv_5.x_new\opencv\modules\imgproc\src\opencl\moments.cl;D:\mydoc\CS_Resources\opencv_5.x_new\opencv\modules\imgproc\src\opencl\morph.cl;D:\mydoc\CS_Resources\opencv_5.x_new\opencv\modules\imgproc\src\opencl\morph3x3.cl;D:\mydoc\CS_Resources\opencv_5.x_new\opencv\modules\imgproc\src\opencl\precornerdetect.cl;D:\mydoc\CS_Resources\opencv_5.x_new\opencv\modules\imgproc\src\opencl\pyr_down.cl;D:\mydoc\CS_Resources\opencv_5.x_new\opencv\modules\imgproc\src\opencl\pyr_up.cl;D:\mydoc\CS_Resources\opencv_5.x_new\opencv\modules\imgproc\src\opencl\pyramid_up.cl;D:\mydoc\CS_Resources\opencv_5.x_new\opencv\modules\imgproc\src\opencl\remap.cl;D:\mydoc\CS_Resources\opencv_5.x_new\opencv\modules\imgproc\src\opencl\resize.cl;D:\mydoc\CS_Resources\opencv_5.x_new\opencv\modules\imgproc\src\opencl\sepFilter3x3.cl;D:\mydoc\CS_Resources\opencv_5.x_new\opencv\modules\imgproc\src\opencl\threshold.cl;D:\mydoc\CS_Resources\opencv_5.x_new\opencv\modules\imgproc\src\opencl\warp_affine.cl;D:\mydoc\CS_Resources\opencv_5.x_new\opencv\modules\imgproc\src\opencl\warp_perspective.cl;D:\mydoc\CS_Resources\opencv_5.x_new\opencv\modules\imgproc\src\opencl\warp_transform.cl;D:\mydoc\CS_Resources\opencv_5.x_new\opencv\cmake\cl2cpp.cmake;%(AdditionalInputs)</AdditionalInputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">D:\mydoc\CS_Resources\opencv_5.x_new\opencv\cmake-build-debug\modules\imgproc\opencl_kernels_imgproc.cpp</Outputs>
+      <LinkObjects Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</LinkObjects>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Processing OpenCL kernels (imgproc)</Message>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Release|x64'">setlocal
+"D:\CLion 2022.2.1\bin\cmake\win\bin\cmake.exe" -DMODULE_NAME=imgproc -DCL_DIR=D:/mydoc/CS_Resources/opencv_5.x_new/opencv/modules/imgproc/src/opencl -DOUTPUT=D:/mydoc/CS_Resources/opencv_5.x_new/opencv/cmake-build-debug/modules/imgproc/opencl_kernels_imgproc.cpp -P D:/mydoc/CS_Resources/opencv_5.x_new/opencv/cmake/cl2cpp.cmake
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd</Command>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Release|x64'">D:\mydoc\CS_Resources\opencv_5.x_new\opencv\modules\imgproc\src\opencl\accumulate.cl;D:\mydoc\CS_Resources\opencv_5.x_new\opencv\modules\imgproc\src\opencl\bilateral.cl;D:\mydoc\CS_Resources\opencv_5.x_new\opencv\modules\imgproc\src\opencl\blend_linear.cl;D:\mydoc\CS_Resources\opencv_5.x_new\opencv\modules\imgproc\src\opencl\boxFilter.cl;D:\mydoc\CS_Resources\opencv_5.x_new\opencv\modules\imgproc\src\opencl\boxFilter3x3.cl;D:\mydoc\CS_Resources\opencv_5.x_new\opencv\modules\imgproc\src\opencl\calc_back_project.cl;D:\mydoc\CS_Resources\opencv_5.x_new\opencv\modules\imgproc\src\opencl\canny.cl;D:\mydoc\CS_Resources\opencv_5.x_new\opencv\modules\imgproc\src\opencl\clahe.cl;D:\mydoc\CS_Resources\opencv_5.x_new\opencv\modules\imgproc\src\opencl\color_hsv.cl;D:\mydoc\CS_Resources\opencv_5.x_new\opencv\modules\imgproc\src\opencl\color_lab.cl;D:\mydoc\CS_Resources\opencv_5.x_new\opencv\modules\imgproc\src\opencl\color_rgb.cl;D:\mydoc\CS_Resources\opencv_5.x_new\opencv\modules\imgproc\src\opencl\color_yuv.cl;D:\mydoc\CS_Resources\opencv_5.x_new\opencv\modules\imgproc\src\opencl\corner.cl;D:\mydoc\CS_Resources\opencv_5.x_new\opencv\modules\imgproc\src\opencl\covardata.cl;D:\mydoc\CS_Resources\opencv_5.x_new\opencv\modules\imgproc\src\opencl\filter2D.cl;D:\mydoc\CS_Resources\opencv_5.x_new\opencv\modules\imgproc\src\opencl\filter2DSmall.cl;D:\mydoc\CS_Resources\opencv_5.x_new\opencv\modules\imgproc\src\opencl\filterSepCol.cl;D:\mydoc\CS_Resources\opencv_5.x_new\opencv\modules\imgproc\src\opencl\filterSepRow.cl;D:\mydoc\CS_Resources\opencv_5.x_new\opencv\modules\imgproc\src\opencl\filterSep_singlePass.cl;D:\mydoc\CS_Resources\opencv_5.x_new\opencv\modules\imgproc\src\opencl\filterSmall.cl;D:\mydoc\CS_Resources\opencv_5.x_new\opencv\modules\imgproc\src\opencl\gaussianBlur3x3.cl;D:\mydoc\CS_Resources\opencv_5.x_new\opencv\modules\imgproc\src\opencl\gaussianBlur5x5.cl;D:\mydoc\CS_Resources\opencv_5.x_new\opencv\modules\imgproc\src\opencl\gftt.cl;D:\mydoc\CS_Resources\opencv_5.x_new\opencv\modules\imgproc\src\opencl\histogram.cl;D:\mydoc\CS_Resources\opencv_5.x_new\opencv\modules\imgproc\src\opencl\hough_lines.cl;D:\mydoc\CS_Resources\opencv_5.x_new\opencv\modules\imgproc\src\opencl\integral_sum.cl;D:\mydoc\CS_Resources\opencv_5.x_new\opencv\modules\imgproc\src\opencl\laplacian3.cl;D:\mydoc\CS_Resources\opencv_5.x_new\opencv\modules\imgproc\src\opencl\laplacian5.cl;D:\mydoc\CS_Resources\opencv_5.x_new\opencv\modules\imgproc\src\opencl\linearPolar.cl;D:\mydoc\CS_Resources\opencv_5.x_new\opencv\modules\imgproc\src\opencl\logPolar.cl;D:\mydoc\CS_Resources\opencv_5.x_new\opencv\modules\imgproc\src\opencl\match_template.cl;D:\mydoc\CS_Resources\opencv_5.x_new\opencv\modules\imgproc\src\opencl\medianFilter.cl;D:\mydoc\CS_Resources\opencv_5.x_new\opencv\modules\imgproc\src\opencl\moments.cl;D:\mydoc\CS_Resources\opencv_5.x_new\opencv\modules\imgproc\src\opencl\morph.cl;D:\mydoc\CS_Resources\opencv_5.x_new\opencv\modules\imgproc\src\opencl\morph3x3.cl;D:\mydoc\CS_Resources\opencv_5.x_new\opencv\modules\imgproc\src\opencl\precornerdetect.cl;D:\mydoc\CS_Resources\opencv_5.x_new\opencv\modules\imgproc\src\opencl\pyr_down.cl;D:\mydoc\CS_Resources\opencv_5.x_new\opencv\modules\imgproc\src\opencl\pyr_up.cl;D:\mydoc\CS_Resources\opencv_5.x_new\opencv\modules\imgproc\src\opencl\pyramid_up.cl;D:\mydoc\CS_Resources\opencv_5.x_new\opencv\modules\imgproc\src\opencl\remap.cl;D:\mydoc\CS_Resources\opencv_5.x_new\opencv\modules\imgproc\src\opencl\resize.cl;D:\mydoc\CS_Resources\opencv_5.x_new\opencv\modules\imgproc\src\opencl\sepFilter3x3.cl;D:\mydoc\CS_Resources\opencv_5.x_new\opencv\modules\imgproc\src\opencl\threshold.cl;D:\mydoc\CS_Resources\opencv_5.x_new\opencv\modules\imgproc\src\opencl\warp_affine.cl;D:\mydoc\CS_Resources\opencv_5.x_new\opencv\modules\imgproc\src\opencl\warp_perspective.cl;D:\mydoc\CS_Resources\opencv_5.x_new\opencv\modules\imgproc\src\opencl\warp_transform.cl;D:\mydoc\CS_Resources\opencv_5.x_new\opencv\cmake\cl2cpp.cmake;%(AdditionalInputs)</AdditionalInputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|x64'">D:\mydoc\CS_Resources\opencv_5.x_new\opencv\cmake-build-debug\modules\imgproc\opencl_kernels_imgproc.cpp</Outputs>
+      <LinkObjects Condition="'$(Configuration)|$(Platform)'=='Release|x64'">false</LinkObjects>
+    </CustomBuild>
+  </ItemGroup>
+  <ItemGroup>
+    <CustomBuild Include="D:\mydoc\CS_Resources\opencv_5.x_new\opencv\modules\imgproc\CMakeLists.txt">
+      <StdOutEncoding>UTF-8</StdOutEncoding>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Building Custom Rule D:/mydoc/CS_Resources/opencv_5.x_new/opencv/modules/imgproc/CMakeLists.txt</Message>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">setlocal
+"D:\CLion 2022.2.1\bin\cmake\win\bin\cmake.exe" -SD:/mydoc/CS_Resources/opencv_5.x_new/opencv -BD:/mydoc/CS_Resources/opencv_5.x_new/opencv/cmake-build-debug --check-stamp-file D:/mydoc/CS_Resources/opencv_5.x_new/opencv/cmake-build-debug/modules/imgproc/CMakeFiles/generate.stamp
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd</Command>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">D:\mydoc\CS_Resources\opencv_5.x_new\opencv\cmake\templates\dllmain.cpp.in;D:\mydoc\CS_Resources\opencv_5.x_new\opencv\cmake\templates\vs_version.rc.in;%(AdditionalInputs)</AdditionalInputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">D:\mydoc\CS_Resources\opencv_5.x_new\opencv\cmake-build-debug\modules\imgproc\CMakeFiles\generate.stamp</Outputs>
+      <LinkObjects Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</LinkObjects>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Building Custom Rule D:/mydoc/CS_Resources/opencv_5.x_new/opencv/modules/imgproc/CMakeLists.txt</Message>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Release|x64'">setlocal
+"D:\CLion 2022.2.1\bin\cmake\win\bin\cmake.exe" -SD:/mydoc/CS_Resources/opencv_5.x_new/opencv -BD:/mydoc/CS_Resources/opencv_5.x_new/opencv/cmake-build-debug --check-stamp-file D:/mydoc/CS_Resources/opencv_5.x_new/opencv/cmake-build-debug/modules/imgproc/CMakeFiles/generate.stamp
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd</Command>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Release|x64'">D:\mydoc\CS_Resources\opencv_5.x_new\opencv\cmake\templates\dllmain.cpp.in;D:\mydoc\CS_Resources\opencv_5.x_new\opencv\cmake\templates\vs_version.rc.in;%(AdditionalInputs)</AdditionalInputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|x64'">D:\mydoc\CS_Resources\opencv_5.x_new\opencv\cmake-build-debug\modules\imgproc\CMakeFiles\generate.stamp</Outputs>
+      <LinkObjects Condition="'$(Configuration)|$(Platform)'=='Release|x64'">false</LinkObjects>
+    </CustomBuild>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="D:\mydoc\CS_Resources\opencv_5.x_new\opencv\cmake-build-debug\modules\imgproc\CMakeFiles\opencv_imgproc.dir\cmake_pch.cxx">
+      <ForcedIncludeFiles Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">D:/mydoc/CS_Resources/opencv_5.x_new/opencv/cmake-build-debug/modules/imgproc/CMakeFiles/opencv_imgproc.dir/Debug/cmake_pch.hxx;%(ForcedIncludeFiles)</ForcedIncludeFiles>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>
+      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">D:/mydoc/CS_Resources/opencv_5.x_new/opencv/cmake-build-debug/modules/imgproc/CMakeFiles/opencv_imgproc.dir/Debug/cmake_pch.hxx</PrecompiledHeaderFile>
+      <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">D:/mydoc/CS_Resources/opencv_5.x_new/opencv/cmake-build-debug/modules/imgproc/opencv_imgproc.dir/Debug/cmake_pch.pch</PrecompiledHeaderOutputFile>
+      <ForcedIncludeFiles Condition="'$(Configuration)|$(Platform)'=='Release|x64'">D:/mydoc/CS_Resources/opencv_5.x_new/opencv/cmake-build-debug/modules/imgproc/CMakeFiles/opencv_imgproc.dir/Release/cmake_pch.hxx;%(ForcedIncludeFiles)</ForcedIncludeFiles>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Create</PrecompiledHeader>
+      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='Release|x64'">D:/mydoc/CS_Resources/opencv_5.x_new/opencv/cmake-build-debug/modules/imgproc/CMakeFiles/opencv_imgproc.dir/Release/cmake_pch.hxx</PrecompiledHeaderFile>
+      <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='Release|x64'">D:/mydoc/CS_Resources/opencv_5.x_new/opencv/cmake-build-debug/modules/imgproc/opencv_imgproc.dir/Release/cmake_pch.pch</PrecompiledHeaderOutputFile>
+    </ClCompile>
+    <ClInclude Include="D:\mydoc\CS_Resources\opencv_5.x_new\opencv\modules\imgproc\include\opencv2\imgproc.hpp" />
+    <ClInclude Include="D:\mydoc\CS_Resources\opencv_5.x_new\opencv\modules\imgproc\include\opencv2\imgproc\bindings.hpp" />
+    <ClInclude Include="D:\mydoc\CS_Resources\opencv_5.x_new\opencv\modules\imgproc\include\opencv2\imgproc\detail\gcgraph.hpp" />
+    <ClInclude Include="D:\mydoc\CS_Resources\opencv_5.x_new\opencv\modules\imgproc\include\opencv2\imgproc\hal\hal.hpp" />
+    <ClInclude Include="D:\mydoc\CS_Resources\opencv_5.x_new\opencv\modules\imgproc\include\opencv2\imgproc\hal\interface.h" />
+    <ClInclude Include="D:\mydoc\CS_Resources\opencv_5.x_new\opencv\modules\imgproc\include\opencv2\imgproc\imgproc.hpp" />
+    <ClInclude Include="D:\mydoc\CS_Resources\opencv_5.x_new\opencv\modules\imgproc\include\opencv2\imgproc\imgproc_c.h" />
+    <ClInclude Include="D:\mydoc\CS_Resources\opencv_5.x_new\opencv\modules\imgproc\include\opencv2\imgproc\segmentation.hpp" />
+    <ClInclude Include="D:\mydoc\CS_Resources\opencv_5.x_new\opencv\modules\imgproc\include\opencv2\imgproc\types_c.h" />
+    <ClCompile Include="D:\mydoc\CS_Resources\opencv_5.x_new\opencv\modules\imgproc\src\accum.cpp">
+      <ForcedIncludeFiles Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">D:/mydoc/CS_Resources/opencv_5.x_new/opencv/cmake-build-debug/modules/imgproc/CMakeFiles/opencv_imgproc.dir/Debug/cmake_pch.hxx;%(ForcedIncludeFiles)</ForcedIncludeFiles>
+      <ForcedIncludeFiles Condition="'$(Configuration)|$(Platform)'=='Release|x64'">D:/mydoc/CS_Resources/opencv_5.x_new/opencv/cmake-build-debug/modules/imgproc/CMakeFiles/opencv_imgproc.dir/Release/cmake_pch.hxx;%(ForcedIncludeFiles)</ForcedIncludeFiles>
+    </ClCompile>
+    <ClCompile Include="D:\mydoc\CS_Resources\opencv_5.x_new\opencv\modules\imgproc\src\accum.dispatch.cpp">
+      <ForcedIncludeFiles Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">D:/mydoc/CS_Resources/opencv_5.x_new/opencv/cmake-build-debug/modules/imgproc/CMakeFiles/opencv_imgproc.dir/Debug/cmake_pch.hxx;%(ForcedIncludeFiles)</ForcedIncludeFiles>
+      <ForcedIncludeFiles Condition="'$(Configuration)|$(Platform)'=='Release|x64'">D:/mydoc/CS_Resources/opencv_5.x_new/opencv/cmake-build-debug/modules/imgproc/CMakeFiles/opencv_imgproc.dir/Release/cmake_pch.hxx;%(ForcedIncludeFiles)</ForcedIncludeFiles>
+    </ClCompile>
+    <ClCompile Include="D:\mydoc\CS_Resources\opencv_5.x_new\opencv\modules\imgproc\src\approx.cpp">
+      <ForcedIncludeFiles Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">D:/mydoc/CS_Resources/opencv_5.x_new/opencv/cmake-build-debug/modules/imgproc/CMakeFiles/opencv_imgproc.dir/Debug/cmake_pch.hxx;%(ForcedIncludeFiles)</ForcedIncludeFiles>
+      <ForcedIncludeFiles Condition="'$(Configuration)|$(Platform)'=='Release|x64'">D:/mydoc/CS_Resources/opencv_5.x_new/opencv/cmake-build-debug/modules/imgproc/CMakeFiles/opencv_imgproc.dir/Release/cmake_pch.hxx;%(ForcedIncludeFiles)</ForcedIncludeFiles>
+    </ClCompile>
+    <ClCompile Include="D:\mydoc\CS_Resources\opencv_5.x_new\opencv\modules\imgproc\src\bilateral_filter.dispatch.cpp">
+      <ForcedIncludeFiles Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">D:/mydoc/CS_Resources/opencv_5.x_new/opencv/cmake-build-debug/modules/imgproc/CMakeFiles/opencv_imgproc.dir/Debug/cmake_pch.hxx;%(ForcedIncludeFiles)</ForcedIncludeFiles>
+      <ForcedIncludeFiles Condition="'$(Configuration)|$(Platform)'=='Release|x64'">D:/mydoc/CS_Resources/opencv_5.x_new/opencv/cmake-build-debug/modules/imgproc/CMakeFiles/opencv_imgproc.dir/Release/cmake_pch.hxx;%(ForcedIncludeFiles)</ForcedIncludeFiles>
+    </ClCompile>
+    <ClCompile Include="D:\mydoc\CS_Resources\opencv_5.x_new\opencv\modules\imgproc\src\blend.cpp">
+      <ForcedIncludeFiles Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">D:/mydoc/CS_Resources/opencv_5.x_new/opencv/cmake-build-debug/modules/imgproc/CMakeFiles/opencv_imgproc.dir/Debug/cmake_pch.hxx;%(ForcedIncludeFiles)</ForcedIncludeFiles>
+      <ForcedIncludeFiles Condition="'$(Configuration)|$(Platform)'=='Release|x64'">D:/mydoc/CS_Resources/opencv_5.x_new/opencv/cmake-build-debug/modules/imgproc/CMakeFiles/opencv_imgproc.dir/Release/cmake_pch.hxx;%(ForcedIncludeFiles)</ForcedIncludeFiles>
+    </ClCompile>
+    <ClCompile Include="D:\mydoc\CS_Resources\opencv_5.x_new\opencv\modules\imgproc\src\box_filter.dispatch.cpp">
+      <ForcedIncludeFiles Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">D:/mydoc/CS_Resources/opencv_5.x_new/opencv/cmake-build-debug/modules/imgproc/CMakeFiles/opencv_imgproc.dir/Debug/cmake_pch.hxx;%(ForcedIncludeFiles)</ForcedIncludeFiles>
+      <ForcedIncludeFiles Condition="'$(Configuration)|$(Platform)'=='Release|x64'">D:/mydoc/CS_Resources/opencv_5.x_new/opencv/cmake-build-debug/modules/imgproc/CMakeFiles/opencv_imgproc.dir/Release/cmake_pch.hxx;%(ForcedIncludeFiles)</ForcedIncludeFiles>
+    </ClCompile>
+    <ClCompile Include="D:\mydoc\CS_Resources\opencv_5.x_new\opencv\modules\imgproc\src\canny.cpp">
+      <ForcedIncludeFiles Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">D:/mydoc/CS_Resources/opencv_5.x_new/opencv/cmake-build-debug/modules/imgproc/CMakeFiles/opencv_imgproc.dir/Debug/cmake_pch.hxx;%(ForcedIncludeFiles)</ForcedIncludeFiles>
+      <ForcedIncludeFiles Condition="'$(Configuration)|$(Platform)'=='Release|x64'">D:/mydoc/CS_Resources/opencv_5.x_new/opencv/cmake-build-debug/modules/imgproc/CMakeFiles/opencv_imgproc.dir/Release/cmake_pch.hxx;%(ForcedIncludeFiles)</ForcedIncludeFiles>
+    </ClCompile>
+    <ClCompile Include="D:\mydoc\CS_Resources\opencv_5.x_new\opencv\modules\imgproc\src\clahe.cpp">
+      <ForcedIncludeFiles Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">D:/mydoc/CS_Resources/opencv_5.x_new/opencv/cmake-build-debug/modules/imgproc/CMakeFiles/opencv_imgproc.dir/Debug/cmake_pch.hxx;%(ForcedIncludeFiles)</ForcedIncludeFiles>
+      <ForcedIncludeFiles Condition="'$(Configuration)|$(Platform)'=='Release|x64'">D:/mydoc/CS_Resources/opencv_5.x_new/opencv/cmake-build-debug/modules/imgproc/CMakeFiles/opencv_imgproc.dir/Release/cmake_pch.hxx;%(ForcedIncludeFiles)</ForcedIncludeFiles>
+    </ClCompile>
+    <ClCompile Include="D:\mydoc\CS_Resources\opencv_5.x_new\opencv\modules\imgproc\src\color.cpp">
+      <ForcedIncludeFiles Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">D:/mydoc/CS_Resources/opencv_5.x_new/opencv/cmake-build-debug/modules/imgproc/CMakeFiles/opencv_imgproc.dir/Debug/cmake_pch.hxx;%(ForcedIncludeFiles)</ForcedIncludeFiles>
+      <ForcedIncludeFiles Condition="'$(Configuration)|$(Platform)'=='Release|x64'">D:/mydoc/CS_Resources/opencv_5.x_new/opencv/cmake-build-debug/modules/imgproc/CMakeFiles/opencv_imgproc.dir/Release/cmake_pch.hxx;%(ForcedIncludeFiles)</ForcedIncludeFiles>
+    </ClCompile>
+    <ClCompile Include="D:\mydoc\CS_Resources\opencv_5.x_new\opencv\modules\imgproc\src\color_hsv.dispatch.cpp">
+      <ForcedIncludeFiles Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">D:/mydoc/CS_Resources/opencv_5.x_new/opencv/cmake-build-debug/modules/imgproc/CMakeFiles/opencv_imgproc.dir/Debug/cmake_pch.hxx;%(ForcedIncludeFiles)</ForcedIncludeFiles>
+      <ForcedIncludeFiles Condition="'$(Configuration)|$(Platform)'=='Release|x64'">D:/mydoc/CS_Resources/opencv_5.x_new/opencv/cmake-build-debug/modules/imgproc/CMakeFiles/opencv_imgproc.dir/Release/cmake_pch.hxx;%(ForcedIncludeFiles)</ForcedIncludeFiles>
+    </ClCompile>
+    <ClCompile Include="D:\mydoc\CS_Resources\opencv_5.x_new\opencv\modules\imgproc\src\color_lab.cpp">
+      <ForcedIncludeFiles Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">D:/mydoc/CS_Resources/opencv_5.x_new/opencv/cmake-build-debug/modules/imgproc/CMakeFiles/opencv_imgproc.dir/Debug/cmake_pch.hxx;%(ForcedIncludeFiles)</ForcedIncludeFiles>
+      <ForcedIncludeFiles Condition="'$(Configuration)|$(Platform)'=='Release|x64'">D:/mydoc/CS_Resources/opencv_5.x_new/opencv/cmake-build-debug/modules/imgproc/CMakeFiles/opencv_imgproc.dir/Release/cmake_pch.hxx;%(ForcedIncludeFiles)</ForcedIncludeFiles>
+    </ClCompile>
+    <ClCompile Include="D:\mydoc\CS_Resources\opencv_5.x_new\opencv\modules\imgproc\src\color_rgb.dispatch.cpp">
+      <ForcedIncludeFiles Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">D:/mydoc/CS_Resources/opencv_5.x_new/opencv/cmake-build-debug/modules/imgproc/CMakeFiles/opencv_imgproc.dir/Debug/cmake_pch.hxx;%(ForcedIncludeFiles)</ForcedIncludeFiles>
+      <ForcedIncludeFiles Condition="'$(Configuration)|$(Platform)'=='Release|x64'">D:/mydoc/CS_Resources/opencv_5.x_new/opencv/cmake-build-debug/modules/imgproc/CMakeFiles/opencv_imgproc.dir/Release/cmake_pch.hxx;%(ForcedIncludeFiles)</ForcedIncludeFiles>
+    </ClCompile>
+    <ClCompile Include="D:\mydoc\CS_Resources\opencv_5.x_new\opencv\modules\imgproc\src\color_yuv.dispatch.cpp">
+      <ForcedIncludeFiles Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">D:/mydoc/CS_Resources/opencv_5.x_new/opencv/cmake-build-debug/modules/imgproc/CMakeFiles/opencv_imgproc.dir/Debug/cmake_pch.hxx;%(ForcedIncludeFiles)</ForcedIncludeFiles>
+      <ForcedIncludeFiles Condition="'$(Configuration)|$(Platform)'=='Release|x64'">D:/mydoc/CS_Resources/opencv_5.x_new/opencv/cmake-build-debug/modules/imgproc/CMakeFiles/opencv_imgproc.dir/Release/cmake_pch.hxx;%(ForcedIncludeFiles)</ForcedIncludeFiles>
+    </ClCompile>
+    <ClCompile Include="D:\mydoc\CS_Resources\opencv_5.x_new\opencv\modules\imgproc\src\colormap.cpp">
+      <ForcedIncludeFiles Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">D:/mydoc/CS_Resources/opencv_5.x_new/opencv/cmake-build-debug/modules/imgproc/CMakeFiles/opencv_imgproc.dir/Debug/cmake_pch.hxx;%(ForcedIncludeFiles)</ForcedIncludeFiles>
+      <ForcedIncludeFiles Condition="'$(Configuration)|$(Platform)'=='Release|x64'">D:/mydoc/CS_Resources/opencv_5.x_new/opencv/cmake-build-debug/modules/imgproc/CMakeFiles/opencv_imgproc.dir/Release/cmake_pch.hxx;%(ForcedIncludeFiles)</ForcedIncludeFiles>
+    </ClCompile>
+    <ClCompile Include="D:\mydoc\CS_Resources\opencv_5.x_new\opencv\modules\imgproc\src\connectedcomponents.cpp">
+      <ForcedIncludeFiles Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">D:/mydoc/CS_Resources/opencv_5.x_new/opencv/cmake-build-debug/modules/imgproc/CMakeFiles/opencv_imgproc.dir/Debug/cmake_pch.hxx;%(ForcedIncludeFiles)</ForcedIncludeFiles>
+      <ForcedIncludeFiles Condition="'$(Configuration)|$(Platform)'=='Release|x64'">D:/mydoc/CS_Resources/opencv_5.x_new/opencv/cmake-build-debug/modules/imgproc/CMakeFiles/opencv_imgproc.dir/Release/cmake_pch.hxx;%(ForcedIncludeFiles)</ForcedIncludeFiles>
+    </ClCompile>
+    <ClCompile Include="D:\mydoc\CS_Resources\opencv_5.x_new\opencv\modules\imgproc\src\contours.cpp">
+      <ForcedIncludeFiles Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">D:/mydoc/CS_Resources/opencv_5.x_new/opencv/cmake-build-debug/modules/imgproc/CMakeFiles/opencv_imgproc.dir/Debug/cmake_pch.hxx;%(ForcedIncludeFiles)</ForcedIncludeFiles>
+      <ForcedIncludeFiles Condition="'$(Configuration)|$(Platform)'=='Release|x64'">D:/mydoc/CS_Resources/opencv_5.x_new/opencv/cmake-build-debug/modules/imgproc/CMakeFiles/opencv_imgproc.dir/Release/cmake_pch.hxx;%(ForcedIncludeFiles)</ForcedIncludeFiles>
+    </ClCompile>
+    <ClCompile Include="D:\mydoc\CS_Resources\opencv_5.x_new\opencv\modules\imgproc\src\convhull.cpp">
+      <ForcedIncludeFiles Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">D:/mydoc/CS_Resources/opencv_5.x_new/opencv/cmake-build-debug/modules/imgproc/CMakeFiles/opencv_imgproc.dir/Debug/cmake_pch.hxx;%(ForcedIncludeFiles)</ForcedIncludeFiles>
+      <ForcedIncludeFiles Condition="'$(Configuration)|$(Platform)'=='Release|x64'">D:/mydoc/CS_Resources/opencv_5.x_new/opencv/cmake-build-debug/modules/imgproc/CMakeFiles/opencv_imgproc.dir/Release/cmake_pch.hxx;%(ForcedIncludeFiles)</ForcedIncludeFiles>
+    </ClCompile>
+    <ClCompile Include="D:\mydoc\CS_Resources\opencv_5.x_new\opencv\modules\imgproc\src\corner.cpp">
+      <ForcedIncludeFiles Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">D:/mydoc/CS_Resources/opencv_5.x_new/opencv/cmake-build-debug/modules/imgproc/CMakeFiles/opencv_imgproc.dir/Debug/cmake_pch.hxx;%(ForcedIncludeFiles)</ForcedIncludeFiles>
+      <ForcedIncludeFiles Condition="'$(Configuration)|$(Platform)'=='Release|x64'">D:/mydoc/CS_Resources/opencv_5.x_new/opencv/cmake-build-debug/modules/imgproc/CMakeFiles/opencv_imgproc.dir/Release/cmake_pch.hxx;%(ForcedIncludeFiles)</ForcedIncludeFiles>
+    </ClCompile>
+    <ClCompile Include="D:\mydoc\CS_Resources\opencv_5.x_new\opencv\modules\imgproc\src\cornersubpix.cpp">
+      <ForcedIncludeFiles Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">D:/mydoc/CS_Resources/opencv_5.x_new/opencv/cmake-build-debug/modules/imgproc/CMakeFiles/opencv_imgproc.dir/Debug/cmake_pch.hxx;%(ForcedIncludeFiles)</ForcedIncludeFiles>
+      <ForcedIncludeFiles Condition="'$(Configuration)|$(Platform)'=='Release|x64'">D:/mydoc/CS_Resources/opencv_5.x_new/opencv/cmake-build-debug/modules/imgproc/CMakeFiles/opencv_imgproc.dir/Release/cmake_pch.hxx;%(ForcedIncludeFiles)</ForcedIncludeFiles>
+    </ClCompile>
+    <ClCompile Include="D:\mydoc\CS_Resources\opencv_5.x_new\opencv\modules\imgproc\src\demosaicing.cpp">
+      <ForcedIncludeFiles Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">D:/mydoc/CS_Resources/opencv_5.x_new/opencv/cmake-build-debug/modules/imgproc/CMakeFiles/opencv_imgproc.dir/Debug/cmake_pch.hxx;%(ForcedIncludeFiles)</ForcedIncludeFiles>
+      <ForcedIncludeFiles Condition="'$(Configuration)|$(Platform)'=='Release|x64'">D:/mydoc/CS_Resources/opencv_5.x_new/opencv/cmake-build-debug/modules/imgproc/CMakeFiles/opencv_imgproc.dir/Release/cmake_pch.hxx;%(ForcedIncludeFiles)</ForcedIncludeFiles>
+    </ClCompile>
+    <ClCompile Include="D:\mydoc\CS_Resources\opencv_5.x_new\opencv\modules\imgproc\src\deriv.cpp">
+      <ForcedIncludeFiles Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">D:/mydoc/CS_Resources/opencv_5.x_new/opencv/cmake-build-debug/modules/imgproc/CMakeFiles/opencv_imgproc.dir/Debug/cmake_pch.hxx;%(ForcedIncludeFiles)</ForcedIncludeFiles>
+      <ForcedIncludeFiles Condition="'$(Configuration)|$(Platform)'=='Release|x64'">D:/mydoc/CS_Resources/opencv_5.x_new/opencv/cmake-build-debug/modules/imgproc/CMakeFiles/opencv_imgproc.dir/Release/cmake_pch.hxx;%(ForcedIncludeFiles)</ForcedIncludeFiles>
+    </ClCompile>
+    <ClCompile Include="D:\mydoc\CS_Resources\opencv_5.x_new\opencv\modules\imgproc\src\distransform.cpp">
+      <ForcedIncludeFiles Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">D:/mydoc/CS_Resources/opencv_5.x_new/opencv/cmake-build-debug/modules/imgproc/CMakeFiles/opencv_imgproc.dir/Debug/cmake_pch.hxx;%(ForcedIncludeFiles)</ForcedIncludeFiles>
+      <ForcedIncludeFiles Condition="'$(Configuration)|$(Platform)'=='Release|x64'">D:/mydoc/CS_Resources/opencv_5.x_new/opencv/cmake-build-debug/modules/imgproc/CMakeFiles/opencv_imgproc.dir/Release/cmake_pch.hxx;%(ForcedIncludeFiles)</ForcedIncludeFiles>
+    </ClCompile>
+    <ClCompile Include="D:\mydoc\CS_Resources\opencv_5.x_new\opencv\modules\imgproc\src\drawing.cpp">
+      <ForcedIncludeFiles Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">D:/mydoc/CS_Resources/opencv_5.x_new/opencv/cmake-build-debug/modules/imgproc/CMakeFiles/opencv_imgproc.dir/Debug/cmake_pch.hxx;%(ForcedIncludeFiles)</ForcedIncludeFiles>
+      <ForcedIncludeFiles Condition="'$(Configuration)|$(Platform)'=='Release|x64'">D:/mydoc/CS_Resources/opencv_5.x_new/opencv/cmake-build-debug/modules/imgproc/CMakeFiles/opencv_imgproc.dir/Release/cmake_pch.hxx;%(ForcedIncludeFiles)</ForcedIncludeFiles>
+    </ClCompile>
+    <ClCompile Include="D:\mydoc\CS_Resources\opencv_5.x_new\opencv\modules\imgproc\src\drawing_text.cpp">
+      <ForcedIncludeFiles Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">D:/mydoc/CS_Resources/opencv_5.x_new/opencv/cmake-build-debug/modules/imgproc/CMakeFiles/opencv_imgproc.dir/Debug/cmake_pch.hxx;%(ForcedIncludeFiles)</ForcedIncludeFiles>
+      <ForcedIncludeFiles Condition="'$(Configuration)|$(Platform)'=='Release|x64'">D:/mydoc/CS_Resources/opencv_5.x_new/opencv/cmake-build-debug/modules/imgproc/CMakeFiles/opencv_imgproc.dir/Release/cmake_pch.hxx;%(ForcedIncludeFiles)</ForcedIncludeFiles>
+    </ClCompile>
+    <ClCompile Include="D:\mydoc\CS_Resources\opencv_5.x_new\opencv\modules\imgproc\src\emd.cpp">
+      <ForcedIncludeFiles Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">D:/mydoc/CS_Resources/opencv_5.x_new/opencv/cmake-build-debug/modules/imgproc/CMakeFiles/opencv_imgproc.dir/Debug/cmake_pch.hxx;%(ForcedIncludeFiles)</ForcedIncludeFiles>
+      <ForcedIncludeFiles Condition="'$(Configuration)|$(Platform)'=='Release|x64'">D:/mydoc/CS_Resources/opencv_5.x_new/opencv/cmake-build-debug/modules/imgproc/CMakeFiles/opencv_imgproc.dir/Release/cmake_pch.hxx;%(ForcedIncludeFiles)</ForcedIncludeFiles>
+    </ClCompile>
+    <ClCompile Include="D:\mydoc\CS_Resources\opencv_5.x_new\opencv\modules\imgproc\src\featureselect.cpp">
+      <ForcedIncludeFiles Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">D:/mydoc/CS_Resources/opencv_5.x_new/opencv/cmake-build-debug/modules/imgproc/CMakeFiles/opencv_imgproc.dir/Debug/cmake_pch.hxx;%(ForcedIncludeFiles)</ForcedIncludeFiles>
+      <ForcedIncludeFiles Condition="'$(Configuration)|$(Platform)'=='Release|x64'">D:/mydoc/CS_Resources/opencv_5.x_new/opencv/cmake-build-debug/modules/imgproc/CMakeFiles/opencv_imgproc.dir/Release/cmake_pch.hxx;%(ForcedIncludeFiles)</ForcedIncludeFiles>
+    </ClCompile>
+    <ClCompile Include="D:\mydoc\CS_Resources\opencv_5.x_new\opencv\modules\imgproc\src\filter.dispatch.cpp">
+      <ForcedIncludeFiles Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">D:/mydoc/CS_Resources/opencv_5.x_new/opencv/cmake-build-debug/modules/imgproc/CMakeFiles/opencv_imgproc.dir/Debug/cmake_pch.hxx;%(ForcedIncludeFiles)</ForcedIncludeFiles>
+      <ForcedIncludeFiles Condition="'$(Configuration)|$(Platform)'=='Release|x64'">D:/mydoc/CS_Resources/opencv_5.x_new/opencv/cmake-build-debug/modules/imgproc/CMakeFiles/opencv_imgproc.dir/Release/cmake_pch.hxx;%(ForcedIncludeFiles)</ForcedIncludeFiles>
+    </ClCompile>
+    <ClCompile Include="D:\mydoc\CS_Resources\opencv_5.x_new\opencv\modules\imgproc\src\floodfill.cpp">
+      <ForcedIncludeFiles Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">D:/mydoc/CS_Resources/opencv_5.x_new/opencv/cmake-build-debug/modules/imgproc/CMakeFiles/opencv_imgproc.dir/Debug/cmake_pch.hxx;%(ForcedIncludeFiles)</ForcedIncludeFiles>
+      <ForcedIncludeFiles Condition="'$(Configuration)|$(Platform)'=='Release|x64'">D:/mydoc/CS_Resources/opencv_5.x_new/opencv/cmake-build-debug/modules/imgproc/CMakeFiles/opencv_imgproc.dir/Release/cmake_pch.hxx;%(ForcedIncludeFiles)</ForcedIncludeFiles>
+    </ClCompile>
+    <ClCompile Include="D:\mydoc\CS_Resources\opencv_5.x_new\opencv\modules\imgproc\src\gabor.cpp">
+      <ForcedIncludeFiles Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">D:/mydoc/CS_Resources/opencv_5.x_new/opencv/cmake-build-debug/modules/imgproc/CMakeFiles/opencv_imgproc.dir/Debug/cmake_pch.hxx;%(ForcedIncludeFiles)</ForcedIncludeFiles>
+      <ForcedIncludeFiles Condition="'$(Configuration)|$(Platform)'=='Release|x64'">D:/mydoc/CS_Resources/opencv_5.x_new/opencv/cmake-build-debug/modules/imgproc/CMakeFiles/opencv_imgproc.dir/Release/cmake_pch.hxx;%(ForcedIncludeFiles)</ForcedIncludeFiles>
+    </ClCompile>
+    <ClCompile Include="D:\mydoc\CS_Resources\opencv_5.x_new\opencv\modules\imgproc\src\generalized_hough.cpp">
+      <ForcedIncludeFiles Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">D:/mydoc/CS_Resources/opencv_5.x_new/opencv/cmake-build-debug/modules/imgproc/CMakeFiles/opencv_imgproc.dir/Debug/cmake_pch.hxx;%(ForcedIncludeFiles)</ForcedIncludeFiles>
+      <ForcedIncludeFiles Condition="'$(Configuration)|$(Platform)'=='Release|x64'">D:/mydoc/CS_Resources/opencv_5.x_new/opencv/cmake-build-debug/modules/imgproc/CMakeFiles/opencv_imgproc.dir/Release/cmake_pch.hxx;%(ForcedIncludeFiles)</ForcedIncludeFiles>
+    </ClCompile>
+    <ClCompile Include="D:\mydoc\CS_Resources\opencv_5.x_new\opencv\modules\imgproc\src\geometry.cpp">
+      <ForcedIncludeFiles Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">D:/mydoc/CS_Resources/opencv_5.x_new/opencv/cmake-build-debug/modules/imgproc/CMakeFiles/opencv_imgproc.dir/Debug/cmake_pch.hxx;%(ForcedIncludeFiles)</ForcedIncludeFiles>
+      <ForcedIncludeFiles Condition="'$(Configuration)|$(Platform)'=='Release|x64'">D:/mydoc/CS_Resources/opencv_5.x_new/opencv/cmake-build-debug/modules/imgproc/CMakeFiles/opencv_imgproc.dir/Release/cmake_pch.hxx;%(ForcedIncludeFiles)</ForcedIncludeFiles>
+    </ClCompile>
+    <ClCompile Include="D:\mydoc\CS_Resources\opencv_5.x_new\opencv\modules\imgproc\src\grabcut.cpp">
+      <ForcedIncludeFiles Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">D:/mydoc/CS_Resources/opencv_5.x_new/opencv/cmake-build-debug/modules/imgproc/CMakeFiles/opencv_imgproc.dir/Debug/cmake_pch.hxx;%(ForcedIncludeFiles)</ForcedIncludeFiles>
+      <ForcedIncludeFiles Condition="'$(Configuration)|$(Platform)'=='Release|x64'">D:/mydoc/CS_Resources/opencv_5.x_new/opencv/cmake-build-debug/modules/imgproc/CMakeFiles/opencv_imgproc.dir/Release/cmake_pch.hxx;%(ForcedIncludeFiles)</ForcedIncludeFiles>
+    </ClCompile>
+    <ClCompile Include="D:\mydoc\CS_Resources\opencv_5.x_new\opencv\modules\imgproc\src\histogram.cpp">
+      <ForcedIncludeFiles Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">D:/mydoc/CS_Resources/opencv_5.x_new/opencv/cmake-build-debug/modules/imgproc/CMakeFiles/opencv_imgproc.dir/Debug/cmake_pch.hxx;%(ForcedIncludeFiles)</ForcedIncludeFiles>
+      <ForcedIncludeFiles Condition="'$(Configuration)|$(Platform)'=='Release|x64'">D:/mydoc/CS_Resources/opencv_5.x_new/opencv/cmake-build-debug/modules/imgproc/CMakeFiles/opencv_imgproc.dir/Release/cmake_pch.hxx;%(ForcedIncludeFiles)</ForcedIncludeFiles>
+    </ClCompile>
+    <ClCompile Include="D:\mydoc\CS_Resources\opencv_5.x_new\opencv\modules\imgproc\src\hough.cpp">
+      <ForcedIncludeFiles Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">D:/mydoc/CS_Resources/opencv_5.x_new/opencv/cmake-build-debug/modules/imgproc/CMakeFiles/opencv_imgproc.dir/Debug/cmake_pch.hxx;%(ForcedIncludeFiles)</ForcedIncludeFiles>
+      <ForcedIncludeFiles Condition="'$(Configuration)|$(Platform)'=='Release|x64'">D:/mydoc/CS_Resources/opencv_5.x_new/opencv/cmake-build-debug/modules/imgproc/CMakeFiles/opencv_imgproc.dir/Release/cmake_pch.hxx;%(ForcedIncludeFiles)</ForcedIncludeFiles>
+    </ClCompile>
+    <ClCompile Include="D:\mydoc\CS_Resources\opencv_5.x_new\opencv\modules\imgproc\src\imgwarp.cpp">
+      <ForcedIncludeFiles Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">D:/mydoc/CS_Resources/opencv_5.x_new/opencv/cmake-build-debug/modules/imgproc/CMakeFiles/opencv_imgproc.dir/Debug/cmake_pch.hxx;%(ForcedIncludeFiles)</ForcedIncludeFiles>
+      <ForcedIncludeFiles Condition="'$(Configuration)|$(Platform)'=='Release|x64'">D:/mydoc/CS_Resources/opencv_5.x_new/opencv/cmake-build-debug/modules/imgproc/CMakeFiles/opencv_imgproc.dir/Release/cmake_pch.hxx;%(ForcedIncludeFiles)</ForcedIncludeFiles>
+    </ClCompile>
+    <ClCompile Include="D:\mydoc\CS_Resources\opencv_5.x_new\opencv\modules\imgproc\src\intelligent_scissors.cpp">
+      <ForcedIncludeFiles Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">D:/mydoc/CS_Resources/opencv_5.x_new/opencv/cmake-build-debug/modules/imgproc/CMakeFiles/opencv_imgproc.dir/Debug/cmake_pch.hxx;%(ForcedIncludeFiles)</ForcedIncludeFiles>
+      <ForcedIncludeFiles Condition="'$(Configuration)|$(Platform)'=='Release|x64'">D:/mydoc/CS_Resources/opencv_5.x_new/opencv/cmake-build-debug/modules/imgproc/CMakeFiles/opencv_imgproc.dir/Release/cmake_pch.hxx;%(ForcedIncludeFiles)</ForcedIncludeFiles>
+    </ClCompile>
+    <ClCompile Include="D:\mydoc\CS_Resources\opencv_5.x_new\opencv\modules\imgproc\src\intersection.cpp">
+      <ForcedIncludeFiles Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">D:/mydoc/CS_Resources/opencv_5.x_new/opencv/cmake-build-debug/modules/imgproc/CMakeFiles/opencv_imgproc.dir/Debug/cmake_pch.hxx;%(ForcedIncludeFiles)</ForcedIncludeFiles>
+      <ForcedIncludeFiles Condition="'$(Configuration)|$(Platform)'=='Release|x64'">D:/mydoc/CS_Resources/opencv_5.x_new/opencv/cmake-build-debug/modules/imgproc/CMakeFiles/opencv_imgproc.dir/Release/cmake_pch.hxx;%(ForcedIncludeFiles)</ForcedIncludeFiles>
+    </ClCompile>
+    <ClCompile Include="D:\mydoc\CS_Resources\opencv_5.x_new\opencv\modules\imgproc\src\linefit.cpp">
+      <ForcedIncludeFiles Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">D:/mydoc/CS_Resources/opencv_5.x_new/opencv/cmake-build-debug/modules/imgproc/CMakeFiles/opencv_imgproc.dir/Debug/cmake_pch.hxx;%(ForcedIncludeFiles)</ForcedIncludeFiles>
+      <ForcedIncludeFiles Condition="'$(Configuration)|$(Platform)'=='Release|x64'">D:/mydoc/CS_Resources/opencv_5.x_new/opencv/cmake-build-debug/modules/imgproc/CMakeFiles/opencv_imgproc.dir/Release/cmake_pch.hxx;%(ForcedIncludeFiles)</ForcedIncludeFiles>
+    </ClCompile>
+    <ClCompile Include="D:\mydoc\CS_Resources\opencv_5.x_new\opencv\modules\imgproc\src\lsd.cpp">
+      <ForcedIncludeFiles Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">D:/mydoc/CS_Resources/opencv_5.x_new/opencv/cmake-build-debug/modules/imgproc/CMakeFiles/opencv_imgproc.dir/Debug/cmake_pch.hxx;%(ForcedIncludeFiles)</ForcedIncludeFiles>
+      <ForcedIncludeFiles Condition="'$(Configuration)|$(Platform)'=='Release|x64'">D:/mydoc/CS_Resources/opencv_5.x_new/opencv/cmake-build-debug/modules/imgproc/CMakeFiles/opencv_imgproc.dir/Release/cmake_pch.hxx;%(ForcedIncludeFiles)</ForcedIncludeFiles>
+    </ClCompile>
+    <ClCompile Include="D:\mydoc\CS_Resources\opencv_5.x_new\opencv\modules\imgproc\src\main.cpp">
+      <ForcedIncludeFiles Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">D:/mydoc/CS_Resources/opencv_5.x_new/opencv/cmake-build-debug/modules/imgproc/CMakeFiles/opencv_imgproc.dir/Debug/cmake_pch.hxx;%(ForcedIncludeFiles)</ForcedIncludeFiles>
+      <ForcedIncludeFiles Condition="'$(Configuration)|$(Platform)'=='Release|x64'">D:/mydoc/CS_Resources/opencv_5.x_new/opencv/cmake-build-debug/modules/imgproc/CMakeFiles/opencv_imgproc.dir/Release/cmake_pch.hxx;%(ForcedIncludeFiles)</ForcedIncludeFiles>
+    </ClCompile>
+    <ClCompile Include="D:\mydoc\CS_Resources\opencv_5.x_new\opencv\modules\imgproc\src\matchcontours.cpp">
+      <ForcedIncludeFiles Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">D:/mydoc/CS_Resources/opencv_5.x_new/opencv/cmake-build-debug/modules/imgproc/CMakeFiles/opencv_imgproc.dir/Debug/cmake_pch.hxx;%(ForcedIncludeFiles)</ForcedIncludeFiles>
+      <ForcedIncludeFiles Condition="'$(Configuration)|$(Platform)'=='Release|x64'">D:/mydoc/CS_Resources/opencv_5.x_new/opencv/cmake-build-debug/modules/imgproc/CMakeFiles/opencv_imgproc.dir/Release/cmake_pch.hxx;%(ForcedIncludeFiles)</ForcedIncludeFiles>
+    </ClCompile>
+    <ClCompile Include="D:\mydoc\CS_Resources\opencv_5.x_new\opencv\modules\imgproc\src\median_blur.dispatch.cpp">
+      <ForcedIncludeFiles Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">D:/mydoc/CS_Resources/opencv_5.x_new/opencv/cmake-build-debug/modules/imgproc/CMakeFiles/opencv_imgproc.dir/Debug/cmake_pch.hxx;%(ForcedIncludeFiles)</ForcedIncludeFiles>
+      <ForcedIncludeFiles Condition="'$(Configuration)|$(Platform)'=='Release|x64'">D:/mydoc/CS_Resources/opencv_5.x_new/opencv/cmake-build-debug/modules/imgproc/CMakeFiles/opencv_imgproc.dir/Release/cmake_pch.hxx;%(ForcedIncludeFiles)</ForcedIncludeFiles>
+    </ClCompile>
+    <ClCompile Include="D:\mydoc\CS_Resources\opencv_5.x_new\opencv\modules\imgproc\src\min_enclosing_triangle.cpp">
+      <ForcedIncludeFiles Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">D:/mydoc/CS_Resources/opencv_5.x_new/opencv/cmake-build-debug/modules/imgproc/CMakeFiles/opencv_imgproc.dir/Debug/cmake_pch.hxx;%(ForcedIncludeFiles)</ForcedIncludeFiles>
+      <ForcedIncludeFiles Condition="'$(Configuration)|$(Platform)'=='Release|x64'">D:/mydoc/CS_Resources/opencv_5.x_new/opencv/cmake-build-debug/modules/imgproc/CMakeFiles/opencv_imgproc.dir/Release/cmake_pch.hxx;%(ForcedIncludeFiles)</ForcedIncludeFiles>
+    </ClCompile>
+    <ClCompile Include="D:\mydoc\CS_Resources\opencv_5.x_new\opencv\modules\imgproc\src\moments.cpp">
+      <ForcedIncludeFiles Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">D:/mydoc/CS_Resources/opencv_5.x_new/opencv/cmake-build-debug/modules/imgproc/CMakeFiles/opencv_imgproc.dir/Debug/cmake_pch.hxx;%(ForcedIncludeFiles)</ForcedIncludeFiles>
+      <ForcedIncludeFiles Condition="'$(Configuration)|$(Platform)'=='Release|x64'">D:/mydoc/CS_Resources/opencv_5.x_new/opencv/cmake-build-debug/modules/imgproc/CMakeFiles/opencv_imgproc.dir/Release/cmake_pch.hxx;%(ForcedIncludeFiles)</ForcedIncludeFiles>
+    </ClCompile>
+    <ClCompile Include="D:\mydoc\CS_Resources\opencv_5.x_new\opencv\modules\imgproc\src\morph.dispatch.cpp">
+      <ForcedIncludeFiles Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">D:/mydoc/CS_Resources/opencv_5.x_new/opencv/cmake-build-debug/modules/imgproc/CMakeFiles/opencv_imgproc.dir/Debug/cmake_pch.hxx;%(ForcedIncludeFiles)</ForcedIncludeFiles>
+      <ForcedIncludeFiles Condition="'$(Configuration)|$(Platform)'=='Release|x64'">D:/mydoc/CS_Resources/opencv_5.x_new/opencv/cmake-build-debug/modules/imgproc/CMakeFiles/opencv_imgproc.dir/Release/cmake_pch.hxx;%(ForcedIncludeFiles)</ForcedIncludeFiles>
+    </ClCompile>
+    <ClCompile Include="D:\mydoc\CS_Resources\opencv_5.x_new\opencv\modules\imgproc\src\phasecorr.cpp">
+      <ForcedIncludeFiles Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">D:/mydoc/CS_Resources/opencv_5.x_new/opencv/cmake-build-debug/modules/imgproc/CMakeFiles/opencv_imgproc.dir/Debug/cmake_pch.hxx;%(ForcedIncludeFiles)</ForcedIncludeFiles>
+      <ForcedIncludeFiles Condition="'$(Configuration)|$(Platform)'=='Release|x64'">D:/mydoc/CS_Resources/opencv_5.x_new/opencv/cmake-build-debug/modules/imgproc/CMakeFiles/opencv_imgproc.dir/Release/cmake_pch.hxx;%(ForcedIncludeFiles)</ForcedIncludeFiles>
+    </ClCompile>
+    <ClCompile Include="D:\mydoc\CS_Resources\opencv_5.x_new\opencv\modules\imgproc\src\pyramids.cpp">
+      <ForcedIncludeFiles Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">D:/mydoc/CS_Resources/opencv_5.x_new/opencv/cmake-build-debug/modules/imgproc/CMakeFiles/opencv_imgproc.dir/Debug/cmake_pch.hxx;%(ForcedIncludeFiles)</ForcedIncludeFiles>
+      <ForcedIncludeFiles Condition="'$(Configuration)|$(Platform)'=='Release|x64'">D:/mydoc/CS_Resources/opencv_5.x_new/opencv/cmake-build-debug/modules/imgproc/CMakeFiles/opencv_imgproc.dir/Release/cmake_pch.hxx;%(ForcedIncludeFiles)</ForcedIncludeFiles>
+    </ClCompile>
+    <ClCompile Include="D:\mydoc\CS_Resources\opencv_5.x_new\opencv\modules\imgproc\src\resize.cpp">
+      <ForcedIncludeFiles Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">D:/mydoc/CS_Resources/opencv_5.x_new/opencv/cmake-build-debug/modules/imgproc/CMakeFiles/opencv_imgproc.dir/Debug/cmake_pch.hxx;%(ForcedIncludeFiles)</ForcedIncludeFiles>
+      <ForcedIncludeFiles Condition="'$(Configuration)|$(Platform)'=='Release|x64'">D:/mydoc/CS_Resources/opencv_5.x_new/opencv/cmake-build-debug/modules/imgproc/CMakeFiles/opencv_imgproc.dir/Release/cmake_pch.hxx;%(ForcedIncludeFiles)</ForcedIncludeFiles>
+    </ClCompile>
+    <ClCompile Include="D:\mydoc\CS_Resources\opencv_5.x_new\opencv\modules\imgproc\src\rotcalipers.cpp">
+      <ForcedIncludeFiles Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">D:/mydoc/CS_Resources/opencv_5.x_new/opencv/cmake-build-debug/modules/imgproc/CMakeFiles/opencv_imgproc.dir/Debug/cmake_pch.hxx;%(ForcedIncludeFiles)</ForcedIncludeFiles>
+      <ForcedIncludeFiles Condition="'$(Configuration)|$(Platform)'=='Release|x64'">D:/mydoc/CS_Resources/opencv_5.x_new/opencv/cmake-build-debug/modules/imgproc/CMakeFiles/opencv_imgproc.dir/Release/cmake_pch.hxx;%(ForcedIncludeFiles)</ForcedIncludeFiles>
+    </ClCompile>
+    <ClCompile Include="D:\mydoc\CS_Resources\opencv_5.x_new\opencv\modules\imgproc\src\samplers.cpp">
+      <ForcedIncludeFiles Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">D:/mydoc/CS_Resources/opencv_5.x_new/opencv/cmake-build-debug/modules/imgproc/CMakeFiles/opencv_imgproc.dir/Debug/cmake_pch.hxx;%(ForcedIncludeFiles)</ForcedIncludeFiles>
+      <ForcedIncludeFiles Condition="'$(Configuration)|$(Platform)'=='Release|x64'">D:/mydoc/CS_Resources/opencv_5.x_new/opencv/cmake-build-debug/modules/imgproc/CMakeFiles/opencv_imgproc.dir/Release/cmake_pch.hxx;%(ForcedIncludeFiles)</ForcedIncludeFiles>
+    </ClCompile>
+    <ClCompile Include="D:\mydoc\CS_Resources\opencv_5.x_new\opencv\modules\imgproc\src\segmentation.cpp">
+      <ForcedIncludeFiles Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">D:/mydoc/CS_Resources/opencv_5.x_new/opencv/cmake-build-debug/modules/imgproc/CMakeFiles/opencv_imgproc.dir/Debug/cmake_pch.hxx;%(ForcedIncludeFiles)</ForcedIncludeFiles>
+      <ForcedIncludeFiles Condition="'$(Configuration)|$(Platform)'=='Release|x64'">D:/mydoc/CS_Resources/opencv_5.x_new/opencv/cmake-build-debug/modules/imgproc/CMakeFiles/opencv_imgproc.dir/Release/cmake_pch.hxx;%(ForcedIncludeFiles)</ForcedIncludeFiles>
+    </ClCompile>
+    <ClCompile Include="D:\mydoc\CS_Resources\opencv_5.x_new\opencv\modules\imgproc\src\shapedescr.cpp">
+      <ForcedIncludeFiles Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">D:/mydoc/CS_Resources/opencv_5.x_new/opencv/cmake-build-debug/modules/imgproc/CMakeFiles/opencv_imgproc.dir/Debug/cmake_pch.hxx;%(ForcedIncludeFiles)</ForcedIncludeFiles>
+      <ForcedIncludeFiles Condition="'$(Configuration)|$(Platform)'=='Release|x64'">D:/mydoc/CS_Resources/opencv_5.x_new/opencv/cmake-build-debug/modules/imgproc/CMakeFiles/opencv_imgproc.dir/Release/cmake_pch.hxx;%(ForcedIncludeFiles)</ForcedIncludeFiles>
+    </ClCompile>
+    <ClCompile Include="D:\mydoc\CS_Resources\opencv_5.x_new\opencv\modules\imgproc\src\smooth.dispatch.cpp">
+      <ForcedIncludeFiles Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">D:/mydoc/CS_Resources/opencv_5.x_new/opencv/cmake-build-debug/modules/imgproc/CMakeFiles/opencv_imgproc.dir/Debug/cmake_pch.hxx;%(ForcedIncludeFiles)</ForcedIncludeFiles>
+      <ForcedIncludeFiles Condition="'$(Configuration)|$(Platform)'=='Release|x64'">D:/mydoc/CS_Resources/opencv_5.x_new/opencv/cmake-build-debug/modules/imgproc/CMakeFiles/opencv_imgproc.dir/Release/cmake_pch.hxx;%(ForcedIncludeFiles)</ForcedIncludeFiles>
+    </ClCompile>
+    <ClCompile Include="D:\mydoc\CS_Resources\opencv_5.x_new\opencv\modules\imgproc\src\spatialgradient.cpp">
+      <ForcedIncludeFiles Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">D:/mydoc/CS_Resources/opencv_5.x_new/opencv/cmake-build-debug/modules/imgproc/CMakeFiles/opencv_imgproc.dir/Debug/cmake_pch.hxx;%(ForcedIncludeFiles)</ForcedIncludeFiles>
+      <ForcedIncludeFiles Condition="'$(Configuration)|$(Platform)'=='Release|x64'">D:/mydoc/CS_Resources/opencv_5.x_new/opencv/cmake-build-debug/modules/imgproc/CMakeFiles/opencv_imgproc.dir/Release/cmake_pch.hxx;%(ForcedIncludeFiles)</ForcedIncludeFiles>
+    </ClCompile>
+    <ClCompile Include="D:\mydoc\CS_Resources\opencv_5.x_new\opencv\modules\imgproc\src\stackblur.cpp">
+      <ForcedIncludeFiles Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">D:/mydoc/CS_Resources/opencv_5.x_new/opencv/cmake-build-debug/modules/imgproc/CMakeFiles/opencv_imgproc.dir/Debug/cmake_pch.hxx;%(ForcedIncludeFiles)</ForcedIncludeFiles>
+      <ForcedIncludeFiles Condition="'$(Configuration)|$(Platform)'=='Release|x64'">D:/mydoc/CS_Resources/opencv_5.x_new/opencv/cmake-build-debug/modules/imgproc/CMakeFiles/opencv_imgproc.dir/Release/cmake_pch.hxx;%(ForcedIncludeFiles)</ForcedIncludeFiles>
+    </ClCompile>
+    <ClCompile Include="D:\mydoc\CS_Resources\opencv_5.x_new\opencv\modules\imgproc\src\stb_truetype.cpp">
+      <ForcedIncludeFiles Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">D:/mydoc/CS_Resources/opencv_5.x_new/opencv/cmake-build-debug/modules/imgproc/CMakeFiles/opencv_imgproc.dir/Debug/cmake_pch.hxx;%(ForcedIncludeFiles)</ForcedIncludeFiles>
+      <ForcedIncludeFiles Condition="'$(Configuration)|$(Platform)'=='Release|x64'">D:/mydoc/CS_Resources/opencv_5.x_new/opencv/cmake-build-debug/modules/imgproc/CMakeFiles/opencv_imgproc.dir/Release/cmake_pch.hxx;%(ForcedIncludeFiles)</ForcedIncludeFiles>
+    </ClCompile>
+    <ClCompile Include="D:\mydoc\CS_Resources\opencv_5.x_new\opencv\modules\imgproc\src\subdivision2d.cpp">
+      <ForcedIncludeFiles Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">D:/mydoc/CS_Resources/opencv_5.x_new/opencv/cmake-build-debug/modules/imgproc/CMakeFiles/opencv_imgproc.dir/Debug/cmake_pch.hxx;%(ForcedIncludeFiles)</ForcedIncludeFiles>
+      <ForcedIncludeFiles Condition="'$(Configuration)|$(Platform)'=='Release|x64'">D:/mydoc/CS_Resources/opencv_5.x_new/opencv/cmake-build-debug/modules/imgproc/CMakeFiles/opencv_imgproc.dir/Release/cmake_pch.hxx;%(ForcedIncludeFiles)</ForcedIncludeFiles>
+    </ClCompile>
+    <ClCompile Include="D:\mydoc\CS_Resources\opencv_5.x_new\opencv\modules\imgproc\src\sumpixels.dispatch.cpp">
+      <ForcedIncludeFiles Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">D:/mydoc/CS_Resources/opencv_5.x_new/opencv/cmake-build-debug/modules/imgproc/CMakeFiles/opencv_imgproc.dir/Debug/cmake_pch.hxx;%(ForcedIncludeFiles)</ForcedIncludeFiles>
+      <ForcedIncludeFiles Condition="'$(Configuration)|$(Platform)'=='Release|x64'">D:/mydoc/CS_Resources/opencv_5.x_new/opencv/cmake-build-debug/modules/imgproc/CMakeFiles/opencv_imgproc.dir/Release/cmake_pch.hxx;%(ForcedIncludeFiles)</ForcedIncludeFiles>
+    </ClCompile>
+    <ClCompile Include="D:\mydoc\CS_Resources\opencv_5.x_new\opencv\modules\imgproc\src\tables.cpp">
+      <ForcedIncludeFiles Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">D:/mydoc/CS_Resources/opencv_5.x_new/opencv/cmake-build-debug/modules/imgproc/CMakeFiles/opencv_imgproc.dir/Debug/cmake_pch.hxx;%(ForcedIncludeFiles)</ForcedIncludeFiles>
+      <ForcedIncludeFiles Condition="'$(Configuration)|$(Platform)'=='Release|x64'">D:/mydoc/CS_Resources/opencv_5.x_new/opencv/cmake-build-debug/modules/imgproc/CMakeFiles/opencv_imgproc.dir/Release/cmake_pch.hxx;%(ForcedIncludeFiles)</ForcedIncludeFiles>
+    </ClCompile>
+    <ClCompile Include="D:\mydoc\CS_Resources\opencv_5.x_new\opencv\modules\imgproc\src\templmatch.cpp">
+      <ForcedIncludeFiles Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">D:/mydoc/CS_Resources/opencv_5.x_new/opencv/cmake-build-debug/modules/imgproc/CMakeFiles/opencv_imgproc.dir/Debug/cmake_pch.hxx;%(ForcedIncludeFiles)</ForcedIncludeFiles>
+      <ForcedIncludeFiles Condition="'$(Configuration)|$(Platform)'=='Release|x64'">D:/mydoc/CS_Resources/opencv_5.x_new/opencv/cmake-build-debug/modules/imgproc/CMakeFiles/opencv_imgproc.dir/Release/cmake_pch.hxx;%(ForcedIncludeFiles)</ForcedIncludeFiles>
+    </ClCompile>
+    <ClCompile Include="D:\mydoc\CS_Resources\opencv_5.x_new\opencv\modules\imgproc\src\thresh.cpp">
+      <ForcedIncludeFiles Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">D:/mydoc/CS_Resources/opencv_5.x_new/opencv/cmake-build-debug/modules/imgproc/CMakeFiles/opencv_imgproc.dir/Debug/cmake_pch.hxx;%(ForcedIncludeFiles)</ForcedIncludeFiles>
+      <ForcedIncludeFiles Condition="'$(Configuration)|$(Platform)'=='Release|x64'">D:/mydoc/CS_Resources/opencv_5.x_new/opencv/cmake-build-debug/modules/imgproc/CMakeFiles/opencv_imgproc.dir/Release/cmake_pch.hxx;%(ForcedIncludeFiles)</ForcedIncludeFiles>
+    </ClCompile>
+    <ClCompile Include="D:\mydoc\CS_Resources\opencv_5.x_new\opencv\modules\imgproc\src\utils.cpp">
+      <ForcedIncludeFiles Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">D:/mydoc/CS_Resources/opencv_5.x_new/opencv/cmake-build-debug/modules/imgproc/CMakeFiles/opencv_imgproc.dir/Debug/cmake_pch.hxx;%(ForcedIncludeFiles)</ForcedIncludeFiles>
+      <ForcedIncludeFiles Condition="'$(Configuration)|$(Platform)'=='Release|x64'">D:/mydoc/CS_Resources/opencv_5.x_new/opencv/cmake-build-debug/modules/imgproc/CMakeFiles/opencv_imgproc.dir/Release/cmake_pch.hxx;%(ForcedIncludeFiles)</ForcedIncludeFiles>
+    </ClCompile>
+    <None Include="D:\mydoc\CS_Resources\opencv_5.x_new\opencv\modules\imgproc\src\opencl\accumulate.cl">
+    </None>
+    <None Include="D:\mydoc\CS_Resources\opencv_5.x_new\opencv\modules\imgproc\src\opencl\bilateral.cl">
+    </None>
+    <None Include="D:\mydoc\CS_Resources\opencv_5.x_new\opencv\modules\imgproc\src\opencl\blend_linear.cl">
+    </None>
+    <None Include="D:\mydoc\CS_Resources\opencv_5.x_new\opencv\modules\imgproc\src\opencl\boxFilter.cl">
+    </None>
+    <None Include="D:\mydoc\CS_Resources\opencv_5.x_new\opencv\modules\imgproc\src\opencl\boxFilter3x3.cl">
+    </None>
+    <None Include="D:\mydoc\CS_Resources\opencv_5.x_new\opencv\modules\imgproc\src\opencl\calc_back_project.cl">
+    </None>
+    <None Include="D:\mydoc\CS_Resources\opencv_5.x_new\opencv\modules\imgproc\src\opencl\canny.cl">
+    </None>
+    <None Include="D:\mydoc\CS_Resources\opencv_5.x_new\opencv\modules\imgproc\src\opencl\clahe.cl">
+    </None>
+    <None Include="D:\mydoc\CS_Resources\opencv_5.x_new\opencv\modules\imgproc\src\opencl\color_hsv.cl">
+    </None>
+    <None Include="D:\mydoc\CS_Resources\opencv_5.x_new\opencv\modules\imgproc\src\opencl\color_lab.cl">
+    </None>
+    <None Include="D:\mydoc\CS_Resources\opencv_5.x_new\opencv\modules\imgproc\src\opencl\color_rgb.cl">
+    </None>
+    <None Include="D:\mydoc\CS_Resources\opencv_5.x_new\opencv\modules\imgproc\src\opencl\color_yuv.cl">
+    </None>
+    <None Include="D:\mydoc\CS_Resources\opencv_5.x_new\opencv\modules\imgproc\src\opencl\corner.cl">
+    </None>
+    <None Include="D:\mydoc\CS_Resources\opencv_5.x_new\opencv\modules\imgproc\src\opencl\covardata.cl">
+    </None>
+    <None Include="D:\mydoc\CS_Resources\opencv_5.x_new\opencv\modules\imgproc\src\opencl\filter2D.cl">
+    </None>
+    <None Include="D:\mydoc\CS_Resources\opencv_5.x_new\opencv\modules\imgproc\src\opencl\filter2DSmall.cl">
+    </None>
+    <None Include="D:\mydoc\CS_Resources\opencv_5.x_new\opencv\modules\imgproc\src\opencl\filterSepCol.cl">
+    </None>
+    <None Include="D:\mydoc\CS_Resources\opencv_5.x_new\opencv\modules\imgproc\src\opencl\filterSepRow.cl">
+    </None>
+    <None Include="D:\mydoc\CS_Resources\opencv_5.x_new\opencv\modules\imgproc\src\opencl\filterSep_singlePass.cl">
+    </None>
+    <None Include="D:\mydoc\CS_Resources\opencv_5.x_new\opencv\modules\imgproc\src\opencl\filterSmall.cl">
+    </None>
+    <None Include="D:\mydoc\CS_Resources\opencv_5.x_new\opencv\modules\imgproc\src\opencl\gaussianBlur3x3.cl">
+    </None>
+    <None Include="D:\mydoc\CS_Resources\opencv_5.x_new\opencv\modules\imgproc\src\opencl\gaussianBlur5x5.cl">
+    </None>
+    <None Include="D:\mydoc\CS_Resources\opencv_5.x_new\opencv\modules\imgproc\src\opencl\gftt.cl">
+    </None>
+    <None Include="D:\mydoc\CS_Resources\opencv_5.x_new\opencv\modules\imgproc\src\opencl\histogram.cl">
+    </None>
+    <None Include="D:\mydoc\CS_Resources\opencv_5.x_new\opencv\modules\imgproc\src\opencl\hough_lines.cl">
+    </None>
+    <None Include="D:\mydoc\CS_Resources\opencv_5.x_new\opencv\modules\imgproc\src\opencl\integral_sum.cl">
+    </None>
+    <None Include="D:\mydoc\CS_Resources\opencv_5.x_new\opencv\modules\imgproc\src\opencl\laplacian3.cl">
+    </None>
+    <None Include="D:\mydoc\CS_Resources\opencv_5.x_new\opencv\modules\imgproc\src\opencl\laplacian5.cl">
+    </None>
+    <None Include="D:\mydoc\CS_Resources\opencv_5.x_new\opencv\modules\imgproc\src\opencl\linearPolar.cl">
+    </None>
+    <None Include="D:\mydoc\CS_Resources\opencv_5.x_new\opencv\modules\imgproc\src\opencl\logPolar.cl">
+    </None>
+    <None Include="D:\mydoc\CS_Resources\opencv_5.x_new\opencv\modules\imgproc\src\opencl\match_template.cl">
+    </None>
+    <None Include="D:\mydoc\CS_Resources\opencv_5.x_new\opencv\modules\imgproc\src\opencl\medianFilter.cl">
+    </None>
+    <None Include="D:\mydoc\CS_Resources\opencv_5.x_new\opencv\modules\imgproc\src\opencl\moments.cl">
+    </None>
+    <None Include="D:\mydoc\CS_Resources\opencv_5.x_new\opencv\modules\imgproc\src\opencl\morph.cl">
+    </None>
+    <None Include="D:\mydoc\CS_Resources\opencv_5.x_new\opencv\modules\imgproc\src\opencl\morph3x3.cl">
+    </None>
+    <None Include="D:\mydoc\CS_Resources\opencv_5.x_new\opencv\modules\imgproc\src\opencl\precornerdetect.cl">
+    </None>
+    <None Include="D:\mydoc\CS_Resources\opencv_5.x_new\opencv\modules\imgproc\src\opencl\pyr_down.cl">
+    </None>
+    <None Include="D:\mydoc\CS_Resources\opencv_5.x_new\opencv\modules\imgproc\src\opencl\pyr_up.cl">
+    </None>
+    <None Include="D:\mydoc\CS_Resources\opencv_5.x_new\opencv\modules\imgproc\src\opencl\pyramid_up.cl">
+    </None>
+    <None Include="D:\mydoc\CS_Resources\opencv_5.x_new\opencv\modules\imgproc\src\opencl\remap.cl">
+    </None>
+    <None Include="D:\mydoc\CS_Resources\opencv_5.x_new\opencv\modules\imgproc\src\opencl\resize.cl">
+    </None>
+    <None Include="D:\mydoc\CS_Resources\opencv_5.x_new\opencv\modules\imgproc\src\opencl\sepFilter3x3.cl">
+    </None>
+    <None Include="D:\mydoc\CS_Resources\opencv_5.x_new\opencv\modules\imgproc\src\opencl\threshold.cl">
+    </None>
+    <None Include="D:\mydoc\CS_Resources\opencv_5.x_new\opencv\modules\imgproc\src\opencl\warp_affine.cl">
+    </None>
+    <None Include="D:\mydoc\CS_Resources\opencv_5.x_new\opencv\modules\imgproc\src\opencl\warp_perspective.cl">
+    </None>
+    <None Include="D:\mydoc\CS_Resources\opencv_5.x_new\opencv\modules\imgproc\src\opencl\warp_transform.cl">
+    </None>
+    <ClCompile Include="D:\mydoc\CS_Resources\opencv_5.x_new\opencv\cmake-build-debug\modules\imgproc\opencl_kernels_imgproc.cpp">
+      <ForcedIncludeFiles Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">D:/mydoc/CS_Resources/opencv_5.x_new/opencv/cmake-build-debug/modules/imgproc/CMakeFiles/opencv_imgproc.dir/Debug/cmake_pch.hxx;%(ForcedIncludeFiles)</ForcedIncludeFiles>
+      <ForcedIncludeFiles Condition="'$(Configuration)|$(Platform)'=='Release|x64'">D:/mydoc/CS_Resources/opencv_5.x_new/opencv/cmake-build-debug/modules/imgproc/CMakeFiles/opencv_imgproc.dir/Release/cmake_pch.hxx;%(ForcedIncludeFiles)</ForcedIncludeFiles>
+    </ClCompile>
+    <ClInclude Include="D:\mydoc\CS_Resources\opencv_5.x_new\opencv\cmake-build-debug\modules\imgproc\opencl_kernels_imgproc.hpp" />
+    <ClInclude Include="D:\mydoc\CS_Resources\opencv_5.x_new\opencv\modules\imgproc\src\_geom.h" />
+    <ClInclude Include="D:\mydoc\CS_Resources\opencv_5.x_new\opencv\modules\imgproc\src\accum.simd.hpp" />
+    <ClInclude Include="D:\mydoc\CS_Resources\opencv_5.x_new\opencv\modules\imgproc\src\bilateral_filter.simd.hpp" />
+    <ClInclude Include="D:\mydoc\CS_Resources\opencv_5.x_new\opencv\modules\imgproc\src\box_filter.simd.hpp" />
+    <ClInclude Include="D:\mydoc\CS_Resources\opencv_5.x_new\opencv\modules\imgproc\src\ccl_bolelli_forest.inc.hpp" />
+    <ClInclude Include="D:\mydoc\CS_Resources\opencv_5.x_new\opencv\modules\imgproc\src\ccl_bolelli_forest_firstline.inc.hpp" />
+    <ClInclude Include="D:\mydoc\CS_Resources\opencv_5.x_new\opencv\modules\imgproc\src\ccl_bolelli_forest_lastline.inc.hpp" />
+    <ClInclude Include="D:\mydoc\CS_Resources\opencv_5.x_new\opencv\modules\imgproc\src\ccl_bolelli_forest_singleline.inc.hpp" />
+    <ClInclude Include="D:\mydoc\CS_Resources\opencv_5.x_new\opencv\modules\imgproc\src\color.hpp" />
+    <ClInclude Include="D:\mydoc\CS_Resources\opencv_5.x_new\opencv\modules\imgproc\src\color.simd_helpers.hpp" />
+    <ClInclude Include="D:\mydoc\CS_Resources\opencv_5.x_new\opencv\modules\imgproc\src\color_hsv.simd.hpp" />
+    <ClInclude Include="D:\mydoc\CS_Resources\opencv_5.x_new\opencv\modules\imgproc\src\color_rgb.simd.hpp" />
+    <ClInclude Include="D:\mydoc\CS_Resources\opencv_5.x_new\opencv\modules\imgproc\src\color_yuv.simd.hpp" />
+    <ClInclude Include="D:\mydoc\CS_Resources\opencv_5.x_new\opencv\modules\imgproc\src\corner.hpp" />
+    <ClInclude Include="D:\mydoc\CS_Resources\opencv_5.x_new\opencv\modules\imgproc\src\filter.hpp" />
+    <ClInclude Include="D:\mydoc\CS_Resources\opencv_5.x_new\opencv\modules\imgproc\src\filter.simd.hpp" />
+    <ClInclude Include="D:\mydoc\CS_Resources\opencv_5.x_new\opencv\modules\imgproc\src\filterengine.hpp" />
+    <ClInclude Include="D:\mydoc\CS_Resources\opencv_5.x_new\opencv\modules\imgproc\src\fixedpoint.inl.hpp" />
+    <ClInclude Include="D:\mydoc\CS_Resources\opencv_5.x_new\opencv\modules\imgproc\src\hal_replacement.hpp" />
+    <ClInclude Include="D:\mydoc\CS_Resources\opencv_5.x_new\opencv\modules\imgproc\src\imgwarp.hpp" />
+    <ClInclude Include="D:\mydoc\CS_Resources\opencv_5.x_new\opencv\modules\imgproc\src\median_blur.simd.hpp" />
+    <ClInclude Include="D:\mydoc\CS_Resources\opencv_5.x_new\opencv\modules\imgproc\src\morph.simd.hpp" />
+    <ClInclude Include="D:\mydoc\CS_Resources\opencv_5.x_new\opencv\modules\imgproc\src\precomp.hpp" />
+    <ClInclude Include="D:\mydoc\CS_Resources\opencv_5.x_new\opencv\modules\imgproc\src\resize.hpp" />
+    <ClInclude Include="D:\mydoc\CS_Resources\opencv_5.x_new\opencv\modules\imgproc\src\smooth.simd.hpp" />
+    <ClInclude Include="D:\mydoc\CS_Resources\opencv_5.x_new\opencv\modules\imgproc\src\stb_truetype.hpp" />
+    <ClInclude Include="D:\mydoc\CS_Resources\opencv_5.x_new\opencv\modules\imgproc\src\sumpixels.avx512_skx.hpp" />
+    <ClInclude Include="D:\mydoc\CS_Resources\opencv_5.x_new\opencv\modules\imgproc\src\sumpixels.simd.hpp" />
+    <Object Include="D:\mydoc\CS_Resources\opencv_5.x_new\opencv\cmake-build-debug\modules\imgproc\opencv_imgproc_SSE4_1.dir\$(Configuration)\imgwarp.sse4_1.obj" />
+    <Object Include="D:\mydoc\CS_Resources\opencv_5.x_new\opencv\cmake-build-debug\modules\imgproc\opencv_imgproc_SSE4_1.dir\$(Configuration)\resize.sse4_1.obj" />
+    <Object Include="D:\mydoc\CS_Resources\opencv_5.x_new\opencv\cmake-build-debug\modules\imgproc\opencv_imgproc_SSE4_1.dir\$(Configuration)\accum.sse4_1.obj" />
+    <Object Include="D:\mydoc\CS_Resources\opencv_5.x_new\opencv\cmake-build-debug\modules\imgproc\opencv_imgproc_SSE4_1.dir\$(Configuration)\box_filter.sse4_1.obj" />
+    <Object Include="D:\mydoc\CS_Resources\opencv_5.x_new\opencv\cmake-build-debug\modules\imgproc\opencv_imgproc_SSE4_1.dir\$(Configuration)\filter.sse4_1.obj" />
+    <Object Include="D:\mydoc\CS_Resources\opencv_5.x_new\opencv\cmake-build-debug\modules\imgproc\opencv_imgproc_SSE4_1.dir\$(Configuration)\color_hsv.sse4_1.obj" />
+    <Object Include="D:\mydoc\CS_Resources\opencv_5.x_new\opencv\cmake-build-debug\modules\imgproc\opencv_imgproc_SSE4_1.dir\$(Configuration)\color_rgb.sse4_1.obj" />
+    <Object Include="D:\mydoc\CS_Resources\opencv_5.x_new\opencv\cmake-build-debug\modules\imgproc\opencv_imgproc_SSE4_1.dir\$(Configuration)\color_yuv.sse4_1.obj" />
+    <Object Include="D:\mydoc\CS_Resources\opencv_5.x_new\opencv\cmake-build-debug\modules\imgproc\opencv_imgproc_SSE4_1.dir\$(Configuration)\median_blur.sse4_1.obj" />
+    <Object Include="D:\mydoc\CS_Resources\opencv_5.x_new\opencv\cmake-build-debug\modules\imgproc\opencv_imgproc_SSE4_1.dir\$(Configuration)\morph.sse4_1.obj" />
+    <Object Include="D:\mydoc\CS_Resources\opencv_5.x_new\opencv\cmake-build-debug\modules\imgproc\opencv_imgproc_SSE4_1.dir\$(Configuration)\smooth.sse4_1.obj" />
+    <Object Include="D:\mydoc\CS_Resources\opencv_5.x_new\opencv\cmake-build-debug\modules\imgproc\opencv_imgproc_AVX.dir\$(Configuration)\corner.avx.obj" />
+    <Object Include="D:\mydoc\CS_Resources\opencv_5.x_new\opencv\cmake-build-debug\modules\imgproc\opencv_imgproc_AVX.dir\$(Configuration)\accum.avx.obj" />
+    <Object Include="D:\mydoc\CS_Resources\opencv_5.x_new\opencv\cmake-build-debug\modules\imgproc\opencv_imgproc_AVX2.dir\$(Configuration)\imgwarp.avx2.obj" />
+    <Object Include="D:\mydoc\CS_Resources\opencv_5.x_new\opencv\cmake-build-debug\modules\imgproc\opencv_imgproc_AVX2.dir\$(Configuration)\resize.avx2.obj" />
+    <Object Include="D:\mydoc\CS_Resources\opencv_5.x_new\opencv\cmake-build-debug\modules\imgproc\opencv_imgproc_AVX2.dir\$(Configuration)\accum.avx2.obj" />
+    <Object Include="D:\mydoc\CS_Resources\opencv_5.x_new\opencv\cmake-build-debug\modules\imgproc\opencv_imgproc_AVX2.dir\$(Configuration)\bilateral_filter.avx2.obj" />
+    <Object Include="D:\mydoc\CS_Resources\opencv_5.x_new\opencv\cmake-build-debug\modules\imgproc\opencv_imgproc_AVX2.dir\$(Configuration)\box_filter.avx2.obj" />
+    <Object Include="D:\mydoc\CS_Resources\opencv_5.x_new\opencv\cmake-build-debug\modules\imgproc\opencv_imgproc_AVX2.dir\$(Configuration)\filter.avx2.obj" />
+    <Object Include="D:\mydoc\CS_Resources\opencv_5.x_new\opencv\cmake-build-debug\modules\imgproc\opencv_imgproc_AVX2.dir\$(Configuration)\color_hsv.avx2.obj" />
+    <Object Include="D:\mydoc\CS_Resources\opencv_5.x_new\opencv\cmake-build-debug\modules\imgproc\opencv_imgproc_AVX2.dir\$(Configuration)\color_rgb.avx2.obj" />
+    <Object Include="D:\mydoc\CS_Resources\opencv_5.x_new\opencv\cmake-build-debug\modules\imgproc\opencv_imgproc_AVX2.dir\$(Configuration)\color_yuv.avx2.obj" />
+    <Object Include="D:\mydoc\CS_Resources\opencv_5.x_new\opencv\cmake-build-debug\modules\imgproc\opencv_imgproc_AVX2.dir\$(Configuration)\median_blur.avx2.obj" />
+    <Object Include="D:\mydoc\CS_Resources\opencv_5.x_new\opencv\cmake-build-debug\modules\imgproc\opencv_imgproc_AVX2.dir\$(Configuration)\morph.avx2.obj" />
+    <Object Include="D:\mydoc\CS_Resources\opencv_5.x_new\opencv\cmake-build-debug\modules\imgproc\opencv_imgproc_AVX2.dir\$(Configuration)\smooth.avx2.obj" />
+    <Object Include="D:\mydoc\CS_Resources\opencv_5.x_new\opencv\cmake-build-debug\modules\imgproc\opencv_imgproc_AVX2.dir\$(Configuration)\sumpixels.avx2.obj" />
+    <Object Include="D:\mydoc\CS_Resources\opencv_5.x_new\opencv\cmake-build-debug\modules\imgproc\opencv_imgproc_AVX512_SKX.dir\$(Configuration)\sumpixels.avx512_skx.obj" />
+    <ClInclude Include="D:\mydoc\CS_Resources\opencv_5.x_new\opencv\cmake-build-debug\cvconfig.h" />
+    <ClInclude Include="D:\mydoc\CS_Resources\opencv_5.x_new\opencv\cmake-build-debug\opencv2\opencv_modules.hpp" />
+    <ResourceCompile Include="D:\mydoc\CS_Resources\opencv_5.x_new\opencv\cmake-build-debug\modules\imgproc\vs_version.rc">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">NotUsing</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">NotUsing</PrecompiledHeader>
+    </ResourceCompile>
+    <ClCompile Include="D:\mydoc\CS_Resources\opencv_5.x_new\opencv\cmake-build-debug\modules\imgproc\opencv_imgproc_main.cpp">
+      <ForcedIncludeFiles Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">D:/mydoc/CS_Resources/opencv_5.x_new/opencv/cmake-build-debug/modules/imgproc/CMakeFiles/opencv_imgproc.dir/Debug/cmake_pch.hxx;%(ForcedIncludeFiles)</ForcedIncludeFiles>
+      <ForcedIncludeFiles Condition="'$(Configuration)|$(Platform)'=='Release|x64'">D:/mydoc/CS_Resources/opencv_5.x_new/opencv/cmake-build-debug/modules/imgproc/CMakeFiles/opencv_imgproc.dir/Release/cmake_pch.hxx;%(ForcedIncludeFiles)</ForcedIncludeFiles>
+    </ClCompile>
+    <ClInclude Include="D:\mydoc\CS_Resources\opencv_5.x_new\opencv\cmake-build-debug\modules\imgproc\CMakeFiles\opencv_imgproc.dir\Debug\cmake_pch.hxx" />
+    <ClInclude Include="D:\mydoc\CS_Resources\opencv_5.x_new\opencv\cmake-build-debug\modules\imgproc\CMakeFiles\opencv_imgproc.dir\Release\cmake_pch.hxx" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="D:\mydoc\CS_Resources\opencv_5.x_new\opencv\cmake-build-debug\ZERO_CHECK.vcxproj">
+      <Project>{981EC7F0-4740-333A-967F-CF930711AAEA}</Project>
+      <Name>ZERO_CHECK</Name>
+      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </ProjectReference>
+    <ProjectReference Include="D:\mydoc\CS_Resources\opencv_5.x_new\opencv\cmake-build-debug\3rdparty\ippiw\ippiw.vcxproj">
+      <Project>{2030F5D6-E72D-3114-9E7B-431EB1C58128}</Project>
+      <Name>ippiw</Name>
+    </ProjectReference>
+    <ProjectReference Include="D:\mydoc\CS_Resources\opencv_5.x_new\opencv\cmake-build-debug\modules\core\opencv_core.vcxproj">
+      <Project>{F85D4F71-7434-3A8E-AAF5-3FFA60F3DEB0}</Project>
+      <Name>opencv_core</Name>
+    </ProjectReference>
+    <ProjectReference Include="D:\mydoc\CS_Resources\opencv_5.x_new\opencv\cmake-build-debug\modules\imgproc\opencv_imgproc_AVX.vcxproj">
+      <Project>{4513C5B7-0D46-30F6-A6CF-71BBD746348E}</Project>
+      <Name>opencv_imgproc_AVX</Name>
+      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </ProjectReference>
+    <ProjectReference Include="D:\mydoc\CS_Resources\opencv_5.x_new\opencv\cmake-build-debug\modules\imgproc\opencv_imgproc_AVX2.vcxproj">
+      <Project>{BE8236CC-E826-32EF-91D1-DF90B01558A1}</Project>
+      <Name>opencv_imgproc_AVX2</Name>
+      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </ProjectReference>
+    <ProjectReference Include="D:\mydoc\CS_Resources\opencv_5.x_new\opencv\cmake-build-debug\modules\imgproc\opencv_imgproc_AVX512_SKX.vcxproj">
+      <Project>{48B40973-0300-37C4-87FD-97C298B76DA5}</Project>
+      <Name>opencv_imgproc_AVX512_SKX</Name>
+      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </ProjectReference>
+    <ProjectReference Include="D:\mydoc\CS_Resources\opencv_5.x_new\opencv\cmake-build-debug\modules\imgproc\opencv_imgproc_SSE4_1.vcxproj">
+      <Project>{6CCFC72F-36EF-361E-A356-A44D7A559439}</Project>
+      <Name>opencv_imgproc_SSE4_1</Name>
+      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </ProjectReference>
+    <ProjectReference Include="D:\mydoc\CS_Resources\opencv_5.x_new\opencv\cmake-build-debug\3rdparty\zlib\zlib.vcxproj">
+      <Project>{18E8FD7B-9CF7-3793-A14D-EA12C5D30A11}</Project>
+      <Name>zlib</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>

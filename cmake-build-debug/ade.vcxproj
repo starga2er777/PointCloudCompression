@@ -1,0 +1,245 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="16.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <PreferredToolArchitecture>x64</PreferredToolArchitecture>
+  </PropertyGroup>
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|x64">
+      <Configuration>Debug</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|x64">
+      <Configuration>Release</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectGuid>{4129A9E1-8098-3C9E-8D37-7D71354D9EBF}</ProjectGuid>
+    <Keyword>Win32Proj</Keyword>
+    <WindowsTargetPlatformVersion>10.0.18362.0</WindowsTargetPlatformVersion>
+    <Platform>x64</Platform>
+    <ProjectName>ade</ProjectName>
+    <VCProjectUpgraderObjectName>NoUpgrade</VCProjectUpgraderObjectName>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
+    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <CharacterSet>MultiByte</CharacterSet>
+    <PlatformToolset>v142</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
+    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <CharacterSet>MultiByte</CharacterSet>
+    <PlatformToolset>v142</PlatformToolset>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup>
+    <_ProjectFileVersion>10.0.20506.1</_ProjectFileVersion>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">D:\mydoc\CS_Resources\opencv_5.x_new\opencv\cmake-build-debug\3rdparty\lib\Debug\</OutDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">ade.dir\Debug\</IntDir>
+    <TargetName Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">aded</TargetName>
+    <TargetExt Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">.lib</TargetExt>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='Release|x64'">D:\mydoc\CS_Resources\opencv_5.x_new\opencv\cmake-build-debug\3rdparty\lib\Release\</OutDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='Release|x64'">ade.dir\Release\</IntDir>
+    <TargetName Condition="'$(Configuration)|$(Platform)'=='Release|x64'">ade</TargetName>
+    <TargetExt Condition="'$(Configuration)|$(Platform)'=='Release|x64'">.lib</TargetExt>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <ClCompile>
+      <AdditionalIncludeDirectories>D:\mydoc\CS_Resources\opencv_5.x_new\opencv\3rdparty\clapack\include;D:\mydoc\CS_Resources\opencv_5.x_new\opencv\cmake-build-debug\3rdparty\ippicv\ippicv_win\icv\include;D:\mydoc\CS_Resources\opencv_5.x_new\opencv\cmake-build-debug\3rdparty\ippicv\ippicv_win\iw\include;D:\mydoc\CS_Resources\opencv_5.x_new\opencv\cmake-build-debug;D:\mydoc\CS_Resources\opencv_5.x_new\opencv\cmake-build-debug\3rdparty\ade\ade-0.1.2a\sources\ade\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalOptions>%(AdditionalOptions) /bigobj</AdditionalOptions>
+      <AssemblerListingLocation>$(IntDir)</AssemblerListingLocation>
+      <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+      <DisableSpecificWarnings>4127;4251;4324;4275;4512;4589;4819</DisableSpecificWarnings>
+      <ExceptionHandling>Async</ExceptionHandling>
+      <FloatingPointModel>Precise</FloatingPointModel>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <InlineFunctionExpansion>Disabled</InlineFunctionExpansion>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <MultiProcessorCompilation>true</MultiProcessorCompilation>
+      <Optimization>Disabled</Optimization>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+      <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
+      <RuntimeTypeInfo>true</RuntimeTypeInfo>
+      <UseFullPaths>false</UseFullPaths>
+      <WarningLevel>Level4</WarningLevel>
+      <PreprocessorDefinitions>%(PreprocessorDefinitions);WIN32;_WINDOWS;_CRT_SECURE_NO_DEPRECATE;_CRT_NONSTDC_NO_DEPRECATE;_SCL_SECURE_NO_WARNINGS;_VARIADIC_MAX=10;_WIN32_WINNT=0x0601;CMAKE_INTDIR="Debug"</PreprocessorDefinitions>
+      <ObjectFileName>$(IntDir)</ObjectFileName>
+      <ProgramDataBaseFileName>D:\mydoc\CS_Resources\opencv_5.x_new\opencv\cmake-build-debug\3rdparty\lib\Debug\aded.pdb</ProgramDataBaseFileName>
+    </ClCompile>
+    <ResourceCompile>
+      <PreprocessorDefinitions>%(PreprocessorDefinitions);WIN32;_DEBUG;_WINDOWS;_CRT_SECURE_NO_DEPRECATE;_CRT_NONSTDC_NO_DEPRECATE;_SCL_SECURE_NO_WARNINGS;_VARIADIC_MAX=10;_WIN32_WINNT=0x0601;CMAKE_INTDIR=\"Debug\"</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>D:\mydoc\CS_Resources\opencv_5.x_new\opencv\3rdparty\clapack\include;D:\mydoc\CS_Resources\opencv_5.x_new\opencv\cmake-build-debug\3rdparty\ippicv\ippicv_win\icv\include;D:\mydoc\CS_Resources\opencv_5.x_new\opencv\cmake-build-debug\3rdparty\ippicv\ippicv_win\iw\include;D:\mydoc\CS_Resources\opencv_5.x_new\opencv\cmake-build-debug;D:\mydoc\CS_Resources\opencv_5.x_new\opencv\cmake-build-debug\3rdparty\ade\ade-0.1.2a\sources\ade\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ResourceCompile>
+    <Midl>
+      <AdditionalIncludeDirectories>D:\mydoc\CS_Resources\opencv_5.x_new\opencv\3rdparty\clapack\include;D:\mydoc\CS_Resources\opencv_5.x_new\opencv\cmake-build-debug\3rdparty\ippicv\ippicv_win\icv\include;D:\mydoc\CS_Resources\opencv_5.x_new\opencv\cmake-build-debug\3rdparty\ippicv\ippicv_win\iw\include;D:\mydoc\CS_Resources\opencv_5.x_new\opencv\cmake-build-debug;D:\mydoc\CS_Resources\opencv_5.x_new\opencv\cmake-build-debug\3rdparty\ade\ade-0.1.2a\sources\ade\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <OutputDirectory>$(ProjectDir)/$(IntDir)</OutputDirectory>
+      <HeaderFileName>%(Filename).h</HeaderFileName>
+      <TypeLibraryName>%(Filename).tlb</TypeLibraryName>
+      <InterfaceIdentifierFileName>%(Filename)_i.c</InterfaceIdentifierFileName>
+      <ProxyFileName>%(Filename)_p.c</ProxyFileName>
+    </Midl>
+    <Lib>
+      <AdditionalOptions>%(AdditionalOptions) /machine:x64 /IGNORE:4221</AdditionalOptions>
+    </Lib>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <ClCompile>
+      <AdditionalIncludeDirectories>D:\mydoc\CS_Resources\opencv_5.x_new\opencv\3rdparty\clapack\include;D:\mydoc\CS_Resources\opencv_5.x_new\opencv\cmake-build-debug\3rdparty\ippicv\ippicv_win\icv\include;D:\mydoc\CS_Resources\opencv_5.x_new\opencv\cmake-build-debug\3rdparty\ippicv\ippicv_win\iw\include;D:\mydoc\CS_Resources\opencv_5.x_new\opencv\cmake-build-debug;D:\mydoc\CS_Resources\opencv_5.x_new\opencv\cmake-build-debug\3rdparty\ade\ade-0.1.2a\sources\ade\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalOptions>%(AdditionalOptions) /bigobj</AdditionalOptions>
+      <AssemblerListingLocation>$(IntDir)</AssemblerListingLocation>
+      <DisableSpecificWarnings>4127;4251;4324;4275;4512;4589;4819</DisableSpecificWarnings>
+      <ExceptionHandling>Async</ExceptionHandling>
+      <FloatingPointModel>Precise</FloatingPointModel>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <InlineFunctionExpansion>AnySuitable</InlineFunctionExpansion>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <MultiProcessorCompilation>true</MultiProcessorCompilation>
+      <Optimization>MaxSpeed</Optimization>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
+      <RuntimeTypeInfo>true</RuntimeTypeInfo>
+      <UseFullPaths>false</UseFullPaths>
+      <WarningLevel>Level4</WarningLevel>
+      <PreprocessorDefinitions>%(PreprocessorDefinitions);WIN32;_WINDOWS;_CRT_SECURE_NO_DEPRECATE;_CRT_NONSTDC_NO_DEPRECATE;_SCL_SECURE_NO_WARNINGS;NDEBUG;_VARIADIC_MAX=10;_WIN32_WINNT=0x0601;CMAKE_INTDIR="Release"</PreprocessorDefinitions>
+      <ObjectFileName>$(IntDir)</ObjectFileName>
+      <DebugInformationFormat>
+      </DebugInformationFormat>
+      <ProgramDataBaseFileName>D:\mydoc\CS_Resources\opencv_5.x_new\opencv\cmake-build-debug\3rdparty\lib\Release\ade.pdb</ProgramDataBaseFileName>
+    </ClCompile>
+    <ResourceCompile>
+      <PreprocessorDefinitions>%(PreprocessorDefinitions);WIN32;_WINDOWS;_CRT_SECURE_NO_DEPRECATE;_CRT_NONSTDC_NO_DEPRECATE;_SCL_SECURE_NO_WARNINGS;NDEBUG;_VARIADIC_MAX=10;_WIN32_WINNT=0x0601;CMAKE_INTDIR=\"Release\"</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>D:\mydoc\CS_Resources\opencv_5.x_new\opencv\3rdparty\clapack\include;D:\mydoc\CS_Resources\opencv_5.x_new\opencv\cmake-build-debug\3rdparty\ippicv\ippicv_win\icv\include;D:\mydoc\CS_Resources\opencv_5.x_new\opencv\cmake-build-debug\3rdparty\ippicv\ippicv_win\iw\include;D:\mydoc\CS_Resources\opencv_5.x_new\opencv\cmake-build-debug;D:\mydoc\CS_Resources\opencv_5.x_new\opencv\cmake-build-debug\3rdparty\ade\ade-0.1.2a\sources\ade\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ResourceCompile>
+    <Midl>
+      <AdditionalIncludeDirectories>D:\mydoc\CS_Resources\opencv_5.x_new\opencv\3rdparty\clapack\include;D:\mydoc\CS_Resources\opencv_5.x_new\opencv\cmake-build-debug\3rdparty\ippicv\ippicv_win\icv\include;D:\mydoc\CS_Resources\opencv_5.x_new\opencv\cmake-build-debug\3rdparty\ippicv\ippicv_win\iw\include;D:\mydoc\CS_Resources\opencv_5.x_new\opencv\cmake-build-debug;D:\mydoc\CS_Resources\opencv_5.x_new\opencv\cmake-build-debug\3rdparty\ade\ade-0.1.2a\sources\ade\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <OutputDirectory>$(ProjectDir)/$(IntDir)</OutputDirectory>
+      <HeaderFileName>%(Filename).h</HeaderFileName>
+      <TypeLibraryName>%(Filename).tlb</TypeLibraryName>
+      <InterfaceIdentifierFileName>%(Filename)_i.c</InterfaceIdentifierFileName>
+      <ProxyFileName>%(Filename)_p.c</ProxyFileName>
+    </Midl>
+    <Lib>
+      <AdditionalOptions>%(AdditionalOptions) /machine:x64 /IGNORE:4221</AdditionalOptions>
+    </Lib>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <CustomBuild Include="D:\mydoc\CS_Resources\opencv_5.x_new\opencv\CMakeLists.txt">
+      <StdOutEncoding>UTF-8</StdOutEncoding>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Building Custom Rule D:/mydoc/CS_Resources/opencv_5.x_new/opencv/CMakeLists.txt</Message>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">setlocal
+"D:\CLion 2022.2.1\bin\cmake\win\bin\cmake.exe" -SD:/mydoc/CS_Resources/opencv_5.x_new/opencv -BD:/mydoc/CS_Resources/opencv_5.x_new/opencv/cmake-build-debug --check-stamp-file D:/mydoc/CS_Resources/opencv_5.x_new/opencv/cmake-build-debug/CMakeFiles/generate.stamp
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd</Command>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">D:\CLion 2022.2.1\bin\cmake\win\share\cmake-3.23\Modules\CMakeCInformation.cmake;D:\CLion 2022.2.1\bin\cmake\win\share\cmake-3.23\Modules\CMakeCXXInformation.cmake;D:\CLion 2022.2.1\bin\cmake\win\share\cmake-3.23\Modules\CMakeCheckCompilerFlagCommonPatterns.cmake;D:\CLion 2022.2.1\bin\cmake\win\share\cmake-3.23\Modules\CMakeCommonLanguageInclude.cmake;D:\CLion 2022.2.1\bin\cmake\win\share\cmake-3.23\Modules\CMakeFindJavaCommon.cmake;D:\CLion 2022.2.1\bin\cmake\win\share\cmake-3.23\Modules\CMakeGenericSystem.cmake;D:\CLion 2022.2.1\bin\cmake\win\share\cmake-3.23\Modules\CMakeInitializeConfigs.cmake;D:\CLion 2022.2.1\bin\cmake\win\share\cmake-3.23\Modules\CMakeLanguageInformation.cmake;D:\CLion 2022.2.1\bin\cmake\win\share\cmake-3.23\Modules\CMakeParseArguments.cmake;D:\CLion 2022.2.1\bin\cmake\win\share\cmake-3.23\Modules\CMakeRCInformation.cmake;D:\CLion 2022.2.1\bin\cmake\win\share\cmake-3.23\Modules\CMakeSystemSpecificInformation.cmake;D:\CLion 2022.2.1\bin\cmake\win\share\cmake-3.23\Modules\CMakeSystemSpecificInitialize.cmake;D:\CLion 2022.2.1\bin\cmake\win\share\cmake-3.23\Modules\CPack.cmake;D:\CLion 2022.2.1\bin\cmake\win\share\cmake-3.23\Modules\CPackComponent.cmake;D:\CLion 2022.2.1\bin\cmake\win\share\cmake-3.23\Modules\CheckCCompilerFlag.cmake;D:\CLion 2022.2.1\bin\cmake\win\share\cmake-3.23\Modules\CheckCSourceCompiles.cmake;D:\CLion 2022.2.1\bin\cmake\win\share\cmake-3.23\Modules\CheckCXXCompilerFlag.cmake;D:\CLion 2022.2.1\bin\cmake\win\share\cmake-3.23\Modules\CheckCXXSourceCompiles.cmake;D:\CLion 2022.2.1\bin\cmake\win\share\cmake-3.23\Modules\CheckIncludeFile.cmake;D:\CLion 2022.2.1\bin\cmake\win\share\cmake-3.23\Modules\CheckIncludeFileCXX.cmake;D:\CLion 2022.2.1\bin\cmake\win\share\cmake-3.23\Modules\CheckLibraryExists.cmake;D:\CLion 2022.2.1\bin\cmake\win\share\cmake-3.23\Modules\CheckSymbolExists.cmake;D:\CLion 2022.2.1\bin\cmake\win\share\cmake-3.23\Modules\CheckTypeSize.cmake;D:\CLion 2022.2.1\bin\cmake\win\share\cmake-3.23\Modules\Compiler\CMakeCommonCompilerMacros.cmake;D:\CLion 2022.2.1\bin\cmake\win\share\cmake-3.23\Modules\Compiler\MSVC-C.cmake;D:\CLion 2022.2.1\bin\cmake\win\share\cmake-3.23\Modules\Compiler\MSVC-CXX.cmake;D:\CLion 2022.2.1\bin\cmake\win\share\cmake-3.23\Modules\ExternalData.cmake;D:\CLion 2022.2.1\bin\cmake\win\share\cmake-3.23\Modules\FindGit.cmake;D:\CLion 2022.2.1\bin\cmake\win\share\cmake-3.23\Modules\FindJNI.cmake;D:\CLion 2022.2.1\bin\cmake\win\share\cmake-3.23\Modules\FindPackageHandleStandardArgs.cmake;D:\CLion 2022.2.1\bin\cmake\win\share\cmake-3.23\Modules\FindPackageMessage.cmake;D:\CLion 2022.2.1\bin\cmake\win\share\cmake-3.23\Modules\FindPythonInterp.cmake;D:\CLion 2022.2.1\bin\cmake\win\share\cmake-3.23\Modules\FindThreads.cmake;D:\CLion 2022.2.1\bin\cmake\win\share\cmake-3.23\Modules\GenerateExportHeader.cmake;D:\CLion 2022.2.1\bin\cmake\win\share\cmake-3.23\Modules\Internal\CheckCompilerFlag.cmake;D:\CLion 2022.2.1\bin\cmake\win\share\cmake-3.23\Modules\Internal\CheckFlagCommonConfig.cmake;D:\CLion 2022.2.1\bin\cmake\win\share\cmake-3.23\Modules\Internal\CheckSourceCompiles.cmake;D:\CLion 2022.2.1\bin\cmake\win\share\cmake-3.23\Modules\Platform\Windows-MSVC-C.cmake;D:\CLion 2022.2.1\bin\cmake\win\share\cmake-3.23\Modules\Platform\Windows-MSVC-CXX.cmake;D:\CLion 2022.2.1\bin\cmake\win\share\cmake-3.23\Modules\Platform\Windows-MSVC.cmake;D:\CLion 2022.2.1\bin\cmake\win\share\cmake-3.23\Modules\Platform\Windows.cmake;D:\CLion 2022.2.1\bin\cmake\win\share\cmake-3.23\Modules\Platform\WindowsPaths.cmake;D:\CLion 2022.2.1\bin\cmake\win\share\cmake-3.23\Modules\TestBigEndian.cmake;D:\CLion 2022.2.1\bin\cmake\win\share\cmake-3.23\Templates\CPackConfig.cmake.in;D:\mydoc\CS_Resources\PCL_1.12.1\3rdParty\VTK\lib\cmake\vtk-9.1\VTK-targets-debug.cmake;D:\mydoc\CS_Resources\PCL_1.12.1\3rdParty\VTK\lib\cmake\vtk-9.1\VTK-targets-release.cmake;D:\mydoc\CS_Resources\PCL_1.12.1\3rdParty\VTK\lib\cmake\vtk-9.1\VTK-targets.cmake;D:\mydoc\CS_Resources\PCL_1.12.1\3rdParty\VTK\lib\cmake\vtk-9.1\VTK-vtk-module-find-packages.cmake;D:\mydoc\CS_Resources\PCL_1.12.1\3rdParty\VTK\lib\cmake\vtk-9.1\VTK-vtk-module-properties.cmake;D:\mydoc\CS_Resources\PCL_1.12.1\3rdParty\VTK\lib\cmake\vtk-9.1\patches\99\FindOpenGL.cmake;D:\mydoc\CS_Resources\PCL_1.12.1\3rdParty\VTK\lib\cmake\vtk-9.1\vtk-config-version.cmake;D:\mydoc\CS_Resources\PCL_1.12.1\3rdParty\VTK\lib\cmake\vtk-9.1\vtk-config.cmake;D:\mydoc\CS_Resources\PCL_1.12.1\3rdParty\VTK\lib\cmake\vtk-9.1\vtk-prefix.cmake;D:\mydoc\CS_Resources\PCL_1.12.1\3rdParty\VTK\lib\cmake\vtk-9.1\vtkCMakeBackports.cmake;D:\mydoc\CS_Resources\PCL_1.12.1\3rdParty\VTK\lib\cmake\vtk-9.1\vtkEncodeString.cmake;D:\mydoc\CS_Resources\PCL_1.12.1\3rdParty\VTK\lib\cmake\vtk-9.1\vtkHashSource.cmake;D:\mydoc\CS_Resources\PCL_1.12.1\3rdParty\VTK\lib\cmake\vtk-9.1\vtkModule.cmake;D:\mydoc\CS_Resources\PCL_1.12.1\3rdParty\VTK\lib\cmake\vtk-9.1\vtkModuleJson.cmake;D:\mydoc\CS_Resources\PCL_1.12.1\3rdParty\VTK\lib\cmake\vtk-9.1\vtkModuleTesting.cmake;D:\mydoc\CS_Resources\PCL_1.12.1\3rdParty\VTK\lib\cmake\vtk-9.1\vtkObjectFactory.cmake;D:\mydoc\CS_Resources\PCL_1.12.1\3rdParty\VTK\lib\cmake\vtk-9.1\vtkTopologicalSort.cmake;D:\mydoc\CS_Resources\opencv_5.x_new\opencv\3rdparty\ffmpeg\ffmpeg.cmake;D:\mydoc\CS_Resources\opencv_5.x_new\opencv\3rdparty\ippicv\ippicv.cmake;D:\mydoc\CS_Resources\opencv_5.x_new\opencv\cmake-build-debug\3rdparty\ffmpeg\ffmpeg_version.cmake;D:\mydoc\CS_Resources\opencv_5.x_new\opencv\cmake-build-debug\CMakeFiles\3.23.2\CMakeCCompiler.cmake;D:\mydoc\CS_Resources\opencv_5.x_new\opencv\cmake-build-debug\CMakeFiles\3.23.2\CMakeCXXCompiler.cmake;D:\mydoc\CS_Resources\opencv_5.x_new\opencv\cmake-build-debug\CMakeFiles\3.23.2\CMakeRCCompiler.cmake;D:\mydoc\CS_Resources\opencv_5.x_new\opencv\cmake-build-debug\CMakeFiles\3.23.2\CMakeSystem.cmake;D:\mydoc\CS_Resources\opencv_5.x_new\opencv\cmake\OpenCVCRTLinkage.cmake;D:\mydoc\CS_Resources\opencv_5.x_new\opencv\cmake\OpenCVCompilerOptimizations.cmake;D:\mydoc\CS_Resources\opencv_5.x_new\opencv\cmake\OpenCVCompilerOptions.cmake;D:\mydoc\CS_Resources\opencv_5.x_new\opencv\cmake\OpenCVDetectApacheAnt.cmake;D:\mydoc\CS_Resources\opencv_5.x_new\opencv\cmake\OpenCVDetectCXXCompiler.cmake;D:\mydoc\CS_Resources\opencv_5.x_new\opencv\cmake\OpenCVDetectDirectX.cmake;D:\mydoc\CS_Resources\opencv_5.x_new\opencv\cmake\OpenCVDetectOpenCL.cmake;D:\mydoc\CS_Resources\opencv_5.x_new\opencv\cmake\OpenCVDetectPython.cmake;D:\mydoc\CS_Resources\opencv_5.x_new\opencv\cmake\OpenCVDetectTrace.cmake;D:\mydoc\CS_Resources\opencv_5.x_new\opencv\cmake\OpenCVDetectVTK.cmake;D:\mydoc\CS_Resources\opencv_5.x_new\opencv\cmake\OpenCVDownload.cmake;D:\mydoc\CS_Resources\opencv_5.x_new\opencv\cmake\OpenCVExtraTargets.cmake;D:\mydoc\CS_Resources\opencv_5.x_new\opencv\cmake\OpenCVFindFrameworks.cmake;D:\mydoc\CS_Resources\opencv_5.x_new\opencv\cmake\OpenCVFindIPP.cmake;D:\mydoc\CS_Resources\opencv_5.x_new\opencv\cmake\OpenCVFindIPPIW.cmake;D:\mydoc\CS_Resources\opencv_5.x_new\opencv\cmake\OpenCVFindLAPACK.cmake;D:\mydoc\CS_Resources\opencv_5.x_new\opencv\cmake\OpenCVFindLibsGUI.cmake;D:\mydoc\CS_Resources\opencv_5.x_new\opencv\cmake\OpenCVFindLibsGrfmt.cmake;D:\mydoc\CS_Resources\opencv_5.x_new\opencv\cmake\OpenCVFindLibsPerf.cmake;D:\mydoc\CS_Resources\opencv_5.x_new\opencv\cmake\OpenCVFindLibsVideo.cmake;D:\mydoc\CS_Resources\opencv_5.x_new\opencv\cmake\OpenCVFindOpenEXR.cmake;D:\mydoc\CS_Resources\opencv_5.x_new\opencv\cmake\OpenCVFindProtobuf.cmake;D:\mydoc\CS_Resources\opencv_5.x_new\opencv\cmake\OpenCVGenABI.cmake;D:\mydoc\CS_Resources\opencv_5.x_new\opencv\cmake\OpenCVGenAndroidMK.cmake;D:\mydoc\CS_Resources\opencv_5.x_new\opencv\cmake\OpenCVGenConfig.cmake;D:\mydoc\CS_Resources\opencv_5.x_new\opencv\cmake\OpenCVGenHeaders.cmake;D:\mydoc\CS_Resources\opencv_5.x_new\opencv\cmake\OpenCVGenSetupVars.cmake;D:\mydoc\CS_Resources\opencv_5.x_new\opencv\cmake\OpenCVInstallLayout.cmake;D:\mydoc\CS_Resources\opencv_5.x_new\opencv\cmake\OpenCVMinDepVersions.cmake;D:\mydoc\CS_Resources\opencv_5.x_new\opencv\cmake\OpenCVModule.cmake;D:\mydoc\CS_Resources\opencv_5.x_new\opencv\cmake\OpenCVPCHSupport.cmake;D:\mydoc\CS_Resources\opencv_5.x_new\opencv\cmake\OpenCVPackaging.cmake;D:\mydoc\CS_Resources\opencv_5.x_new\opencv\cmake\OpenCVUtils.cmake;D:\mydoc\CS_Resources\opencv_5.x_new\opencv\cmake\OpenCVVersion.cmake;D:\mydoc\CS_Resources\opencv_5.x_new\opencv\cmake\checks\directx.cpp;D:\mydoc\CS_Resources\opencv_5.x_new\opencv\cmake\checks\opencl.cpp;D:\mydoc\CS_Resources\opencv_5.x_new\opencv\cmake\checks\vtk_test.cpp;D:\mydoc\CS_Resources\opencv_5.x_new\opencv\cmake\checks\win32uitest.cpp;D:\mydoc\CS_Resources\opencv_5.x_new\opencv\cmake\platforms\OpenCV-Windows.cmake;D:\mydoc\CS_Resources\opencv_5.x_new\opencv\cmake\templates\OpenCVConfig-version.cmake.in;D:\mydoc\CS_Resources\opencv_5.x_new\opencv\cmake\templates\OpenCVConfig.cmake.in;D:\mydoc\CS_Resources\opencv_5.x_new\opencv\cmake\templates\OpenCVConfig.root-WIN32.cmake.in;D:\mydoc\CS_Resources\opencv_5.x_new\opencv\cmake\templates\cmake_uninstall.cmake.in;D:\mydoc\CS_Resources\opencv_5.x_new\opencv\cmake\templates\custom_hal.hpp.in;D:\mydoc\CS_Resources\opencv_5.x_new\opencv\cmake\templates\cv_cpu_config.h.in;D:\mydoc\CS_Resources\opencv_5.x_new\opencv\cmake\templates\cvconfig.h.in;D:\mydoc\CS_Resources\opencv_5.x_new\opencv\cmake\templates\opencv_modules.hpp.in;D:\mydoc\CS_Resources\opencv_5.x_new\opencv\cmake\templates\setup_vars_win32.cmd.in;D:\mydoc\CS_Resources\opencv_5.x_new\opencv\cmake\vars\EnableModeVars.cmake;D:\mydoc\CS_Resources\opencv_5.x_new\opencv\modules\core\include\opencv2\core\version.hpp;D:\mydoc\CS_Resources\opencv_5.x_new\opencv\modules\dnn\cmake\init.cmake;D:\mydoc\CS_Resources\opencv_5.x_new\opencv\modules\gapi\cmake\DownloadADE.cmake;D:\mydoc\CS_Resources\opencv_5.x_new\opencv\modules\gapi\cmake\init.cmake;D:\mydoc\CS_Resources\opencv_5.x_new\opencv\modules\highgui\cmake\detect_win32ui.cmake;D:\mydoc\CS_Resources\opencv_5.x_new\opencv\modules\highgui\cmake\init.cmake;D:\mydoc\CS_Resources\opencv_5.x_new\opencv\modules\videoio\cmake\detect_dc1394.cmake;D:\mydoc\CS_Resources\opencv_5.x_new\opencv\modules\videoio\cmake\detect_dshow.cmake;D:\mydoc\CS_Resources\opencv_5.x_new\opencv\modules\videoio\cmake\detect_ffmpeg.cmake;D:\mydoc\CS_Resources\opencv_5.x_new\opencv\modules\videoio\cmake\detect_gstreamer.cmake;D:\mydoc\CS_Resources\opencv_5.x_new\opencv\modules\videoio\cmake\detect_msmf.cmake;D:\mydoc\CS_Resources\opencv_5.x_new\opencv\modules\videoio\cmake\detect_obsensor.cmake;D:\mydoc\CS_Resources\opencv_5.x_new\opencv\modules\videoio\cmake\init.cmake;%(AdditionalInputs)</AdditionalInputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">D:\mydoc\CS_Resources\opencv_5.x_new\opencv\cmake-build-debug\CMakeFiles\generate.stamp</Outputs>
+      <LinkObjects Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</LinkObjects>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Building Custom Rule D:/mydoc/CS_Resources/opencv_5.x_new/opencv/CMakeLists.txt</Message>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Release|x64'">setlocal
+"D:\CLion 2022.2.1\bin\cmake\win\bin\cmake.exe" -SD:/mydoc/CS_Resources/opencv_5.x_new/opencv -BD:/mydoc/CS_Resources/opencv_5.x_new/opencv/cmake-build-debug --check-stamp-file D:/mydoc/CS_Resources/opencv_5.x_new/opencv/cmake-build-debug/CMakeFiles/generate.stamp
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd</Command>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Release|x64'">D:\CLion 2022.2.1\bin\cmake\win\share\cmake-3.23\Modules\CMakeCInformation.cmake;D:\CLion 2022.2.1\bin\cmake\win\share\cmake-3.23\Modules\CMakeCXXInformation.cmake;D:\CLion 2022.2.1\bin\cmake\win\share\cmake-3.23\Modules\CMakeCheckCompilerFlagCommonPatterns.cmake;D:\CLion 2022.2.1\bin\cmake\win\share\cmake-3.23\Modules\CMakeCommonLanguageInclude.cmake;D:\CLion 2022.2.1\bin\cmake\win\share\cmake-3.23\Modules\CMakeFindJavaCommon.cmake;D:\CLion 2022.2.1\bin\cmake\win\share\cmake-3.23\Modules\CMakeGenericSystem.cmake;D:\CLion 2022.2.1\bin\cmake\win\share\cmake-3.23\Modules\CMakeInitializeConfigs.cmake;D:\CLion 2022.2.1\bin\cmake\win\share\cmake-3.23\Modules\CMakeLanguageInformation.cmake;D:\CLion 2022.2.1\bin\cmake\win\share\cmake-3.23\Modules\CMakeParseArguments.cmake;D:\CLion 2022.2.1\bin\cmake\win\share\cmake-3.23\Modules\CMakeRCInformation.cmake;D:\CLion 2022.2.1\bin\cmake\win\share\cmake-3.23\Modules\CMakeSystemSpecificInformation.cmake;D:\CLion 2022.2.1\bin\cmake\win\share\cmake-3.23\Modules\CMakeSystemSpecificInitialize.cmake;D:\CLion 2022.2.1\bin\cmake\win\share\cmake-3.23\Modules\CPack.cmake;D:\CLion 2022.2.1\bin\cmake\win\share\cmake-3.23\Modules\CPackComponent.cmake;D:\CLion 2022.2.1\bin\cmake\win\share\cmake-3.23\Modules\CheckCCompilerFlag.cmake;D:\CLion 2022.2.1\bin\cmake\win\share\cmake-3.23\Modules\CheckCSourceCompiles.cmake;D:\CLion 2022.2.1\bin\cmake\win\share\cmake-3.23\Modules\CheckCXXCompilerFlag.cmake;D:\CLion 2022.2.1\bin\cmake\win\share\cmake-3.23\Modules\CheckCXXSourceCompiles.cmake;D:\CLion 2022.2.1\bin\cmake\win\share\cmake-3.23\Modules\CheckIncludeFile.cmake;D:\CLion 2022.2.1\bin\cmake\win\share\cmake-3.23\Modules\CheckIncludeFileCXX.cmake;D:\CLion 2022.2.1\bin\cmake\win\share\cmake-3.23\Modules\CheckLibraryExists.cmake;D:\CLion 2022.2.1\bin\cmake\win\share\cmake-3.23\Modules\CheckSymbolExists.cmake;D:\CLion 2022.2.1\bin\cmake\win\share\cmake-3.23\Modules\CheckTypeSize.cmake;D:\CLion 2022.2.1\bin\cmake\win\share\cmake-3.23\Modules\Compiler\CMakeCommonCompilerMacros.cmake;D:\CLion 2022.2.1\bin\cmake\win\share\cmake-3.23\Modules\Compiler\MSVC-C.cmake;D:\CLion 2022.2.1\bin\cmake\win\share\cmake-3.23\Modules\Compiler\MSVC-CXX.cmake;D:\CLion 2022.2.1\bin\cmake\win\share\cmake-3.23\Modules\ExternalData.cmake;D:\CLion 2022.2.1\bin\cmake\win\share\cmake-3.23\Modules\FindGit.cmake;D:\CLion 2022.2.1\bin\cmake\win\share\cmake-3.23\Modules\FindJNI.cmake;D:\CLion 2022.2.1\bin\cmake\win\share\cmake-3.23\Modules\FindPackageHandleStandardArgs.cmake;D:\CLion 2022.2.1\bin\cmake\win\share\cmake-3.23\Modules\FindPackageMessage.cmake;D:\CLion 2022.2.1\bin\cmake\win\share\cmake-3.23\Modules\FindPythonInterp.cmake;D:\CLion 2022.2.1\bin\cmake\win\share\cmake-3.23\Modules\FindThreads.cmake;D:\CLion 2022.2.1\bin\cmake\win\share\cmake-3.23\Modules\GenerateExportHeader.cmake;D:\CLion 2022.2.1\bin\cmake\win\share\cmake-3.23\Modules\Internal\CheckCompilerFlag.cmake;D:\CLion 2022.2.1\bin\cmake\win\share\cmake-3.23\Modules\Internal\CheckFlagCommonConfig.cmake;D:\CLion 2022.2.1\bin\cmake\win\share\cmake-3.23\Modules\Internal\CheckSourceCompiles.cmake;D:\CLion 2022.2.1\bin\cmake\win\share\cmake-3.23\Modules\Platform\Windows-MSVC-C.cmake;D:\CLion 2022.2.1\bin\cmake\win\share\cmake-3.23\Modules\Platform\Windows-MSVC-CXX.cmake;D:\CLion 2022.2.1\bin\cmake\win\share\cmake-3.23\Modules\Platform\Windows-MSVC.cmake;D:\CLion 2022.2.1\bin\cmake\win\share\cmake-3.23\Modules\Platform\Windows.cmake;D:\CLion 2022.2.1\bin\cmake\win\share\cmake-3.23\Modules\Platform\WindowsPaths.cmake;D:\CLion 2022.2.1\bin\cmake\win\share\cmake-3.23\Modules\TestBigEndian.cmake;D:\CLion 2022.2.1\bin\cmake\win\share\cmake-3.23\Templates\CPackConfig.cmake.in;D:\mydoc\CS_Resources\PCL_1.12.1\3rdParty\VTK\lib\cmake\vtk-9.1\VTK-targets-debug.cmake;D:\mydoc\CS_Resources\PCL_1.12.1\3rdParty\VTK\lib\cmake\vtk-9.1\VTK-targets-release.cmake;D:\mydoc\CS_Resources\PCL_1.12.1\3rdParty\VTK\lib\cmake\vtk-9.1\VTK-targets.cmake;D:\mydoc\CS_Resources\PCL_1.12.1\3rdParty\VTK\lib\cmake\vtk-9.1\VTK-vtk-module-find-packages.cmake;D:\mydoc\CS_Resources\PCL_1.12.1\3rdParty\VTK\lib\cmake\vtk-9.1\VTK-vtk-module-properties.cmake;D:\mydoc\CS_Resources\PCL_1.12.1\3rdParty\VTK\lib\cmake\vtk-9.1\patches\99\FindOpenGL.cmake;D:\mydoc\CS_Resources\PCL_1.12.1\3rdParty\VTK\lib\cmake\vtk-9.1\vtk-config-version.cmake;D:\mydoc\CS_Resources\PCL_1.12.1\3rdParty\VTK\lib\cmake\vtk-9.1\vtk-config.cmake;D:\mydoc\CS_Resources\PCL_1.12.1\3rdParty\VTK\lib\cmake\vtk-9.1\vtk-prefix.cmake;D:\mydoc\CS_Resources\PCL_1.12.1\3rdParty\VTK\lib\cmake\vtk-9.1\vtkCMakeBackports.cmake;D:\mydoc\CS_Resources\PCL_1.12.1\3rdParty\VTK\lib\cmake\vtk-9.1\vtkEncodeString.cmake;D:\mydoc\CS_Resources\PCL_1.12.1\3rdParty\VTK\lib\cmake\vtk-9.1\vtkHashSource.cmake;D:\mydoc\CS_Resources\PCL_1.12.1\3rdParty\VTK\lib\cmake\vtk-9.1\vtkModule.cmake;D:\mydoc\CS_Resources\PCL_1.12.1\3rdParty\VTK\lib\cmake\vtk-9.1\vtkModuleJson.cmake;D:\mydoc\CS_Resources\PCL_1.12.1\3rdParty\VTK\lib\cmake\vtk-9.1\vtkModuleTesting.cmake;D:\mydoc\CS_Resources\PCL_1.12.1\3rdParty\VTK\lib\cmake\vtk-9.1\vtkObjectFactory.cmake;D:\mydoc\CS_Resources\PCL_1.12.1\3rdParty\VTK\lib\cmake\vtk-9.1\vtkTopologicalSort.cmake;D:\mydoc\CS_Resources\opencv_5.x_new\opencv\3rdparty\ffmpeg\ffmpeg.cmake;D:\mydoc\CS_Resources\opencv_5.x_new\opencv\3rdparty\ippicv\ippicv.cmake;D:\mydoc\CS_Resources\opencv_5.x_new\opencv\cmake-build-debug\3rdparty\ffmpeg\ffmpeg_version.cmake;D:\mydoc\CS_Resources\opencv_5.x_new\opencv\cmake-build-debug\CMakeFiles\3.23.2\CMakeCCompiler.cmake;D:\mydoc\CS_Resources\opencv_5.x_new\opencv\cmake-build-debug\CMakeFiles\3.23.2\CMakeCXXCompiler.cmake;D:\mydoc\CS_Resources\opencv_5.x_new\opencv\cmake-build-debug\CMakeFiles\3.23.2\CMakeRCCompiler.cmake;D:\mydoc\CS_Resources\opencv_5.x_new\opencv\cmake-build-debug\CMakeFiles\3.23.2\CMakeSystem.cmake;D:\mydoc\CS_Resources\opencv_5.x_new\opencv\cmake\OpenCVCRTLinkage.cmake;D:\mydoc\CS_Resources\opencv_5.x_new\opencv\cmake\OpenCVCompilerOptimizations.cmake;D:\mydoc\CS_Resources\opencv_5.x_new\opencv\cmake\OpenCVCompilerOptions.cmake;D:\mydoc\CS_Resources\opencv_5.x_new\opencv\cmake\OpenCVDetectApacheAnt.cmake;D:\mydoc\CS_Resources\opencv_5.x_new\opencv\cmake\OpenCVDetectCXXCompiler.cmake;D:\mydoc\CS_Resources\opencv_5.x_new\opencv\cmake\OpenCVDetectDirectX.cmake;D:\mydoc\CS_Resources\opencv_5.x_new\opencv\cmake\OpenCVDetectOpenCL.cmake;D:\mydoc\CS_Resources\opencv_5.x_new\opencv\cmake\OpenCVDetectPython.cmake;D:\mydoc\CS_Resources\opencv_5.x_new\opencv\cmake\OpenCVDetectTrace.cmake;D:\mydoc\CS_Resources\opencv_5.x_new\opencv\cmake\OpenCVDetectVTK.cmake;D:\mydoc\CS_Resources\opencv_5.x_new\opencv\cmake\OpenCVDownload.cmake;D:\mydoc\CS_Resources\opencv_5.x_new\opencv\cmake\OpenCVExtraTargets.cmake;D:\mydoc\CS_Resources\opencv_5.x_new\opencv\cmake\OpenCVFindFrameworks.cmake;D:\mydoc\CS_Resources\opencv_5.x_new\opencv\cmake\OpenCVFindIPP.cmake;D:\mydoc\CS_Resources\opencv_5.x_new\opencv\cmake\OpenCVFindIPPIW.cmake;D:\mydoc\CS_Resources\opencv_5.x_new\opencv\cmake\OpenCVFindLAPACK.cmake;D:\mydoc\CS_Resources\opencv_5.x_new\opencv\cmake\OpenCVFindLibsGUI.cmake;D:\mydoc\CS_Resources\opencv_5.x_new\opencv\cmake\OpenCVFindLibsGrfmt.cmake;D:\mydoc\CS_Resources\opencv_5.x_new\opencv\cmake\OpenCVFindLibsPerf.cmake;D:\mydoc\CS_Resources\opencv_5.x_new\opencv\cmake\OpenCVFindLibsVideo.cmake;D:\mydoc\CS_Resources\opencv_5.x_new\opencv\cmake\OpenCVFindOpenEXR.cmake;D:\mydoc\CS_Resources\opencv_5.x_new\opencv\cmake\OpenCVFindProtobuf.cmake;D:\mydoc\CS_Resources\opencv_5.x_new\opencv\cmake\OpenCVGenABI.cmake;D:\mydoc\CS_Resources\opencv_5.x_new\opencv\cmake\OpenCVGenAndroidMK.cmake;D:\mydoc\CS_Resources\opencv_5.x_new\opencv\cmake\OpenCVGenConfig.cmake;D:\mydoc\CS_Resources\opencv_5.x_new\opencv\cmake\OpenCVGenHeaders.cmake;D:\mydoc\CS_Resources\opencv_5.x_new\opencv\cmake\OpenCVGenSetupVars.cmake;D:\mydoc\CS_Resources\opencv_5.x_new\opencv\cmake\OpenCVInstallLayout.cmake;D:\mydoc\CS_Resources\opencv_5.x_new\opencv\cmake\OpenCVMinDepVersions.cmake;D:\mydoc\CS_Resources\opencv_5.x_new\opencv\cmake\OpenCVModule.cmake;D:\mydoc\CS_Resources\opencv_5.x_new\opencv\cmake\OpenCVPCHSupport.cmake;D:\mydoc\CS_Resources\opencv_5.x_new\opencv\cmake\OpenCVPackaging.cmake;D:\mydoc\CS_Resources\opencv_5.x_new\opencv\cmake\OpenCVUtils.cmake;D:\mydoc\CS_Resources\opencv_5.x_new\opencv\cmake\OpenCVVersion.cmake;D:\mydoc\CS_Resources\opencv_5.x_new\opencv\cmake\checks\directx.cpp;D:\mydoc\CS_Resources\opencv_5.x_new\opencv\cmake\checks\opencl.cpp;D:\mydoc\CS_Resources\opencv_5.x_new\opencv\cmake\checks\vtk_test.cpp;D:\mydoc\CS_Resources\opencv_5.x_new\opencv\cmake\checks\win32uitest.cpp;D:\mydoc\CS_Resources\opencv_5.x_new\opencv\cmake\platforms\OpenCV-Windows.cmake;D:\mydoc\CS_Resources\opencv_5.x_new\opencv\cmake\templates\OpenCVConfig-version.cmake.in;D:\mydoc\CS_Resources\opencv_5.x_new\opencv\cmake\templates\OpenCVConfig.cmake.in;D:\mydoc\CS_Resources\opencv_5.x_new\opencv\cmake\templates\OpenCVConfig.root-WIN32.cmake.in;D:\mydoc\CS_Resources\opencv_5.x_new\opencv\cmake\templates\cmake_uninstall.cmake.in;D:\mydoc\CS_Resources\opencv_5.x_new\opencv\cmake\templates\custom_hal.hpp.in;D:\mydoc\CS_Resources\opencv_5.x_new\opencv\cmake\templates\cv_cpu_config.h.in;D:\mydoc\CS_Resources\opencv_5.x_new\opencv\cmake\templates\cvconfig.h.in;D:\mydoc\CS_Resources\opencv_5.x_new\opencv\cmake\templates\opencv_modules.hpp.in;D:\mydoc\CS_Resources\opencv_5.x_new\opencv\cmake\templates\setup_vars_win32.cmd.in;D:\mydoc\CS_Resources\opencv_5.x_new\opencv\cmake\vars\EnableModeVars.cmake;D:\mydoc\CS_Resources\opencv_5.x_new\opencv\modules\core\include\opencv2\core\version.hpp;D:\mydoc\CS_Resources\opencv_5.x_new\opencv\modules\dnn\cmake\init.cmake;D:\mydoc\CS_Resources\opencv_5.x_new\opencv\modules\gapi\cmake\DownloadADE.cmake;D:\mydoc\CS_Resources\opencv_5.x_new\opencv\modules\gapi\cmake\init.cmake;D:\mydoc\CS_Resources\opencv_5.x_new\opencv\modules\highgui\cmake\detect_win32ui.cmake;D:\mydoc\CS_Resources\opencv_5.x_new\opencv\modules\highgui\cmake\init.cmake;D:\mydoc\CS_Resources\opencv_5.x_new\opencv\modules\videoio\cmake\detect_dc1394.cmake;D:\mydoc\CS_Resources\opencv_5.x_new\opencv\modules\videoio\cmake\detect_dshow.cmake;D:\mydoc\CS_Resources\opencv_5.x_new\opencv\modules\videoio\cmake\detect_ffmpeg.cmake;D:\mydoc\CS_Resources\opencv_5.x_new\opencv\modules\videoio\cmake\detect_gstreamer.cmake;D:\mydoc\CS_Resources\opencv_5.x_new\opencv\modules\videoio\cmake\detect_msmf.cmake;D:\mydoc\CS_Resources\opencv_5.x_new\opencv\modules\videoio\cmake\detect_obsensor.cmake;D:\mydoc\CS_Resources\opencv_5.x_new\opencv\modules\videoio\cmake\init.cmake;%(AdditionalInputs)</AdditionalInputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|x64'">D:\mydoc\CS_Resources\opencv_5.x_new\opencv\cmake-build-debug\CMakeFiles\generate.stamp</Outputs>
+      <LinkObjects Condition="'$(Configuration)|$(Platform)'=='Release|x64'">false</LinkObjects>
+    </CustomBuild>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="D:\mydoc\CS_Resources\opencv_5.x_new\opencv\cmake-build-debug\3rdparty\ade\ade-0.1.2a\sources\ade\include\ade\communication\callback_connector.hpp" />
+    <ClInclude Include="D:\mydoc\CS_Resources\opencv_5.x_new\opencv\cmake-build-debug\3rdparty\ade\ade-0.1.2a\sources\ade\include\ade\communication\comm_buffer.hpp" />
+    <ClInclude Include="D:\mydoc\CS_Resources\opencv_5.x_new\opencv\cmake-build-debug\3rdparty\ade\ade-0.1.2a\sources\ade\include\ade\communication\comm_interface.hpp" />
+    <ClInclude Include="D:\mydoc\CS_Resources\opencv_5.x_new\opencv\cmake-build-debug\3rdparty\ade\ade-0.1.2a\sources\ade\include\ade\edge.hpp" />
+    <ClInclude Include="D:\mydoc\CS_Resources\opencv_5.x_new\opencv\cmake-build-debug\3rdparty\ade\ade-0.1.2a\sources\ade\include\ade\execution_engine\backend.hpp" />
+    <ClInclude Include="D:\mydoc\CS_Resources\opencv_5.x_new\opencv\cmake-build-debug\3rdparty\ade\ade-0.1.2a\sources\ade\include\ade\execution_engine\executable.hpp" />
+    <ClInclude Include="D:\mydoc\CS_Resources\opencv_5.x_new\opencv\cmake-build-debug\3rdparty\ade\ade-0.1.2a\sources\ade\include\ade\execution_engine\execution_engine.hpp" />
+    <ClInclude Include="D:\mydoc\CS_Resources\opencv_5.x_new\opencv\cmake-build-debug\3rdparty\ade\ade-0.1.2a\sources\ade\include\ade\graph.hpp" />
+    <ClInclude Include="D:\mydoc\CS_Resources\opencv_5.x_new\opencv\cmake-build-debug\3rdparty\ade\ade-0.1.2a\sources\ade\include\ade\graph_listener.hpp" />
+    <ClInclude Include="D:\mydoc\CS_Resources\opencv_5.x_new\opencv\cmake-build-debug\3rdparty\ade\ade-0.1.2a\sources\ade\include\ade\handle.hpp" />
+    <ClInclude Include="D:\mydoc\CS_Resources\opencv_5.x_new\opencv\cmake-build-debug\3rdparty\ade\ade-0.1.2a\sources\ade\include\ade\helpers\search.hpp" />
+    <ClInclude Include="D:\mydoc\CS_Resources\opencv_5.x_new\opencv\cmake-build-debug\3rdparty\ade\ade-0.1.2a\sources\ade\include\ade\helpers\subgraphs.hpp" />
+    <ClInclude Include="D:\mydoc\CS_Resources\opencv_5.x_new\opencv\cmake-build-debug\3rdparty\ade\ade-0.1.2a\sources\ade\include\ade\memory\alloc.hpp" />
+    <ClInclude Include="D:\mydoc\CS_Resources\opencv_5.x_new\opencv\cmake-build-debug\3rdparty\ade\ade-0.1.2a\sources\ade\include\ade\memory\memory_access_listener.hpp" />
+    <ClInclude Include="D:\mydoc\CS_Resources\opencv_5.x_new\opencv\cmake-build-debug\3rdparty\ade\ade-0.1.2a\sources\ade\include\ade\memory\memory_accessor.hpp" />
+    <ClInclude Include="D:\mydoc\CS_Resources\opencv_5.x_new\opencv\cmake-build-debug\3rdparty\ade\ade-0.1.2a\sources\ade\include\ade\memory\memory_descriptor.hpp" />
+    <ClInclude Include="D:\mydoc\CS_Resources\opencv_5.x_new\opencv\cmake-build-debug\3rdparty\ade\ade-0.1.2a\sources\ade\include\ade\memory\memory_descriptor_ref.hpp" />
+    <ClInclude Include="D:\mydoc\CS_Resources\opencv_5.x_new\opencv\cmake-build-debug\3rdparty\ade\ade-0.1.2a\sources\ade\include\ade\memory\memory_descriptor_view.hpp" />
+    <ClInclude Include="D:\mydoc\CS_Resources\opencv_5.x_new\opencv\cmake-build-debug\3rdparty\ade\ade-0.1.2a\sources\ade\include\ade\memory\memory_types.hpp" />
+    <ClInclude Include="D:\mydoc\CS_Resources\opencv_5.x_new\opencv\cmake-build-debug\3rdparty\ade\ade-0.1.2a\sources\ade\include\ade\metatypes\metatypes.hpp" />
+    <ClInclude Include="D:\mydoc\CS_Resources\opencv_5.x_new\opencv\cmake-build-debug\3rdparty\ade\ade-0.1.2a\sources\ade\include\ade\node.hpp" />
+    <ClInclude Include="D:\mydoc\CS_Resources\opencv_5.x_new\opencv\cmake-build-debug\3rdparty\ade\ade-0.1.2a\sources\ade\include\ade\passes\check_cycles.hpp" />
+    <ClInclude Include="D:\mydoc\CS_Resources\opencv_5.x_new\opencv\cmake-build-debug\3rdparty\ade\ade-0.1.2a\sources\ade\include\ade\passes\communications.hpp" />
+    <ClInclude Include="D:\mydoc\CS_Resources\opencv_5.x_new\opencv\cmake-build-debug\3rdparty\ade\ade-0.1.2a\sources\ade\include\ade\passes\pass_base.hpp" />
+    <ClInclude Include="D:\mydoc\CS_Resources\opencv_5.x_new\opencv\cmake-build-debug\3rdparty\ade\ade-0.1.2a\sources\ade\include\ade\passes\topological_sort.hpp" />
+    <ClInclude Include="D:\mydoc\CS_Resources\opencv_5.x_new\opencv\cmake-build-debug\3rdparty\ade\ade-0.1.2a\sources\ade\include\ade\passmanager.hpp" />
+    <ClInclude Include="D:\mydoc\CS_Resources\opencv_5.x_new\opencv\cmake-build-debug\3rdparty\ade\ade-0.1.2a\sources\ade\include\ade\typed_graph.hpp" />
+    <ClInclude Include="D:\mydoc\CS_Resources\opencv_5.x_new\opencv\cmake-build-debug\3rdparty\ade\ade-0.1.2a\sources\ade\include\ade\typed_metadata.hpp" />
+    <ClInclude Include="D:\mydoc\CS_Resources\opencv_5.x_new\opencv\cmake-build-debug\3rdparty\ade\ade-0.1.2a\sources\ade\include\ade\util\algorithm.hpp" />
+    <ClInclude Include="D:\mydoc\CS_Resources\opencv_5.x_new\opencv\cmake-build-debug\3rdparty\ade\ade-0.1.2a\sources\ade\include\ade\util\assert.hpp" />
+    <ClInclude Include="D:\mydoc\CS_Resources\opencv_5.x_new\opencv\cmake-build-debug\3rdparty\ade\ade-0.1.2a\sources\ade\include\ade\util\chain_range.hpp" />
+    <ClInclude Include="D:\mydoc\CS_Resources\opencv_5.x_new\opencv\cmake-build-debug\3rdparty\ade\ade-0.1.2a\sources\ade\include\ade\util\checked_cast.hpp" />
+    <ClInclude Include="D:\mydoc\CS_Resources\opencv_5.x_new\opencv\cmake-build-debug\3rdparty\ade\ade-0.1.2a\sources\ade\include\ade\util\container_helper.hpp" />
+    <ClInclude Include="D:\mydoc\CS_Resources\opencv_5.x_new\opencv\cmake-build-debug\3rdparty\ade\ade-0.1.2a\sources\ade\include\ade\util\filter_range.hpp" />
+    <ClInclude Include="D:\mydoc\CS_Resources\opencv_5.x_new\opencv\cmake-build-debug\3rdparty\ade\ade-0.1.2a\sources\ade\include\ade\util\func_ref.hpp" />
+    <ClInclude Include="D:\mydoc\CS_Resources\opencv_5.x_new\opencv\cmake-build-debug\3rdparty\ade\ade-0.1.2a\sources\ade\include\ade\util\hash.hpp" />
+    <ClInclude Include="D:\mydoc\CS_Resources\opencv_5.x_new\opencv\cmake-build-debug\3rdparty\ade\ade-0.1.2a\sources\ade\include\ade\util\intrusive_list.hpp" />
+    <ClInclude Include="D:\mydoc\CS_Resources\opencv_5.x_new\opencv\cmake-build-debug\3rdparty\ade\ade-0.1.2a\sources\ade\include\ade\util\iota_range.hpp" />
+    <ClInclude Include="D:\mydoc\CS_Resources\opencv_5.x_new\opencv\cmake-build-debug\3rdparty\ade\ade-0.1.2a\sources\ade\include\ade\util\map_range.hpp" />
+    <ClInclude Include="D:\mydoc\CS_Resources\opencv_5.x_new\opencv\cmake-build-debug\3rdparty\ade\ade-0.1.2a\sources\ade\include\ade\util\math.hpp" />
+    <ClInclude Include="D:\mydoc\CS_Resources\opencv_5.x_new\opencv\cmake-build-debug\3rdparty\ade\ade-0.1.2a\sources\ade\include\ade\util\md_cast.hpp" />
+    <ClInclude Include="D:\mydoc\CS_Resources\opencv_5.x_new\opencv\cmake-build-debug\3rdparty\ade\ade-0.1.2a\sources\ade\include\ade\util\md_io.hpp" />
+    <ClInclude Include="D:\mydoc\CS_Resources\opencv_5.x_new\opencv\cmake-build-debug\3rdparty\ade\ade-0.1.2a\sources\ade\include\ade\util\md_size.hpp" />
+    <ClInclude Include="D:\mydoc\CS_Resources\opencv_5.x_new\opencv\cmake-build-debug\3rdparty\ade\ade-0.1.2a\sources\ade\include\ade\util\md_span.hpp" />
+    <ClInclude Include="D:\mydoc\CS_Resources\opencv_5.x_new\opencv\cmake-build-debug\3rdparty\ade\ade-0.1.2a\sources\ade\include\ade\util\md_view.hpp" />
+    <ClInclude Include="D:\mydoc\CS_Resources\opencv_5.x_new\opencv\cmake-build-debug\3rdparty\ade\ade-0.1.2a\sources\ade\include\ade\util\memory_range.hpp" />
+    <ClInclude Include="D:\mydoc\CS_Resources\opencv_5.x_new\opencv\cmake-build-debug\3rdparty\ade\ade-0.1.2a\sources\ade\include\ade\util\range.hpp" />
+    <ClInclude Include="D:\mydoc\CS_Resources\opencv_5.x_new\opencv\cmake-build-debug\3rdparty\ade\ade-0.1.2a\sources\ade\include\ade\util\range_iterator.hpp" />
+    <ClInclude Include="D:\mydoc\CS_Resources\opencv_5.x_new\opencv\cmake-build-debug\3rdparty\ade\ade-0.1.2a\sources\ade\include\ade\util\tuple.hpp" />
+    <ClInclude Include="D:\mydoc\CS_Resources\opencv_5.x_new\opencv\cmake-build-debug\3rdparty\ade\ade-0.1.2a\sources\ade\include\ade\util\type_traits.hpp" />
+    <ClInclude Include="D:\mydoc\CS_Resources\opencv_5.x_new\opencv\cmake-build-debug\3rdparty\ade\ade-0.1.2a\sources\ade\include\ade\util\zip_range.hpp" />
+    <ClCompile Include="D:\mydoc\CS_Resources\opencv_5.x_new\opencv\cmake-build-debug\3rdparty\ade\ade-0.1.2a\sources\ade\source\alloc.cpp" />
+    <ClCompile Include="D:\mydoc\CS_Resources\opencv_5.x_new\opencv\cmake-build-debug\3rdparty\ade\ade-0.1.2a\sources\ade\source\assert.cpp" />
+    <ClCompile Include="D:\mydoc\CS_Resources\opencv_5.x_new\opencv\cmake-build-debug\3rdparty\ade\ade-0.1.2a\sources\ade\source\check_cycles.cpp" />
+    <ClCompile Include="D:\mydoc\CS_Resources\opencv_5.x_new\opencv\cmake-build-debug\3rdparty\ade\ade-0.1.2a\sources\ade\source\edge.cpp" />
+    <ClCompile Include="D:\mydoc\CS_Resources\opencv_5.x_new\opencv\cmake-build-debug\3rdparty\ade\ade-0.1.2a\sources\ade\source\execution_engine.cpp" />
+    <ClCompile Include="D:\mydoc\CS_Resources\opencv_5.x_new\opencv\cmake-build-debug\3rdparty\ade\ade-0.1.2a\sources\ade\source\graph.cpp" />
+    <ClCompile Include="D:\mydoc\CS_Resources\opencv_5.x_new\opencv\cmake-build-debug\3rdparty\ade\ade-0.1.2a\sources\ade\source\memory_accessor.cpp" />
+    <ClCompile Include="D:\mydoc\CS_Resources\opencv_5.x_new\opencv\cmake-build-debug\3rdparty\ade\ade-0.1.2a\sources\ade\source\memory_descriptor.cpp" />
+    <ClCompile Include="D:\mydoc\CS_Resources\opencv_5.x_new\opencv\cmake-build-debug\3rdparty\ade\ade-0.1.2a\sources\ade\source\memory_descriptor_ref.cpp" />
+    <ClCompile Include="D:\mydoc\CS_Resources\opencv_5.x_new\opencv\cmake-build-debug\3rdparty\ade\ade-0.1.2a\sources\ade\source\memory_descriptor_view.cpp" />
+    <ClCompile Include="D:\mydoc\CS_Resources\opencv_5.x_new\opencv\cmake-build-debug\3rdparty\ade\ade-0.1.2a\sources\ade\source\metadata.cpp" />
+    <ClCompile Include="D:\mydoc\CS_Resources\opencv_5.x_new\opencv\cmake-build-debug\3rdparty\ade\ade-0.1.2a\sources\ade\source\metatypes.cpp" />
+    <ClCompile Include="D:\mydoc\CS_Resources\opencv_5.x_new\opencv\cmake-build-debug\3rdparty\ade\ade-0.1.2a\sources\ade\source\node.cpp" />
+    <ClCompile Include="D:\mydoc\CS_Resources\opencv_5.x_new\opencv\cmake-build-debug\3rdparty\ade\ade-0.1.2a\sources\ade\source\passes\communications.cpp" />
+    <ClCompile Include="D:\mydoc\CS_Resources\opencv_5.x_new\opencv\cmake-build-debug\3rdparty\ade\ade-0.1.2a\sources\ade\source\search.cpp" />
+    <ClCompile Include="D:\mydoc\CS_Resources\opencv_5.x_new\opencv\cmake-build-debug\3rdparty\ade\ade-0.1.2a\sources\ade\source\subgraphs.cpp" />
+    <ClCompile Include="D:\mydoc\CS_Resources\opencv_5.x_new\opencv\cmake-build-debug\3rdparty\ade\ade-0.1.2a\sources\ade\source\topological_sort.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="D:\mydoc\CS_Resources\opencv_5.x_new\opencv\cmake-build-debug\ZERO_CHECK.vcxproj">
+      <Project>{981EC7F0-4740-333A-967F-CF930711AAEA}</Project>
+      <Name>ZERO_CHECK</Name>
+      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>

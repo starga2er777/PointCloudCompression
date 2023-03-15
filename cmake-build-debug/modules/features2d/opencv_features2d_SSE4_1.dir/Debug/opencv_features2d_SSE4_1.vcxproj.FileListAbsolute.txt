@@ -1,0 +1,2 @@
+D:\mydoc\CS_Resources\opencv_5.x_new\opencv\cmake-build-debug\modules\features2d\opencv_features2d_SSE4_1.dir\Debug\opencv_features2d_SSE4_1.lib
+D:\mydoc\CS_Resources\opencv_5.x_new\opencv\cmake-build-debug\modules\features2d\opencv_features2d_SSE4_1.dir\Debug\opencv_features2d_SSE4_1.pdb

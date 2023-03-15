@@ -1,0 +1,2 @@
+D:\mydoc\CS_Resources\opencv_5.x_new\opencv\cmake-build-debug\modules\core\opencv_core_AVX512_SKX.dir\Debug\opencv_core_AVX512_SKX.lib
+D:\mydoc\CS_Resources\opencv_5.x_new\opencv\cmake-build-debug\modules\core\opencv_core_AVX512_SKX.dir\Debug\opencv_core_AVX512_SKX.pdb

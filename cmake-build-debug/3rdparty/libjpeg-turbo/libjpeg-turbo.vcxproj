@@ -1,0 +1,235 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="16.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <PreferredToolArchitecture>x64</PreferredToolArchitecture>
+  </PropertyGroup>
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|x64">
+      <Configuration>Debug</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|x64">
+      <Configuration>Release</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectGuid>{029F13ED-7F49-34DC-9A02-BE84F728CE6E}</ProjectGuid>
+    <Keyword>Win32Proj</Keyword>
+    <WindowsTargetPlatformVersion>10.0.18362.0</WindowsTargetPlatformVersion>
+    <Platform>x64</Platform>
+    <ProjectName>libjpeg-turbo</ProjectName>
+    <VCProjectUpgraderObjectName>NoUpgrade</VCProjectUpgraderObjectName>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
+    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <CharacterSet>MultiByte</CharacterSet>
+    <PlatformToolset>v142</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
+    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <CharacterSet>MultiByte</CharacterSet>
+    <PlatformToolset>v142</PlatformToolset>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup>
+    <_ProjectFileVersion>10.0.20506.1</_ProjectFileVersion>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">D:\mydoc\CS_Resources\opencv_5.x_new\opencv\cmake-build-debug\3rdparty\lib\Debug\</OutDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">libjpeg-turbo.dir\Debug\</IntDir>
+    <TargetName Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">libjpeg-turbod</TargetName>
+    <TargetExt Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">.lib</TargetExt>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='Release|x64'">D:\mydoc\CS_Resources\opencv_5.x_new\opencv\cmake-build-debug\3rdparty\lib\Release\</OutDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='Release|x64'">libjpeg-turbo.dir\Release\</IntDir>
+    <TargetName Condition="'$(Configuration)|$(Platform)'=='Release|x64'">libjpeg-turbo</TargetName>
+    <TargetExt Condition="'$(Configuration)|$(Platform)'=='Release|x64'">.lib</TargetExt>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <ClCompile>
+      <AdditionalIncludeDirectories>D:\mydoc\CS_Resources\opencv_5.x_new\opencv\cmake-build-debug;D:\mydoc\CS_Resources\opencv_5.x_new\opencv\cmake-build-debug\3rdparty\libjpeg-turbo;D:\mydoc\CS_Resources\opencv_5.x_new\opencv\3rdparty\libjpeg-turbo\src;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalOptions>%(AdditionalOptions) /bigobj</AdditionalOptions>
+      <AssemblerListingLocation>$(IntDir)</AssemblerListingLocation>
+      <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+      <DisableSpecificWarnings>4996;4018</DisableSpecificWarnings>
+      <ExceptionHandling>
+      </ExceptionHandling>
+      <FloatingPointModel>Precise</FloatingPointModel>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <InlineFunctionExpansion>Disabled</InlineFunctionExpansion>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <MultiProcessorCompilation>true</MultiProcessorCompilation>
+      <Optimization>Disabled</Optimization>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+      <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
+      <UseFullPaths>false</UseFullPaths>
+      <WarningLevel>Level3</WarningLevel>
+      <PreprocessorDefinitions>%(PreprocessorDefinitions);WIN32;_WINDOWS;_CRT_SECURE_NO_DEPRECATE;_CRT_NONSTDC_NO_DEPRECATE;_SCL_SECURE_NO_WARNINGS;_VARIADIC_MAX=10;_WIN32_WINNT=0x0601;CMAKE_INTDIR="Debug"</PreprocessorDefinitions>
+      <ObjectFileName>$(IntDir)</ObjectFileName>
+      <ProgramDataBaseFileName>D:\mydoc\CS_Resources\opencv_5.x_new\opencv\cmake-build-debug\3rdparty\lib\Debug\libjpeg-turbod.pdb</ProgramDataBaseFileName>
+    </ClCompile>
+    <ResourceCompile>
+      <PreprocessorDefinitions>%(PreprocessorDefinitions);WIN32;_DEBUG;_WINDOWS;_CRT_SECURE_NO_DEPRECATE;_CRT_NONSTDC_NO_DEPRECATE;_SCL_SECURE_NO_WARNINGS;_VARIADIC_MAX=10;_WIN32_WINNT=0x0601;CMAKE_INTDIR=\"Debug\"</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>D:\mydoc\CS_Resources\opencv_5.x_new\opencv\cmake-build-debug;D:\mydoc\CS_Resources\opencv_5.x_new\opencv\cmake-build-debug\3rdparty\libjpeg-turbo;D:\mydoc\CS_Resources\opencv_5.x_new\opencv\3rdparty\libjpeg-turbo\src;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ResourceCompile>
+    <Midl>
+      <AdditionalIncludeDirectories>D:\mydoc\CS_Resources\opencv_5.x_new\opencv\cmake-build-debug;D:\mydoc\CS_Resources\opencv_5.x_new\opencv\cmake-build-debug\3rdparty\libjpeg-turbo;D:\mydoc\CS_Resources\opencv_5.x_new\opencv\3rdparty\libjpeg-turbo\src;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <OutputDirectory>$(ProjectDir)/$(IntDir)</OutputDirectory>
+      <HeaderFileName>%(Filename).h</HeaderFileName>
+      <TypeLibraryName>%(Filename).tlb</TypeLibraryName>
+      <InterfaceIdentifierFileName>%(Filename)_i.c</InterfaceIdentifierFileName>
+      <ProxyFileName>%(Filename)_p.c</ProxyFileName>
+    </Midl>
+    <Lib>
+      <AdditionalOptions>%(AdditionalOptions) /machine:x64 /IGNORE:4221</AdditionalOptions>
+    </Lib>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <ClCompile>
+      <AdditionalIncludeDirectories>D:\mydoc\CS_Resources\opencv_5.x_new\opencv\cmake-build-debug;D:\mydoc\CS_Resources\opencv_5.x_new\opencv\cmake-build-debug\3rdparty\libjpeg-turbo;D:\mydoc\CS_Resources\opencv_5.x_new\opencv\3rdparty\libjpeg-turbo\src;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalOptions>%(AdditionalOptions) /bigobj</AdditionalOptions>
+      <AssemblerListingLocation>$(IntDir)</AssemblerListingLocation>
+      <DisableSpecificWarnings>4996;4018</DisableSpecificWarnings>
+      <ExceptionHandling>
+      </ExceptionHandling>
+      <FloatingPointModel>Precise</FloatingPointModel>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <InlineFunctionExpansion>AnySuitable</InlineFunctionExpansion>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <MultiProcessorCompilation>true</MultiProcessorCompilation>
+      <Optimization>MaxSpeed</Optimization>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
+      <UseFullPaths>false</UseFullPaths>
+      <WarningLevel>Level3</WarningLevel>
+      <PreprocessorDefinitions>%(PreprocessorDefinitions);WIN32;_WINDOWS;_CRT_SECURE_NO_DEPRECATE;_CRT_NONSTDC_NO_DEPRECATE;_SCL_SECURE_NO_WARNINGS;NDEBUG;_VARIADIC_MAX=10;_WIN32_WINNT=0x0601;CMAKE_INTDIR="Release"</PreprocessorDefinitions>
+      <ObjectFileName>$(IntDir)</ObjectFileName>
+      <DebugInformationFormat>
+      </DebugInformationFormat>
+      <ProgramDataBaseFileName>D:\mydoc\CS_Resources\opencv_5.x_new\opencv\cmake-build-debug\3rdparty\lib\Release\libjpeg-turbo.pdb</ProgramDataBaseFileName>
+    </ClCompile>
+    <ResourceCompile>
+      <PreprocessorDefinitions>%(PreprocessorDefinitions);WIN32;_WINDOWS;_CRT_SECURE_NO_DEPRECATE;_CRT_NONSTDC_NO_DEPRECATE;_SCL_SECURE_NO_WARNINGS;NDEBUG;_VARIADIC_MAX=10;_WIN32_WINNT=0x0601;CMAKE_INTDIR=\"Release\"</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>D:\mydoc\CS_Resources\opencv_5.x_new\opencv\cmake-build-debug;D:\mydoc\CS_Resources\opencv_5.x_new\opencv\cmake-build-debug\3rdparty\libjpeg-turbo;D:\mydoc\CS_Resources\opencv_5.x_new\opencv\3rdparty\libjpeg-turbo\src;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ResourceCompile>
+    <Midl>
+      <AdditionalIncludeDirectories>D:\mydoc\CS_Resources\opencv_5.x_new\opencv\cmake-build-debug;D:\mydoc\CS_Resources\opencv_5.x_new\opencv\cmake-build-debug\3rdparty\libjpeg-turbo;D:\mydoc\CS_Resources\opencv_5.x_new\opencv\3rdparty\libjpeg-turbo\src;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <OutputDirectory>$(ProjectDir)/$(IntDir)</OutputDirectory>
+      <HeaderFileName>%(Filename).h</HeaderFileName>
+      <TypeLibraryName>%(Filename).tlb</TypeLibraryName>
+      <InterfaceIdentifierFileName>%(Filename)_i.c</InterfaceIdentifierFileName>
+      <ProxyFileName>%(Filename)_p.c</ProxyFileName>
+    </Midl>
+    <Lib>
+      <AdditionalOptions>%(AdditionalOptions) /machine:x64 /IGNORE:4221</AdditionalOptions>
+    </Lib>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <CustomBuild Include="D:\mydoc\CS_Resources\opencv_5.x_new\opencv\3rdparty\libjpeg-turbo\CMakeLists.txt">
+      <StdOutEncoding>UTF-8</StdOutEncoding>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Building Custom Rule D:/mydoc/CS_Resources/opencv_5.x_new/opencv/3rdparty/libjpeg-turbo/CMakeLists.txt</Message>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">setlocal
+"D:\CLion 2022.2.1\bin\cmake\win\bin\cmake.exe" -SD:/mydoc/CS_Resources/opencv_5.x_new/opencv -BD:/mydoc/CS_Resources/opencv_5.x_new/opencv/cmake-build-debug --check-stamp-file D:/mydoc/CS_Resources/opencv_5.x_new/opencv/cmake-build-debug/3rdparty/libjpeg-turbo/CMakeFiles/generate.stamp
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd</Command>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">D:\CLion 2022.2.1\bin\cmake\win\share\cmake-3.23\Modules\CheckCSourceCompiles.cmake;D:\CLion 2022.2.1\bin\cmake\win\share\cmake-3.23\Modules\CheckIncludeFile.cmake;D:\CLion 2022.2.1\bin\cmake\win\share\cmake-3.23\Modules\CheckIncludeFileCXX.cmake;D:\CLion 2022.2.1\bin\cmake\win\share\cmake-3.23\Modules\CheckIncludeFiles.cmake;D:\CLion 2022.2.1\bin\cmake\win\share\cmake-3.23\Modules\CheckTypeSize.cmake;D:\mydoc\CS_Resources\opencv_5.x_new\opencv\3rdparty\libjpeg-turbo\jconfig.h.win.in;D:\mydoc\CS_Resources\opencv_5.x_new\opencv\3rdparty\libjpeg-turbo\jconfigint.h.in;%(AdditionalInputs)</AdditionalInputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">D:\mydoc\CS_Resources\opencv_5.x_new\opencv\cmake-build-debug\3rdparty\libjpeg-turbo\CMakeFiles\generate.stamp</Outputs>
+      <LinkObjects Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</LinkObjects>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Building Custom Rule D:/mydoc/CS_Resources/opencv_5.x_new/opencv/3rdparty/libjpeg-turbo/CMakeLists.txt</Message>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Release|x64'">setlocal
+"D:\CLion 2022.2.1\bin\cmake\win\bin\cmake.exe" -SD:/mydoc/CS_Resources/opencv_5.x_new/opencv -BD:/mydoc/CS_Resources/opencv_5.x_new/opencv/cmake-build-debug --check-stamp-file D:/mydoc/CS_Resources/opencv_5.x_new/opencv/cmake-build-debug/3rdparty/libjpeg-turbo/CMakeFiles/generate.stamp
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd</Command>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Release|x64'">D:\CLion 2022.2.1\bin\cmake\win\share\cmake-3.23\Modules\CheckCSourceCompiles.cmake;D:\CLion 2022.2.1\bin\cmake\win\share\cmake-3.23\Modules\CheckIncludeFile.cmake;D:\CLion 2022.2.1\bin\cmake\win\share\cmake-3.23\Modules\CheckIncludeFileCXX.cmake;D:\CLion 2022.2.1\bin\cmake\win\share\cmake-3.23\Modules\CheckIncludeFiles.cmake;D:\CLion 2022.2.1\bin\cmake\win\share\cmake-3.23\Modules\CheckTypeSize.cmake;D:\mydoc\CS_Resources\opencv_5.x_new\opencv\3rdparty\libjpeg-turbo\jconfig.h.win.in;D:\mydoc\CS_Resources\opencv_5.x_new\opencv\3rdparty\libjpeg-turbo\jconfigint.h.in;%(AdditionalInputs)</AdditionalInputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|x64'">D:\mydoc\CS_Resources\opencv_5.x_new\opencv\cmake-build-debug\3rdparty\libjpeg-turbo\CMakeFiles\generate.stamp</Outputs>
+      <LinkObjects Condition="'$(Configuration)|$(Platform)'=='Release|x64'">false</LinkObjects>
+    </CustomBuild>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="D:\mydoc\CS_Resources\opencv_5.x_new\opencv\3rdparty\libjpeg-turbo\src\jcapimin.c" />
+    <ClCompile Include="D:\mydoc\CS_Resources\opencv_5.x_new\opencv\3rdparty\libjpeg-turbo\src\jcapistd.c" />
+    <ClCompile Include="D:\mydoc\CS_Resources\opencv_5.x_new\opencv\3rdparty\libjpeg-turbo\src\jccoefct.c" />
+    <ClCompile Include="D:\mydoc\CS_Resources\opencv_5.x_new\opencv\3rdparty\libjpeg-turbo\src\jccolor.c" />
+    <ClCompile Include="D:\mydoc\CS_Resources\opencv_5.x_new\opencv\3rdparty\libjpeg-turbo\src\jcdctmgr.c" />
+    <ClCompile Include="D:\mydoc\CS_Resources\opencv_5.x_new\opencv\3rdparty\libjpeg-turbo\src\jchuff.c" />
+    <ClCompile Include="D:\mydoc\CS_Resources\opencv_5.x_new\opencv\3rdparty\libjpeg-turbo\src\jcicc.c" />
+    <ClCompile Include="D:\mydoc\CS_Resources\opencv_5.x_new\opencv\3rdparty\libjpeg-turbo\src\jcinit.c" />
+    <ClCompile Include="D:\mydoc\CS_Resources\opencv_5.x_new\opencv\3rdparty\libjpeg-turbo\src\jcmainct.c" />
+    <ClCompile Include="D:\mydoc\CS_Resources\opencv_5.x_new\opencv\3rdparty\libjpeg-turbo\src\jcmarker.c" />
+    <ClCompile Include="D:\mydoc\CS_Resources\opencv_5.x_new\opencv\3rdparty\libjpeg-turbo\src\jcmaster.c" />
+    <ClCompile Include="D:\mydoc\CS_Resources\opencv_5.x_new\opencv\3rdparty\libjpeg-turbo\src\jcomapi.c" />
+    <ClCompile Include="D:\mydoc\CS_Resources\opencv_5.x_new\opencv\3rdparty\libjpeg-turbo\src\jcparam.c" />
+    <ClCompile Include="D:\mydoc\CS_Resources\opencv_5.x_new\opencv\3rdparty\libjpeg-turbo\src\jcphuff.c" />
+    <ClCompile Include="D:\mydoc\CS_Resources\opencv_5.x_new\opencv\3rdparty\libjpeg-turbo\src\jcprepct.c" />
+    <ClCompile Include="D:\mydoc\CS_Resources\opencv_5.x_new\opencv\3rdparty\libjpeg-turbo\src\jcsample.c" />
+    <ClCompile Include="D:\mydoc\CS_Resources\opencv_5.x_new\opencv\3rdparty\libjpeg-turbo\src\jctrans.c" />
+    <ClCompile Include="D:\mydoc\CS_Resources\opencv_5.x_new\opencv\3rdparty\libjpeg-turbo\src\jdapimin.c" />
+    <ClCompile Include="D:\mydoc\CS_Resources\opencv_5.x_new\opencv\3rdparty\libjpeg-turbo\src\jdapistd.c" />
+    <ClCompile Include="D:\mydoc\CS_Resources\opencv_5.x_new\opencv\3rdparty\libjpeg-turbo\src\jdatadst.c" />
+    <ClCompile Include="D:\mydoc\CS_Resources\opencv_5.x_new\opencv\3rdparty\libjpeg-turbo\src\jdatasrc.c" />
+    <ClCompile Include="D:\mydoc\CS_Resources\opencv_5.x_new\opencv\3rdparty\libjpeg-turbo\src\jdcoefct.c" />
+    <ClCompile Include="D:\mydoc\CS_Resources\opencv_5.x_new\opencv\3rdparty\libjpeg-turbo\src\jdcolor.c" />
+    <ClCompile Include="D:\mydoc\CS_Resources\opencv_5.x_new\opencv\3rdparty\libjpeg-turbo\src\jddctmgr.c" />
+    <ClCompile Include="D:\mydoc\CS_Resources\opencv_5.x_new\opencv\3rdparty\libjpeg-turbo\src\jdhuff.c" />
+    <ClCompile Include="D:\mydoc\CS_Resources\opencv_5.x_new\opencv\3rdparty\libjpeg-turbo\src\jdicc.c" />
+    <ClCompile Include="D:\mydoc\CS_Resources\opencv_5.x_new\opencv\3rdparty\libjpeg-turbo\src\jdinput.c" />
+    <ClCompile Include="D:\mydoc\CS_Resources\opencv_5.x_new\opencv\3rdparty\libjpeg-turbo\src\jdmainct.c" />
+    <ClCompile Include="D:\mydoc\CS_Resources\opencv_5.x_new\opencv\3rdparty\libjpeg-turbo\src\jdmarker.c" />
+    <ClCompile Include="D:\mydoc\CS_Resources\opencv_5.x_new\opencv\3rdparty\libjpeg-turbo\src\jdmaster.c" />
+    <ClCompile Include="D:\mydoc\CS_Resources\opencv_5.x_new\opencv\3rdparty\libjpeg-turbo\src\jdmerge.c" />
+    <ClCompile Include="D:\mydoc\CS_Resources\opencv_5.x_new\opencv\3rdparty\libjpeg-turbo\src\jdphuff.c" />
+    <ClCompile Include="D:\mydoc\CS_Resources\opencv_5.x_new\opencv\3rdparty\libjpeg-turbo\src\jdpostct.c" />
+    <ClCompile Include="D:\mydoc\CS_Resources\opencv_5.x_new\opencv\3rdparty\libjpeg-turbo\src\jdsample.c" />
+    <ClCompile Include="D:\mydoc\CS_Resources\opencv_5.x_new\opencv\3rdparty\libjpeg-turbo\src\jdtrans.c" />
+    <ClCompile Include="D:\mydoc\CS_Resources\opencv_5.x_new\opencv\3rdparty\libjpeg-turbo\src\jerror.c" />
+    <ClCompile Include="D:\mydoc\CS_Resources\opencv_5.x_new\opencv\3rdparty\libjpeg-turbo\src\jfdctflt.c" />
+    <ClCompile Include="D:\mydoc\CS_Resources\opencv_5.x_new\opencv\3rdparty\libjpeg-turbo\src\jfdctfst.c" />
+    <ClCompile Include="D:\mydoc\CS_Resources\opencv_5.x_new\opencv\3rdparty\libjpeg-turbo\src\jfdctint.c" />
+    <ClCompile Include="D:\mydoc\CS_Resources\opencv_5.x_new\opencv\3rdparty\libjpeg-turbo\src\jidctflt.c" />
+    <ClCompile Include="D:\mydoc\CS_Resources\opencv_5.x_new\opencv\3rdparty\libjpeg-turbo\src\jidctfst.c" />
+    <ClCompile Include="D:\mydoc\CS_Resources\opencv_5.x_new\opencv\3rdparty\libjpeg-turbo\src\jidctint.c" />
+    <ClCompile Include="D:\mydoc\CS_Resources\opencv_5.x_new\opencv\3rdparty\libjpeg-turbo\src\jidctred.c" />
+    <ClCompile Include="D:\mydoc\CS_Resources\opencv_5.x_new\opencv\3rdparty\libjpeg-turbo\src\jquant1.c" />
+    <ClCompile Include="D:\mydoc\CS_Resources\opencv_5.x_new\opencv\3rdparty\libjpeg-turbo\src\jquant2.c" />
+    <ClCompile Include="D:\mydoc\CS_Resources\opencv_5.x_new\opencv\3rdparty\libjpeg-turbo\src\jutils.c" />
+    <ClCompile Include="D:\mydoc\CS_Resources\opencv_5.x_new\opencv\3rdparty\libjpeg-turbo\src\jmemmgr.c" />
+    <ClCompile Include="D:\mydoc\CS_Resources\opencv_5.x_new\opencv\3rdparty\libjpeg-turbo\src\jmemnobs.c" />
+    <ClCompile Include="D:\mydoc\CS_Resources\opencv_5.x_new\opencv\3rdparty\libjpeg-turbo\src\jaricom.c" />
+    <ClCompile Include="D:\mydoc\CS_Resources\opencv_5.x_new\opencv\3rdparty\libjpeg-turbo\src\jcarith.c" />
+    <ClCompile Include="D:\mydoc\CS_Resources\opencv_5.x_new\opencv\3rdparty\libjpeg-turbo\src\jdarith.c" />
+    <Object Include="D:\mydoc\CS_Resources\opencv_5.x_new\opencv\cmake-build-debug\3rdparty\libjpeg-turbo\jsimd.dir\$(Configuration)\jsimd_none.obj" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="D:\mydoc\CS_Resources\opencv_5.x_new\opencv\cmake-build-debug\ZERO_CHECK.vcxproj">
+      <Project>{981EC7F0-4740-333A-967F-CF930711AAEA}</Project>
+      <Name>ZERO_CHECK</Name>
+      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </ProjectReference>
+    <ProjectReference Include="D:\mydoc\CS_Resources\opencv_5.x_new\opencv\cmake-build-debug\3rdparty\libjpeg-turbo\jsimd.vcxproj">
+      <Project>{B6F7C104-F6B9-3A8F-ADF1-6E4F72814075}</Project>
+      <Name>jsimd</Name>
+      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>

@@ -1,0 +1,23 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="16.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <CustomBuild Include="D:\mydoc\CS_Resources\opencv_5.x_new\opencv\cmake-build-debug\CMakeFiles\fdb09fc050aa0e00c23a82ca8e4a6c11\gen_opencv_objc_source_ios.rule">
+      <Filter>CMake Rules</Filter>
+    </CustomBuild>
+    <CustomBuild Include="D:\mydoc\CS_Resources\opencv_5.x_new\opencv\cmake-build-debug\CMakeFiles\6ff12ec3aaa5a3671dddaf52d177f09f\gen_opencv_objc_source_ios.rule">
+      <Filter>CMake Rules</Filter>
+    </CustomBuild>
+    <CustomBuild Include="D:\mydoc\CS_Resources\opencv_5.x_new\opencv\modules\objc\generator\CMakeLists.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="D:\mydoc\CS_Resources\opencv_5.x_new\opencv\modules\objc\generator\gen_objc.py" />
+    <None Include="D:\mydoc\CS_Resources\opencv_5.x_new\opencv\modules\objc\generator\templates\cmakelists.template" />
+    <None Include="D:\mydoc\CS_Resources\opencv_5.x_new\opencv\cmake-build-debug\modules\objc_bindings_generator\gen_objc.json" />
+    <None Include="D:\mydoc\CS_Resources\opencv_5.x_new\opencv\cmake-build-debug\modules\objc_bindings_generator\CMakeFiles\gen_opencv_objc_source_ios" />
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="CMake Rules">
+      <UniqueIdentifier>{13B4E4ED-5AB1-34B6-B46A-69CA607CD6E7}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+</Project>

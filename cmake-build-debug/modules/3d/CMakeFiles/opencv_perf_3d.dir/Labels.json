@@ -1,0 +1,69 @@
+{
+	"sources" : 
+	[
+		{
+			"file" : "/home/jeffery/Desktop/Sustech/GroupProject/code/opencv/modules/3d/perf/perf_affine2d.cpp",
+			"labels" : 
+			[
+				"Main",
+				"opencv_3d",
+				"PerfTest"
+			]
+		},
+		{
+			"file" : "/home/jeffery/Desktop/Sustech/GroupProject/code/opencv/modules/3d/perf/perf_main.cpp",
+			"labels" : 
+			[
+				"Main",
+				"opencv_3d",
+				"PerfTest"
+			]
+		},
+		{
+			"file" : "/home/jeffery/Desktop/Sustech/GroupProject/code/opencv/modules/3d/perf/perf_pnp.cpp",
+			"labels" : 
+			[
+				"Main",
+				"opencv_3d",
+				"PerfTest"
+			]
+		},
+		{
+			"file" : "/home/jeffery/Desktop/Sustech/GroupProject/code/opencv/modules/3d/perf/perf_tsdf.cpp",
+			"labels" : 
+			[
+				"Main",
+				"opencv_3d",
+				"PerfTest"
+			]
+		},
+		{
+			"file" : "/home/jeffery/Desktop/Sustech/GroupProject/code/opencv/modules/3d/perf/perf_undistort.cpp",
+			"labels" : 
+			[
+				"Main",
+				"opencv_3d",
+				"PerfTest"
+			]
+		},
+		{
+			"file" : "/home/jeffery/Desktop/Sustech/GroupProject/code/opencv/modules/3d/perf/perf_precomp.hpp",
+			"labels" : 
+			[
+				"Main",
+				"opencv_3d",
+				"PerfTest"
+			]
+		}
+	],
+	"target" : 
+	{
+		"labels" : 
+		[
+			"Main",
+			"opencv_3d",
+			"PerfTest"
+		],
+		"name" : "opencv_perf_3d"
+	}
+}

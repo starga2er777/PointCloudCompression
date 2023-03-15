@@ -1,0 +1,25 @@
+# Target labels
+ Main
+ opencv_stereo
+ AccuracyTest
+# Source files and their labels
+/home/jeffery/Desktop/Sustech/GroupProject/code/opencv/modules/stereo/test/opencl/test_stereobm.cpp
+ Main
+ opencv_stereo
+ AccuracyTest
+/home/jeffery/Desktop/Sustech/GroupProject/code/opencv/modules/stereo/test/test_main.cpp
+ Main
+ opencv_stereo
+ AccuracyTest
+/home/jeffery/Desktop/Sustech/GroupProject/code/opencv/modules/stereo/test/test_reproject_image_to_3d.cpp
+ Main
+ opencv_stereo
+ AccuracyTest
+/home/jeffery/Desktop/Sustech/GroupProject/code/opencv/modules/stereo/test/test_stereomatching.cpp
+ Main
+ opencv_stereo
+ AccuracyTest
+/home/jeffery/Desktop/Sustech/GroupProject/code/opencv/modules/stereo/test/test_precomp.hpp
+ Main
+ opencv_stereo
+ AccuracyTest

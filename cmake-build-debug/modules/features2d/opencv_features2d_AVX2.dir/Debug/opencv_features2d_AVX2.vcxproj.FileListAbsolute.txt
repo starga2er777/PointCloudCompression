@@ -1,0 +1,2 @@
+D:\mydoc\CS_Resources\opencv_5.x_new\opencv\cmake-build-debug\modules\features2d\opencv_features2d_AVX2.dir\Debug\opencv_features2d_AVX2.lib
+D:\mydoc\CS_Resources\opencv_5.x_new\opencv\cmake-build-debug\modules\features2d\opencv_features2d_AVX2.dir\Debug\opencv_features2d_AVX2.pdb

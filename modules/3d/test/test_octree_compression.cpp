@@ -48,8 +48,6 @@ namespace opencv_test { namespace {
                 treeTest.decodeStreamToCharVector(streamToVector,vectorToTree);
                 streamToVector.close();
 
-                return;
-
                 //restore OctreeCompress from char array
                 treeTest.reStore(vectorToTree);
 

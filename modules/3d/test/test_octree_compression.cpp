@@ -17,8 +17,8 @@ namespace opencv_test { namespace {
             {
                 // SETTING (Filebase is the path of pointcloud with the file name, but no ".ply")
                 String FileBase = R"(D:\mydoc\CS_Resources\PCL_1.12.1\share\doc\pcl-1.12\tutorials\sources\cloud_viewer\cmake-build-debug-visual-studio\Debug\dress\dress)";
-                float resolution = 0.1;
-
+                float resolution = 0.5;
+                String label = "";
                 String res_str = std::to_string(resolution);
                 res_str.erase(res_str.find_last_not_of('0') + 1);
                 res_str.erase(res_str.find('.'), 1);
@@ -37,16 +37,18 @@ namespace opencv_test { namespace {
                 std::ofstream vectorToStream;
                 //std::stringstream vectorToStream;
                 //vectorToStream.open(R"(A_myPly\output\stream_01.bin)", std::ios_base::binary);
-                vectorToStream.open(FileBase + res_str + ".bin", std::ios_base::binary);
+                vectorToStream.open(FileBase + label + res_str + ".bin", std::ios_base::binary);
                 treeTest.encodeCharVectorToStream(treeToVector,vectorToStream);
                 vectorToStream.close();
 
                 std::ifstream streamToVector;
-                streamToVector.open(FileBase + res_str + ".bin", std::ios_base::binary);
+                streamToVector.open(FileBase + label + res_str + ".bin", std::ios_base::binary);
                 //restore char array from byte stream
                 std::vector<unsigned char> vectorToTree(treeToVector.size());
                 treeTest.decodeStreamToCharVector(streamToVector,vectorToTree);
                 streamToVector.close();
+
+                return;
 
                 //restore OctreeCompress from char array
                 treeTest.reStore(vectorToTree);
@@ -54,7 +56,7 @@ namespace opencv_test { namespace {
                 //restore PointCloud from OctreeCompress
                 treeTest.getPointCloudByOctree(restorePointCloud);
                 //save .ply file
-                String saveFileName= FileBase + res_str + ".ply";
+                String saveFileName= FileBase + label + res_str + ".ply";
                 savePointCloud(saveFileName,restorePointCloud);
             }
 

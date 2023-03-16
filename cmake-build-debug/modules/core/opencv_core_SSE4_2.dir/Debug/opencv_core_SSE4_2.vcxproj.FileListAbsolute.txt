@@ -1,2 +1,0 @@
-D:\mydoc\CS_Resources\opencv_5.x_new\opencv\cmake-build-debug\modules\core\opencv_core_SSE4_2.dir\Debug\opencv_core_SSE4_2.lib
-D:\mydoc\CS_Resources\opencv_5.x_new\opencv\cmake-build-debug\modules\core\opencv_core_SSE4_2.dir\Debug\opencv_core_SSE4_2.pdb

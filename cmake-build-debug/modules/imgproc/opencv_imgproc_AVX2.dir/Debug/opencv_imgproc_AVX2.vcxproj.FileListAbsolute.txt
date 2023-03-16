@@ -1,2 +1,0 @@
-D:\mydoc\CS_Resources\opencv_5.x_new\opencv\cmake-build-debug\modules\imgproc\opencv_imgproc_AVX2.dir\Debug\opencv_imgproc_AVX2.lib
-D:\mydoc\CS_Resources\opencv_5.x_new\opencv\cmake-build-debug\modules\imgproc\opencv_imgproc_AVX2.dir\Debug\opencv_imgproc_AVX2.pdb

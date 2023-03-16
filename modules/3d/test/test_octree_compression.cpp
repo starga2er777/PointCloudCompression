@@ -15,12 +15,19 @@ namespace opencv_test { namespace {
         protected:
             void SetUp() override
             {
+                // SETTING (Filebase is the path of pointcloud with the file name, but no ".ply")
+                String FileBase = R"(D:\mydoc\CS_Resources\PCL_1.12.1\share\doc\pcl-1.12\tutorials\sources\cloud_viewer\cmake-build-debug-visual-studio\Debug\dress\dress)";
+                float resolution = 0.1;
+
+                String res_str = std::to_string(resolution);
+                res_str.erase(res_str.find_last_not_of('0') + 1);
+                res_str.erase(res_str.find('.'), 1);
                 //load .ply file
-                String loadFileName=R"(D:\mydoc\CS_Resources\PCL_1.12.1\share\doc\pcl-1.12\tutorials\sources\cloud_viewer\cmake-build-debug-visual-studio\Debug\face\myface.ply)";
+                String loadFileName= FileBase + ".ply";
                 loadPointCloud(loadFileName,pointcloud);
 
                 // Generate OctreeCompress From PointCloud,resolution is the minimum precision that can be specified and must be 10^x
-                treeTest.create(pointcloud, 10);
+                treeTest.create(pointcloud, resolution);
 
                 //traverse OctreeCompress by level order.Get the char array representation of the tree
                 std::vector<unsigned char> treeToVector;
@@ -30,14 +37,12 @@ namespace opencv_test { namespace {
                 std::ofstream vectorToStream;
                 //std::stringstream vectorToStream;
                 //vectorToStream.open(R"(A_myPly\output\stream_01.bin)", std::ios_base::binary);
-                vectorToStream.open(
-                        R"(D:\mydoc\CS_Resources\PCL_1.12.1\share\doc\pcl-1.12\tutorials\sources\cloud_viewer\cmake-build-debug-visual-studio\Debug\face\face_cp_10.bin)", std::ios_base::binary);
+                vectorToStream.open(FileBase + res_str + ".bin", std::ios_base::binary);
                 treeTest.encodeCharVectorToStream(treeToVector,vectorToStream);
                 vectorToStream.close();
 
                 std::ifstream streamToVector;
-                streamToVector.open(
-                        R"(D:\mydoc\CS_Resources\PCL_1.12.1\share\doc\pcl-1.12\tutorials\sources\cloud_viewer\cmake-build-debug-visual-studio\Debug\face\face_cp_10.bin)", std::ios_base::binary);
+                streamToVector.open(FileBase + res_str + ".bin", std::ios_base::binary);
                 //restore char array from byte stream
                 std::vector<unsigned char> vectorToTree(treeToVector.size());
                 treeTest.decodeStreamToCharVector(streamToVector,vectorToTree);
@@ -49,7 +54,7 @@ namespace opencv_test { namespace {
                 //restore PointCloud from OctreeCompress
                 treeTest.getPointCloudByOctree(restorePointCloud);
                 //save .ply file
-                String saveFileName=R"(D:\mydoc\CS_Resources\PCL_1.12.1\share\doc\pcl-1.12\tutorials\sources\cloud_viewer\cmake-build-debug-visual-studio\Debug\face\myface_10.ply)";
+                String saveFileName= FileBase + res_str + ".ply";
                 savePointCloud(saveFileName,restorePointCloud);
             }
 

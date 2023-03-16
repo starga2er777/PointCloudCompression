@@ -1,2 +1,0 @@
-D:\mydoc\CS_Resources\opencv_5.x_new\opencv\cmake-build-debug\3rdparty\libjpeg-turbo\jsimd.dir\Debug\jsimd.lib
-D:\mydoc\CS_Resources\opencv_5.x_new\opencv\cmake-build-debug\3rdparty\libjpeg-turbo\jsimd.dir\Debug\jsimd.pdb

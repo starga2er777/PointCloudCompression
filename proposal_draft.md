@@ -25,11 +25,24 @@ Open Source Experience:
 ​	-[OpenCV](https://github.com/opencv/opencv/pull/22682): Handling cases where the depth of Octree setting is too large
 
 
+## About me
+
+- I am a third-year undergraduate student at Southern University of Science and Technology. Under the guidance of Professor Shiqi Yu, I have accumulated experience in point cloud compression for a semester. This is also my research direction for this semester. Please believe that I have enough time and ability to complete this project.
+- For this project, I plan to utilize an octree as the data structure to store the point cloud data. Currently, I have gained sufficient knowledge on the implementation of an `octree`in the `3d` module of `OpenCV5.x` and have made improvement suggestions that were accepted by the official team. Furthermore, I have studied the source code of Point Cloud Library (`PCL`) regarding point cloud compression and have acquired knowledge on some of the dynamic point cloud compression techniques they adopt, such as `double-buffered octree` compression.
+- I have perused numerous scholarly articles concerning the compression of point clouds, which involve various compression techniques such as direct encoding, predictive encoding, and color compression. Furthermore, I have devised a corresponding solution for direct encoding. Additionally, I intend to abide by the `GPCC` encoding standard for the compression of point cloud data.
+- I am adept at seeking help. In my research on Computer Version, Professor Shiqi Yu, Research assistants Zihao Mu, Wanli Zhong have provided me with valuable advice. When encountering bottlenecks, will seek advice in a timely manner. Additionally, when there are interim achievements, I will promptly report and listen to their feedback.
+
 
 ## Project Info
+### Background
 
-- Name: Point Cloud Data Compression
-- Description: A point cloud compression algorithm with optional precision to improve point cloud processing techniques in OpenCV-5.x.
+
+
+### Field Study
+
+
+
+### Peer Demonstration and Comparison
 
 
 

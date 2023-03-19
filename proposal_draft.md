@@ -105,24 +105,13 @@ Our team are currently learning about Region-Adaptive Hierarchical Transform.
 
 
 
-#### Current Progress
 
-- Our team are familiar with octree related code in OpenCV-5.x and understand how it works. We have had an accepted pull request solving the octree depth error of OpenCV-5.x.
-- Our team has developed a demo, which supports simple geometry compression.
-- Our team has read a few papers and have some understanding of existing compression techniques such as DCM and double-buffering octree.
-- Our team has been exploring the field of point cloud compression for six month under the guidance of Professor Shiqi Yu.
+## Expected Deliverables
 
-
-
-### Road Map and Milestones
-
-1. Simple Geometry Encoding Based on Octree (Completed)
-
-2. Direct Coding Mode 
-
-3. Attribute Coding Based on RAHT
-
-4. Double Buffering Octree
+- I will develop a point cloud compression algorithm with optional precision support. The algorithm will include color attribute compression and utilize methods such as `DCM`, `predictive coding`, and `entropy coding` to improve compression rate. To address dynamic point clouds, a `double-buffered octree` structure can be employed to further improve compression rate.
+- The relevant functions in the algorithm adhere to the style of the `OpenCV` library and provide clear documentation explanations.
+- The algorithm will be evaluated based on compression rate, speed, and reconstruction quality. `Bits per point (bpp)` will be used as the evaluation metric for compression rate, while `Peak Signal-to-Noise Ratio (PSNR)` will be used as the evaluation metric for reconstruction quality.
+- Data set:http://graphics.stanford.edu/data/3Dscanrep/. Also, I will use the depth camera to capture real life point cloud data.
 
 
 

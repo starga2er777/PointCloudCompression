@@ -28,7 +28,7 @@ Open Source Experience:
 
 ## About me
 
-- I am a third-year undergraduate student at Southern University of Science and Technology. Under the guidance of Professor Shiqi Yu, I have accumulated experience in point cloud compression for a semester. This is also my research direction for this semester. Please believe that I have enough time and ability to complete this project.
+- I am a third-year undergraduate student at Southern University of Science and Technology. Under the guidance of Professor Shiqi Yu, I have accumulated experience in point cloud compression for a semester. This is also my research direction for this semester. I believe I have enough time and ability to complete this project.
 - For this project, I plan to utilize an octree as the data structure to store the point cloud data. Currently, I have gained sufficient knowledge on the implementation of an `octree`in the `3d` module of `OpenCV5.x` and have made improvement suggestions that were accepted by the official team. Furthermore, I have studied the source code of Point Cloud Library (`PCL`) regarding point cloud compression and have acquired knowledge on some of the dynamic point cloud compression techniques they adopt, such as `double-buffered octree` compression.
 - I have perused numerous scholarly articles concerning the compression of point clouds, which involve various compression techniques such as direct encoding, predictive encoding, and color compression. Furthermore, I have devised a corresponding solution for direct encoding. Additionally, I intend to abide by the `GPCC` encoding standard for the compression of point cloud data.
 - I am adept at seeking help. In my research on Computer Version, Professor Shiqi Yu, Research assistants Zihao Mu, Wanli Zhong have provided me with valuable advice. When encountering bottlenecks, will seek advice in a timely manner. Additionally, when there are interim achievements, I will promptly report and listen to their feedback.
@@ -40,7 +40,17 @@ Open Source Experience:
 
 ### Background
 
+Recent advances in computer graphics have made it possible to create realistic digital representations of 3D objects and surroundings. Such representations use various mathematical models to describe both geometry and attribute information of the objects. Among them, 3D point cloud has gained popularity and is extensively used in many industries. This simple data structure consists of an unorganized set of points in 3D space, usually represented in a Cartesian coordinate system with (𝑥, 𝑦, 𝑧). It can carry attributes such as colors, normals, and reflectance, making it suitable for representing both static and dynamic 3D objects.
 
+Real-world applications require point clouds with high densities, often up to millions of points. This demand raises significant requirements in terms of computational and memory resources. Compression algorithms play a crucial role in the computer vision field, especially in handling and processing large amounts of 3D point cloud data. They can help to reduce storage and memory requirements for applications, and make it easier to store, transmit, and process large amounts of visual data. Thus, the development of an efficient point cloud compression algorithm that considers various application constraints has become a challenge.
+
+Before delving in, I have reviewed related documents and code of some existing approaches:
+
+* G-PCC (Geometry based Point Cloud Compression) is a method for compressing both static and dynamic 3D point cloud data. This method divides the point cloud into a set of non-overlapping cubic cells, and then encodes the occupancy state of each cell using an octree-based coding scheme. Additionally, a predictive coding technique is employed to further reduce the amount of data needed to represent the point cloud. It has been standardized by MPEG and is widely used in various applications, such as 3D imaging, virtual reality, and autonomous driving. 
+
+* The PCL(Point Cloud Library) also provides a point cloud compression functionality. It allows for encoding all kinds of point clouds including “unorganized” point clouds that are characterized by non-existing point references, varying point size, resolution, density and/or point ordering. Furthermore, the underlying octree data structure enables to efficiently merge point cloud data from several sources.
+
+I believe that being familiar with a few mature approaches is beneficial to this project because it provides a foundation for designing and developing our compression algorithm. By analyzing the advantages of current techniques, I can identify areas for improvement and then further enhance the efficiency and effectiveness of my compression algorithm.
 
 ### Field Study
 
@@ -149,7 +159,7 @@ Our team are currently learning about Region-Adaptive Hierarchical Transform.
 
 
 
-### Expect  Schedule
+## Expected Schedule
 
 Prior - May 29
 

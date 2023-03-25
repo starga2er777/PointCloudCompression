@@ -140,13 +140,13 @@ Further achieving compression rate requires exploring spatial correlation (neigh
 
 
 
-### Methods to Encode Color
+### Encoding Color Attribute
 
-Similar to a method commonly used in image compression, the region-adaptive hierarchical transform (RAHT) is an ideal method for encoding the color attribute of point cloud data. 
+Haar wavelet transform is a mathematical technique used in image compression to reduce the size of digital images while preserving their essential features. The transform works by decomposing an image into a series of wavelet coefficients that capture the image's high-frequency components.
 
-The RAHT is a hierarchical sub-band transform that resembles an adaptive variation of a Haar wavelet. It is implemented by following backwards the octree scan, from individual voxels to the entire space, at each step grouping voxels of the same level into larger ones in each direction until reaching the root. It quantizes the transform coefficients using a uniform scalar quantizer, and then entropy codes each quantized coefficient using an arithmetic coder (AC). The decoder operates in the reverse manner.
+The RAHT(Region-Adaptive Hierarchical Transform) is a hierarchical sub-band transform that resembles an adaptive variation of a Haar wavelet. It is inspired by using the colors associated with a node in a lower level of the octree to predict the colors of the nodes in the next level. It is implemented by following backwards the octree scan, from individual voxels to the entire space, at each step grouping voxels of the same level into larger ones in each direction until reaching the root. It quantizes the transform coefficients using a uniform scalar quantizer, and then entropy codes each quantized coefficient using an arithmetic coder (AC). The decoder operates in the reverse manner.
 
-[Compression of 3D Point Clouds Using a Region-Adaptive Hierarchical Transform](https://ieeexplore.ieee.org/abstract/document/7482691)
+Reference: [Compression of 3D Point Clouds Using a Region-Adaptive Hierarchical Transform](https://ieeexplore.ieee.org/abstract/document/7482691)
 
 
 

@@ -42,6 +42,9 @@ Open Source Experience:
 
 Recent advances in computer graphics have made it possible to create realistic digital representations of 3D objects and surroundings. Such representations use various mathematical models to describe both geometry and attribute information of the objects. Among them, 3D point cloud has gained popularity and is extensively used in many industries. This simple data structure consists of an unorganized set of points in 3D space, usually represented in a Cartesian coordinate system with (𝑥, 𝑦, 𝑧). It can carry attributes such as colors, normals, and reflectance, making it suitable for representing both static and dynamic 3D objects.
 
+![Rabbit](https://user-images.githubusercontent.com/84237574/227936502-be4a3df7-7910-4bcf-a7bc-bb5fc52602b9.png)
+*From Cao C, Preda M, Zaharia T. (2019). 3D Point Cloud Compression: A Survey. 1-9. 10.1145/3329714.3338130.*
+
 Real-world applications require point clouds with high densities, often up to millions of points. This demand raises significant requirements in terms of computational and memory resources. Compression algorithms play a crucial role in the computer vision field, especially in handling and processing large amounts of 3D point cloud data. They can help to reduce storage and memory requirements for applications, and make it easier to store, transmit, and process large amounts of visual data. Thus, the development of an efficient point cloud compression algorithm that considers various application constraints has become a challenge.
 
 Before delving in, I have reviewed related documents and code of some existing approaches:

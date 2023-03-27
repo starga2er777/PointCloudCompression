@@ -171,7 +171,7 @@ The predictive coding model is based on the spatial position relation of octree 
 
 ![Occupancy Code](https://user-images.githubusercontent.com/84237574/227981345-eaa47e3b-1629-4dae-9fc6-711368c49dbe.png)
 
-*Occupancy Code Illustration*
+*Child node is likely to have the same occupancy distribution as its parent node*
 
 Through statistics, we found that given the specific neighborhood node information, the node's occupancy code is often predictable. The placeholders of this node will tend to form a plane with the neighbors. 
 

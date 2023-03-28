@@ -56,13 +56,9 @@ Before delving in, I have reviewed related documents and codes of some existing 
 
 I believe that being familiar with a few mature approaches is beneficial to this project because it provides a foundation for designing and developing our compression algorithm. By analyzing the advantages of current techniques, I can identify areas for improvement and then further enhance the efficiency and effectiveness of our compression algorithm.
 
-### Peer Demonstration and Comparison
-
-// Todo
 
 
-
-## Overview
+### Overview of the project plan
 
 ![1](https://user-images.githubusercontent.com/83380147/226165706-193b043f-98cc-45b9-a3ae-0f7883602ceb.png)
 
@@ -189,7 +185,7 @@ In practice, we have to select different coding method based on the node's geome
 
 ### Color Attribute Encoding
 
-###### For static point cloud:
+#### For static point cloud:
 
 Haar wavelet transform is a mathematical technique used in image compression to reduce the size of digital images while preserving their essential features. The transform works by decomposing an image into a series of wavelet coefficients that capture the image's high-frequency components.
 
@@ -200,7 +196,7 @@ Haar wavelet transform is a mathematical technique used in image compression to 
 
 The **RAHT(Region-Adaptive Hierarchical Transform)** is a hierarchical sub-band transform that resembles an adaptive variation of a Haar wavelet in 3D point clouds. It is inspired by using the colors associated with a node in a lower level of the octree to predict the colors of the nodes in the next level. It is implemented by following backwards the octree scan, from individual voxels to the entire space, at each step grouping voxels of the same level into larger ones in each direction until reaching the root. It quantizes the transform coefficients using a uniform scalar quantizer, and then entropy codes each quantized coefficient using an arithmetic coder. The decoder operates in the reverse manner.
 
-###### For dynamic point cloud:
+#### For dynamic point cloud:
 
 Double-buffering octree can make full use of the correlation between point cloud frames to complete the compression of point cloud. 
 

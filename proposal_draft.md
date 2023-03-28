@@ -29,7 +29,7 @@ Open Source Experience:
 ## About me
 
 - I am a third-year undergraduate student at Southern University of Science and Technology. Under the guidance of Professor Shiqi Yu, I have accumulated experience in point cloud compression for a semester. This is also my research direction for this semester. I believe I have enough time and ability to complete this project.
-- For this project, I plan to utilize an octree as the data structure to store the point cloud data. Currently, I have gained sufficient knowledge on the implementation of an `octree`in the `3d` module of `OpenCV5.x` and have made improvement suggestions that were accepted by the official team. Furthermore, I have studied the source code of Point Cloud Library (`PCL`) regarding point cloud compression and have acquired knowledge on some of the dynamic point cloud compression techniques they adopt, such as `double-buffered octree` compression.
+- For this project, I plan to utilize an octree as the data structure to store the point cloud data. Currently, I have gained sufficient knowledge on the implementation of an `octree`in the `3d` module of `OpenCV-5.x` and have made improvement suggestions that were accepted by the official team. Furthermore, I have studied the source code of Point Cloud Library (`PCL`) regarding point cloud compression and have acquired knowledge on some of the dynamic point cloud compression techniques they adopt, such as `double-buffered octree` compression.
 - I have perused numerous scholarly articles concerning the compression of point clouds, which involve various compression techniques such as direct encoding, predictive encoding, and color compression. Furthermore, I have devised a corresponding solution for direct encoding. Additionally, I intend to abide by the `GPCC` encoding standard for the compression of point cloud data.
 - I am good at seeking help. In my research on Computer Version, Professor Shiqi Yu, Research assistants Zihao Mu, Wanli Zhong have provided me with valuable advice. When encountering bottlenecks,I will seek advice in a timely manner. Additionally, when there are interim achievements, I will promptly report and listen to their feedback.
 - I possess a solid foundation in C++ programming and am proficient in the use of version control tools such as Git and Github. Moreover, I have the experience of contributing to open-source communities.
@@ -58,7 +58,7 @@ I believe that being familiar with a few mature approaches is beneficial to this
 
 
 
-### Overview of the project plan
+### Overview of the Project Plan
 
 ![1](https://user-images.githubusercontent.com/83380147/226165706-193b043f-98cc-45b9-a3ae-0f7883602ceb.png)
 
@@ -115,7 +115,7 @@ Now we insert `Point3i(25,50,75)`(binary is `1_1001,11_0010,100_1011`):
 | 6     | 10         | 0            | 1            | 1            | 6                |
 | 7     | 1          | 1            | 0            | 1            | 5                |
 
-We have already accomplished the insertion of a point cloud data, avoiding precision issues, while improving efficiency by utilizing bitwise operations.
+For now, we have already accomplished the efficient insertion of a point cloud data without precision issues by utilizing bitwise operations.
 
 
 
@@ -165,11 +165,11 @@ In practice, when octree's depth increases, a large number of octree nodes are o
 
 #### Predictive Coding Mode
 
-The predictive coding model is based on the spatial position relation of octree nodes. Specifically, the predictive encoding mode predicts the value of a node's occupancy code according to its position in the octree as well as the information of its neighbors. This approach takes advantage of the correlation between adjacent nodes in the space to reduce the number of bits required for entropy coding, thus achieving better compression outcome. 
+The predictive coding model(PCM) is based on the spatial position relation of octree nodes. Specifically, the predictive encoding mode predicts the value of a node's occupancy code according to its position in the octree as well as the information of its neighbors. This approach takes advantage of the correlation between adjacent nodes in the space to reduce the number of bits required for entropy coding, thus achieving better compression outcome. 
 
-![Occupancy Code](https://user-images.githubusercontent.com/84237574/227981345-eaa47e3b-1629-4dae-9fc6-711368c49dbe.png)
+// ToDo
 
-*Child node is likely to have the same occupancy distribution as its parent node*
+*Child node is likely to have the same occupancy distribution as its parent node according to statistics*
 
 Through statistics, we found that given the specific neighborhood node information, the node's occupancy code is often predictable. The placeholders of this node will tend to form a plane with the neighbors. This is because point cloud data is obtained by scanning the surface of an object.
 
@@ -185,8 +185,6 @@ In practice, we have to select different coding method based on the node's geome
 
 ### Color Attribute Encoding
 
-#### For static point cloud:
-
 Haar wavelet transform is a mathematical technique used in image compression to reduce the size of digital images while preserving their essential features. The transform works by decomposing an image into a series of wavelet coefficients that capture the image's high-frequency components.
 
 ![2D-Haar-Wavelet-Transform-Example](https://user-images.githubusercontent.com/83380147/228153308-2164b69a-59c6-431c-86be-772fd1e35be1.png)
@@ -196,27 +194,31 @@ Haar wavelet transform is a mathematical technique used in image compression to 
 
 The **RAHT(Region-Adaptive Hierarchical Transform)** is a hierarchical sub-band transform that resembles an adaptive variation of a Haar wavelet in 3D point clouds. It is inspired by using the colors associated with a node in a lower level of the octree to predict the colors of the nodes in the next level. It is implemented by following backwards the octree scan, from individual voxels to the entire space, at each step grouping voxels of the same level into larger ones in each direction until reaching the root. It quantizes the transform coefficients using a uniform scalar quantizer, and then entropy codes each quantized coefficient using an arithmetic coder. The decoder operates in the reverse manner.
 
-#### For dynamic point cloud:
 
-Double-buffering octree can make full use of the correlation between point cloud frames to complete the compression of point cloud. 
+
+### Dynamic Point Cloud Compression
+
+#### Inter-frame Encoding
+
+Dynamic point clouds has not only spatial continuity but also temporal redundancy. When compressing the adjacent frames of dynamic point cloud data, the current frame can refer to the previous frame. 
+
+![inter-frame](https://user-images.githubusercontent.com/84237574/227980389-92335b73-6d55-4c7f-a5bc-c0930dd941b8.png)
+
+*Inter-frame Encoding with XOR bit operation*
+
+After encoding both current and previous frames with octree, the octree nodes are compared in the octree structure to identify the nodes that have changed. Then the encoding results of the two frames are concatenated with the occupancy codes of the nodes that have not changed from the previous frame to output the compression result of the current frame. During this process, due to the utilization of temporal redundancy, most information of the occupancy codes of the previous frame can be directly stored in the current frame, thus reducing the storage space cost.
+
+
+
+#### Double-buffering Octree
+
+Double-buffering octree can make full use of the correlation between point cloud frames. 
 
 ![double-buffering](https://user-images.githubusercontent.com/84237574/227980250-6755e16a-7d65-419f-b587-03ce9d7d38cc.png)
 
 *Illustration of differential encoding technique when using double-buffering octree*
 
 For each frame, only the difference between it and the previous frame needs to be coded. It is worth noting that the size of the difference between frames is negligible. Therefore, in a selected interval, if the first frame at this interval is taken as the initial frame, the difference between each subsequent frame can be encoded. This method can greatly improve the compression rate of dynamic point cloud compression.
-
-
-
-### Inter-frame Encoding
-
-Dynamic point clouds has not only spatial continuity but also temporal redundancy. When compressing the adjacent frames of dynamic point cloud data, the current frame can refer to the previous frame. 
-
-![inter-frame](https://user-images.githubusercontent.com/84237574/227980389-92335b73-6d55-4c7f-a5bc-c0930dd941b8.png)
-
-*Inter-frame Encoding*
-
-After encoding both current and previous frames with octree, the octree nodes are compared in the octree structure to identify the nodes that have changed. Then the encoding results of the two frames are concatenated with the occupancy codes of the nodes that have not changed from the previous frame to output the compression result of the current frame. During this process, due to the utilization of temporal redundancy, the occupancy codes of the previous frame can be directly copied, thus reducing the storage space cost.
 
 
 
@@ -237,27 +239,27 @@ Prior - May 29
 - Reading papers of point cloud compression algorithms
 - Discussion with mentor about specific aspects of the project
 
-June 1-14
+June 1 - 14
 
 - Implement direct coding mode & predictive coding mode
 - Discussion of the plan for encoding color attribute
 
-June 16- July 10
+June 16 - July 10
 
 - Implement color attribute encoding
 - Discussion of inter-frame encoding
 
 July 10 - 28
 
-- Finish double buffering octree	
+- Finish double buffering octree
 
-August 1-14
+August 1 - 14
 
 - Test and improve the algorithm
 - Rewrite based on OpenCV standard
-- Write a document for program 
+- Write a document for program
 
-August 15-28
+August 15 - 28
 
 - Write a summary report throughout the project
 

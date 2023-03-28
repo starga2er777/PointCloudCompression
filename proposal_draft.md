@@ -167,7 +167,7 @@ In practice, when octree's depth increases, a large number of octree nodes are o
 
 The predictive coding model(PCM) is based on the spatial position relation of octree nodes. Specifically, the predictive encoding mode predicts the value of a node's occupancy code according to its position in the octree as well as the information of its neighbors. This approach takes advantage of the correlation between adjacent nodes in the space to reduce the number of bits required for entropy coding, thus achieving better compression outcome. 
 
-// ToDo
+![predictive](https://user-images.githubusercontent.com/84237574/228198152-9947181f-2b1d-46d2-b385-677d347f3aa8.png)
 
 *Child node is likely to have the same occupancy distribution as its parent node according to statistics*
 

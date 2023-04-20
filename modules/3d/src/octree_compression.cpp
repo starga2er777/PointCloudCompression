@@ -6,8 +6,12 @@
 #include "octree_compression.hpp"
 
 #include <fstream>
+//TODO temp include
+#include <bitset>
+#include <algorithm>
 
 #define OCTREE_CHILD_NUM 8
+#define OCTREE_NEIGH_SIZE 8
 
 namespace cv{
 
@@ -17,11 +21,11 @@ namespace cv{
     void restoreOctree(const std::vector<unsigned char> &bit_out,OctreeCompressNode &root, size_t len);
     void getPointRecurse(std::vector<Point3f> &restorePointCloud,unsigned long x_key,unsigned long y_key,unsigned long z_key, Ptr<OctreeCompressNode>& _node,double resolution,Point3f ori);
 
-    OctreeCompressNode::OctreeCompressNode():children(OCTREE_CHILD_NUM, nullptr), depth(0), size(0), origin(0,0,0), parentIndex(-1), pointNum(0)
+    OctreeCompressNode::OctreeCompressNode():children(OCTREE_CHILD_NUM, nullptr), neigh(OCTREE_NEIGH_SIZE, nullptr), depth(0), size(0), origin(0,0,0), parentIndex(-1), pointNum(0)
     {
     }
 
-    OctreeCompressNode::OctreeCompressNode(int _depth, double _size, const Point3f& _origin, int _parentIndex, int _pointNum):children(OCTREE_CHILD_NUM), depth(_depth), size(_size), origin(_origin), parentIndex(_parentIndex), pointNum(_pointNum)
+    OctreeCompressNode::OctreeCompressNode(int _depth, double _size, const Point3f& _origin, int _parentIndex, int _pointNum):children(OCTREE_CHILD_NUM), neigh(OCTREE_NEIGH_SIZE), depth(_depth), size(_size), origin(_origin), parentIndex(_parentIndex), pointNum(_pointNum)
     {
     }
 
@@ -307,17 +311,87 @@ namespace cv{
         return result;
     }
 
+    /* Map neighbour position descriptor to idx:(001, 0) -> 001
+        (001, 1) -> 011
+        (010, 0) -> 010
+        (010, 1) -> 110
+        (100, 0) -> 100
+        (100, 1) -> 110
+        idx 000 and 111 are reserved
+    */
+    unsigned char mapNeighPos2Idx(unsigned char dim_mask, unsigned char sign) {
+        return dim_mask | (sign << (dim_mask & 3));
+    }
+
+    void setNeighbour(OctreeCompressNode &node) {
+
+        // binary mask indicate neighbour's xyz dimension and sign direction (0 negative, 1 positive)
+        unsigned char dim_mask = 1;
+        bool sign = false;
+        unsigned char neigh_child_idx;
+        unsigned char neigh_idx;
+        unsigned char child_idx = (unsigned char)node.parentIndex;
+
+        // iterate neighbours position, get neigh[1..6], 0 and 7 reserved
+        while (dim_mask <= 4) {
+            // neigh_child_idx only depend on child_idx and dim direction
+            neigh_child_idx = child_idx ^ dim_mask;
+            neigh_idx = mapNeighPos2Idx(dim_mask, (unsigned char)sign);
+
+            if (bool(dim_mask & child_idx) == sign) {
+                // neigh outside curr node's parent
+                if (!node.parent->neigh[neigh_idx]) {
+                    node.neigh[neigh_idx]= nullptr;
+                }
+                else {
+                    node.neigh[neigh_idx] = node.parent->neigh[neigh_idx]->children[neigh_child_idx];
+                }
+            }
+            else {
+                // neigh share same parent with curr node
+                node.neigh[neigh_idx] = node.parent->children[neigh_child_idx];
+            }
+
+            if (sign) {
+                dim_mask <<= 1;
+                sign = false;
+            }
+            else sign = true;
+        }
+    }
+
     void traverseByLevel(std::vector<unsigned char> &binary_tree_out_arg,
                          OctreeCompressNode &root){
 
         std::queue<OctreeCompressNode*> nodeQueue;
+        for (int i = 1; i < 7; ++i) {
+            root.neigh[i] = nullptr;
+        }
         nodeQueue.push(&root);
 
         try{
 
-            while(!nodeQueue.empty()){
+            while (!nodeQueue.empty()) {
 
-                OctreeCompressNode& node = *(nodeQueue.front());
+                OctreeCompressNode &node = *(nodeQueue.front());
+                // TODO DEBUG
+                for (int i = 0; i < 8; i++) {
+                    if (node.children[i]) std::cout << 1;
+                    else std::cout << 0;
+                }
+                std::cout << std::endl;
+
+                for (int i = 0; i < 8; i++) {
+                    if (!node.children[i]) continue;
+                    setNeighbour(*(node.children[i]));
+                    // TODO DEBUG
+                    std::cout << i << ": ";
+                    for (int j = 1; j < 7; j++) {
+                        if (node.children[i]->neigh[j]) std::cout << 1;
+                        else std::cout << 0;
+                    }
+                    std::cout << std::endl;
+                }
 
                 // stop at last level, no need to encode leaf node
                 if (node.isLeaf) {
@@ -327,12 +401,20 @@ namespace cv{
                 // Octree mode (further branching)
 
                 binary_tree_out_arg.push_back(OctreeCompressKey::getBitPattern(node));
+
                 nodeQueue.pop();
-                for (unsigned char i=0;i<8;i++){
-                    if(!node.children[i].empty()){
+                for (unsigned char i = 0; i < 8; i++) {
+                    if (!node.children[i].empty()) {
                         nodeQueue.push(node.children[i]);
+                        // TODO DEBUG
+                        for (int j = 0; j < 8; j++) {
+                            if (node.children[i]->children[j]) std::cout << 1;
+                            else std::cout << 0;
+                        }
+                        std::cout << ' ';
                     }
                 }
+                std::cout << std::endl;
             }
         }
         catch (std::bad_alloc){
@@ -340,6 +422,7 @@ namespace cv{
         }
 
     }
+
 
     void restoreOctree(const std::vector<unsigned char> &binary_tree_out_arg,OctreeCompressNode &root, size_t len){
         std::queue<OctreeCompressNode *> nodeQueue;

@@ -92,11 +92,22 @@ contains at least one non-empty child pointer, except for the root node.
         */
         int pointNum;
 
+        /**  The list of 6 adjacent neighbor node.
+        *    index mapping:
+        *     +z                        [101]
+        *      |                          |    [110]
+        *      |                          |  /
+        *      O-------- +x    [001]----{000} ----[011]
+        *     /                       /   |
+        *    /                   [010]    |
+        *  +y                           [100]
+        *  index 000, 111 are reserved
+        */
+        std::vector< Ptr<OctreeCompressNode> > neigh;
+
         //! If the OctreeCompressNode is LeafNode.
         bool isLeaf = false;
     };
-
-
 
     class OctreeCompressKey{
     public:

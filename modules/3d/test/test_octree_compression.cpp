@@ -17,8 +17,8 @@ namespace opencv_test { namespace {
             {
                 // SETTING (Filebase is the path of pointcloud with the file name, but no ".ply")
                 String FileBase = R"(D:\mydoc\CS_Resources\PCL_1.12.1\share\doc\pcl-1.12\tutorials\sources\cloud_viewer\cmake-build-debug-visual-studio\Debug\dress\dress)";
-                float resolution = 0.1;
-                String label = "Pred";
+                float resolution = 1;
+                String label = "6N";
                 String res_str = std::to_string(resolution);
                 res_str.erase(res_str.find_last_not_of('0') + 1);
                 res_str.erase(res_str.find('.'), 1);

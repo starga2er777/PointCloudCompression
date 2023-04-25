@@ -364,9 +364,6 @@ namespace cv{
                          OctreeCompressNode &root){
 
         std::queue<OctreeCompressNode*> nodeQueue;
-        for (int i = 1; i < 7; ++i) {
-            root.neigh[i] = nullptr;
-        }
         nodeQueue.push(&root);
 
         try{
@@ -374,28 +371,15 @@ namespace cv{
             while (!nodeQueue.empty()) {
 
                 OctreeCompressNode &node = *(nodeQueue.front());
-                // TODO DEBUG
-                for (int i = 0; i < 8; i++) {
-                    if (node.children[i]) std::cout << 1;
-                    else std::cout << 0;
+
+                // Stop at last leaf level, no need to encode leaf node
+                if (node.isLeaf) {
+                    break;
                 }
-                std::cout << std::endl;
 
                 for (int i = 0; i < 8; i++) {
                     if (!node.children[i]) continue;
                     setNeighbour(*(node.children[i]));
-                    // TODO DEBUG
-                    std::cout << i << ": ";
-                    for (int j = 1; j < 7; j++) {
-                        if (node.children[i]->neigh[j]) std::cout << 1;
-                        else std::cout << 0;
-                    }
-                    std::cout << std::endl;
-                }
-
-                // stop at last level, no need to encode leaf node
-                if (node.isLeaf) {
-                    break;
                 }
 
                 // Octree mode (further branching)
@@ -406,15 +390,8 @@ namespace cv{
                 for (unsigned char i = 0; i < 8; i++) {
                     if (!node.children[i].empty()) {
                         nodeQueue.push(node.children[i]);
-                        // TODO DEBUG
-                        for (int j = 0; j < 8; j++) {
-                            if (node.children[i]->children[j]) std::cout << 1;
-                            else std::cout << 0;
-                        }
-                        std::cout << ' ';
                     }
                 }
-                std::cout << std::endl;
             }
         }
         catch (std::bad_alloc){

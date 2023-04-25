@@ -129,6 +129,14 @@ contains at least one non-empty child pointer, except for the root node.
             }
             return res;
         }
+
+        static inline unsigned char getNeighPattern(OctreeCompressNode &node) {
+            unsigned char res=0;
+            for (unsigned char i=1; i<7;i++){
+                res |= static_cast<unsigned char>( (!node.neigh[i].empty()) << (i - 1));
+            }
+            return res;
+        }
     };
 
 }

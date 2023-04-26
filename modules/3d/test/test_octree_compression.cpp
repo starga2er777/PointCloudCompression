@@ -15,19 +15,21 @@ namespace opencv_test { namespace {
         protected:
             void SetUp() override
             {
-                // SETTING (Filebase is the path of pointcloud with the file name, but no ".ply")
-                String FileBase = R"(D:\mydoc\CS_Resources\PCL_1.12.1\share\doc\pcl-1.12\tutorials\sources\cloud_viewer\cmake-build-debug-visual-studio\Debug\dress\dress)";
+                // SETTING (Filebase is the path of point cloud with the file name, but no ".ply")
+                String FileBase = R"(/home/jeffery/Downloads/RAHT-reorder/PointCloud/longdress_vox10_1051)";
                 float resolution = 0.5;
-                String label = "";
+                String label;
                 String res_str = std::to_string(resolution);
                 res_str.erase(res_str.find_last_not_of('0') + 1);
                 res_str.erase(res_str.find('.'), 1);
                 //load .ply file
                 String loadFileName= FileBase + ".ply";
-                loadPointCloud(loadFileName,pointcloud);
+                // color: rgb
+                loadPointCloud(loadFileName, pointcloud, normal, color_attribute);
 
                 // Generate OctreeCompress From PointCloud,resolution is the minimum precision that can be specified and must be 10^x
                 treeTest.create(pointcloud, resolution);
+                
 
                 //traverse OctreeCompress by level order.Get the char array representation of the tree
                 std::vector<unsigned char> treeToVector;
@@ -60,6 +62,8 @@ namespace opencv_test { namespace {
 
         public:
             std::vector<Point3f> pointcloud;
+            std::vector<Point3f> normal;
+            std::vector<Point3f> color_attribute;
             std::vector<Point3f> restorePointCloud;
             Point3f restPoint;
             OctreeCompress treeTest;

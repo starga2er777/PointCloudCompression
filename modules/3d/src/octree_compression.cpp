@@ -16,9 +16,12 @@ namespace cv{
 
     static bool _isPointInBound(const Point3f& _point, const Point3f& _origin, double _size);
     static bool insertPointRecurse( Ptr<OctreeCompressNode>& node,  const Point3f& point, int maxDepth, const OctreeCompressKey &key,size_t depthMask);
-    void traverseByLevel(std::vector<unsigned char> &bit_out, std::vector<unsigned char> &bit_DCM, OctreeCompressNode &node);
+    void traverseByLevel(OctreeCompressData &raw_data_out, OctreeCompressNode &node);
     void restoreOctree(const std::vector<unsigned char> &bit_out,OctreeCompressNode &root, size_t len);
     void getPointRecurse(std::vector<Point3f> &restorePointCloud,unsigned long x_key,unsigned long y_key,unsigned long z_key, Ptr<OctreeCompressNode>& _node,double resolution,Point3f ori);
+    void decodeStreamToCharVector(std::istream& inputByteStream_arg, std::vector<unsigned char>& outputCharVector_arg);
+    void encodeCharVectorToStream(const std::vector<unsigned char>& inputCharVector_arg, std::ostream& outputByteStream_arg);
+
 
     OctreeCompressNode::OctreeCompressNode():children(OCTREE_CHILD_NUM, nullptr), neigh(OCTREE_NEIGH_SIZE, nullptr), depth(0), size(0), origin(0,0,0), parentIndex(-1), pointNum(0)
     {
@@ -181,44 +184,62 @@ namespace cv{
         return true;
     }
 
-    void OctreeCompress::traverse(std::vector<unsigned char> &bit_out){
-        std::vector<unsigned char> bit_DCM;
+    void OctreeCompress::traverse(std::ostream& outputStream){
+        OctreeCompressData raw_data;
 
         // traverse Octree nodes
-        traverseByLevel(bit_out, bit_DCM, *p->rootNode);
+        traverseByLevel(raw_data, *p->rootNode);
 
-        // TODO change additional info to header not tail
-        // additional information (at tail)
+        // Set header
         // +-----------------------------   +
         // | resolution (double, 8bytes)    |
         // | origin X,Y,Z (3float, 12bytes) |
-        // | bit_out len (size_t, 8bytes)   |
+        // | occ_codes len (size_t, 8bytes) |
+        // | dcm_flags len (size_t, 8bytes) |
+        // | dcm_codes len (size_t, 8bytes) |
         // +-----------------------------   +
         //TODO use sizeof() instead of hard coding size
-
-        //calc additional info
-        size_t length = bit_out.size();
-        unsigned char len_out[8];
-        memcpy(len_out,&length,sizeof(len_out));
-
+        unsigned char res[8];
         unsigned char ori[12];
+        unsigned char len_occ_codes[8];
+        unsigned char len_dcm_flags[8];
+        unsigned char len_dcm_codes[8];
+
+        size_t occ_codes_size = raw_data.occ_codes.size();
+        size_t dcm_flags_size = raw_data.dcm_flags.size();
+        size_t dcm_codes_size = raw_data.dcm_codes.size();
+
+        memcpy(&res, &(p->resolution), sizeof(p->resolution));
         memcpy(ori,&p->origin.x,sizeof(ori)/3);
         memcpy(&ori[4],&p->origin.y,sizeof(ori)/3);
         memcpy(&ori[8],&p->origin.z,sizeof(ori)/3);
-
-        unsigned char res[8];
-        memcpy(&res, &(p->resolution), sizeof(p->resolution));
+        memcpy(len_occ_codes,&occ_codes_size,sizeof(len_occ_codes));
+        memcpy(len_dcm_flags,&dcm_flags_size,sizeof(len_dcm_flags));
+        memcpy(len_dcm_codes,&dcm_codes_size,sizeof(len_dcm_codes));
 
         // push additional info
         for(unsigned char & i : res){
-            bit_out.push_back(i);
+            raw_data.header.push_back(i);
         }
         for(unsigned char & i : ori){
-            bit_out.push_back(i);
+            raw_data.header.push_back(i);
         }
-        for(unsigned char & i : len_out){
-            bit_out.push_back(i);
+        for(unsigned char & i : len_occ_codes){
+            raw_data.header.push_back(i);
         }
+        for(unsigned char & i : len_dcm_flags){
+            raw_data.header.push_back(i);
+        }
+        for(unsigned char & i : len_dcm_codes){
+            raw_data.header.push_back(i);
+        }
+
+        encodeCharVectorToStream(raw_data.header,outputStream);
+        encodeCharVectorToStream(raw_data.occ_codes,outputStream);
+        encodeCharVectorToStream(raw_data.dcm_flags,outputStream);
+        encodeCharVectorToStream(raw_data.dcm_codes,outputStream);
+        encodeCharVectorToStream(raw_data.occ_lookup_table,outputStream);
+        encodeCharVectorToStream(raw_data.dcm_lookup_table,outputStream);
     }
 
     void OctreeCompress::reStore(const std::vector<unsigned char> &bit_out){
@@ -310,7 +331,7 @@ namespace cv{
         return result;
     }
 
-    /* Map neighbour position descriptor to idx:
+    /* one-to-one Map 6N descriptor to idx of lookup table:
         (001, 0) -> 001
         (001, 1) -> 011
         (010, 0) -> 010
@@ -318,40 +339,49 @@ namespace cv{
         (100, 0) -> 100
         (100, 1) -> 110
         idx 000 and 111 are reserved
+
+       6N descriptor explain: see setNeighbour()
     */
     unsigned char mapNeighPos2Idx(unsigned char dim_mask, unsigned char sign) {
         return dim_mask | (sign << (dim_mask & 3));
     }
 
+    // Set node's neighbour vector pointing at 6 adjacent nodes(cubes) at same level.
     void setNeighbour(OctreeCompressNode &node) {
 
-        // binary mask indicate neighbour's xyz dimension and sign direction (0 negative, 1 positive)
+        // 6N neighbour position descriptor explain:
+        //   dim_mask: the 6N neighbour dimension, two on x(001), two on y(010), tow on z(100)
+        //   sign direction (0 negative, 1 positive)
+        // these can fully identify 6 neighbours
         unsigned char dim_mask = 1;
         bool sign = false;
-        unsigned char neigh_child_idx;
-        unsigned char neigh_idx;
-        unsigned char child_idx = (unsigned char)node.parentIndex;
 
-        // iterate neighbours position, get neigh[1..6], 0 and 7 reserved
+        // neigh_6N_idx: where is neigh's 6N position according to curr node
+        // neigh_parent_idx: what is neigh's octreeNode position according to parent
+        unsigned char neigh_6N_idx;
+        unsigned char neigh_parent_idx;
+
+        // iterate neighbours position(dim_mask, sign), get neigh[1..6].
         while (dim_mask <= 4) {
-            // neigh_child_idx only depend on child_idx and dim direction
-            neigh_child_idx = child_idx ^ dim_mask;
-            neigh_idx = mapNeighPos2Idx(dim_mask, (unsigned char)sign);
+            // neigh_parent_idx only depend on parentIndex and dim direction
+            neigh_parent_idx = (unsigned char)node.parentIndex ^ dim_mask;
+            neigh_6N_idx = mapNeighPos2Idx(dim_mask, (unsigned char)sign);
 
-            if (bool(dim_mask & child_idx) == sign) {
-                // neigh outside curr node's parent
-                if (!node.parent->neigh[neigh_idx]) {
-                    node.neigh[neigh_idx]= nullptr;
+            if (bool(dim_mask & (unsigned char)node.parentIndex) == sign) {
+                // neigh inside curr node's parent's neighbour
+                if (!node.parent->neigh[neigh_6N_idx]) {
+                    node.neigh[neigh_6N_idx]= nullptr;
                 }
                 else {
-                    node.neigh[neigh_idx] = node.parent->neigh[neigh_idx]->children[neigh_child_idx];
+                    node.neigh[neigh_6N_idx] = node.parent->neigh[neigh_6N_idx]->children[neigh_parent_idx];
                 }
             }
             else {
                 // neigh share same parent with curr node
-                node.neigh[neigh_idx] = node.parent->children[neigh_child_idx];
+                node.neigh[neigh_6N_idx] = node.parent->children[neigh_parent_idx];
             }
 
+            // next neighbours position
             if (sign) {
                 dim_mask <<= 1;
                 sign = false;
@@ -360,110 +390,116 @@ namespace cv{
         }
     }
 
-    void traverseByLevel(std::vector<unsigned char> &binary_tree_out_arg,
-                         std::vector<unsigned char> &bit_DCM,
+    void traverseByLevel(OctreeCompressData &raw_data_out,
                          OctreeCompressNode &root){
 
-        // from DynamicBitset
-        static const unsigned int cell_bit_size = CHAR_BIT * sizeof(unsigned char);
-        size_t index = 0;
-
         try{
+            // Prediction Tables
             int look_up_table[64][256];
             unsigned char weight_table[64][256];
+            int look_up_DCM_table[64][8];
+            unsigned char weight_DCM_table[64][8];
             memset(look_up_table, 0, sizeof(look_up_table));
             memset(weight_table, 0, sizeof(weight_table));
-
-
-
-            std::queue<OctreeCompressNode*> nodeQueue;
-            nodeQueue.push(&root);
+            memset(look_up_DCM_table, 0, sizeof(look_up_DCM_table));
+            memset(weight_DCM_table, 0, sizeof(weight_DCM_table));
 
             // Pre-Traverse
+            std::queue<OctreeCompressNode*> nodeQueue;
+            nodeQueue.push(&root);
 
             while (!nodeQueue.empty()) {
 
                 OctreeCompressNode &node = *(nodeQueue.front());
+                nodeQueue.pop();
 
                 // Stop at last leaf level, no need to encode leaf node
                 if (node.isLeaf) {
                     break;
                 }
 
+                // set neighbours for all children
                 for (int i = 0; i < 8; i++) {
                     if (!node.children[i]) continue;
                     setNeighbour(*(node.children[i]));
                 }
 
-                // Direct coding mode (DCM)
+                // Direct coding mode (DCM) for lookup
 
                 if (node.parent != nullptr) {
-                    // eligible: check if parent only have one child
-                    bool eligible = false;
+                    // check if it is single point
+                    if (node.pointNum == 1){
 
-                    for (unsigned char i=0; i<node.children.size();i++){
-                        if (!node.children[i].empty()) {
-                            if (eligible) {
-                                eligible = false;
-                                break;
+                        // record DCM branching, refer to neighbour
+                        unsigned char neigh = OctreeCompressKey::getNeighPattern(node);
+                        OctreeCompressNode pNode = node;
+                        while (!pNode.isLeaf) {
+                            for (unsigned char i=0; i<pNode.children.size();i++){
+                                if (!pNode.children[i].empty()) {
+                                    look_up_DCM_table[neigh][i]++;
+                                    pNode = *(pNode.children[i]);
+                                    break;
+                                }
                             }
-                            eligible = true;
                         }
-                    }
-
-                    if (eligible){
-                        if (node.pointNum == 1){
-                            // Skip DCM
-                            nodeQueue.pop();
-                            continue;
-                        }
+                        // DCM complete
+                        continue;
                     }
                 }
 
                 // Octree mode (further branching)
-                nodeQueue.pop();
                 for (unsigned char i = 0; i < 8; i++) {
                     if (!node.children[i].empty()) {
                         nodeQueue.push(node.children[i]);
                     }
                 }
-
+                // record Octree branching, refer to neighbour
                 look_up_table[(int) OctreeCompressKey::getNeighPattern(node)][(int) OctreeCompressKey::getBitPattern(node)]++;
             }
 
+            // Sort lookup to get weight table
             for (int i = 0; i < 64; i++)
             {
-                std::cout << " neigh:" << i << std::endl;
-
                 std::vector<std::pair<int, int>> temp_vec;
+                std::vector<std::pair<int, int>> temp_DCM_vec;
+
                 for (int j = 0; j < 256; j++) {
                     temp_vec.emplace_back(look_up_table[i][j], j);
                 }
+                for (int j = 0; j < 8; j++) {
+                    temp_DCM_vec.emplace_back(look_up_DCM_table[i][j], j);
+                }
+
                 std::sort(temp_vec.rbegin(), temp_vec.rend());
+                std::sort(temp_DCM_vec.rbegin(), temp_DCM_vec.rend());
+
                 for (int w = 0; w < 256; w++) {
                     weight_table[i][temp_vec[w].second] = (unsigned char)w;
+                    raw_data_out.occ_lookup_table.push_back((unsigned char)(temp_vec[w].second));
                 }
-
-                for (int j = 0; j < 256; j++)
-                {
-                    std::cout << " *" << std::bitset<8>(temp_vec[j].second) << ":" << temp_vec[j].first;
+                for (int w = 0; w < 8; w++) {
+                    weight_DCM_table[i][temp_DCM_vec[w].second] = (unsigned char)w;
+                    raw_data_out.dcm_lookup_table.push_back((unsigned char)(temp_DCM_vec[w].second));
                 }
-                std::cout << std::endl;
             }
 
+            // True Traverse
             nodeQueue = std::queue<OctreeCompressNode*>();
             nodeQueue.push(&root);
 
-            // True Traverse
             while (!nodeQueue.empty()) {
 
                 OctreeCompressNode &node = *(nodeQueue.front());
+                nodeQueue.pop();
 
                 // Stop at last leaf level, no need to encode leaf node
                 if (node.isLeaf) {
                     break;
                 }
 
+                // neigh: the core of prediction
+                unsigned char neigh = OctreeCompressKey::getNeighPattern(node);
+
                 // Direct coding mode (DCM)
 
                 if (node.parent != nullptr) {
@@ -481,53 +517,38 @@ namespace cv{
                     }
 
                     if (eligible){
-                        if (index / cell_bit_size >= bit_DCM.size()) bit_DCM.push_back((unsigned char)0);
                         if (node.pointNum == 1){
-                            bit_DCM[index / cell_bit_size] |= size_t(1) << (index % cell_bit_size);
-                        }
-                        index ++;
+                            raw_data_out.dcm_flags.push_back(true);
 
-                        if (node.pointNum == 1){
                             // Apply DCM
                             OctreeCompressNode pNode = node;
                             while (!pNode.isLeaf) {
                                 for (unsigned char i=0; i<pNode.children.size();i++){
                                     if (!pNode.children[i].empty()) {
-
-                                        // set bits
-                                        if ((index + 2) / cell_bit_size >= bit_DCM.size()) bit_DCM.push_back((unsigned char)0);
-                                        // std::cout << "index " << index << " real " << index / cell_bit_size << "size" << bit_DCM.size() << std::endl;
-                                        if (i & 1) bit_DCM[index / cell_bit_size] |= size_t(1) << (index % cell_bit_size); index++;
-                                        if (i & 2) bit_DCM[index / cell_bit_size] |= size_t(1) << (index % cell_bit_size); index++;
-                                        if (i & 4) bit_DCM[index / cell_bit_size] |= size_t(1) << (index % cell_bit_size); index++;
-
+                                        // push back DCM weighted Prediction loss to output vector
+                                        raw_data_out.dcm_codes.push_back(weight_DCM_table[neigh][i]);
                                         pNode = *(pNode.children[i]);
-
                                         break;
                                     }
                                 }
                             }
-
-                            nodeQueue.pop();
                             continue;
+                        }
+                        else {
+                            raw_data_out.dcm_flags.push_back(false);
                         }
                     }
                 }
 
                 // Octree mode (further branching)
-                // Entropy weight coding
-                binary_tree_out_arg.push_back(weight_table[OctreeCompressKey::getNeighPattern(node)]
-                                                            [OctreeCompressKey::getBitPattern(node)]);
-                nodeQueue.pop();
+                // push back weighted Prediction loss to output vector
+                raw_data_out.occ_codes.push_back(weight_table[neigh][OctreeCompressKey::getBitPattern(node)]);
                 for (unsigned char i = 0; i < 8; i++) {
                     if (!node.children[i].empty()) {
                         nodeQueue.push(node.children[i]);
                     }
                 }
             }
-
-            // TODO DEBUG DCM LEN Wait for Compression!
-            std::cout << "DCM_bit: " << index << std::endl;
         }
         catch (std::bad_alloc){
 
@@ -598,7 +619,7 @@ namespace cv{
     };
 
 // Range Coding methods based on implementation by Julius Kammerl (julius@kammerl.de) from PCL
-    void  OctreeCompress::encodeCharVectorToStream(const std::vector<unsigned char>& inputCharVector_arg,
+    void encodeCharVectorToStream(const std::vector<unsigned char>& inputCharVector_arg,
                                            std::ostream& outputByteStream_arg) {
 
         // histogram of char frequency
@@ -697,7 +718,7 @@ namespace cv{
 
     }
 
-    void  OctreeCompress::decodeStreamToCharVector(std::istream& inputByteStream_arg,
+    void decodeStreamToCharVector(std::istream& inputByteStream_arg,
                                            std::vector<unsigned char>& outputCharVector_arg)
     {
 

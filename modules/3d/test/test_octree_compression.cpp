@@ -17,8 +17,8 @@ namespace opencv_test { namespace {
             {
                 // SETTING (Filebase is the path of pointcloud with the file name, but no ".ply")
                 String FileBase = R"(D:\mydoc\CS_Resources\PCL_1.12.1\share\doc\pcl-1.12\tutorials\sources\cloud_viewer\cmake-build-debug-visual-studio\Debug\dress\dress)";
-                float resolution = 0.1;
-                String label = "6N_DCM_Pred_";
+                float resolution = 1;
+                String label = "6N_DCM_Pred_Final_";
                 String res_str = std::to_string(resolution);
                 res_str.erase(res_str.find_last_not_of('0') + 1);
                 res_str.erase(res_str.find('.'), 1);
@@ -29,37 +29,30 @@ namespace opencv_test { namespace {
                 // Generate OctreeCompress From PointCloud,resolution is the minimum precision that can be specified and must be 10^x
                 treeTest.create(pointcloud, resolution);
 
-                //traverse OctreeCompress by level order.Get the char array representation of the tree
-                std::vector<unsigned char> treeToVector;
-                treeTest.traverse(treeToVector);
-
                 //compressed char array to byte stream
                 std::ofstream vectorToStream;
-                //std::stringstream vectorToStream;
-                //vectorToStream.open(R"(A_myPly\output\stream_01.bin)", std::ios_base::binary);
                 vectorToStream.open(FileBase + label + res_str + ".bin", std::ios_base::binary);
-                treeTest.encodeCharVectorToStream(treeToVector,vectorToStream);
+                treeTest.traverse(vectorToStream);
                 vectorToStream.close();
 
-                // TODO  Encode side <DCM compress> <Pred Table> not output!
                 // TODO  Decode side not implement! (DCM,Pred)
                 return;
 
-                std::ifstream streamToVector;
-                streamToVector.open(FileBase + label + res_str + ".bin", std::ios_base::binary);
-                //restore char array from byte stream
-                std::vector<unsigned char> vectorToTree(treeToVector.size());
-                treeTest.decodeStreamToCharVector(streamToVector,vectorToTree);
-                streamToVector.close();
-
-                //restore OctreeCompress from char array
-                treeTest.reStore(vectorToTree);
-
-                //restore PointCloud from OctreeCompress
-                treeTest.getPointCloudByOctree(restorePointCloud);
-                //save .ply file
-                String saveFileName= FileBase + label + res_str + ".ply";
-                savePointCloud(saveFileName,restorePointCloud);
+//                std::ifstream streamToVector;
+//                streamToVector.open(FileBase + label + res_str + ".bin", std::ios_base::binary);
+//                //restore char array from byte stream
+//                std::vector<unsigned char> vectorToTree(treeToVector.size());
+//                treeTest.decodeStreamToCharVector(streamToVector,vectorToTree);
+//                streamToVector.close();
+//
+//                //restore OctreeCompress from char array
+//                treeTest.reStore(vectorToTree);
+//
+//                //restore PointCloud from OctreeCompress
+//                treeTest.getPointCloudByOctree(restorePointCloud);
+//                //save .ply file
+//                String saveFileName= FileBase + label + res_str + ".ply";
+//                savePointCloud(saveFileName,restorePointCloud);
             }
 
         public:

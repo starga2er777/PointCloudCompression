@@ -139,5 +139,22 @@ contains at least one non-empty child pointer, except for the root node.
         }
     };
 
+
+    // header information
+    // +-----------------------------   +
+    // | resolution (double, 8bytes)    |
+    // | origin X,Y,Z (3float, 12bytes) |
+    // | bit_out len (size_t, 8bytes)   |
+    // +-----------------------------   +
+    class OctreeCompressData {
+    public:
+        std::vector<unsigned char> header;
+        std::vector<unsigned char> occ_codes;
+        std::vector<unsigned char> dcm_codes;
+        std::vector<unsigned char> dcm_flags;
+        std::vector<unsigned char> occ_lookup_table;
+        std::vector<unsigned char> dcm_lookup_table;
+    };
+
 }
 #endif //OPENCV_3D_SRC_OCTREE_COMPRESS_HPP

@@ -2704,7 +2704,7 @@ public:
      *
      * @param bit_out The bytes vector representation.
      */
-    void traverse(std::vector<unsigned char> &bit_out);
+     void traverse(std::ostream& outputStream);
 
     /** @brief restore OctreeCompress from bytes vector representation.
      *
@@ -2717,22 +2717,6 @@ public:
      * @param restorePointCloud The output pointcloud.
      */
     void getPointCloudByOctree(std::vector<Point3f> &restorePointCloud);
-
-    /** @brief Entropy coding, encode byte vector to stream.
-     *
-     * @param inputCharVector_arg The input byte vector.
-     * @param outputByteStream_arg The output stream.
-     */
-    void encodeCharVectorToStream(const std::vector<unsigned char>& inputCharVector_arg,
-                                                   std::ostream& outputByteStream_arg);
-
-    /** @brief Entropy coding, decode stream back to byte vector.
-     *
-     * @param inputByteStream_arg The input stream.
-     * @param outputCharVector_arg The output byte vector.
-     */
-    void decodeStreamToCharVector(std::istream& inputByteStream_arg,
-                                                   std::vector<unsigned char>& outputCharVector_arg);
 
 
 

@@ -2664,7 +2664,7 @@ public:
     * @param point The point data in Point3f format.
     * @return Returns whether the insertion is successful.
     */
-    bool insertPoint(const Point3f& point, double resolution, size_t depthMask);
+    bool insertPoint(const Point3f& point, const Point3f& color, double resolution, size_t depthMask);
 
     /** @brief Read point cloud data and create OctreeCompressNode.
     *
@@ -2674,6 +2674,7 @@ public:
     * @return Returns whether the creation is successful.
     */
     bool create(const std::vector<Point3f> &pointCloud, double resolution);
+    bool create(const std::vector<Point3f> &pointCloud, const std::vector<Point3f> &colorAttribute, double resolution);
 
     /** @brief Determine whether the point is within the space range of the specific cube.
      *
@@ -2731,10 +2732,10 @@ public:
      * @param inputByteStream_arg The input stream.
      * @param outputCharVector_arg The output byte vector.
      */
-    void decodeStreamToCharVector(std::istream& inputByteStream_arg,
+    static void decodeStreamToCharVector(std::istream& inputByteStream_arg,
                                                    std::vector<unsigned char>& outputCharVector_arg);
 
-
+    void compressColor(std::vector<Point3f> &outputCoefficients);
 
 protected:
     struct Impl;

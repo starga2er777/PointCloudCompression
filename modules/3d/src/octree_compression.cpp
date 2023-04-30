@@ -11,15 +11,18 @@
 
 namespace cv {
 
+    void Haar3DRecursive(OctreeCompressNode *node, std::vector<Point3f> &outputCoefficients, size_t &N);
+
     static bool _isPointInBound(const Point3f &_point, const Point3f &_origin, double _size);
 
     static bool
-    insertPointRecurse(Ptr<OctreeCompressNode> &node, const Point3f &point, int maxDepth, const OctreeCompressKey &key,
+    insertPointRecurse(Ptr<OctreeCompressNode> &node, const Point3f &point, const Point3f &color, int maxDepth,
+                       const OctreeCompressKey &key,
                        size_t depthMask);
 
-    void traverseByLevel(std::vector<unsigned char> &bit_out, OctreeCompressNode &node);
+    void traverseByLevel(std::vector<unsigned char> &binary_tree_out_arg, OctreeCompressNode &root);
 
-    void restoreOctree(const std::vector<unsigned char> &bit_out, OctreeCompressNode &root, size_t len);
+    void restoreOctree(const std::vector<unsigned char> &binary_tree_out_arg, OctreeCompressNode &root, size_t len);
 
     void getPointRecurse(std::vector<Point3f> &restorePointCloud, unsigned long x_key, unsigned long y_key,
                          unsigned long z_key, Ptr<OctreeCompressNode> &_node, double resolution, Point3f ori);
@@ -28,9 +31,10 @@ namespace cv {
                                                parentIndex(-1), pointNum(0) {
     }
 
-    OctreeCompressNode::OctreeCompressNode(int _depth, double _size, const Point3f &_origin, int _parentIndex,
+    OctreeCompressNode::OctreeCompressNode(int _depth, double _size, const Point3f &_origin, const Point3f &_color,
+                                           int _parentIndex,
                                            int _pointNum) : children(OCTREE_CHILD_NUM), depth(_depth), size(_size),
-                                                            origin(_origin), parentIndex(_parentIndex),
+                                                            origin(_origin), color(_color), parentIndex(_parentIndex),
                                                             pointNum(_pointNum) {
     }
 
@@ -74,6 +78,8 @@ namespace cv {
         double resolution;
         //!
         size_t depthMask;
+        //!
+        bool hasColor;
     };
 
     OctreeCompress::OctreeCompress() : p(new Impl) {
@@ -99,11 +105,11 @@ namespace cv {
         p->origin = Point3f(0, 0, 0);
     }
 
-    OctreeCompress::~OctreeCompress() {}
+    OctreeCompress::~OctreeCompress() = default;
 
-    bool OctreeCompress::insertPoint(const Point3f &point, double resolution, size_t depthMask) {
+    bool OctreeCompress::insertPoint(const Point3f &point, const Point3f &color, double resolution, size_t depthMask) {
         if (p->rootNode.empty()) {
-            p->rootNode = new OctreeCompressNode(0, p->size, p->origin, -1, 0);
+            p->rootNode = new OctreeCompressNode(0, p->size, p->origin, color, -1, 0);
         }
 
         OctreeCompressKey key(floor((point.x - this->p->origin.x) / resolution),
@@ -111,13 +117,13 @@ namespace cv {
                               floor((point.z - this->p->origin.z) / resolution));
         //std::cout<<"x="<<key.x_key<<" y="<<key.y_key<<" z="<<key.z_key<<std::endl;
 
-        bool result = insertPointRecurse(p->rootNode, point, p->maxDepth, key, depthMask);
+        bool result = insertPointRecurse(p->rootNode, point, color, p->maxDepth, key, depthMask);
         p->rootNode->pointNum += result;
         return result;
     }
 
-
-    bool OctreeCompress::create(const std::vector<Point3f> &pointCloud, double resolution) {
+    bool OctreeCompress::create(const std::vector<Point3f> &pointCloud, const std::vector<Point3f> &colorAttribute,
+                                double resolution) {
         if (resolution > 0) {
             p->resolution = resolution;
         }
@@ -127,12 +133,14 @@ namespace cv {
         if (pointCloud.empty())
             return false;
 
+        p->hasColor = !colorAttribute.empty();
+
         Point3f maxBound(pointCloud[0]);
         Point3f minBound(pointCloud[0]);
         Point3f center, temp;
 
         // Find center coordinate of PointCloud data.
-        for (auto idx : pointCloud) {
+        for (auto idx: pointCloud) {
             maxBound.x = max(idx.x, maxBound.x);
             maxBound.y = max(idx.y, maxBound.y);
             maxBound.z = max(idx.z, maxBound.z);
@@ -160,7 +168,8 @@ namespace cv {
         // Insert every point in PointCloud data.
         int cnt = 0;
         for (size_t idx = 0; idx < pointCloud.size(); idx++) {
-            if (!insertPoint(pointCloud[idx], resolution, p->depthMask)) {
+            Point3f insertColor = p->hasColor ? colorAttribute[idx] : Point3f(0.0f, 0.0f, 0.0f);
+            if (!insertPoint(pointCloud[idx], insertColor, resolution, p->depthMask)) {
                 cnt++;
             }
         }
@@ -170,6 +179,12 @@ namespace cv {
                                                      << pointCloud.size() - cnt);
         return true;
     }
+
+    bool OctreeCompress::create(const std::vector<Point3f> &pointCloud, double resolution) {
+        std::vector<Point3f> v;
+        this->create(pointCloud, v, resolution);
+    }
+
 
     void OctreeCompress::traverse(std::vector<unsigned char> &bit_out) {
 
@@ -221,7 +236,7 @@ namespace cv {
         memcpy(&ori.x, &bit_out[len + 8], sizeof(float));
         memcpy(&ori.y, &bit_out[len + 8 + 4], sizeof(float));
         memcpy(&ori.z, &bit_out[len + 8 + 8], sizeof(float));
-        p->rootNode = new OctreeCompressNode(0, p->size, Point3f(0, 0, 0), -1, 0);
+        p->rootNode = new OctreeCompressNode(0, p->size, Point3f(0, 0, 0), Point3f(0, 0, 0), -1, 0);
         p->origin = ori;
         restoreOctree(bit_out, *p->rootNode, len);
     }
@@ -267,12 +282,21 @@ namespace cv {
     }
 
     bool
-    insertPointRecurse(Ptr<OctreeCompressNode> &_node, const Point3f &point, int maxDepth, const OctreeCompressKey &key,
+    insertPointRecurse(Ptr<OctreeCompressNode> &_node, const Point3f &point, const Point3f &color, int maxDepth,
+                       const OctreeCompressKey &key,
                        size_t depthMask) {
         OctreeCompressNode &node = *_node;
 
         if (node.depth == maxDepth) {
             if (node.pointNum == 0) {
+                // convert color from RGB to YUV
+                Point3f YUVColor;
+                YUVColor.x = 0.299f * color.x + 0.587f * color.y + 0.114f * color.z;
+                YUVColor.y = 0.492f * (color.y - YUVColor.x);
+                YUVColor.z = 0.877f * (color.x - YUVColor.x);
+
+                node.color = YUVColor;
+                node.origin = Point3f(key.x_key, key.y_key, key.z_key);
                 node.isLeaf = true;
                 node.pointNum++;
                 return true;
@@ -283,11 +307,12 @@ namespace cv {
         size_t childIndex = key.findChildIdxByMask(depthMask);
         //std::cout<<childIndex<<std::endl;
         if (node.children[childIndex].empty()) {
-            node.children[childIndex] = new OctreeCompressNode(node.depth + 1, 0, Point3f(0, 0, 0), int(childIndex), 0);
+            node.children[childIndex] = new OctreeCompressNode(node.depth + 1, 0, Point3f(0, 0, 0), Point3f(0, 0, 0),
+                                                               int(childIndex), 0);
             node.children[childIndex]->parent = _node;
         }
 
-        bool result = insertPointRecurse(node.children[childIndex], point, maxDepth, key, depthMask >> 1);
+        bool result = insertPointRecurse(node.children[childIndex], point, color, maxDepth, key, depthMask >> 1);
         node.pointNum += result;
         return result;
     }
@@ -340,7 +365,8 @@ namespace cv {
                     // Octree mode
                     for (unsigned char i = 0; i < 8; i++) {
                         if (!!(binary_tree_out_arg[index] & mask)) {
-                            node.children[i] = new OctreeCompressNode(node.depth + 1, 0, Point3f(0, 0, 0), int(i), -1);
+                            node.children[i] = new OctreeCompressNode(node.depth + 1, 0, Point3f(0, 0, 0),
+                                                                      Point3f(0, 0, 0), int(i), -1);
                             node.children[i]->parent = &node;
                             nodeQueue.push(node.children[i]);
                         }
@@ -553,5 +579,111 @@ namespace cv {
 
         }
     }
+
+
+    void Haar3DRecursive(OctreeCompressNode *node, std::vector<Point3f> &outputCoefficients, size_t &N) {
+        if (!node)
+            return;
+        if (node->isLeaf) {
+            node->RAHTCoefficient = node->color;
+            return;
+        }
+
+        for (const auto &child: node->children) {
+            Haar3DRecursive(child, outputCoefficients, N);
+        }
+
+        std::vector<OctreeCompressNode *> prevCube(node->children.size());
+        std::vector<OctreeCompressNode *> currCube(node->children.size() >> 1);
+
+        // generate a new array and copy data from current node
+        for (size_t idx = 0; idx < prevCube.size(); ++idx) {
+            if(!node->children[idx]){
+                prevCube[idx] = nullptr;
+                continue;
+            }
+            prevCube[idx] = new OctreeCompressNode;
+            prevCube[idx]->RAHTCoefficient = node->children[idx]->RAHTCoefficient;
+            prevCube[idx]->pointNum = node->children[idx]->pointNum;
+        }
+
+        size_t cubeSize = prevCube.size();
+        size_t stepSize = 2;
+
+        // start doing transform x then y then z
+        while (true) {
+            for (size_t x = 0; x < cubeSize; x += stepSize) {
+                OctreeCompressNode *node1 = prevCube[x];
+                OctreeCompressNode *node2 = prevCube[x + 1];
+
+                if (!node1 && !node2) {
+                    currCube[x / stepSize] = nullptr;
+                    continue;
+                }
+                // transform under this condition
+                if (node1 && node2) {
+                    currCube[x / stepSize] = new OctreeCompressNode;
+                    // TODO: Here the pointNum is not correctly matched with weight value in RAHT, need further fix
+                    auto w1 = (float) node1->pointNum;
+                    auto w2 = (float) node2->pointNum;
+                    float w = w1 + w2;
+                    float a1 = sqrt(w1) / sqrt(w);
+                    float a2 = sqrt(w2) / sqrt(w);
+
+                    currCube[x / stepSize]->pointNum = (int) w;
+
+                    // YUV
+                    float YLowPass = a1 * node1->RAHTCoefficient.x + a2 * node2->RAHTCoefficient.x;
+                    float ULowPass = a1 * node1->RAHTCoefficient.y + a2 * node2->RAHTCoefficient.y;
+                    float VLowPass = a1 * node1->RAHTCoefficient.z + a2 * node2->RAHTCoefficient.z;
+
+                    currCube[x / stepSize]->RAHTCoefficient = Point3f(YLowPass, ULowPass, VLowPass);
+
+                    float YHighPass = a1 * node1->RAHTCoefficient.x - a2 * node2->RAHTCoefficient.x;
+                    float UHighPass = a1 * node1->RAHTCoefficient.y - a2 * node2->RAHTCoefficient.y;
+                    float VHighPass = a1 * node1->RAHTCoefficient.z - a2 * node2->RAHTCoefficient.z;
+
+                    outputCoefficients[N++] = Point3f(YHighPass, UHighPass, VHighPass);
+
+                    delete node1, delete node2;
+                    continue;
+                }
+                // if no partner to transform, then directly use the value
+                currCube[x / stepSize] = node1 ? node1 : node2;
+            }
+
+            cubeSize >>= 1;
+            if (cubeSize < 2)
+                break;
+
+            // swap prevCube and currCube
+            prevCube = currCube;
+            currCube.resize(cubeSize >> 1);
+        }
+
+        // update selected node's coefficient in the octree
+        node->RAHTCoefficient = currCube[0]->RAHTCoefficient;
+
+        // free memory
+        delete currCube[0];
+    }
+
+    // RAHT main - post-order traversal to generate RAHT coefficients in x,y,z directions
+    void OctreeCompress::compressColor(std::vector<Point3f> &outputCoefficients) {
+        size_t N = 0;
+        OctreeCompressNode *root = p->rootNode;
+
+        size_t pointNum = root->pointNum;
+
+        outputCoefficients.resize(pointNum);
+
+        Haar3DRecursive(root, outputCoefficients, N);
+        outputCoefficients[N++] = root->RAHTCoefficient;
+
+
+        // TODO: Apply Quantization, then encode coefficients
+        int a = 1;
+    }
+
 
 }

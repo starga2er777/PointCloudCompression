@@ -6,15 +6,14 @@
 #include <fstream>
 
 
-namespace opencv_test { namespace {
+namespace opencv_test {
+    namespace {
 
         using namespace cv;
 
-        class OctreeCompressTest: public testing::Test
-        {
+        class OctreeCompressTest : public testing::Test {
         protected:
-            void SetUp() override
-            {
+            void SetUp() override {
                 // SETTING (Filebase is the path of pointcloud with the file name, but no ".ply")
                 String FileBase = R"(D:\mydoc\CS_Resources\PCL_1.12.1\share\doc\pcl-1.12\tutorials\sources\cloud_viewer\cmake-build-debug-visual-studio\Debug\dress\dress)";
                 float resolution = 1;
@@ -22,15 +21,18 @@ namespace opencv_test { namespace {
                 String res_str = std::to_string(resolution);
                 res_str.erase(res_str.find_last_not_of('0') + 1);
                 res_str.erase(res_str.find('.'), 1);
+
+
+                // measure time
+                auto start = std::chrono::high_resolution_clock::now();
+
                 //load .ply file
-                String loadFileName= FileBase + ".ply";
+                String loadFileName = FileBase + ".ply";
                 // color: rgb
                 loadPointCloud(loadFileName, pointcloud, normal, color_attribute);
 
                 // Generate OctreeCompress From PointCloud,resolution is the minimum precision that can be specified and must be 10^x
                 treeTest.create(pointcloud, color_attribute, resolution);
-                vector<Point3f> outputCoefficient;
-                treeTest.encodeColor(outputCoefficient, 10);
 
 
                 //compressed char array to byte stream
@@ -38,6 +40,12 @@ namespace opencv_test { namespace {
                 vectorToStream.open(FileBase + label + res_str + ".bin", std::ios_base::binary);
                 treeTest.traverse(vectorToStream);
                 vectorToStream.close();
+
+                // measure time
+                auto stop = std::chrono::high_resolution_clock::now();
+                auto duration = std::chrono::duration_cast<std::chrono::microseconds>(stop - start);
+                std::cout << "Time taken by function: "
+                          << duration.count() << " microseconds" << std::endl;
 
                 // TODO  Decode side not implement! (DCM,Pred)
                 return;
@@ -70,8 +78,8 @@ namespace opencv_test { namespace {
         private:
             int maxDepth;
         };
-        TEST_F(OctreeCompressTest, BasicFunctionTest)
-        {
+
+        TEST_F(OctreeCompressTest, BasicFunctionTest) {
             EXPECT_TRUE(true);
         }
     } // namespace

@@ -159,6 +159,7 @@ contains at least one non-empty child pointer, except for the root node.
         std::vector<unsigned char> dcm_flags;
         std::vector<unsigned char> occ_lookup_table;
         std::vector<unsigned char> dcm_lookup_table;
+        std::vector<unsigned char> color_codes;
     };
 
 }

@@ -2735,7 +2735,9 @@ public:
     static void decodeStreamToCharVector(std::istream& inputByteStream_arg,
                                                    std::vector<unsigned char>& outputCharVector_arg);
 
-    void compressColor(std::vector<Point3f> &outputCoefficients);
+    void encodeColor(std::vector<Point3f> &haarCoefficients, int QStep);
+
+    void decodeColor(std::vector<Point3f> &haarCoefficients, int QStep);
 
 protected:
     struct Impl;

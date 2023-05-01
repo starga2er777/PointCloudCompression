@@ -11,7 +11,7 @@
 
 namespace cv {
 
-    void Haar3DRecursive(OctreeCompressNode *node, std::vector<Point3f> &outputCoefficients, size_t &N);
+    void Haar3DRecursive(OctreeCompressNode *node, std::vector<Point3f> &haarCoefficients, size_t &N);
 
     static bool _isPointInBound(const Point3f &_point, const Point3f &_origin, double _size);
 
@@ -118,7 +118,6 @@ namespace cv {
         //std::cout<<"x="<<key.x_key<<" y="<<key.y_key<<" z="<<key.z_key<<std::endl;
 
         bool result = insertPointRecurse(p->rootNode, point, color, p->maxDepth, key, depthMask);
-        p->rootNode->pointNum += result;
         return result;
     }
 
@@ -182,7 +181,7 @@ namespace cv {
 
     bool OctreeCompress::create(const std::vector<Point3f> &pointCloud, double resolution) {
         std::vector<Point3f> v;
-        this->create(pointCloud, v, resolution);
+        return this->create(pointCloud, v, resolution);
     }
 
 
@@ -296,7 +295,8 @@ namespace cv {
                 YUVColor.z = 0.877f * (color.x - YUVColor.x);
 
                 node.color = YUVColor;
-                node.origin = Point3f(key.x_key, key.y_key, key.z_key);
+
+                // node.color = color;
                 node.isLeaf = true;
                 node.pointNum++;
                 return true;
@@ -436,7 +436,7 @@ namespace cv {
         size_t readPos;
         std::uint8_t symbol;
 
-        size_t input_size = static_cast<size_t> (inputCharVector_arg.size());
+        auto input_size = static_cast<size_t> (inputCharVector_arg.size());
 
         // output vector
         std::vector<unsigned char> outputCharVector_;
@@ -580,8 +580,7 @@ namespace cv {
         }
     }
 
-
-    void Haar3DRecursive(OctreeCompressNode *node, std::vector<Point3f> &outputCoefficients, size_t &N) {
+    void Haar3DRecursive(OctreeCompressNode *node, std::vector<Point3f> &haarCoefficients, size_t &N) {
         if (!node)
             return;
         if (node->isLeaf) {
@@ -590,7 +589,7 @@ namespace cv {
         }
 
         for (const auto &child: node->children) {
-            Haar3DRecursive(child, outputCoefficients, N);
+            Haar3DRecursive(child, haarCoefficients, N);
         }
 
         std::vector<OctreeCompressNode *> prevCube(node->children.size());
@@ -598,7 +597,7 @@ namespace cv {
 
         // generate a new array and copy data from current node
         for (size_t idx = 0; idx < prevCube.size(); ++idx) {
-            if(!node->children[idx]){
+            if (!node->children[idx]) {
                 prevCube[idx] = nullptr;
                 continue;
             }
@@ -643,7 +642,7 @@ namespace cv {
                     float UHighPass = a1 * node1->RAHTCoefficient.y - a2 * node2->RAHTCoefficient.y;
                     float VHighPass = a1 * node1->RAHTCoefficient.z - a2 * node2->RAHTCoefficient.z;
 
-                    outputCoefficients[N++] = Point3f(YHighPass, UHighPass, VHighPass);
+                    haarCoefficients[N++] = Point3f(YHighPass, UHighPass, VHighPass);
 
                     delete node1, delete node2;
                     continue;
@@ -669,21 +668,53 @@ namespace cv {
     }
 
     // RAHT main - post-order traversal to generate RAHT coefficients in x,y,z directions
-    void OctreeCompress::compressColor(std::vector<Point3f> &outputCoefficients) {
+    // QStep: quantization step
+    void OctreeCompress::encodeColor(std::vector<Point3f> &haarCoefficients, int QStep) {
+
+        // measure time
+//        auto start = std::chrono::high_resolution_clock::now();
+
+
         size_t N = 0;
         OctreeCompressNode *root = p->rootNode;
 
         size_t pointNum = root->pointNum;
 
-        outputCoefficients.resize(pointNum);
+        haarCoefficients.resize(pointNum);
 
-        Haar3DRecursive(root, outputCoefficients, N);
-        outputCoefficients[N++] = root->RAHTCoefficient;
+        Haar3DRecursive(root, haarCoefficients, N);
 
+        haarCoefficients[N] = root->RAHTCoefficient;
 
         // TODO: Apply Quantization, then encode coefficients
+
+        // Quantization
+        assert(QStep > 0);
+        std::vector<Point3i> quantizedCoefficients(N);
+        // store by: YYY UUU VVV
+        for (size_t i = 0; i < N; ++i) {
+            quantizedCoefficients[i].x = (int) round(haarCoefficients[i].x) / QStep;
+            quantizedCoefficients[i].y = (int) round(haarCoefficients[i].y) / QStep;
+            quantizedCoefficients[i].z = (int) round(haarCoefficients[i].z) / QStep;
+        }
+
+        // measure time
+//        auto stop = std::chrono::high_resolution_clock::now();
+//        auto duration = std::chrono::duration_cast<std::chrono::microseconds>(stop - start);
+//        std::cout << "Time taken by function: "
+//             << duration.count() << " microseconds" << std::endl;
+
+        std::ofstream myfile;
+        myfile.open("/home/jeffery/Downloads/example.csv");
+        for (size_t j = 0; j < quantizedCoefficients.size(); ++j) {
+            myfile << quantizedCoefficients[j].x << "," << quantizedCoefficients[j].y << ","
+                   << quantizedCoefficients[j].z << "," << "\n";
+        }
+        myfile.close();
+
         int a = 1;
     }
+
 
 
 }

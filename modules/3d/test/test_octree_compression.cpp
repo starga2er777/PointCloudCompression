@@ -30,7 +30,7 @@ namespace opencv_test { namespace {
                 // Generate OctreeCompress From PointCloud,resolution is the minimum precision that can be specified and must be 10^x
                 treeTest.create(pointcloud, color_attribute, resolution);
                 vector<Point3f> outputCoefficient;
-                treeTest.compressColor(outputCoefficient);
+                treeTest.encodeColor(outputCoefficient, 10);
                 
 
                 //traverse OctreeCompress by level order.Get the char array representation of the tree

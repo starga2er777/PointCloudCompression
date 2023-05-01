@@ -19,34 +19,37 @@ namespace cv {
     static bool _isPointInBound(const Point3f &_point, const Point3f &_origin, double _size);
 
     static bool
-    insertPointRecurse(Ptr <OctreeCompressNode> &node, const Point3f &point, const Point3f &color, int maxDepth,
+    insertPointRecurse(Ptr<OctreeCompressNode> &node, const Point3f &point, const Point3f &color, int maxDepth,
                        const OctreeCompressKey &key,
                        size_t depthMask);
 
-    void encodeColor(OctreeCompressData &raw_data_out, int QStep);
+    void encodeColor(OctreeCompressData &raw_data_out, OctreeCompressNode &root, int QStep);
 
     void traverseByLevel(OctreeCompressData &raw_data_out, OctreeCompressNode &root);
 
     void restoreOctree(const std::vector<unsigned char> &binary_tree_out_arg, OctreeCompressNode &root, size_t len);
 
     void getPointRecurse(std::vector<Point3f> &restorePointCloud, unsigned long x_key, unsigned long y_key,
-                         unsigned long z_key, Ptr <OctreeCompressNode> &_node, double resolution, Point3f ori);
+                         unsigned long z_key, Ptr<OctreeCompressNode> &_node, double resolution, Point3f ori);
 
     void decodeStreamToCharVector(std::istream &inputByteStream_arg, std::vector<unsigned char> &outputCharVector_arg);
 
-    void encodeCharVectorToStream(const std::vector<unsigned char> &inputCharVector_arg, std::ostream &outputByteStream_arg);
+    void
+    encodeCharVectorToStream(const std::vector<unsigned char> &inputCharVector_arg, std::ostream &outputByteStream_arg);
 
 
-    OctreeCompressNode::OctreeCompressNode() : children(OCTREE_CHILD_NUM, nullptr), neigh(OCTREE_NEIGH_SIZE, nullptr),
-                                               depth(0), size(0), origin(0, 0, 0), parentIndex(-1), pointNum(0) {
+    OctreeCompressNode::OctreeCompressNode() : children(OCTREE_CHILD_NUM, nullptr), depth(0),
+                                               size(0), origin(0, 0, 0), parentIndex(-1), pointNum(0),
+                                               neigh(OCTREE_NEIGH_SIZE, nullptr) {
     }
 
     OctreeCompressNode::OctreeCompressNode(int _depth, double _size, const Point3f &_origin, const Point3f &_color,
                                            int _parentIndex, int _pointNum) : children(OCTREE_CHILD_NUM),
-                                                                              neigh(OCTREE_NEIGH_SIZE), depth(_depth),
-                                                                              size(_size), origin(_origin),
-                                                                              color(_color), parentIndex(_parentIndex),
-                                                                              pointNum(_pointNum) {
+                                                                              depth(_depth), size(_size),
+                                                                              origin(_origin), color(_color),
+                                                                              parentIndex(_parentIndex),
+                                                                              pointNum(_pointNum),
+                                                                              neigh(OCTREE_NEIGH_SIZE) {
     }
 
     bool OctreeCompressNode::isPointInBound(const Point3f &_point) const {
@@ -75,10 +78,10 @@ namespace cv {
     public:
         Impl() : maxDepth(-1), size(0), origin(0, 0, 0), resolution(0), depthMask(0) {}
 
-        ~Impl() {}
+        ~Impl() = default;
 
         // The pointer to Octree root node.
-        Ptr <OctreeCompressNode> rootNode = nullptr;
+        Ptr<OctreeCompressNode> rootNode = nullptr;
         //! Max depth of the Octree. And depth must be greater than zero
         int maxDepth;
         //! The size of the cube of the .
@@ -90,7 +93,7 @@ namespace cv {
         //!
         size_t depthMask;
         //!
-        bool hasColor;
+        bool hasColor{};
     };
 
     OctreeCompress::OctreeCompress() : p(new Impl) {
@@ -184,9 +187,9 @@ namespace cv {
             }
         }
 
-        CV_LOG_IF_WARNING(NULL, cnt != 0, "OverAll " << cnt
-                                                     << " points has been ignored! The number of point clouds contained in the current octree is "
-                                                     << pointCloud.size() - cnt);
+        CV_LOG_IF_WARNING(nullptr, cnt != 0, "OverAll " << cnt
+                                                        << " points has been ignored! The number of point clouds contained in the current octree is "
+                                                        << pointCloud.size() - cnt)
         return true;
     }
 
@@ -201,9 +204,11 @@ namespace cv {
         // BFS traverse Octree nodes (Geometry data)
         traverseByLevel(raw_data, *p->rootNode);
 
-        // DFS traverse Octree nodes (Color data)
-        int QStep = 10;
-        encodeColor(raw_data, QStep);
+        if (p->hasColor) {
+            // DFS traverse Octree nodes (Color data)
+            int QStep = 10;
+            encodeColor(raw_data, *p->rootNode, QStep);
+        }
 
         // Set header
         // +-----------------------------   +
@@ -274,7 +279,7 @@ namespace cv {
     }
 
     void OctreeCompress::getPointCloudByOctree(std::vector<Point3f> &restorePointCloud) {
-        Ptr <OctreeCompressNode> root = p->rootNode;
+        Ptr<OctreeCompressNode> root = p->rootNode;
         double resolution = p->resolution;
 
         getPointRecurse(restorePointCloud, 0, 0, 0, root, resolution, p->origin);
@@ -314,7 +319,7 @@ namespace cv {
     }
 
     bool
-    insertPointRecurse(Ptr <OctreeCompressNode> &_node, const Point3f &point, const Point3f &color, int maxDepth,
+    insertPointRecurse(Ptr<OctreeCompressNode> &_node, const Point3f &point, const Point3f &color, int maxDepth,
                        const OctreeCompressKey &key,
                        size_t depthMask) {
         OctreeCompressNode &node = *_node;
@@ -450,7 +455,7 @@ namespace cv {
                         unsigned char neigh = OctreeCompressKey::getNeighPattern(node);
                         OctreeCompressNode pNode = node;
                         while (!pNode.isLeaf) {
-                            for (unsigned char i = 0; i < pNode.children.size(); i++) {
+                            for (size_t i = 0; i < pNode.children.size(); i++) {
                                 if (!pNode.children[i].empty()) {
                                     look_up_DCM_table[neigh][i]++;
                                     pNode = *(pNode.children[i]);
@@ -522,8 +527,8 @@ namespace cv {
                     // eligible: check if parent only have one child
                     bool eligible = false;
 
-                    for (unsigned char i = 0; i < node.children.size(); i++) {
-                        if (!node.children[i].empty()) {
+                    for (const auto &i: node.children) {
+                        if (!i.empty()) {
                             if (eligible) {
                                 eligible = false;
                                 break;
@@ -539,7 +544,7 @@ namespace cv {
                             // Apply DCM
                             OctreeCompressNode pNode = node;
                             while (!pNode.isLeaf) {
-                                for (unsigned char i = 0; i < pNode.children.size(); i++) {
+                                for (size_t i = 0; i < pNode.children.size(); i++) {
                                     if (!pNode.children[i].empty()) {
                                         // push back DCM weighted Prediction loss to output vector
                                         raw_data_out.dcm_codes.push_back(weight_DCM_table[neigh][i]);
@@ -605,7 +610,7 @@ namespace cv {
     }
 
     void getPointRecurse(std::vector<Point3f> &restorePointCloud, unsigned long x_key, unsigned long y_key,
-                         unsigned long z_key, Ptr <OctreeCompressNode> &_node, double resolution, Point3f ori) {
+                         unsigned long z_key, Ptr<OctreeCompressNode> &_node, double resolution, Point3f ori) {
         OctreeCompressNode node = *_node;
         if (node.isLeaf) {
             restorePointCloud.emplace_back(
@@ -711,7 +716,7 @@ namespace cv {
             // second case: range is too small while first case continuously miss, preform resize to bottom_limit
             while ((low ^ (low + range)) < adjust_limit ||
                    ((range < bottom_limit) && ((range = -int(low) & (bottom_limit - 1)), 1))) {
-                unsigned char out = static_cast<unsigned char> (low >> 24);
+                auto out = static_cast<unsigned char> (low >> 24);
                 range <<= 8;
                 low <<= 8;
                 outputCharVector_.push_back(out);
@@ -721,7 +726,7 @@ namespace cv {
 
         // flush remaining data
         for (int i = 0; i < 4; i++) {
-            unsigned char out = static_cast<unsigned char> (low >> 24);
+            auto out = static_cast<unsigned char> (low >> 24);
             outputCharVector_.push_back(out);
             low <<= 8;
         }
@@ -896,28 +901,47 @@ namespace cv {
         size_t N = 0;
 
         size_t pointNum = root.pointNum;
+        size_t colorNum = 3 * pointNum;
 
         haarCoefficients.resize(pointNum);
 
+        // Obtain RAHT coefficients through 3D Haar Transform
         Haar3DRecursive(&root, haarCoefficients, N);
-
         haarCoefficients[N] = root.RAHTCoefficient;
 
-        // TODO: Apply Quantization, then encode coefficients
+        // Init array for quantization
+        assert(QStep > 0);
+        std::vector<int32_t> quantizedCoefficients(colorNum);
 
         // Quantization
-        assert(QStep > 0);
-        std::vector<Point3i> quantizedCoefficients(N);
-        // store by: YYY UUU VVV
         for (size_t i = 0; i < N; ++i) {
-            quantizedCoefficients[i].x = (int) round(haarCoefficients[i].x) / QStep;
-            quantizedCoefficients[i].y = (int) round(haarCoefficients[i].y) / QStep;
-            quantizedCoefficients[i].z = (int) round(haarCoefficients[i].z) / QStep;
+            quantizedCoefficients[i] = (int32_t) round(haarCoefficients[i].x) / QStep;
+            quantizedCoefficients[N + i] = (int32_t) round(haarCoefficients[i].y) / QStep;
+            quantizedCoefficients[(N << 1) + i] = (int32_t) round(haarCoefficients[i].z) / QStep;
         }
 
-        // TODO store to raw_data_out
+        // save coefficients to raw_data_out for encoding
+        raw_data_out.color_codes.resize(colorNum * 4, '\0');
+        size_t cursor = 0;
 
+        for (auto &val: quantizedCoefficients) {
+            // skip 0s
+            if (!val) {
+                cursor += 4;
+                continue;
+            }
+
+            val = val > 0 ? (val << 1) : (((-val) << 1) - 1);
+            raw_data_out.color_codes[cursor++] = static_cast<unsigned char>(val & 0xFF);
+            raw_data_out.color_codes[cursor++] = static_cast<unsigned char>((val >> 8) & 0xFF);
+            raw_data_out.color_codes[cursor++] = static_cast<unsigned char>((val >> 16) & 0xFF);
+            raw_data_out.color_codes[cursor++] = static_cast<unsigned char>((val >> 24) & 0xFF);
+        }
+        // end
     }
 
 
+    void decodeColor(const std::vector<unsigned char> &binary_color_out_arg, OctreeCompressNode &root, int QStep) {
+
+    }
 }

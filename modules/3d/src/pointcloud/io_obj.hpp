@@ -13,7 +13,7 @@ namespace cv {
 class ObjDecoder CV_FINAL : public BasePointCloudDecoder
 {
 public:
-    void readData(std::vector<Point3f> &points, std::vector<Point3f> &normals, std::vector<std::vector<int32_t>> &indices) CV_OVERRIDE;
+    void readData(std::vector<Point3f> &points, std::vector<Point3f> &normals, std::vector<Point3f> &colors, std::vector<std::vector<int32_t>> &indices) CV_OVERRIDE;
 
 protected:
     static std::unordered_set<std::string> m_unsupportedKeys;

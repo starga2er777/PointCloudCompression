@@ -14,6 +14,7 @@
 
 #include <vector>
 #include <queue>
+#include <stack>
 #include "opencv2/core.hpp"
 
 namespace cv {
@@ -60,7 +61,7 @@ contains at least one non-empty child pointer, except for the root node.
         * @param _pointNum The number of points belonging to the volume attached to the node,
         * the range is (-1~7). Among them, only the root node's _parentIndex is -1.
         */
-        OctreeCompressNode(int _depth, double _size, const Point3f& _origin, int _parentIndex, int _pointNum);
+        OctreeCompressNode(int _depth, double _size, const Point3f& _origin, const Point3f& _color, int _parentIndex, int _pointNum);
 
         bool isPointInBound(const Point3f& _point, const Point3f& _origin, double _size) const;
 
@@ -81,6 +82,10 @@ contains at least one non-empty child pointer, except for the root node.
         //! Absolute coordinates of the smallest point of the cube.
         //! And the center of cube is `center = origin + Point3f(size/2, size/2, size/2)`.
         Point3f origin;
+
+        Point3f color;
+
+        Point3f RAHTCoefficient;
 
         /**  The serial number of the child of the current node in the parent node,
         * the range is (-1~7). Among them, only the root node's _parentIndex is -1.

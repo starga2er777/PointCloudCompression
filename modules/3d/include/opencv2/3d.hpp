@@ -2664,7 +2664,7 @@ public:
     * @param point The point data in Point3f format.
     * @return Returns whether the insertion is successful.
     */
-    bool insertPoint(const Point3f& point, double resolution, size_t depthMask);
+    bool insertPoint(const Point3f& point, const Point3f& color, double resolution, size_t depthMask);
 
     /** @brief Read point cloud data and create OctreeCompressNode.
     *
@@ -2674,6 +2674,7 @@ public:
     * @return Returns whether the creation is successful.
     */
     bool create(const std::vector<Point3f> &pointCloud, double resolution);
+    bool create(const std::vector<Point3f> &pointCloud, const std::vector<Point3f> &colorAttribute, double resolution);
 
     /** @brief Determine whether the point is within the space range of the specific cube.
      *
@@ -2718,7 +2719,9 @@ public:
      */
     void getPointCloudByOctree(std::vector<Point3f> &restorePointCloud);
 
+    void encodeColor(std::vector<Point3f> &haarCoefficients, int QStep);
 
+    void decodeColor(std::vector<Point3f> &haarCoefficients, int QStep);
 
 protected:
     struct Impl;
@@ -2739,7 +2742,7 @@ protected:
 * @param vertices (vector of Point3f) Point coordinates of a point cloud
 * @param normals (vector of Point3f) Point normals of a point cloud
 */
-CV_EXPORTS_W void loadPointCloud(const String &filename, OutputArray vertices, OutputArray normals = noArray());
+CV_EXPORTS_W void loadPointCloud(const String &filename, OutputArray vertices, OutputArray normals = noArray(), OutputArray colors = noArray());
 
 /** @brief Saves a point cloud to a specified file.
 *
@@ -2753,7 +2756,7 @@ CV_EXPORTS_W void loadPointCloud(const String &filename, OutputArray vertices, O
 CV_EXPORTS_W void savePointCloud(const String &filename, InputArray vertices, InputArray normals = noArray());
 
 /** @brief Loads a mesh from a file.
-*
+* = noArray()
 * The function loads mesh from the specified file and returns it.
 * If the mesh cannot be read, throws an error
 *

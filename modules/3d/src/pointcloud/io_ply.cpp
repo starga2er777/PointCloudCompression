@@ -11,7 +11,7 @@
 
 namespace cv {
 
-void PlyDecoder::readData(std::vector<Point3f> &points, std::vector<Point3f> &normals, std::vector<std::vector<int32_t>> &indices)
+void PlyDecoder::readData(std::vector<Point3f> &points, std::vector<Point3f> &normals, std::vector<Point3f> &colors, std::vector<std::vector<int32_t>> &indices)
 {
     points.clear();
     normals.clear();
@@ -20,7 +20,7 @@ void PlyDecoder::readData(std::vector<Point3f> &points, std::vector<Point3f> &no
     std::ifstream file(m_filename, std::ios::binary);
     if (parseHeader(file))
     {
-        parseBody(file, points, normals);
+        parseBody(file, points, normals, colors);
     }
 }
 
@@ -130,7 +130,7 @@ T readNext(std::ifstream &file, DataFormat format)
     return val;
 }
 
-void PlyDecoder::parseBody(std::ifstream &file, std::vector<Point3f> &points, std::vector<Point3f> &normals)
+void PlyDecoder::parseBody(std::ifstream &file, std::vector<Point3f> &points, std::vector<Point3f> &normals, std::vector<Point3f> &colors)
 {
     points.reserve(m_vertexCount);
     if (m_hasNormal)
@@ -140,15 +140,17 @@ void PlyDecoder::parseBody(std::ifstream &file, std::vector<Point3f> &points, st
     for (size_t i = 0; i < m_vertexCount; i++)
     {
         Point3f vertex;
+        Point3f color;
         vertex.x = readNext<float>(file, m_inputDataFormat);
         vertex.y = readNext<float>(file, m_inputDataFormat);
         vertex.z = readNext<float>(file, m_inputDataFormat);
         points.push_back(vertex);
         if (m_hasColour)
         {
-            readNext<float>(file, m_inputDataFormat);
-            readNext<float>(file, m_inputDataFormat);
-            readNext<float>(file, m_inputDataFormat);
+            color.x = readNext<float>(file, m_inputDataFormat);
+            color.y = readNext<float>(file, m_inputDataFormat);
+            color.z = readNext<float>(file, m_inputDataFormat);
+            colors.push_back(color);
         }
         if (m_hasNormal)
         {

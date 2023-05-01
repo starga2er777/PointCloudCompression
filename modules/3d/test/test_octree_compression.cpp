@@ -24,10 +24,14 @@ namespace opencv_test { namespace {
                 res_str.erase(res_str.find('.'), 1);
                 //load .ply file
                 String loadFileName= FileBase + ".ply";
-                loadPointCloud(loadFileName,pointcloud);
+                // color: rgb
+                loadPointCloud(loadFileName, pointcloud, normal, color_attribute);
 
                 // Generate OctreeCompress From PointCloud,resolution is the minimum precision that can be specified and must be 10^x
-                treeTest.create(pointcloud, resolution);
+                treeTest.create(pointcloud, color_attribute, resolution);
+                vector<Point3f> outputCoefficient;
+                treeTest.encodeColor(outputCoefficient, 10);
+
 
                 //compressed char array to byte stream
                 std::ofstream vectorToStream;
@@ -57,6 +61,8 @@ namespace opencv_test { namespace {
 
         public:
             std::vector<Point3f> pointcloud;
+            std::vector<Point3f> normal;
+            std::vector<Point3f> color_attribute;
             std::vector<Point3f> restorePointCloud;
             Point3f restPoint;
             OctreeCompress treeTest;

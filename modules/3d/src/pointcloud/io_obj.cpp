@@ -12,10 +12,11 @@ namespace cv {
 
 std::unordered_set<std::string> ObjDecoder::m_unsupportedKeys;
 
-void ObjDecoder::readData(std::vector<Point3f> &points, std::vector<Point3f> &normals, std::vector<std::vector<int32_t>> &indices)
+void ObjDecoder::readData(std::vector<Point3f> &points, std::vector<Point3f> &normals, std::vector<Point3f> &colors, std::vector<std::vector<int32_t>> &indices)
 {
     points.clear();
     normals.clear();
+    colors.clear();
     indices.clear();
 
     std::ifstream file(m_filename, std::ios::binary);

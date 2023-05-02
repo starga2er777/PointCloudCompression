@@ -1057,8 +1057,6 @@ namespace cv {
         std::vector<int32_t> quantizedCoefficients(colorNum);
         // decode uchar vector
         for (i = 0, j = 0; i < colorNum; ++i) {
-            if (i == colorNum - 1)
-                int c = 1223;
             int32_t dVal = 0;
             dVal |= static_cast<::int32_t>(raw_data_in.color_codes[j++]);
             dVal |= (static_cast<::int32_t>(raw_data_in.color_codes[j++]) << 8);

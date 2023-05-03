@@ -2711,7 +2711,7 @@ public:
      *
      * @param bit_out The bytes vector representation.
      */
-    void reStore(const std::vector<unsigned char> &bit_out);
+    void reStore(std::istream& inputStream);
 
     /** @brief restore Pointcloud from OctreeCompress.
      *

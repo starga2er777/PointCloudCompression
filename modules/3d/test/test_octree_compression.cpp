@@ -16,7 +16,7 @@ namespace opencv_test {
             void SetUp() override {
                 // SETTING (Filebase is the path of pointcloud with the file name, but no ".ply")
                 String FileBase = R"(D:\mydoc\CS_Resources\PCL_1.12.1\share\doc\pcl-1.12\tutorials\sources\cloud_viewer\cmake-build-debug-visual-studio\Debug\dress\dress)";
-                float resolution = 1;
+                float resolution = 0.1;
                 String label = "6N_DCM_Pred_Final_";
                 String res_str = std::to_string(resolution);
                 res_str.erase(res_str.find_last_not_of('0') + 1);
@@ -47,24 +47,17 @@ namespace opencv_test {
                 std::cout << "Time taken by function: "
                           << duration.count() << " microseconds" << std::endl;
 
-                // TODO  Decode side not implement! (DCM,Pred)
-                return;
+                std::ifstream streamToTree;
+                streamToTree.open(FileBase + label + res_str + ".bin", std::ios_base::binary);
 
-//                std::ifstream streamToVector;
-//                streamToVector.open(FileBase + label + res_str + ".bin", std::ios_base::binary);
-//                //restore char array from byte stream
-//                std::vector<unsigned char> vectorToTree(treeToVector.size());
-//                treeTest.decodeStreamToCharVector(streamToVector,vectorToTree);
-//                streamToVector.close();
-//
-//                //restore OctreeCompress from char array
-//                treeTest.reStore(vectorToTree);
-//
-//                //restore PointCloud from OctreeCompress
-//                treeTest.getPointCloudByOctree(restorePointCloud);
-//                //save .ply file
-//                String saveFileName= FileBase + label + res_str + ".ply";
-//                savePointCloud(saveFileName,restorePointCloud);
+                //restore OctreeCompress from char array
+                treeTest.reStore(streamToTree);
+
+                //restore PointCloud from OctreeCompress
+                treeTest.getPointCloudByOctree(restorePointCloud);
+                //save .ply file
+                String saveFileName= FileBase + label + res_str + ".ply";
+                savePointCloud(saveFileName,restorePointCloud);
             }
 
         public:

@@ -17,7 +17,7 @@ namespace opencv_test {
                 // SETTING (Filebase is the path of pointcloud with the file name, but no ".ply")
                 String FileBase = R"(D:\mydoc\CS_Resources\PCL_1.12.1\share\doc\pcl-1.12\tutorials\sources\cloud_viewer\cmake-build-debug-visual-studio\Debug\dress\dress)";
                 float resolution = 0.1;
-                String label = "6N_DCM_Pred_Final_";
+                String label = "Geo_Final_";
                 String res_str = std::to_string(resolution);
                 res_str.erase(res_str.find_last_not_of('0') + 1);
                 res_str.erase(res_str.find('.'), 1);
@@ -44,8 +44,11 @@ namespace opencv_test {
                 // measure time
                 auto stop = std::chrono::high_resolution_clock::now();
                 auto duration = std::chrono::duration_cast<std::chrono::microseconds>(stop - start);
-                std::cout << "Time taken by function: "
+                std::cout << "Time taken by Encode: "
                           << duration.count() << " microseconds" << std::endl;
+
+                // measure time
+                start = std::chrono::high_resolution_clock::now();
 
                 std::ifstream streamToTree;
                 streamToTree.open(FileBase + label + res_str + ".bin", std::ios_base::binary);
@@ -58,6 +61,12 @@ namespace opencv_test {
                 //save .ply file
                 String saveFileName= FileBase + label + res_str + ".ply";
                 savePointCloud(saveFileName,restorePointCloud);
+
+                // measure time
+                stop = std::chrono::high_resolution_clock::now();
+                duration = std::chrono::duration_cast<std::chrono::microseconds>(stop - start);
+                std::cout << "Time taken by Decode: "
+                          << duration.count() << " microseconds" << std::endl;
             }
 
         public:

@@ -407,7 +407,7 @@ namespace cv {
     // Set node's neighbour vector pointing at 6 adjacent nodes(cubes) at same level.
     void setNeighbour(OctreeCompressNode &node) {
         if (node.parent == nullptr) {
-            // TODO root should stop here
+            // root should stop here
             return;
         }
 
@@ -560,14 +560,6 @@ namespace cv {
             nodeQueue = std::queue<OctreeCompressNode *>();
             nodeQueue.push(&root);
 
-            // TODO see dcm node depth
-            int dd[20][2];
-            memset(dd, 0, sizeof(dd));
-
-            //TODO log code
-            std::ofstream log_debug;
-            log_debug.open("D:\\mydoc\\CS_Resources\\PCL_1.12.1\\share\\doc\\pcl-1.12\\tutorials\\sources\\cloud_viewer\\cmake-build-debug-visual-studio\\Debug\\dress\\debug\\encode.txt", std::ios_base::binary);
-
             while (!nodeQueue.empty()) {
 
                 OctreeCompressNode &node = *(nodeQueue.front());
@@ -585,47 +577,29 @@ namespace cv {
                 // Direct coding mode (DCM)
 
                 if (node.parent != nullptr) {
-                    // TODO Eligible check need rethink
-                    // eligible: check if parent only have one child
-//                    int eligible = 0;
-//
-//                    for (unsigned char i = 0; i < node.children.size(); i++) {
-//                        if (!node.parent->children[i].empty()) {
-//                            eligible++;
-//                            if (eligible > 6) break;
-//                        }
-//                    }
+                    if (node.pointNum == 1) {
+                        if (node.depth < dcm_max_depth) raw_data_out.dcm_flags.push_back(true);
 
-                    if (true) {
-                        // log_debug << "eli\n";
-                        dd[node.depth][0]++;
-                        if (node.pointNum == 1) {
-                            dd[node.depth][1]++;
-                            if (node.depth < dcm_max_depth) raw_data_out.dcm_flags.push_back(true);
+                        // Apply DCM
+                        OctreeCompressNode pNode = node;
+                        while (!pNode.isLeaf) {
+                            for (unsigned char i = 0; i < pNode.children.size(); i++) {
+                                if (!pNode.children[i].empty()) {
+                                    // push back DCM weighted Prediction loss to output vector
 
-                            // Apply DCM
-                            OctreeCompressNode pNode = node;
-                            while (!pNode.isLeaf) {
-                                for (unsigned char i = 0; i < pNode.children.size(); i++) {
-                                    if (!pNode.children[i].empty()) {
-                                        // push back DCM weighted Prediction loss to output vector
+                                    // Pred
+                                    raw_data_out.dcm_codes.push_back(weight_DCM_table[neigh][i]);
+                                    // Direct
+                                    // raw_data_out.dcm_codes.push_back(i);
 
-                                        // Pred
-                                        raw_data_out.dcm_codes.push_back(weight_DCM_table[neigh][i]);
-                                        // Direct
-                                        // raw_data_out.dcm_codes.push_back(i);
-
-                                        log_debug << "dcm" << pNode.depth << ',' << (int)neigh << ',' << (int)i << '\n';
-
-                                        pNode = *(pNode.children[i]);
-                                        break;
-                                    }
+                                    pNode = *(pNode.children[i]);
+                                    break;
                                 }
                             }
-                            continue;
-                        } else {
-                            if (node.depth < dcm_max_depth) raw_data_out.dcm_flags.push_back(false);
                         }
+                        continue;
+                    } else {
+                        if (node.depth < dcm_max_depth) raw_data_out.dcm_flags.push_back(false);
                     }
                 }
 
@@ -637,18 +611,12 @@ namespace cv {
                 // Direct
                 // raw_data_out.occ_codes.push_back(OctreeCompressKey::getBitPattern(node));
 
-                log_debug << (int) OctreeCompressKey::getBitPattern(node) << '\n';
-
                 for (unsigned char i = 0; i < 8; i++) {
                     if (!node.children[i].empty()) {
                         nodeQueue.push(node.children[i]);
                     }
                 }
             }
-            for (int i = 0; i < 20; i++) {
-                log_debug << i << ": " << dd[i][0] << ' ' << dd[i][1] << '\n';
-            }
-            log_debug.close();
         }
         catch (std::bad_alloc) {
 
@@ -668,10 +636,6 @@ namespace cv {
         size_t index_dcm = 0;
         size_t index_bound = raw_data_in.occ_codes.size();
 
-        //TODO log code
-        std::ofstream log_debug;
-        log_debug.open("D:\\mydoc\\CS_Resources\\PCL_1.12.1\\share\\doc\\pcl-1.12\\tutorials\\sources\\cloud_viewer\\cmake-build-debug-visual-studio\\Debug\\dress\\debug\\decode.txt", std::ios_base::binary);
-
         try {
 
             // restore lookup table
@@ -690,7 +654,6 @@ namespace cv {
                 }
             }
 
-
             // Restore tree
             while (!nodeQueue.empty()) {
 
@@ -703,42 +666,25 @@ namespace cv {
 
                     // Direct coding mode (DCM)
                     if (node.parent != nullptr) {
-                        // eligible: check if parent only have one child
-//                        bool eligible = false;
-//                        for (unsigned char i = 0; i < node.children.size(); i++) {
-//                            if (!node.parent->children[i].empty()) {
-//                                if (eligible) {
-//                                    eligible = false;
-//                                    break;
-//                                }
-//                                eligible = true;
-//                            }
-//                        }
 
+                        if (node.depth >= dcm_max_depth || raw_data_in.dcm_flags[index_dcm_flag++]) {
+                            //Read DCM
+                            OctreeCompressNode *pNode = &node;
+                            while (pNode->depth < max_depth) {
 
-                        if (true) {
-                            // log_debug << "eli\n";
-                            if (node.depth >= dcm_max_depth || raw_data_in.dcm_flags[index_dcm_flag++]) {
-                                //Read DCM
-                                OctreeCompressNode *pNode = &node;
-                                // TODO bit test too naive(include Octree mode)
-                                while (pNode->depth < max_depth) {
+                                // Pred
+                                unsigned char i = dcm_table[neigh][raw_data_in.dcm_codes[index_dcm++]];
+                                // Direct
+                                // unsigned char i = raw_data_in.dcm_codes[index_dcm++];
 
-                                    // Pred
-                                    unsigned char i = dcm_table[neigh][raw_data_in.dcm_codes[index_dcm++]];
-                                    // Direct
-                                    // unsigned char i = raw_data_in.dcm_codes[index_dcm++];
-
-                                    log_debug << "dcm" << pNode->depth << ',' << (int)neigh << ',' << (int)i << '\n';
-                                    // TODO Except depth and parent index, nothing set, including color(include Octree mode)
-                                    pNode->children[i] = new OctreeCompressNode(pNode->depth + 1, 0, Point3f(0, 0, 0),
-                                                                              Point3f(0, 0, 0), int(i), -1);
-                                    pNode->children[i]->parent = pNode;
-                                    pNode = pNode->children[i];
-                                }
-                                pNode->isLeaf = true;
-                                continue;
+                                // TODO Except depth and parent index, nothing set, including color(include Octree mode)
+                                pNode->children[i] = new OctreeCompressNode(pNode->depth + 1, 0, Point3f(0, 0, 0),
+                                                                          Point3f(0, 0, 0), int(i), -1);
+                                pNode->children[i]->parent = pNode;
+                                pNode = pNode->children[i];
                             }
+                            pNode->isLeaf = true;
+                            continue;
                         }
                     }
 
@@ -754,7 +700,6 @@ namespace cv {
                     // Direct
                     // unsigned char occup_code = raw_data_in.occ_codes[index++];
 
-                    log_debug << (int) occup_code << '\n';
                     for (unsigned char i = 0; i < 8; i++) {
                         if (!!(occup_code & mask)) {
                             node.children[i] = new OctreeCompressNode(node.depth + 1, 0, Point3f(0, 0, 0),
@@ -765,7 +710,6 @@ namespace cv {
                         mask = mask << 1;
                     }
             }
-            log_debug.close();
         }
         catch (std::bad_alloc) {
 

@@ -26,9 +26,9 @@ namespace cv {
                        const OctreeCompressKey &key,
                        size_t depthMask);
 
-    void encodeColor(OctreeCompressData &raw_data_out, OctreeCompressNode &root, int QStep);
+    void encodeColor(OctreeCompressData &raw_data_out, OctreeCompressNode &root, float QStep);
 
-    void decodeColor(OctreeCompressData &raw_data_in, OctreeCompressNode &root, int QStep);
+    void decodeColor(OctreeCompressData &raw_data_in, OctreeCompressNode &root, float QStep);
 
     void traverseByLevel(OctreeCompressData &raw_data_out, OctreeCompressNode &root);
 
@@ -208,17 +208,11 @@ namespace cv {
 
         // BFS traverse Octree nodes (Geometry data)
         traverseByLevel(raw_data, *p->rootNode);
-
+        float QStep;
         if (p->hasColor) {
             // DFS traverse Octree nodes (Color data)
-            int QStep = 10;
             encodeColor(raw_data, *p->rootNode, QStep);
         }
-
-        // RAHT decode test
-        if (p->hasColor)
-            decodeColor(raw_data, *p->rootNode, 10);
-
 
         // Set header
         // +-----------------------------   +
@@ -227,13 +221,15 @@ namespace cv {
         // | occ_codes len (size_t, 8bytes) |
         // | dcm_flags len (size_t, 8bytes) |
         // | dcm_codes len (size_t, 8bytes) |
+        // | QStep (float, 4bytes)          |
         // +-----------------------------   +
-        //TODO use sizeof() instead of hard coding size
+        // TODO: use sizeof() instead of hard coding size
         unsigned char res[8];
         unsigned char ori[12];
         unsigned char len_occ_codes[8];
         unsigned char len_dcm_flags[8];
         unsigned char len_dcm_codes[8];
+        unsigned char quantize_step[4];
 
         size_t occ_codes_size = raw_data.occ_codes.size();
         size_t dcm_flags_size = raw_data.dcm_flags.size();
@@ -246,6 +242,7 @@ namespace cv {
         memcpy(len_occ_codes, &occ_codes_size, sizeof(len_occ_codes));
         memcpy(len_dcm_flags, &dcm_flags_size, sizeof(len_dcm_flags));
         memcpy(len_dcm_codes, &dcm_codes_size, sizeof(len_dcm_codes));
+        memcpy(quantize_step, &QStep, sizeof(quantize_step));
 
         // push additional info
         for (unsigned char &i: res) {
@@ -263,6 +260,9 @@ namespace cv {
         for (unsigned char &i: len_dcm_codes) {
             raw_data.header.push_back(i);
         }
+        for (unsigned char &i: quantize_step) {
+            raw_data.header.push_back(i);
+        }
 
         encodeCharVectorToStream(raw_data.header, outputStream);
         encodeCharVectorToStream(raw_data.occ_codes, outputStream);
@@ -272,23 +272,29 @@ namespace cv {
         encodeCharVectorToStream(raw_data.dcm_lookup_table, outputStream);
         encodeCharVectorToStream(raw_data.color_codes, outputStream);
 
-
     }
 
     void OctreeCompress::reStore(const std::vector<unsigned char> &bit_out) {
-
         this->clear();
+
+        // TODO: restore the compressed data to a OctreeCompressData object
+        OctreeCompressData raw_data;
         size_t bit_out_len = bit_out.size();
         size_t len;
         Point3f ori(0, 0, 0);
+        float QStep;
         memcpy(&len, &bit_out[bit_out_len - 8], sizeof(len));
         memcpy(&(p->resolution), &bit_out[len], sizeof(double));
         memcpy(&ori.x, &bit_out[len + 8], sizeof(float));
         memcpy(&ori.y, &bit_out[len + 8 + 4], sizeof(float));
         memcpy(&ori.z, &bit_out[len + 8 + 8], sizeof(float));
+        memcpy(&QStep, &bit_out[len + 16 + 4], sizeof(float));
         p->rootNode = new OctreeCompressNode(0, p->size, Point3f(0, 0, 0), Point3f(0, 0, 0), -1, 0);
         p->origin = ori;
+        p->hasColor = QStep > 0;
         restoreOctree(bit_out, *p->rootNode, len);
+        if (p->hasColor)
+            decodeColor(raw_data, *p->rootNode, QStep);
     }
 
     void OctreeCompress::getPointCloudByOctree(std::vector<Point3f> &restorePointCloud) {
@@ -901,7 +907,7 @@ namespace cv {
 
     // RAHT main - post-order traversal to generate RAHT coefficients in x,y,z directions
     // QStep: quantization step
-    void encodeColor(OctreeCompressData &raw_data_out, OctreeCompressNode &root, int QStep) {
+    void encodeColor(OctreeCompressData &raw_data_out, OctreeCompressNode &root, float QStep) {
 
         std::vector<Point3f> haarCoefficients;
 
@@ -917,15 +923,14 @@ namespace cv {
         haarCoefficients[N++] = root.RAHTCoefficient;
 
         // Init array for quantization
-        assert(QStep > 0);
+        assert(QStep > 0.0f);
         std::vector<int32_t> quantizedCoefficients(colorNum);
 
         // Quantization
-        auto Q = (float)QStep;
         for (size_t i = 0; i < N; ++i) {
-            quantizedCoefficients[i] = (int32_t) std::round(haarCoefficients[i].x / Q);
-            quantizedCoefficients[N + i] = (int32_t) std::round(haarCoefficients[i].y / Q);
-            quantizedCoefficients[(N << 1) + i] = (int32_t) std::round(haarCoefficients[i].z / Q);
+            quantizedCoefficients[i] = (int32_t) std::round(haarCoefficients[i].x / QStep);
+            quantizedCoefficients[N + i] = (int32_t) std::round(haarCoefficients[i].y / QStep);
+            quantizedCoefficients[(N << 1) + i] = (int32_t) std::round(haarCoefficients[i].z / QStep);
         }
 
         // save coefficients to raw_data_out for encoding
@@ -1048,7 +1053,7 @@ namespace cv {
     }
 
 
-    void decodeColor(OctreeCompressData &raw_data_in, OctreeCompressNode &root, int QStep) {
+    void decodeColor(OctreeCompressData &raw_data_in, OctreeCompressNode &root, float QStep) {
 
         size_t pointNum = root.pointNum;
         size_t colorNum = 3 * pointNum;
@@ -1069,9 +1074,9 @@ namespace cv {
         // de-quantization
         std::vector<Point3f> Haar3DCoefficients(pointNum);
         for (i = 0, j = i + pointNum, k = j + pointNum; i < pointNum; ++i) {
-            Haar3DCoefficients[i].x = static_cast<float>(quantizedCoefficients[i] * QStep);
-            Haar3DCoefficients[i].y = static_cast<float>(quantizedCoefficients[j++] * QStep);
-            Haar3DCoefficients[i].z = static_cast<float>(quantizedCoefficients[k++] * QStep);
+            Haar3DCoefficients[i].x = static_cast<float>(quantizedCoefficients[i]) * QStep;
+            Haar3DCoefficients[i].y = static_cast<float>(quantizedCoefficients[j++]) * QStep;
+            Haar3DCoefficients[i].z = static_cast<float>(quantizedCoefficients[k++]) * QStep;
         }
 
         size_t N = Haar3DCoefficients.size() - 1;

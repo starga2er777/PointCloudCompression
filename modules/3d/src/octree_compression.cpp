@@ -247,7 +247,7 @@ namespace cv {
         }
         raw_data.header.push_back(has_color);
 
-        // TODO header shouldn't encode,
+        // TODO header shouldn't encode, big table！
         encodeCharVectorToStream(raw_data.header, outputStream);
         encodeCharVectorToStream(raw_data.occ_codes, outputStream);
         encodeCharVectorToStream(raw_data.dcm_flags, outputStream);
@@ -961,7 +961,6 @@ namespace cv {
                 // transform under this condition
                 if (node1 && node2) {
                     currCube[x / stepSize] = new OctreeCompressNode;
-                    // TODO: Here the pointNum is not correctly matched with weight value in RAHT, need further fix
                     auto w1 = (float) node1->pointNum;
                     auto w2 = (float) node2->pointNum;
                     float w = w1 + w2;

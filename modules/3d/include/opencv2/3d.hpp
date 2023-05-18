@@ -2719,7 +2719,6 @@ public:
      */
     void getPointCloudByOctree(std::vector<Point3f> &restorePointCloud);
 
-    void decodeColor(std::vector<Point3f> &haarCoefficients, int QStep);
 
 protected:
     struct Impl;

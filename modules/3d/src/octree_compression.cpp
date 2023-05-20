@@ -39,7 +39,8 @@ namespace cv {
 
     void decodeStreamToCharVector(std::istream &inputByteStream_arg, std::vector<unsigned char> &outputCharVector_arg);
 
-    void encodeCharVectorToStream(const std::vector<unsigned char> &inputCharVector_arg, std::ostream &outputByteStream_arg);
+    void
+    encodeCharVectorToStream(const std::vector<unsigned char> &inputCharVector_arg, std::ostream &outputByteStream_arg);
 
 
     OctreeCompressNode::OctreeCompressNode() : children(OCTREE_CHILD_NUM, nullptr), neigh(OCTREE_NEIGH_SIZE, nullptr),
@@ -206,47 +207,53 @@ namespace cv {
 
         // BFS traverse Octree nodes (Geometry data)
         traverseByLevel(raw_data, *p->rootNode);
-        float QStep;
-        if (p->hasColor) {
-            // DFS traverse Octree nodes (Color data)
+
+        // TODO： Here the QStep should be implemented as a user variable
+        float QStep = 10.0f;
+        // DFS traverse Octree nodes (Color data)
+        if (p->hasColor)
             encodeColor(raw_data, *p->rootNode, QStep);
-        }
+        else
+            QStep = -1.0f;
 
         // Set header
-        // +-----------------------------   +
-        // | dcm_max_depth (1char)          |
-        // | resolution (double, 8bytes)    |
-        // | origin X,Y,Z (3float, 12bytes) |
-        // | max_depth  (3float, 12bytes)   |
-        // | has_color (0 or 1, 1char)      |
-        // +-----------------------------   +
+        // +-----------------------------    +
+        // | dcm_max_depth (1char)           |
+        // | resolution (double, 8bytes)     |
+        // | origin X,Y,Z (3float, 12bytes)  |
+        // | max_depth  (3float, 12bytes)    |
+        // | en_has_color (0 or 1, 1char)|
+        // | Quantization step (float)       |
+        // +-----------------------------    +
         // TODO header ignored maxdepth, size
-        unsigned char res[sizeof(double)];
-        unsigned char ori[3 * sizeof(float)];
-        unsigned char max_d[sizeof(int)];
-        unsigned char has_color;
+        unsigned char en_resolution[sizeof(double)];
+        unsigned char en_origin[3 * sizeof(float)];
+        unsigned char en_max_depth[sizeof(int)];
+        unsigned char en_has_color;
+        unsigned char en_QStep[sizeof(float)];
 
-        memcpy(&res, &(p->resolution), sizeof(p->resolution));
-        memcpy(ori, &p->origin.x, sizeof(ori) / 3);
-        memcpy(&ori[4], &p->origin.y, sizeof(ori) / 3);
-        memcpy(&ori[8], &p->origin.z, sizeof(ori) / 3);
-        memcpy(max_d, &p->maxDepth, sizeof(max_d));
-        if (&p->hasColor) {
-            has_color = (unsigned char) 1;
-        }
-        else has_color = (unsigned char) 0;
+        memcpy(&en_resolution, &(p->resolution), sizeof(p->resolution));
+        memcpy(en_origin, &p->origin.x, sizeof(en_origin) / 3);
+        memcpy(&en_origin[4], &p->origin.y, sizeof(en_origin) / 3);
+        memcpy(&en_origin[8], &p->origin.z, sizeof(en_origin) / 3);
+        memcpy(en_max_depth, &p->maxDepth, sizeof(en_max_depth));
+        en_has_color = (unsigned char) p->hasColor;
+        memcpy(&en_QStep, &QStep, sizeof(QStep));
 
         // push additional info
-        for (unsigned char &i: res) {
+        for (unsigned char &i: en_resolution)
             raw_data.header.push_back(i);
-        }
-        for (unsigned char &i: ori) {
+
+        for (unsigned char &i: en_origin)
             raw_data.header.push_back(i);
-        }
-        for (unsigned char &i: max_d) {
+
+        for (unsigned char &i: en_max_depth)
             raw_data.header.push_back(i);
-        }
-        raw_data.header.push_back(has_color);
+
+        raw_data.header.push_back(en_has_color);
+
+        for (unsigned char &i: en_QStep)
+            raw_data.header.push_back(i);
 
         // TODO header shouldn't encode, big table！
         encodeCharVectorToStream(raw_data.header, outputStream);
@@ -255,9 +262,11 @@ namespace cv {
         encodeCharVectorToStream(raw_data.dcm_codes, outputStream);
         encodeCharVectorToStream(raw_data.occ_lookup_table, outputStream);
         encodeCharVectorToStream(raw_data.dcm_lookup_table, outputStream);
+        if (p->hasColor)
+            encodeCharVectorToStream(raw_data.color_codes, outputStream);
     }
 
-    void OctreeCompress::reStore(std::istream& inputStream) {
+    void OctreeCompress::reStore(std::istream &inputStream) {
 
         OctreeCompressData raw_data;
 
@@ -269,48 +278,61 @@ namespace cv {
         decodeStreamToCharVector(inputStream, raw_data.dcm_lookup_table);
 
         this->clear();
-        unsigned char res[sizeof(double)];
-        unsigned char ori[3 * sizeof(float)];
-        unsigned char max_d[sizeof(int)];
-        unsigned char has_color;
+        unsigned char de_resolution[sizeof(double)];
+        unsigned char de_origin[3 * sizeof(float)];
+        unsigned char de_max_depth[sizeof(int)];
+        unsigned char de_has_color;
+        unsigned char de_QStep[sizeof(float)];
         float x, y, z;
         double new_res;
         int new_max_d;
-        bool new_has_color;
         int dcm_max_depth;
+        float QStep;
 
-
-        dcm_max_depth = (int)(raw_data.header.front());
+        dcm_max_depth = (int) (raw_data.header.front());
         raw_data.header.erase(raw_data.header.begin());
 
-        for (unsigned char &i : res) {
+        for (unsigned char &i: de_resolution) {
             i = raw_data.header.front();
             raw_data.header.erase(raw_data.header.begin());
         }
-        for (unsigned char &i : ori) {
+        for (unsigned char &i: de_origin) {
             i = raw_data.header.front();
             raw_data.header.erase(raw_data.header.begin());
         }
-        for (unsigned char &i : max_d) {
+        for (unsigned char &i: de_max_depth) {
             i = raw_data.header.front();
             raw_data.header.erase(raw_data.header.begin());
         }
-        new_has_color = raw_data.header.front();
+        de_has_color = raw_data.header.front();
         raw_data.header.erase(raw_data.header.begin());
 
-        memcpy(&new_res, &res, sizeof(new_res));
-        memcpy(&x, &ori[0], sizeof(x));
-        memcpy(&y, &ori[4], sizeof(y));
-        memcpy(&z, &ori[8], sizeof(z));
-        memcpy(&new_max_d, &max_d, sizeof(new_max_d));
+        for (unsigned char &i: de_QStep) {
+            i = raw_data.header.front();
+            raw_data.header.erase(raw_data.header.begin());
+        }
+
+        memcpy(&new_res, &de_resolution, sizeof(new_res));
+        memcpy(&x, &de_origin[0], sizeof(x));
+        memcpy(&y, &de_origin[4], sizeof(y));
+        memcpy(&z, &de_origin[8], sizeof(z));
+        memcpy(&new_max_d, &de_max_depth, sizeof(new_max_d));
+        memcpy(&QStep, &de_QStep, sizeof(QStep));
         Point3f new_ori(x, y, z);
         p->origin = new_ori;
         p->resolution = new_res;
         p->maxDepth = new_max_d;
-        p->hasColor = new_has_color;
+        p->hasColor = de_has_color & 1;
+
 
         p->rootNode = new OctreeCompressNode();
+        // TODO: should update pointNum
         restoreOctree(raw_data, *p->rootNode, p->maxDepth, dcm_max_depth);
+        // decode color attribute
+        if (p->hasColor) {
+            decodeStreamToCharVector(inputStream, raw_data.color_codes);
+            decodeColor(raw_data, *p->rootNode, QStep);
+        }
     }
 
     void OctreeCompress::getPointCloudByOctree(std::vector<Point3f> &restorePointCloud) {
@@ -501,8 +523,7 @@ namespace cv {
                         }
                         // DCM complete
                         continue;
-                    }
-                    else if (dcm_max_depth_full){
+                    } else if (dcm_max_depth_full) {
                         dcm_max_depth_full = false;
                     }
                 }
@@ -515,7 +536,7 @@ namespace cv {
                 }
                 // record Octree branching, refer to neighbour
                 look_up_table[(int) OctreeCompressKey::getNeighPattern(node)]
-                    [(int) OctreeCompressKey::getBitPattern(node)]++;
+                [(int) OctreeCompressKey::getBitPattern(node)]++;
             }
 
             if (!dcm_max_depth_full) {
@@ -634,8 +655,8 @@ namespace cv {
             // restore lookup table
             unsigned char occ_table[64][256];
             unsigned char dcm_table[64][8];
-            memset(occ_table, (unsigned char)0, sizeof(occ_table));
-            memset(dcm_table, (unsigned char)0, sizeof(dcm_table));
+            memset(occ_table, (unsigned char) 0, sizeof(occ_table));
+            memset(dcm_table, (unsigned char) 0, sizeof(dcm_table));
             for (int i = 0; i < 64; i++) {
                 for (int j = 0; j < 256; j++) {
                     occ_table[i][j] = raw_data_in.occ_lookup_table[i * 256 + j];
@@ -653,55 +674,55 @@ namespace cv {
                 OctreeCompressNode &node = *(nodeQueue.front());
                 nodeQueue.pop();
 
-                    setNeighbour(node);
-                    // neigh: the core of prediction
-                    unsigned char neigh = OctreeCompressKey::getNeighPattern(node);
+                setNeighbour(node);
+                // neigh: the core of prediction
+                unsigned char neigh = OctreeCompressKey::getNeighPattern(node);
 
-                    // Direct coding mode (DCM)
-                    if (node.parent != nullptr) {
+                // Direct coding mode (DCM)
+                if (node.parent != nullptr) {
 
-                        if (node.depth >= dcm_max_depth || raw_data_in.dcm_flags[index_dcm_flag++]) {
-                            //Read DCM
-                            OctreeCompressNode *pNode = &node;
-                            while (pNode->depth < max_depth) {
+                    if (node.depth >= dcm_max_depth || raw_data_in.dcm_flags[index_dcm_flag++]) {
+                        //Read DCM
+                        OctreeCompressNode *pNode = &node;
+                        while (pNode->depth < max_depth) {
 
-                                // Pred
-                                unsigned char i = dcm_table[neigh][raw_data_in.dcm_codes[index_dcm++]];
-                                // Direct
-                                // unsigned char i = raw_data_in.dcm_codes[index_dcm++];
+                            // Pred
+                            unsigned char i = dcm_table[neigh][raw_data_in.dcm_codes[index_dcm++]];
+                            // Direct
+                            // unsigned char i = raw_data_in.dcm_codes[index_dcm++];
 
-                                // TODO Except depth and parent index, nothing set, including color(include Octree mode)
-                                pNode->children[i] = new OctreeCompressNode(pNode->depth + 1, 0, Point3f(0, 0, 0),
-                                                                          Point3f(0, 0, 0), int(i), -1);
-                                pNode->children[i]->parent = pNode;
-                                pNode = pNode->children[i];
-                            }
-                            pNode->isLeaf = true;
-                            continue;
+                            // TODO Except depth and parent index, nothing set, including color(include Octree mode)
+                            pNode->children[i] = new OctreeCompressNode(pNode->depth + 1, 0, Point3f(0, 0, 0),
+                                                                        Point3f(0, 0, 0), int(i), -1);
+                            pNode->children[i]->parent = pNode;
+                            pNode = pNode->children[i];
                         }
-                    }
-
-                    // Octree mode
-                    if (index >= index_bound) {
-                        node.isLeaf = true;
+                        pNode->isLeaf = true;
                         continue;
                     }
-                    unsigned char mask = 1;
+                }
 
-                    // Pred
-                    unsigned char occup_code = occ_table[neigh][raw_data_in.occ_codes[index++]];
-                    // Direct
-                    // unsigned char occup_code = raw_data_in.occ_codes[index++];
+                // Octree mode
+                if (index >= index_bound) {
+                    node.isLeaf = true;
+                    continue;
+                }
+                unsigned char mask = 1;
 
-                    for (unsigned char i = 0; i < 8; i++) {
-                        if (!!(occup_code & mask)) {
-                            node.children[i] = new OctreeCompressNode(node.depth + 1, 0, Point3f(0, 0, 0),
-                                                                      Point3f(0, 0, 0), int(i), -1);
-                            node.children[i]->parent = &node;
-                            nodeQueue.push(node.children[i]);
-                        }
-                        mask = mask << 1;
+                // Pred
+                unsigned char occup_code = occ_table[neigh][raw_data_in.occ_codes[index++]];
+                // Direct
+                // unsigned char occup_code = raw_data_in.occ_codes[index++];
+
+                for (unsigned char i = 0; i < 8; i++) {
+                    if (!!(occup_code & mask)) {
+                        node.children[i] = new OctreeCompressNode(node.depth + 1, 0, Point3f(0, 0, 0),
+                                                                  Point3f(0, 0, 0), int(i), -1);
+                        node.children[i]->parent = &node;
+                        nodeQueue.push(node.children[i]);
                     }
+                    mask = mask << 1;
+                }
             }
         }
         catch (std::bad_alloc) {

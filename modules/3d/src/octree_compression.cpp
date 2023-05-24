@@ -34,8 +34,8 @@ namespace cv {
 
     void restoreOctree(OctreeCompressData &raw_data_in, OctreeCompressNode &root, int max_depth, int dcm_max_depth);
 
-    void getPointRecurse(std::vector<Point3f> &restorePointCloud, unsigned long x_key, unsigned long y_key,
-                         unsigned long z_key, Ptr<OctreeCompressNode> &_node, double resolution, Point3f ori);
+    void getPointRecurse(std::vector<Point3f> &restorePointCloud, std::vector<Point3f> &restoreColor, unsigned long x_key, unsigned long y_key,
+                         unsigned long z_key, Ptr<OctreeCompressNode> &_node, double resolution, Point3f ori, bool hasColor);
 
     void decodeStreamToCharVector(std::istream &inputByteStream_arg, std::vector<unsigned char> &outputCharVector_arg);
 
@@ -264,6 +264,7 @@ namespace cv {
         encodeCharVectorToStream(raw_data.dcm_lookup_table, outputStream);
         if (p->hasColor)
             encodeCharVectorToStream(raw_data.color_codes, outputStream);
+
     }
 
     void OctreeCompress::reStore(std::istream &inputStream) {
@@ -326,20 +327,22 @@ namespace cv {
 
 
         p->rootNode = new OctreeCompressNode();
-        // TODO: should update pointNum
         restoreOctree(raw_data, *p->rootNode, p->maxDepth, dcm_max_depth);
+
+        std::cout << "Restored before color" << std::endl;
         // decode color attribute
         if (p->hasColor) {
             decodeStreamToCharVector(inputStream, raw_data.color_codes);
+            std::cout << "Decode stream" << std::endl;
             decodeColor(raw_data, *p->rootNode, QStep);
         }
     }
 
-    void OctreeCompress::getPointCloudByOctree(std::vector<Point3f> &restorePointCloud) {
+    void OctreeCompress::getPointCloudByOctree(std::vector<Point3f> &restorePointCloud, std::vector<Point3f> &restoreColor) {
         Ptr<OctreeCompressNode> root = p->rootNode;
         double resolution = p->resolution;
 
-        getPointRecurse(restorePointCloud, 0, 0, 0, root, resolution, p->origin);
+        getPointRecurse(restorePointCloud, restoreColor, 0, 0, 0, root, resolution, p->origin, p->hasColor);
     }
 
     void OctreeCompress::setMaxDepth(int _maxDepth) {
@@ -693,11 +696,16 @@ namespace cv {
 
                             // TODO Except depth and parent index, nothing set, including color(include Octree mode)
                             pNode->children[i] = new OctreeCompressNode(pNode->depth + 1, 0, Point3f(0, 0, 0),
-                                                                        Point3f(0, 0, 0), int(i), -1);
+                                                                        Point3f(0, 0, 0), int(i), 0);
                             pNode->children[i]->parent = pNode;
                             pNode = pNode->children[i];
                         }
                         pNode->isLeaf = true;
+                        while (pNode != nullptr) {
+                            ++(pNode->pointNum);
+                            pNode = pNode->parent;
+                        }
+
                         continue;
                     }
                 }
@@ -705,6 +713,11 @@ namespace cv {
                 // Octree mode
                 if (index >= index_bound) {
                     node.isLeaf = true;
+                    OctreeCompressNode *pNode = &node;
+                    while (pNode != nullptr) {
+                        ++(pNode->pointNum);
+                        pNode = pNode->parent;
+                    }
                     continue;
                 }
                 unsigned char mask = 1;
@@ -717,7 +730,7 @@ namespace cv {
                 for (unsigned char i = 0; i < 8; i++) {
                     if (!!(occup_code & mask)) {
                         node.children[i] = new OctreeCompressNode(node.depth + 1, 0, Point3f(0, 0, 0),
-                                                                  Point3f(0, 0, 0), int(i), -1);
+                                                                  Point3f(0, 0, 0), int(i), 0);
                         node.children[i]->parent = &node;
                         nodeQueue.push(node.children[i]);
                     }
@@ -731,14 +744,17 @@ namespace cv {
 
     }
 
-    void getPointRecurse(std::vector<Point3f> &restorePointCloud, unsigned long x_key, unsigned long y_key,
-                         unsigned long z_key, Ptr<OctreeCompressNode> &_node, double resolution, Point3f ori) {
+    void getPointRecurse(std::vector<Point3f> &restorePointCloud, std::vector<Point3f> &restoreColor, unsigned long x_key, unsigned long y_key,
+                         unsigned long z_key, Ptr<OctreeCompressNode> &_node, double resolution, Point3f ori, bool hasColor) {
         OctreeCompressNode node = *_node;
         if (node.isLeaf) {
             restorePointCloud.emplace_back(
                     (float) (resolution * x_key) + (float) (resolution * 0.5) + ori.x,
                     (float) (resolution * y_key) + (float) (resolution * 0.5) + ori.y,
                     (float) (resolution * z_key) + (float) (resolution * 0.5) + ori.z);
+            if (hasColor) {
+                restoreColor.emplace_back(node.color);
+            }
             return;
         }
         unsigned char x_mask = 1;
@@ -759,7 +775,7 @@ namespace cv {
                 x_copy = (x_copy << 1) | x_offSet;
                 y_copy = (y_copy << 1) | y_offSet;
                 z_copy = (z_copy << 1) | z_offSet;
-                getPointRecurse(restorePointCloud, x_copy, y_copy, z_copy, node.children[i], resolution, ori);
+                getPointRecurse(restorePointCloud, restoreColor, x_copy, y_copy, z_copy, node.children[i], resolution, ori, hasColor);
             }
         }
     };

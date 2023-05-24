@@ -23,10 +23,10 @@ void BasePointCloudEncoder::setDestination(const std::string &filename) noexcept
     m_filename = filename;
 }
 
-void BasePointCloudEncoder::writeData(const std::vector<Point3f> &points, const std::vector<Point3f> &normals)
+void BasePointCloudEncoder::writeData(const std::vector<Point3f> &points, const std::vector<Point3f> &normals, const std::vector<Point3f> &color)
 {
     std::vector<std::vector<int32_t>> indices;
-    writeData(points, normals, indices);
+    writeData(points, normals, color, indices);
 }
 
 } /* namespace cv */

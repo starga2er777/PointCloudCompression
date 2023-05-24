@@ -76,7 +76,7 @@ void ObjDecoder::readData(std::vector<Point3f> &points, std::vector<Point3f> &no
     file.close();
 }
 
-void ObjEncoder::writeData(const std::vector<Point3f> &points, const std::vector<Point3f> &normals, const std::vector<std::vector<int32_t>> &indices)
+void ObjEncoder::writeData(const std::vector<Point3f> &points, const std::vector<Point3f> &normals, const std::vector<Point3f> &color, const std::vector<std::vector<int32_t>> &indices)
 {
     std::ofstream file(m_filename, std::ios::binary);
     if (!file) {

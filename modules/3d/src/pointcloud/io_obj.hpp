@@ -22,7 +22,7 @@ protected:
 class ObjEncoder CV_FINAL : public BasePointCloudEncoder
 {
 public:
-    void writeData(const std::vector<Point3f> &points, const std::vector<Point3f> &normals, const std::vector<std::vector<int32_t>> &indices) CV_OVERRIDE;
+    void writeData(const std::vector<Point3f> &points, const std::vector<Point3f> &normals, const std::vector<Point3f> &color, const std::vector<std::vector<int32_t>> &indices) CV_OVERRIDE;
 
 };
 

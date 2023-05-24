@@ -13,38 +13,47 @@
 
 namespace cv {
 
-class BasePointCloudDecoder;
-class BasePointCloudEncoder;
-using PointCloudDecoder = std::unique_ptr<BasePointCloudDecoder>;
-using PointCloudEncoder = std::unique_ptr<BasePointCloudEncoder>;
+    class BasePointCloudDecoder;
+
+    class BasePointCloudEncoder;
+
+    using PointCloudDecoder = std::unique_ptr<BasePointCloudDecoder>;
+    using PointCloudEncoder = std::unique_ptr<BasePointCloudEncoder>;
 
 ///////////////////////////////// base class for decoders ////////////////////////
-class BasePointCloudDecoder
-{
-public:
-    virtual ~BasePointCloudDecoder() = default;
+    class BasePointCloudDecoder {
+    public:
+        virtual ~BasePointCloudDecoder() = default;
 
-    virtual void setSource(const String &filename) noexcept;
-    virtual void readData(std::vector<Point3f> &points, std::vector<Point3f> &normals, std::vector<Point3f> &colors);
-    virtual void readData(std::vector<Point3f> &points, std::vector<Point3f> &normals, std::vector<Point3f> &colors, std::vector<std::vector<int32_t>> &indices) = 0;
+        virtual void setSource(const String &filename) noexcept;
 
-protected:
-    String m_filename;
-};
+        virtual void
+        readData(std::vector<Point3f> &points, std::vector<Point3f> &normals, std::vector<Point3f> &colors);
+
+        virtual void readData(std::vector<Point3f> &points, std::vector<Point3f> &normals, std::vector<Point3f> &colors,
+                              std::vector<std::vector<int32_t>> &indices) = 0;
+
+    protected:
+        String m_filename;
+    };
 
 ///////////////////////////////// base class for encoders ////////////////////////
-class BasePointCloudEncoder
-{
-public:
-    virtual ~BasePointCloudEncoder() = default;
+    class BasePointCloudEncoder {
+    public:
+        virtual ~BasePointCloudEncoder() = default;
 
-    virtual void setDestination(const String &filename) noexcept;
-    virtual void writeData(const std::vector<Point3f> &points, const std::vector<Point3f> &normals);
-    virtual void writeData(const std::vector<Point3f> &points, const std::vector<Point3f> &normals, const std::vector<std::vector<int32_t>> &indices) = 0;
+        virtual void setDestination(const String &filename) noexcept;
 
-protected:
-    String m_filename;
-};
+        virtual void writeData(const std::vector<Point3f> &points, const std::vector<Point3f> &normals,
+                               const std::vector<Point3f> &color);
+
+        virtual void writeData(const std::vector<Point3f> &points, const std::vector<Point3f> &normals,
+                               const std::vector<Point3f> &color,
+                               const std::vector<std::vector<int32_t>> &indices) = 0;
+
+    protected:
+        String m_filename;
+    };
 
 } /* namespace cv */
 

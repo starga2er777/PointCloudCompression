@@ -2717,7 +2717,7 @@ public:
      *
      * @param restorePointCloud The output pointcloud.
      */
-    void getPointCloudByOctree(std::vector<Point3f> &restorePointCloud);
+    void getPointCloudByOctree(std::vector<Point3f> &restorePointCloud, std::vector<Point3f> &restoreColor);
 
 
 protected:
@@ -2750,7 +2750,7 @@ CV_EXPORTS_W void loadPointCloud(const String &filename, OutputArray vertices, O
 * @param vertices (vector of Point3f) Point coordinates of a point cloud
 * @param normals (vector of Point3f) Point normals of a point cloud
 */
-CV_EXPORTS_W void savePointCloud(const String &filename, InputArray vertices, InputArray normals = noArray());
+CV_EXPORTS_W void savePointCloud(const String &filename, InputArray vertices, InputArray normals = noArray(), InputArray colors = noArray());
 
 /** @brief Loads a mesh from a file.
 * = noArray()
@@ -2776,7 +2776,7 @@ CV_EXPORTS_W void loadMesh(const String &filename, OutputArray vertices, OutputA
 * @param normals (vector of Point3f) vertex normals of a mesh
 * @param indices (vector of vectors of int) vertex normals of a mesh
 */
-CV_EXPORTS_W void saveMesh(const String &filename, InputArray vertices, InputArray normals, InputArrayOfArrays indices);
+CV_EXPORTS_W void saveMesh(const String &filename, InputArray vertices, InputArray normals, InputArray color, InputArrayOfArrays indices);
 
 
 //! @} _3d

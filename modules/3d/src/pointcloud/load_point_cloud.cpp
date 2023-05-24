@@ -84,7 +84,7 @@ void loadPointCloud(const String &filename, OutputArray vertices, OutputArray no
 #endif
 }
 
-void savePointCloud(const String &filename, InputArray vertices, InputArray normals)
+void savePointCloud(const String &filename, InputArray vertices, InputArray normals, InputArray color)
 {
 #if OPENCV_HAVE_FILESYSTEM_SUPPORT
     if (vertices.empty()) {
@@ -103,11 +103,16 @@ void savePointCloud(const String &filename, InputArray vertices, InputArray norm
 
     std::vector<Point3f> vec_vertices(vertices.getMat());
     std::vector<Point3f> vec_normals;
+    std::vector<Point3f> vec_color;
     if (!normals.empty()){
         vec_normals = normals.getMat();
     }
+    if (!color.empty()){
+        vec_color = color.getMat();
+    }
 
-    encoder->writeData(vec_vertices, vec_normals);
+
+    encoder->writeData(vec_vertices, vec_normals, vec_color);
 
 #else // OPENCV_HAVE_FILESYSTEM_SUPPORT
     CV_UNUSED(filename);
@@ -160,7 +165,7 @@ void loadMesh(const String &filename, OutputArray vertices, OutputArray normals,
 #endif
 }
 
-void saveMesh(const String &filename, InputArray vertices, InputArray normals, InputArrayOfArrays indices)
+void saveMesh(const String &filename, InputArray vertices, InputArray normals, InputArray color, InputArrayOfArrays indices)
 {
 #if OPENCV_HAVE_FILESYSTEM_SUPPORT
     if (vertices.empty()) {
@@ -179,8 +184,13 @@ void saveMesh(const String &filename, InputArray vertices, InputArray normals, I
 
     std::vector<Point3f> vec_vertices(vertices.getMat());
     std::vector<Point3f> vec_normals;
+    std::vector<Point3f> vec_color;
     if (!normals.empty()){
         vec_normals = normals.getMat();
+    }
+
+    if (!color.empty()){
+        vec_color = color.getMat();
     }
 
     std::vector<Mat> mat_indices;
@@ -191,7 +201,7 @@ void saveMesh(const String &filename, InputArray vertices, InputArray normals, I
         mat_indices[i].copyTo(vec_indices[i]);
     }
 
-    encoder->writeData(vec_vertices, vec_normals, vec_indices);
+    encoder->writeData(vec_vertices, vec_normals, vec_color, vec_indices);
 
 #else // OPENCV_HAVE_FILESYSTEM_SUPPORT
     CV_UNUSED(filename);

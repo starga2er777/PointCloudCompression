@@ -26,13 +26,13 @@ namespace cv {
                        const OctreeCompressKey &key,
                        size_t depthMask);
 
-    void encodeColor(OctreeCompressData &raw_data_out, OctreeCompressNode &root, int QStep);
+    void encodeColor(OctreeCompressData &raw_data_out, OctreeCompressNode &root, float QStep);
 
-    void decodeColor(OctreeCompressData &raw_data_in, OctreeCompressNode &root, int QStep);
+    void decodeColor(OctreeCompressData &raw_data_in, OctreeCompressNode &root, float QStep);
 
     void traverseByLevel(OctreeCompressData &raw_data_out, OctreeCompressNode &root);
 
-    void restoreOctree(const std::vector<unsigned char> &binary_tree_out_arg, OctreeCompressNode &root, size_t len);
+    void restoreOctree(OctreeCompressData &raw_data_in, OctreeCompressNode &root, int max_depth, int dcm_max_depth);
 
     void getPointRecurse(std::vector<Point3f> &restorePointCloud, unsigned long x_key, unsigned long y_key,
                          unsigned long z_key, Ptr<OctreeCompressNode> &_node, double resolution, Point3f ori);
@@ -43,18 +43,16 @@ namespace cv {
     encodeCharVectorToStream(const std::vector<unsigned char> &inputCharVector_arg, std::ostream &outputByteStream_arg);
 
 
-    OctreeCompressNode::OctreeCompressNode() : children(OCTREE_CHILD_NUM, nullptr), depth(0),
-                                               size(0), origin(0, 0, 0), parentIndex(-1), pointNum(0),
-                                               neigh(OCTREE_NEIGH_SIZE, nullptr) {
+    OctreeCompressNode::OctreeCompressNode() : children(OCTREE_CHILD_NUM, nullptr), neigh(OCTREE_NEIGH_SIZE, nullptr),
+                                               depth(0), size(0), origin(0, 0, 0), parentIndex(-1), pointNum(0) {
     }
 
     OctreeCompressNode::OctreeCompressNode(int _depth, double _size, const Point3f &_origin, const Point3f &_color,
                                            int _parentIndex, int _pointNum) : children(OCTREE_CHILD_NUM),
-                                                                              depth(_depth), size(_size),
-                                                                              origin(_origin), color(_color),
-                                                                              parentIndex(_parentIndex),
-                                                                              pointNum(_pointNum),
-                                                                              neigh(OCTREE_NEIGH_SIZE) {
+                                                                              neigh(OCTREE_NEIGH_SIZE), depth(_depth),
+                                                                              size(_size), origin(_origin),
+                                                                              color(_color), parentIndex(_parentIndex),
+                                                                              pointNum(_pointNum) {
     }
 
     bool OctreeCompressNode::isPointInBound(const Point3f &_point) const {
@@ -83,7 +81,7 @@ namespace cv {
     public:
         Impl() : maxDepth(-1), size(0), origin(0, 0, 0), resolution(0), depthMask(0) {}
 
-        ~Impl() = default;
+        ~Impl() {}
 
         // The pointer to Octree root node.
         Ptr<OctreeCompressNode> rootNode = nullptr;
@@ -170,6 +168,7 @@ namespace cv {
 
         double maxSize = max(max(maxBound.x - minBound.x, maxBound.y - minBound.y), maxBound.z - minBound.z);
         p->maxDepth = ceil(log2(maxSize / resolution));
+        // TODO depthMask should not be a property of Octree
         p->depthMask = 1 << (p->maxDepth - 1);
 
 
@@ -209,86 +208,131 @@ namespace cv {
         // BFS traverse Octree nodes (Geometry data)
         traverseByLevel(raw_data, *p->rootNode);
 
-        if (p->hasColor) {
-            // DFS traverse Octree nodes (Color data)
-            int QStep = 10;
-            encodeColor(raw_data, *p->rootNode, QStep);
-        }
-
-        // RAHT decode test
+        // TODO： Here the QStep should be implemented as a user variable
+        float QStep = 10.0f;
+        // DFS traverse Octree nodes (Color data)
         if (p->hasColor)
-            decodeColor(raw_data, *p->rootNode, 10);
-
+            encodeColor(raw_data, *p->rootNode, QStep);
+        else
+            QStep = -1.0f;
 
         // Set header
-        // +-----------------------------   +
-        // | resolution (double, 8bytes)    |
-        // | origin X,Y,Z (3float, 12bytes) |
-        // | occ_codes len (size_t, 8bytes) |
-        // | dcm_flags len (size_t, 8bytes) |
-        // | dcm_codes len (size_t, 8bytes) |
-        // +-----------------------------   +
-        //TODO use sizeof() instead of hard coding size
-        unsigned char res[8];
-        unsigned char ori[12];
-        unsigned char len_occ_codes[8];
-        unsigned char len_dcm_flags[8];
-        unsigned char len_dcm_codes[8];
+        // +-----------------------------    +
+        // | dcm_max_depth (1char)           |
+        // | resolution (double, 8bytes)     |
+        // | origin X,Y,Z (3float, 12bytes)  |
+        // | max_depth  (3float, 12bytes)    |
+        // | en_has_color (0 or 1, 1char)|
+        // | Quantization step (float)       |
+        // +-----------------------------    +
+        // TODO header ignored maxdepth, size
+        unsigned char en_resolution[sizeof(double)];
+        unsigned char en_origin[3 * sizeof(float)];
+        unsigned char en_max_depth[sizeof(int)];
+        unsigned char en_has_color;
+        unsigned char en_QStep[sizeof(float)];
 
-        size_t occ_codes_size = raw_data.occ_codes.size();
-        size_t dcm_flags_size = raw_data.dcm_flags.size();
-        size_t dcm_codes_size = raw_data.dcm_codes.size();
-
-        memcpy(&res, &(p->resolution), sizeof(p->resolution));
-        memcpy(ori, &p->origin.x, sizeof(ori) / 3);
-        memcpy(&ori[4], &p->origin.y, sizeof(ori) / 3);
-        memcpy(&ori[8], &p->origin.z, sizeof(ori) / 3);
-        memcpy(len_occ_codes, &occ_codes_size, sizeof(len_occ_codes));
-        memcpy(len_dcm_flags, &dcm_flags_size, sizeof(len_dcm_flags));
-        memcpy(len_dcm_codes, &dcm_codes_size, sizeof(len_dcm_codes));
+        memcpy(&en_resolution, &(p->resolution), sizeof(p->resolution));
+        memcpy(en_origin, &p->origin.x, sizeof(en_origin) / 3);
+        memcpy(&en_origin[4], &p->origin.y, sizeof(en_origin) / 3);
+        memcpy(&en_origin[8], &p->origin.z, sizeof(en_origin) / 3);
+        memcpy(en_max_depth, &p->maxDepth, sizeof(en_max_depth));
+        en_has_color = (unsigned char) p->hasColor;
+        memcpy(&en_QStep, &QStep, sizeof(QStep));
 
         // push additional info
-        for (unsigned char &i: res) {
+        for (unsigned char &i: en_resolution)
             raw_data.header.push_back(i);
-        }
-        for (unsigned char &i: ori) {
-            raw_data.header.push_back(i);
-        }
-        for (unsigned char &i: len_occ_codes) {
-            raw_data.header.push_back(i);
-        }
-        for (unsigned char &i: len_dcm_flags) {
-            raw_data.header.push_back(i);
-        }
-        for (unsigned char &i: len_dcm_codes) {
-            raw_data.header.push_back(i);
-        }
 
+        for (unsigned char &i: en_origin)
+            raw_data.header.push_back(i);
+
+        for (unsigned char &i: en_max_depth)
+            raw_data.header.push_back(i);
+
+        raw_data.header.push_back(en_has_color);
+
+        for (unsigned char &i: en_QStep)
+            raw_data.header.push_back(i);
+
+        // TODO header shouldn't encode, big table！
         encodeCharVectorToStream(raw_data.header, outputStream);
         encodeCharVectorToStream(raw_data.occ_codes, outputStream);
         encodeCharVectorToStream(raw_data.dcm_flags, outputStream);
         encodeCharVectorToStream(raw_data.dcm_codes, outputStream);
         encodeCharVectorToStream(raw_data.occ_lookup_table, outputStream);
         encodeCharVectorToStream(raw_data.dcm_lookup_table, outputStream);
-        encodeCharVectorToStream(raw_data.color_codes, outputStream);
-
-
+        if (p->hasColor)
+            encodeCharVectorToStream(raw_data.color_codes, outputStream);
     }
 
-    void OctreeCompress::reStore(const std::vector<unsigned char> &bit_out) {
+    void OctreeCompress::reStore(std::istream &inputStream) {
+
+        OctreeCompressData raw_data;
+
+        decodeStreamToCharVector(inputStream, raw_data.header);
+        decodeStreamToCharVector(inputStream, raw_data.occ_codes);
+        decodeStreamToCharVector(inputStream, raw_data.dcm_flags);
+        decodeStreamToCharVector(inputStream, raw_data.dcm_codes);
+        decodeStreamToCharVector(inputStream, raw_data.occ_lookup_table);
+        decodeStreamToCharVector(inputStream, raw_data.dcm_lookup_table);
 
         this->clear();
-        size_t bit_out_len = bit_out.size();
-        size_t len;
-        Point3f ori(0, 0, 0);
-        memcpy(&len, &bit_out[bit_out_len - 8], sizeof(len));
-        memcpy(&(p->resolution), &bit_out[len], sizeof(double));
-        memcpy(&ori.x, &bit_out[len + 8], sizeof(float));
-        memcpy(&ori.y, &bit_out[len + 8 + 4], sizeof(float));
-        memcpy(&ori.z, &bit_out[len + 8 + 8], sizeof(float));
-        p->rootNode = new OctreeCompressNode(0, p->size, Point3f(0, 0, 0), Point3f(0, 0, 0), -1, 0);
-        p->origin = ori;
-        restoreOctree(bit_out, *p->rootNode, len);
+        unsigned char de_resolution[sizeof(double)];
+        unsigned char de_origin[3 * sizeof(float)];
+        unsigned char de_max_depth[sizeof(int)];
+        unsigned char de_has_color;
+        unsigned char de_QStep[sizeof(float)];
+        float x, y, z;
+        double new_res;
+        int new_max_d;
+        int dcm_max_depth;
+        float QStep;
+
+        dcm_max_depth = (int) (raw_data.header.front());
+        raw_data.header.erase(raw_data.header.begin());
+
+        for (unsigned char &i: de_resolution) {
+            i = raw_data.header.front();
+            raw_data.header.erase(raw_data.header.begin());
+        }
+        for (unsigned char &i: de_origin) {
+            i = raw_data.header.front();
+            raw_data.header.erase(raw_data.header.begin());
+        }
+        for (unsigned char &i: de_max_depth) {
+            i = raw_data.header.front();
+            raw_data.header.erase(raw_data.header.begin());
+        }
+        de_has_color = raw_data.header.front();
+        raw_data.header.erase(raw_data.header.begin());
+
+        for (unsigned char &i: de_QStep) {
+            i = raw_data.header.front();
+            raw_data.header.erase(raw_data.header.begin());
+        }
+
+        memcpy(&new_res, &de_resolution, sizeof(new_res));
+        memcpy(&x, &de_origin[0], sizeof(x));
+        memcpy(&y, &de_origin[4], sizeof(y));
+        memcpy(&z, &de_origin[8], sizeof(z));
+        memcpy(&new_max_d, &de_max_depth, sizeof(new_max_d));
+        memcpy(&QStep, &de_QStep, sizeof(QStep));
+        Point3f new_ori(x, y, z);
+        p->origin = new_ori;
+        p->resolution = new_res;
+        p->maxDepth = new_max_d;
+        p->hasColor = de_has_color & 1;
+
+
+        p->rootNode = new OctreeCompressNode();
+        // TODO: should update pointNum
+        restoreOctree(raw_data, *p->rootNode, p->maxDepth, dcm_max_depth);
+        // decode color attribute
+        if (p->hasColor) {
+            decodeStreamToCharVector(inputStream, raw_data.color_codes);
+            decodeColor(raw_data, *p->rootNode, QStep);
+        }
     }
 
     void OctreeCompress::getPointCloudByOctree(std::vector<Point3f> &restorePointCloud) {
@@ -377,6 +421,10 @@ namespace cv {
 
     // Set node's neighbour vector pointing at 6 adjacent nodes(cubes) at same level.
     void setNeighbour(OctreeCompressNode &node) {
+        if (node.parent == nullptr) {
+            // root should stop here
+            return;
+        }
 
         // 6N neighbour position descriptor explain:
         //   dim_mask: the 6N neighbour dimension, two on x(001), two on y(010), tow on z(100)
@@ -420,6 +468,10 @@ namespace cv {
                          OctreeCompressNode &root) {
 
         try {
+            // max depth before all become dcm
+            int dcm_max_depth = -1;
+            bool dcm_max_depth_full = true;
+
             // Prediction Tables
             int look_up_table[64][256];
             unsigned char weight_table[64][256];
@@ -444,23 +496,24 @@ namespace cv {
                     break;
                 }
 
-                // set neighbours for all children
-                for (int i = 0; i < 8; i++) {
-                    if (!node.children[i]) continue;
-                    setNeighbour(*(node.children[i]));
-                }
+                // set neighbours for curr node
+                setNeighbour(node);
 
                 // Direct coding mode (DCM) for lookup
 
                 if (node.parent != nullptr) {
                     // check if it is single point
                     if (node.pointNum == 1) {
+                        if (node.depth > dcm_max_depth) {
+                            dcm_max_depth = node.depth;
+                            dcm_max_depth_full = true;
+                        }
 
                         // record DCM branching, refer to neighbour
                         unsigned char neigh = OctreeCompressKey::getNeighPattern(node);
                         OctreeCompressNode pNode = node;
                         while (!pNode.isLeaf) {
-                            for (size_t i = 0; i < pNode.children.size(); i++) {
+                            for (unsigned char i = 0; i < pNode.children.size(); i++) {
                                 if (!pNode.children[i].empty()) {
                                     look_up_DCM_table[neigh][i]++;
                                     pNode = *(pNode.children[i]);
@@ -470,6 +523,8 @@ namespace cv {
                         }
                         // DCM complete
                         continue;
+                    } else if (dcm_max_depth_full) {
+                        dcm_max_depth_full = false;
                     }
                 }
 
@@ -480,9 +535,15 @@ namespace cv {
                     }
                 }
                 // record Octree branching, refer to neighbour
-                look_up_table[(int) OctreeCompressKey::getNeighPattern(node)][(int) OctreeCompressKey::getBitPattern(
-                        node)]++;
+                look_up_table[(int) OctreeCompressKey::getNeighPattern(node)]
+                [(int) OctreeCompressKey::getBitPattern(node)]++;
             }
+
+            if (!dcm_max_depth_full) {
+                dcm_max_depth++;
+            }
+
+            raw_data_out.header.push_back((unsigned char) dcm_max_depth);
 
             // Sort lookup to get weight table
             for (int i = 0; i < 64; i++) {
@@ -523,51 +584,47 @@ namespace cv {
                     break;
                 }
 
+                setNeighbour(node);
                 // neigh: the core of prediction
                 unsigned char neigh = OctreeCompressKey::getNeighPattern(node);
 
                 // Direct coding mode (DCM)
 
                 if (node.parent != nullptr) {
-                    // eligible: check if parent only have one child
-                    bool eligible = false;
+                    if (node.pointNum == 1) {
+                        if (node.depth < dcm_max_depth) raw_data_out.dcm_flags.push_back(true);
 
-                    for (const auto &i: node.children) {
-                        if (!i.empty()) {
-                            if (eligible) {
-                                eligible = false;
-                                break;
-                            }
-                            eligible = true;
-                        }
-                    }
+                        // Apply DCM
+                        OctreeCompressNode pNode = node;
+                        while (!pNode.isLeaf) {
+                            for (unsigned char i = 0; i < pNode.children.size(); i++) {
+                                if (!pNode.children[i].empty()) {
+                                    // push back DCM weighted Prediction loss to output vector
 
-                    if (eligible) {
-                        if (node.pointNum == 1) {
-                            raw_data_out.dcm_flags.push_back(true);
+                                    // Pred
+                                    raw_data_out.dcm_codes.push_back(weight_DCM_table[neigh][i]);
+                                    // Direct
+                                    // raw_data_out.dcm_codes.push_back(i);
 
-                            // Apply DCM
-                            OctreeCompressNode pNode = node;
-                            while (!pNode.isLeaf) {
-                                for (size_t i = 0; i < pNode.children.size(); i++) {
-                                    if (!pNode.children[i].empty()) {
-                                        // push back DCM weighted Prediction loss to output vector
-                                        raw_data_out.dcm_codes.push_back(weight_DCM_table[neigh][i]);
-                                        pNode = *(pNode.children[i]);
-                                        break;
-                                    }
+                                    pNode = *(pNode.children[i]);
+                                    break;
                                 }
                             }
-                            continue;
-                        } else {
-                            raw_data_out.dcm_flags.push_back(false);
                         }
+                        continue;
+                    } else {
+                        if (node.depth < dcm_max_depth) raw_data_out.dcm_flags.push_back(false);
                     }
                 }
 
                 // Octree mode (further branching)
                 // push back weighted Prediction loss to output vector
+
+                // Pred
                 raw_data_out.occ_codes.push_back(weight_table[neigh][OctreeCompressKey::getBitPattern(node)]);
+                // Direct
+                // raw_data_out.occ_codes.push_back(OctreeCompressKey::getBitPattern(node));
+
                 for (unsigned char i = 0; i < 8; i++) {
                     if (!node.children[i].empty()) {
                         nodeQueue.push(node.children[i]);
@@ -581,31 +638,91 @@ namespace cv {
 
     }
 
-    void restoreOctree(const std::vector<unsigned char> &binary_tree_out_arg, OctreeCompressNode &root, size_t len) {
+    void restoreOctree(OctreeCompressData &raw_data_in,
+                       OctreeCompressNode &root,
+                       int max_depth, int dcm_max_depth) {
+
         std::queue<OctreeCompressNode *> nodeQueue;
         nodeQueue.push(&root);
+
         size_t index = 0;
+        size_t index_dcm_flag = 0;
+        size_t index_dcm = 0;
+        size_t index_bound = raw_data_in.occ_codes.size();
+
         try {
+
+            // restore lookup table
+            unsigned char occ_table[64][256];
+            unsigned char dcm_table[64][8];
+            memset(occ_table, (unsigned char) 0, sizeof(occ_table));
+            memset(dcm_table, (unsigned char) 0, sizeof(dcm_table));
+            for (int i = 0; i < 64; i++) {
+                for (int j = 0; j < 256; j++) {
+                    occ_table[i][j] = raw_data_in.occ_lookup_table[i * 256 + j];
+                }
+            }
+            for (int i = 0; i < 64; i++) {
+                for (int j = 0; j < 8; j++) {
+                    dcm_table[i][j] = raw_data_in.dcm_lookup_table[i * 8 + j];
+                }
+            }
+
+            // Restore tree
             while (!nodeQueue.empty()) {
+
                 OctreeCompressNode &node = *(nodeQueue.front());
                 nodeQueue.pop();
-                unsigned char mask = 1;
-                if (index < len) {
 
-                    // Octree mode
-                    for (unsigned char i = 0; i < 8; i++) {
-                        if (!!(binary_tree_out_arg[index] & mask)) {
-                            node.children[i] = new OctreeCompressNode(node.depth + 1, 0, Point3f(0, 0, 0),
-                                                                      Point3f(0, 0, 0), int(i), -1);
-                            node.children[i]->parent = &node;
-                            nodeQueue.push(node.children[i]);
+                setNeighbour(node);
+                // neigh: the core of prediction
+                unsigned char neigh = OctreeCompressKey::getNeighPattern(node);
+
+                // Direct coding mode (DCM)
+                if (node.parent != nullptr) {
+
+                    if (node.depth >= dcm_max_depth || raw_data_in.dcm_flags[index_dcm_flag++]) {
+                        //Read DCM
+                        OctreeCompressNode *pNode = &node;
+                        while (pNode->depth < max_depth) {
+
+                            // Pred
+                            unsigned char i = dcm_table[neigh][raw_data_in.dcm_codes[index_dcm++]];
+                            // Direct
+                            // unsigned char i = raw_data_in.dcm_codes[index_dcm++];
+
+                            // TODO Except depth and parent index, nothing set, including color(include Octree mode)
+                            pNode->children[i] = new OctreeCompressNode(pNode->depth + 1, 0, Point3f(0, 0, 0),
+                                                                        Point3f(0, 0, 0), int(i), -1);
+                            pNode->children[i]->parent = pNode;
+                            pNode = pNode->children[i];
                         }
-                        mask = mask << 1;
+                        pNode->isLeaf = true;
+                        continue;
                     }
-                } else {
-                    node.isLeaf = true;
                 }
-                index++;
+
+                // Octree mode
+                if (index >= index_bound) {
+                    node.isLeaf = true;
+                    continue;
+                }
+                unsigned char mask = 1;
+
+                // Pred
+                unsigned char occup_code = occ_table[neigh][raw_data_in.occ_codes[index++]];
+                // Direct
+                // unsigned char occup_code = raw_data_in.occ_codes[index++];
+
+                for (unsigned char i = 0; i < 8; i++) {
+                    if (!!(occup_code & mask)) {
+                        node.children[i] = new OctreeCompressNode(node.depth + 1, 0, Point3f(0, 0, 0),
+                                                                  Point3f(0, 0, 0), int(i), -1);
+                        node.children[i]->parent = &node;
+                        nodeQueue.push(node.children[i]);
+                    }
+                    mask = mask << 1;
+                }
             }
         }
         catch (std::bad_alloc) {
@@ -737,6 +854,8 @@ namespace cv {
         }
 
         // write encoded data to stream
+        const size_t vec_len = inputCharVector_arg.size();
+        outputByteStream_arg.write(reinterpret_cast<const char *> (&vec_len), sizeof(vec_len));
         outputByteStream_arg.write(reinterpret_cast<const char *> (&outputCharVector_[0]), outputCharVector_.size());
 
     }
@@ -758,12 +877,16 @@ namespace cv {
         size_t outputPos;
         size_t output_size;
 
-        output_size = static_cast<size_t> (outputCharVector_arg.size());
-
         outputPos = 0;
 
         // read cumulative frequency table
         inputByteStream_arg.read(reinterpret_cast<char *> (&part_idx[0]), sizeof(part_idx));
+
+        // read vec_size
+        inputByteStream_arg.read(reinterpret_cast<char *> (&output_size), sizeof(output_size));
+
+        outputCharVector_arg.clear();
+        outputCharVector_arg.resize(output_size);
 
         // read code
         code = 0;
@@ -901,7 +1024,7 @@ namespace cv {
 
     // RAHT main - post-order traversal to generate RAHT coefficients in x,y,z directions
     // QStep: quantization step
-    void encodeColor(OctreeCompressData &raw_data_out, OctreeCompressNode &root, int QStep) {
+    void encodeColor(OctreeCompressData &raw_data_out, OctreeCompressNode &root, float QStep) {
 
         std::vector<Point3f> haarCoefficients;
 
@@ -917,15 +1040,14 @@ namespace cv {
         haarCoefficients[N++] = root.RAHTCoefficient;
 
         // Init array for quantization
-        assert(QStep > 0);
+        assert(QStep > 0.0f);
         std::vector<int32_t> quantizedCoefficients(colorNum);
 
         // Quantization
-        auto Q = (float)QStep;
         for (size_t i = 0; i < N; ++i) {
-            quantizedCoefficients[i] = (int32_t) std::round(haarCoefficients[i].x / Q);
-            quantizedCoefficients[N + i] = (int32_t) std::round(haarCoefficients[i].y / Q);
-            quantizedCoefficients[(N << 1) + i] = (int32_t) std::round(haarCoefficients[i].z / Q);
+            quantizedCoefficients[i] = (int32_t) std::round(haarCoefficients[i].x / QStep);
+            quantizedCoefficients[N + i] = (int32_t) std::round(haarCoefficients[i].y / QStep);
+            quantizedCoefficients[(N << 1) + i] = (int32_t) std::round(haarCoefficients[i].z / QStep);
         }
 
         // save coefficients to raw_data_out for encoding
@@ -1048,7 +1170,7 @@ namespace cv {
     }
 
 
-    void decodeColor(OctreeCompressData &raw_data_in, OctreeCompressNode &root, int QStep) {
+    void decodeColor(OctreeCompressData &raw_data_in, OctreeCompressNode &root, float QStep) {
 
         size_t pointNum = root.pointNum;
         size_t colorNum = 3 * pointNum;
@@ -1069,9 +1191,9 @@ namespace cv {
         // de-quantization
         std::vector<Point3f> Haar3DCoefficients(pointNum);
         for (i = 0, j = i + pointNum, k = j + pointNum; i < pointNum; ++i) {
-            Haar3DCoefficients[i].x = static_cast<float>(quantizedCoefficients[i] * QStep);
-            Haar3DCoefficients[i].y = static_cast<float>(quantizedCoefficients[j++] * QStep);
-            Haar3DCoefficients[i].z = static_cast<float>(quantizedCoefficients[k++] * QStep);
+            Haar3DCoefficients[i].x = static_cast<float>(quantizedCoefficients[i]) * QStep;
+            Haar3DCoefficients[i].y = static_cast<float>(quantizedCoefficients[j++]) * QStep;
+            Haar3DCoefficients[i].z = static_cast<float>(quantizedCoefficients[k++]) * QStep;
         }
 
         size_t N = Haar3DCoefficients.size() - 1;

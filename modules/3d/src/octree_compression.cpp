@@ -7,7 +7,6 @@
 
 #include <cmath>
 #include <fstream>
-#include <bitset>
 #include <algorithm>
 
 #define OCTREE_CHILD_NUM 8
@@ -15,9 +14,11 @@
 
 namespace cv {
 
-    void Haar3DRecursive(OctreeCompressNode *node, std::vector<Point3f> &haarCoefficients, size_t &N);
+    void Haar3DRecursive(OctreeCompressNode *node, std::vector<Point3f> &haarCoefficients,
+                         std::vector<OctreeCompressNode *> &cubes, size_t &N);
 
-    void invHaar3DRecursive(OctreeCompressNode *node, std::vector<Point3f> &haarCoefficients, size_t &N);
+    void invHaar3DRecursive(OctreeCompressNode *node, std::vector<Point3f> &haarCoefficients,
+                            std::vector<OctreeCompressNode *> &cubes, size_t &N);
 
     static bool _isPointInBound(const Point3f &_point, const Point3f &_origin, double _size);
 
@@ -338,7 +339,8 @@ namespace cv {
         }
     }
 
-    void OctreeCompress::getPointCloudByOctree(std::vector<Point3f> &restorePointCloud, std::vector<Point3f> &restoreColor) {
+    void
+    OctreeCompress::getPointCloudByOctree(std::vector<Point3f> &restorePointCloud, std::vector<Point3f> &restoreColor) {
         Ptr<OctreeCompressNode> root = p->rootNode;
         double resolution = p->resolution;
 
@@ -744,8 +746,11 @@ namespace cv {
 
     }
 
-    void getPointRecurse(std::vector<Point3f> &restorePointCloud, std::vector<Point3f> &restoreColor, unsigned long x_key, unsigned long y_key,
-                         unsigned long z_key, Ptr<OctreeCompressNode> &_node, double resolution, Point3f ori, bool hasColor) {
+    void
+    getPointRecurse(std::vector<Point3f> &restorePointCloud, std::vector<Point3f> &restoreColor, unsigned long x_key,
+                    unsigned long y_key,
+                    unsigned long z_key, Ptr<OctreeCompressNode> &_node, double resolution, Point3f ori,
+                    bool hasColor) {
         OctreeCompressNode node = *_node;
         if (node.isLeaf) {
             restorePointCloud.emplace_back(
@@ -775,7 +780,8 @@ namespace cv {
                 x_copy = (x_copy << 1) | x_offSet;
                 y_copy = (y_copy << 1) | y_offSet;
                 z_copy = (z_copy << 1) | z_offSet;
-                getPointRecurse(restorePointCloud, restoreColor, x_copy, y_copy, z_copy, node.children[i], resolution, ori, hasColor);
+                getPointRecurse(restorePointCloud, restoreColor, x_copy, y_copy, z_copy, node.children[i], resolution,
+                                ori, hasColor);
             }
         }
     };
@@ -949,7 +955,8 @@ namespace cv {
         }
     }
 
-    void Haar3DRecursive(OctreeCompressNode *node, std::vector<Point3f> &haarCoefficients, size_t &N) {
+    void Haar3DRecursive(OctreeCompressNode *node, std::vector<Point3f> &haarCoefficients,
+                         std::vector<OctreeCompressNode *> &cubes, size_t &N) {
         if (!node)
             return;
         if (node->isLeaf) {
@@ -961,19 +968,25 @@ namespace cv {
         }
 
         for (const auto &child: node->children) {
-            Haar3DRecursive(child, haarCoefficients, N);
+            Haar3DRecursive(child, haarCoefficients, cubes, N);
         }
 
         std::vector<OctreeCompressNode *> prevCube(node->children.size());
-        std::vector<OctreeCompressNode *> currCube(node->children.size() >> 1);
+        std::vector<OctreeCompressNode *> currCube(node->children.size());
 
-        // generate a new array and copy data from current node
-        for (size_t idx = 0; idx < prevCube.size(); ++idx) {
+        // use the pre-allocated object
+        for (size_t idx = 0; idx < node->children.size(); ++idx) {
+            prevCube[idx] = cubes[idx];
+            currCube[idx] = cubes[node->children.size() + idx];
+        }
+
+
+        // copy node info from octree
+        for (size_t idx = 0; idx < node->children.size(); ++idx) {
             if (!node->children[idx]) {
-                prevCube[idx] = nullptr;
+                prevCube[idx]->pointNum = 0;
                 continue;
             }
-            prevCube[idx] = new OctreeCompressNode;
             prevCube[idx]->RAHTCoefficient = node->children[idx]->RAHTCoefficient;
             prevCube[idx]->pointNum = node->children[idx]->pointNum;
         }
@@ -981,18 +994,19 @@ namespace cv {
         size_t cubeSize = prevCube.size();
         size_t stepSize = 2;
 
-        // start doing transform x then y then z
+        // start doing transform in x then y then z direction
         while (true) {
             for (size_t x = 0; x < cubeSize; x += stepSize) {
                 OctreeCompressNode *node1 = prevCube[x];
                 OctreeCompressNode *node2 = prevCube[x + 1];
 
-                if (!node1 && !node2) {
-                    currCube[x / stepSize] = nullptr;
+                if (!node1->pointNum && !node2->pointNum) {
+                    currCube[x / stepSize]->pointNum = 0;
                     continue;
                 }
+
                 // transform under this condition
-                if (node1 && node2) {
+                if (node1->pointNum && node2->pointNum) {
                     currCube[x / stepSize] = new OctreeCompressNode;
                     auto w1 = (float) node1->pointNum;
                     auto w2 = (float) node2->pointNum;
@@ -1014,12 +1028,12 @@ namespace cv {
                     float VHighPass = a1 * node2->RAHTCoefficient.z - a2 * node1->RAHTCoefficient.z;
 
                     haarCoefficients[N++] = Point3f(YHighPass, UHighPass, VHighPass);
-
-                    delete node1, delete node2;
                     continue;
                 }
                 // if no partner to transform, then directly use the value
-                currCube[x / stepSize] = node1 ? node1 : node2;
+                currCube[x / stepSize]->pointNum = node1->pointNum ? node1->pointNum : node2->pointNum;
+                currCube[x / stepSize]->RAHTCoefficient = node1->pointNum ? node1->RAHTCoefficient
+                                                                          : node2->RAHTCoefficient;
             }
 
             cubeSize >>= 1;
@@ -1027,15 +1041,14 @@ namespace cv {
                 break;
 
             // swap prevCube and currCube
-            prevCube = currCube;
-            currCube.resize(cubeSize >> 1);
+            for (size_t k = 0; k < prevCube.size(); ++k) {
+                prevCube[k]->pointNum = currCube[k]->pointNum;
+                prevCube[k]->RAHTCoefficient = currCube[k]->RAHTCoefficient;
+            }
         }
 
         // update selected node's coefficient in the octree
         node->RAHTCoefficient = currCube[0]->RAHTCoefficient;
-
-        // free memory
-        delete currCube[0];
     }
 
     // RAHT main - post-order traversal to generate RAHT coefficients in x,y,z directions
@@ -1051,8 +1064,13 @@ namespace cv {
 
         haarCoefficients.resize(pointNum);
 
+        std::vector<OctreeCompressNode *> cubes(root.children.size() << 1);
+        for (auto &cube: cubes)
+            cube = new OctreeCompressNode;
+
+
         // Obtain RAHT coefficients through 3D Haar Transform
-        Haar3DRecursive(&root, haarCoefficients, N);
+        Haar3DRecursive(&root, haarCoefficients, cubes, N);
         haarCoefficients[N++] = root.RAHTCoefficient;
 
         // Init array for quantization
@@ -1083,12 +1101,16 @@ namespace cv {
             raw_data_out.color_codes[cursor++] = static_cast<unsigned char>((val >> 16) & 0xFF);
             raw_data_out.color_codes[cursor++] = static_cast<unsigned char>((val >> 24) & 0xFF);
         }
+
+        for (auto &p: cubes)
+            delete p;
+
         // end
     }
 
     // adaptive recursive preorder traversal
-    // TODO: The following part is trash and needs further optimization
-    void invHaar3DRecursive(OctreeCompressNode *node, std::vector<Point3f> &haarCoefficients, size_t &N) {
+    // TODO: use memcpy for better performance?
+    void invHaar3DRecursive(OctreeCompressNode *node, std::vector<Point3f> &haarCoefficients, std::vector<OctreeCompressNode *> &cubes, size_t &N) {
         if (!node)
             return;
         if (node->isLeaf) {
@@ -1101,23 +1123,32 @@ namespace cv {
             r = y + 1.5748f * v;
             g = y - 0.18733f * u - 0.46813f * v;
             b = y + 1.85563f * u;
-            //TODO: Clipping from 0 to 255
+
+            // Clipping from 0 to 255
+            r = (r < 0.0f) ? 0.0f : ((r > 255.0f) ? 255.0f : r);
+            g = (g < 0.0f) ? 0.0f : ((g > 255.0f) ? 255.0f : g);
+            b = (b < 0.0f) ? 0.0f : ((b > 255.0f) ? 255.0f : b);
 
             node->color = Point3f(r, g, b);
             return;
         }
 
-        // size of currCube in the loop
+        // actual size of currCube in the loop
         size_t iterSize = 2;
-        std::vector<OctreeCompressNode *> prevCube(1);
-        std::vector<OctreeCompressNode *> currCube(iterSize);
+
+        std::vector<OctreeCompressNode *> prevCube(8);
+        std::vector<OctreeCompressNode *> currCube(8);
+
+        for (size_t idx = 0; idx < node->children.size(); ++idx) {
+            prevCube[idx] = cubes[idx];
+            currCube[idx] = cubes[node->children.size() + idx];
+        }
 
         // node = 1 -> 2 -> 4 -> 8 = child nodes
         // first set prev = node, then insert weight values into currCube by traversing children
         // then update currCube's HaarCoefficients using node's low-pass coefficient and high-pass coefficients from input
         // after that set prev = curr, then enter next loop
 
-        prevCube[0] = new OctreeCompressNode;
         prevCube[0]->RAHTCoefficient = node->RAHTCoefficient;
         prevCube[0]->pointNum = node->pointNum;
 
@@ -1165,24 +1196,32 @@ namespace cv {
             iterSize <<= 1;
             if (iterSize > 8)
                 break;
-            for (auto p: prevCube)
-                delete p;
-            prevCube = currCube;
-            currCube.resize(iterSize);
+
+//            for (auto p: prevCube)
+//                delete p;
+
+//            prevCube = currCube;
+
+            for (size_t k = 0; k < prevCube.size(); ++k) {
+                prevCube[k]->pointNum = currCube[k]->pointNum;
+                prevCube[k]->RAHTCoefficient = currCube[k]->RAHTCoefficient;
+            }
+
+//            currCube.resize(iterSize);
         }
 
         for (int i = 0; i < 8; ++i)
             if (node->children[i])
                 node->children[i]->RAHTCoefficient = currCube[i]->RAHTCoefficient;
 
-        for (auto p: prevCube)
-            delete p;
+//        for (auto p: prevCube)
+//            delete p;
 
         // traverse child nodes
-        for (int i = 7; i >= 0; --i) {
-            invHaar3DRecursive(node->children[i], haarCoefficients, N);
-        }
+        for (int i = 7; i >= 0; --i)
+            invHaar3DRecursive(node->children[i], haarCoefficients, cubes, N);
 
+        // end
     }
 
 
@@ -1215,6 +1254,15 @@ namespace cv {
         size_t N = Haar3DCoefficients.size() - 1;
         root.RAHTCoefficient = Haar3DCoefficients[N--];
 
-        invHaar3DRecursive(&root, Haar3DCoefficients, N);
+        std::vector<OctreeCompressNode *> cubes(root.children.size() << 1);
+        for (auto &cube: cubes)
+            cube = new OctreeCompressNode;
+
+
+        invHaar3DRecursive(&root, Haar3DCoefficients, cubes, N);
+
+        for (auto &cube: cubes)
+            delete cube;
+
     }
 }

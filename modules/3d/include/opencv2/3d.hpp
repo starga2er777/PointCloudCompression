@@ -2531,7 +2531,7 @@ public:
     * @param pointCloud Point cloud data.
     * @param maxDepth The max depth of the Octree.
     */
-    Octree(const std::vector<Point3f> &pointCloud, int maxDepth);
+    Octree(const std::vector<Point3f> &pointCloud, double resolution);
 
     /** @overload
     * @brief Create an empty Octree.
@@ -2548,18 +2548,29 @@ public:
     /** @brief Insert a point data to a OctreeNode.
     *
     * @param point The point data in Point3f format.
+    * @param color The color attribute of point in Point3f format.
     * @return Returns whether the insertion is successful.
     */
-    bool insertPoint(const Point3f& point);
+    bool insertPoint(const Point3f& point,const Point3f &color);
 
-    /** @brief Read point cloud data and create OctreeNode.
+    /** @brief Read point cloud data with color and create OctreeNode.
     *
     * This function is only called when the octree is being created.
     * @param pointCloud PointCloud data.
-    * @param maxDepth The max depth of the Octree.
+    * @param colorAttribute The color attribute of point cloud in Point3f format.
+    * @param resolution The size of the Octree leaf node.
     * @return Returns whether the creation is successful.
     */
-    bool create(const std::vector<Point3f> &pointCloud, int maxDepth = -1);
+    bool create(const std::vector<Point3f> &pointCloud,const std::vector<Point3f> &colorAttribute,double resolution);
+
+    /** @brief Read point cloud data without color and create OctreeNode.
+    *
+    * This function is only called when the octree is being created.
+    * @param pointCloud PointCloud data.
+    * @param resolution The size of the Octree leaf node.
+    * @return Returns whether the creation is successful.
+    */
+    bool create(const std::vector<Point3f> &pointCloud,double resolution);
 
     /** @brief Determine whether the point is within the space range of the specific cube.
      *

@@ -399,7 +399,7 @@ namespace cv {
         size_t childIndex = key.findChildIdxByMask(depthMask);
         //std::cout<<childIndex<<std::endl;
         if (node.children[childIndex].empty()) {
-            node.children[childIndex] = new OctreeCompressNode(node.depth + 1, 0, Point3f(0, 0, 0), Point3f(0, 0, 0),
+            node.children[childIndex] = new OctreeCompressNode(node.depth + 1, 0, node.origin, Point3f(0, 0, 0),
                                                                int(childIndex), 0);
             node.children[childIndex]->parent = _node;
         }

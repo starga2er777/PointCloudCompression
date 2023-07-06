@@ -3,6 +3,8 @@
 // of this distribution and at http://opencv.org/license.html.
 
 #include "test_precomp.hpp"
+#include <iostream>
+#include <ctime>
 
 namespace opencv_test { namespace {
 
@@ -14,8 +16,7 @@ protected:
     void SetUp() override
     {
         pointCloudSize = 1000;
-        maxDepth = 18;
-
+        resolution=0.0001;
         int scale;
         Point3i pmin, pmax;
         scale = 1<<20;
@@ -34,7 +35,13 @@ protected:
         }
 
         // Generate Octree From PointCloud.
-        treeTest.create(pointcloud, maxDepth);
+        clock_t start = clock();
+        treeTest.create(pointcloud, resolution);
+
+        clock_t end = clock();
+        double duration = double(end - start) / CLOCKS_PER_SEC;
+
+        std::cout << "time" << duration << " s" << std::endl;
 
         // Randomly generate another 3D point.
         float _x = 10 * (float)rng_Point.uniform(pmin.x, pmax.x)/scale;
@@ -51,20 +58,20 @@ public:
     Octree treeTest;
 
 private:
-    int maxDepth;
+    double resolution;
 };
 
 TEST_F(OctreeTest, BasicFunctionTest)
 {
     // Check if the point in Bound.
     EXPECT_TRUE(treeTest.isPointInBound(restPoint));
-    EXPECT_FALSE(treeTest.isPointInBound(restPoint + Point3f(20, 20, 20)));
+    EXPECT_FALSE(treeTest.isPointInBound(restPoint + Point3f(60, 60, 60)));
 
     // insert, delete Test.
     EXPECT_FALSE(treeTest.deletePoint(restPoint));
 
-    EXPECT_THROW(treeTest.insertPoint(restPoint + Point3f(20, 20, 20)), cv::Exception);
-    EXPECT_NO_THROW(treeTest.insertPoint(restPoint));
+    EXPECT_THROW(treeTest.insertPoint(restPoint + Point3f(60, 60, 60),Point3f(0.0f, 0.0f, 0.0f)), cv::Exception);
+    EXPECT_NO_THROW(treeTest.insertPoint(restPoint,Point3f(0.0f, 0.0f, 0.0f)));
 
     EXPECT_TRUE(treeTest.deletePoint(restPoint));
 

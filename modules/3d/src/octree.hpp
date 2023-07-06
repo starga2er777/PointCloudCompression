@@ -58,7 +58,7 @@ public:
     * @param _parentIndex The serial number of the child of the current node in the parent node,
     * the range is (-1~7). Among them, only the root node's _parentIndex is -1.
     */
-    OctreeNode(int _depth, double _size, const Point3f& _origin, int _parentIndex);
+    OctreeNode(int _depth, double _size, const Point3f& _origin, const Point3f& _color, int _parentIndex, int _pointNum);
 
     //! returns true if the rootNode is NULL.
     bool empty() const;
@@ -83,6 +83,25 @@ public:
     //! And the center of cube is `center = origin + Point3f(size/2, size/2, size/2)`.
     Point3f origin;
 
+    Point3f color;
+
+    Point3f RAHTCoefficient;
+
+    int pointNum;
+
+    /**  The list of 6 adjacent neighbor node.
+        *    index mapping:
+        *     +z                        [101]
+        *      |                          |    [110]
+        *      |                          |  /
+        *      O-------- +x    [001]----{000} ----[011]
+        *     /                       /   |
+        *    /                   [010]    |
+        *  +y                           [100]
+        *  index 000, 111 are reserved
+        */
+    std::vector< Ptr<OctreeNode> > neigh;
+
     /**  The serial number of the child of the current node in the parent node,
     * the range is (-1~7). Among them, only the root node's _parentIndex is -1.
     */
@@ -94,6 +113,54 @@ public:
     //! Contains pointers to all point cloud data in this node.
     std::vector<Point3f> pointList;
 };
+
+    class OctreeKey{
+    public:
+        size_t x_key;
+        size_t y_key;
+        size_t z_key;
+
+    public:
+        OctreeKey():x_key(0),y_key(0),z_key(0){};
+        OctreeKey(size_t x,size_t y,size_t z):x_key(x),y_key(y),z_key(z){};
+        inline unsigned char findChildIdxByMask(size_t mask) const{
+            return static_cast<unsigned char>((!!(z_key&mask))<<2)|((!!(y_key&mask))<<1)|(!!(x_key&mask));
+        }
+
+        static inline unsigned char getBitPattern(OctreeNode &node) {
+            unsigned char res=0;
+            for (unsigned char i=0; i<node.children.size();i++){
+                res|=static_cast<unsigned char>((!node.children[i].empty()) << i);
+            }
+            return res;
+        }
+
+        static inline unsigned char getNeighPattern(OctreeNode &node) {
+            unsigned char res=0;
+            for (unsigned char i=1; i<7;i++){
+                res |= static_cast<unsigned char>( (!node.neigh[i].empty()) << (i - 1));
+            }
+            return res;
+        }
+    };
+
+
+    // header information
+    // +-----------------------------   +
+    // | resolution (double, 8bytes)    |
+    // | origin X,Y,Z (3float, 12bytes) |
+    // | bit_out len (size_t, 8bytes)   |
+    // +-----------------------------   +
+    class OctreeCompressData {
+    public:
+        std::vector<unsigned char> header;
+        std::vector<unsigned char> occ_codes;
+        std::vector<unsigned char> dcm_codes;
+        std::vector<unsigned char> dcm_flags;
+        std::vector<unsigned char> occ_lookup_table;
+        std::vector<unsigned char> dcm_lookup_table;
+        std::vector<unsigned char> color_codes;
+    };
 
 }
 #endif //OPENCV_3D_SRC_OCTREE_HPP

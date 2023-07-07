@@ -23,7 +23,7 @@ file(GLOB_RECURSE ADE_include "${ADE_root}/include/ade/*.hpp")
 add_library(ade STATIC ${OPENCV_3RDPARTY_EXCLUDE_FROM_ALL}
     ${ADE_include}
     ${ADE_sources}
-)
+        )
 target_include_directories(ade PUBLIC $<BUILD_INTERFACE:${ADE_root}/include>)
 set_target_properties(ade PROPERTIES
   POSITION_INDEPENDENT_CODE True

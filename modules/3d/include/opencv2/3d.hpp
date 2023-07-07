@@ -2555,7 +2555,8 @@ public:
 
     /** @brief Read point cloud data with color and create OctreeNode.
     *
-    * This function is only called when the octree is being created.
+    * This function is only called when the octree is being created. The maxDepth of octree is calculated
+    * by resolution
     * @param pointCloud PointCloud data.
     * @param colorAttribute The color attribute of point cloud in Point3f format.
     * @param resolution The size of the Octree leaf node.
@@ -2565,7 +2566,8 @@ public:
 
     /** @brief Read point cloud data without color and create OctreeNode.
     *
-    * This function is only called when the octree is being created.
+    * This function is only called when the octree is being created. The maxDepth of octree is calculated
+    * by resolution
     * @param pointCloud PointCloud data.
     * @param resolution The size of the Octree leaf node.
     * @return Returns whether the creation is successful.
@@ -2606,6 +2608,15 @@ public:
     * @return return ture if the point is deleted successfully.
     */
     bool deletePoint(const Point3f& point);
+
+    /** @brief restore point cloud data from Octree.
+    *
+    * Restore the point cloud data from existing octree. The points in same leaf node will be seen as the same point.
+    * This point is the center of the leaf node. If the resolution is small, it will work as a downSampling function.
+    * @param restorePointCloud The output point cloud data.
+    * @param restoreColor The color attribute of point cloud data
+    */
+    void getPointCloudByOctree(std::vector<Point3f> &restorePointCloud, std::vector<Point3f> &restoreColor);
 
     /** @brief Radius Nearest Neighbor Search in Octree
     *
@@ -2734,6 +2745,10 @@ public:
 protected:
     struct Impl;
     Ptr<Impl> p;
+};
+
+class CV_EXPORTS pointCloudCompress {
+
 };
 
 
